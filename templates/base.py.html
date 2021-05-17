@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>!DOCTYPE</title>
+    <meta charset="utf-8" />
+  </head>
+  <body>
+    <p>
+      Разум — это Будда, а прекращение умозрительного мышления — это путь.
+      Перестав мыслить понятиями и размышлять о путях существования и небытия, о
+      душе и плоти, о пассивном и активном и о других подобных вещах, начинаешь
+      осознавать, что разум — это Будда, что Будда — это сущность разума, и что
+      разум подобен бесконечности.
+    </p>
+
+    <div class="menu">
+        Меню:<br />
+        <a href="{% url 'index' %}">Главная</a><br/>
+        <a href="{% url 'menu' %}">Меню</a><br/>
+        <a href="{% url 'delivery' %}">Доставка</a><br/>
+        <a href="{% url 'booking' %}">Бронирование</a><br/>
+        <a href="{% url 'events' %}">События </a><br/>
+        <a href="{% url 'job' %}">Карьера </a><br/>
+        <a href="{% url 'franchise' %}">Франчайзи </a><br/>
+        <a href="{% url 'contacts' %}">Контакты </a><br/>
+        <a href="{% url 'login' %}">Войти </a><br/>
+    </div>
+
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+
+    {% block content %} {% endblock content %}
+  </body>
+</html>

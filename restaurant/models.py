@@ -84,3 +84,50 @@ class MenuInOrder(models.Model):
     def __str__(self) -> str:
         return "%s" % self.menue
     
+
+class Feedback(models.Model):
+    name = models.CharField('Имя', max_length=128, blank=False, null=False)
+    phone = models.CharField('Телефон', max_length=128, blank=False, null=False)
+    description = models.TextField('Отзыв', max_length=128, blank=False, null=False)
+
+    class Meta:
+        verbose_name = 'отзыв'
+        verbose_name_plural = 'Отзывы'
+
+class Franchising(models.Model):
+    name = models.CharField('Имя', max_length=128, blank=False, null=False)
+    phone = models.CharField('Телефон', max_length=128, blank=False, null=False)
+
+    class Meta:
+        verbose_name = 'франшиза'
+        verbose_name_plural = 'Франшиза'
+
+class Сareer(models.Model):
+    first_name = models.CharField('Имя', max_length=128, blank=False, null=False)
+    middle_name = models.CharField('Отчество', max_length=128, blank=False, null=False)
+    last_name = models.CharField('Фамилия', max_length=128, blank=False, null=False)
+    phone = models.CharField('Телефон', max_length=128, blank=False, null=False)
+    position = models.CharField('Должность', max_length=128, blank=False, null=False)
+    city = models.CharField('Город', max_length=128, blank=False, null=False)
+    bar = models.CharField('Бар', max_length=128, blank=False, null=False)
+    b_day = models.DateField('Дата рождения', blank=False, null=False)
+    citizenship = models.CharField('Гражданство', max_length=128, blank=False, null=False)
+    about = models.TextField('О себе', max_length=128, blank=False, null=False)
+
+    class Meta:
+        verbose_name = 'карьера'
+        verbose_name_plural = 'Карьеры'
+
+class Reservation(models.Model):
+    bar = models.CharField('Бар', max_length=128, blank=False, null=False)
+    start = models.DateTimeField('От', blank=False, null=False)
+    end = models.DateTimeField('До', blank=False, null=False)
+    persons = models.IntegerField('Кол-во человек', blank=False, null=False)
+    table = models.IntegerField('Стол', blank=False, null=False)
+    name = models.CharField('Имя', max_length=128, blank=False, null=False)
+    phone = models.CharField('Телефон для связи', max_length=128, blank=False, null=False)
+    description = models.TextField('Пожелание к брони', max_length=128, blank=False, null=False)
+
+    class Meta:
+        verbose_name = 'бронь'
+        verbose_name_plural = 'Бронирование'

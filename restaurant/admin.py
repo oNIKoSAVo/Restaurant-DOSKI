@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Category, MenuInOrder, Menue, Order, Profile, Restaraunt
+from .models import Category, Feedback, Franchising, MenuInOrder, Menue, Order, Profile, Reservation, Restaraunt, Сareer
 
 admin.site.site_header = 'Respublica administrator'
 
@@ -27,4 +27,9 @@ admin.site.register(Order, OrderAdmin)
 
 admin.site.register(Profile)
 admin.site.register(Category)
+
+admin.site.register(Feedback)
+admin.site.register(Franchising)
+admin.site.register(Сareer)
+admin.site.register(Reservation)
 

@@ -1,0 +1,6 @@
+{% extends 'base.py.html' %} {% load django_svelte %}
+{% block content %}
+    Франчайзи!
+    {% display_svelte "Franchise.svelte" component_props %}
+   <br/> FROM VIEW: {{ data }}
+{% endblock content %}

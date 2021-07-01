@@ -38,7 +38,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'restaurant'
+    'django_svelte',
+    'restaurant',
 ]
 
 MIDDLEWARE = [
@@ -121,6 +122,11 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
+STATICFILES_DIRS = [
+    BASE_DIR.parent / "svelte" / "public" / "build",
+]
+
+print(STATICFILES_DIRS)
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 

@@ -1,0 +1,8 @@
+{% extends 'base.py.html' %} {% load django_svelte %}
+{% block content %}
+
+{% display_svelte "Feedback.svelte" component_props %}
+
+    Обратный отзыв
+    <br/> FROM VIEW: {{ data }}
+{% endblock content %}

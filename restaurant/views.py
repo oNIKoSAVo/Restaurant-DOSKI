@@ -14,8 +14,8 @@ def delivery(request):
     return render(request, 'delivery.py.html', {'data': sys._getframe(0).f_code.co_name})
 
 
-def booking(request):
-    return render(request, 'booking.py.html', {'data': sys._getframe(0).f_code.co_name})
+def reservation(request):
+    return render(request, 'reservation.py.html', {'data': sys._getframe(0).f_code.co_name})
 
 
 def events(request):

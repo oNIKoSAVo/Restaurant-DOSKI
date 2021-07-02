@@ -1,6 +1,8 @@
-from django.http.response import JsonResponse
-from restaurant.models import Feedback, Franchising
 import sys
+from datetime import datetime
+
+from django.http.response import JsonResponse
+from restaurant.models import Feedback, Franchising, Reservation, Restaraunt, Сareer
 from django.shortcuts import get_object_or_404, render, redirect
 
 
@@ -17,7 +19,34 @@ def delivery(request):
 
 
 def reservation(request):
-    return render(request, 'reservation.py.html', {'data': sys._getframe(0).f_code.co_name})
+    if request.method == "POST":
+        date = request.POST.get('date')
+        time_str_start = request.POST.get('start')
+        time_str_end = request.POST.get('end')
+
+        date_start = datetime.strptime(
+            date + " " + time_str_start, '%d/%m/%Y %H:%M')
+        date_end = datetime.strptime(
+            date + " " + time_str_end, '%d/%m/%Y %H:%M')
+        reservation = Reservation.objects.create(
+            restaraunt=Restaraunt.objects.get(
+                pk=request.POST.get('restaraunt')),
+            start=date_start,
+            end=date_end,
+            persons=request.POST.get('persons'),
+            table=request.POST.get('table'),
+            name=request.POST.get('name'),
+            phone=request.POST.get('phone'),
+            description=request.POST.get('description')
+        )
+        if(reservation):
+            return JsonResponse({"status": "success"})
+        else:
+            return JsonResponse({"status": "error"})
+    restaraunts = Restaraunt.objects.all()
+    restaraunts = [{'id': restaraunt.id, 'text': restaraunt.address}
+                   for restaraunt in restaraunts]
+    return render(request, 'reservation.py.html', {'data': sys._getframe(0).f_code.co_name, 'props': {'restaraunts': restaraunts}})
 
 
 def feedback(request):
@@ -35,8 +64,25 @@ def events(request):
     return render(request, 'events.py.html', {'data': sys._getframe(0).f_code.co_name})
 
 
-def job(request):
-    return render(request, 'job.py.html', {'data': sys._getframe(0).f_code.co_name})
+def career(request):
+    if request.method == "POST":
+        career = Сareer.objects.create(
+            first_name=request.POST.get('first_name'),
+            middle_name=request.POST.get('middle_name'),
+            last_name=request.POST.get('last_name'),
+            phone=request.POST.get('phone'),
+            position=request.POST.get('position'),
+            city=request.POST.get('city'),
+            bar=request.POST.get('bar'),
+            b_day=request.POST.get('b_day'),
+            citizenship=request.POST.get('citizenship'),
+            about=request.POST.get('about'),
+        )
+        if(career):
+            return JsonResponse({"status": "success"})
+        else:
+            return JsonResponse({"status": "error"})
+    return render(request, 'career.py.html', {'data': sys._getframe(0).f_code.co_name})
 
 
 def franchise(request):

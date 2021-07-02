@@ -18,10 +18,18 @@ async function request(method, path, data) {
     });
 }
 
-export function feedbackRequest(data){
-    return request("POST", "/feedback", data);
+export function feedbackRequest(data) {
+  return request("POST", "/feedback", data);
 }
 
-export function franchiseRequest(data){
-    return request("POST", "/franchise", data);
+export function franchiseRequest(data) {
+  return request("POST", "/franchise", data);
+}
+
+export function reservationRequest(data) {
+  return request("POST", "/reservation", data);
+}
+
+export function careerRequest(data) {
+  return request("POST", "/career", data);
 }

@@ -83,7 +83,9 @@ let exportable = [];
 [
   "App",
   "Feedback",
-  "Franchise"
+  "Franchise",
+  "Reservation",
+  "Career",
 ].forEach((d) => exportable.push(componentExportDetails(d)));
 
 export default exportable;

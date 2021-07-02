@@ -119,7 +119,7 @@ class Сareer(models.Model):
         verbose_name_plural = 'Карьеры'
 
 class Reservation(models.Model):
-    restaraunt = models.ForeignKey(Restaraunt, verbose_name='Ресторан', on_delete=models.DO_NOTHING, blank=False, null=False)
+    restaraunt = models.ForeignKey(Restaraunt, verbose_name='Ресторан', related_name='reservations', on_delete=models.DO_NOTHING, blank=False, null=False, default=0)
     start = models.DateTimeField('От', blank=False, null=False)
     end = models.DateTimeField('До', blank=False, null=False)
     persons = models.IntegerField('Кол-во человек', blank=False, null=False)

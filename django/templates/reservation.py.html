@@ -43,7 +43,8 @@
         <a class="submit big d-sm-block d-none" href="#"
           >забронируй столик в приложении и получи бонусы</a
         >
-        <form id="reserve-form">
+        {% display_svelte "Reservation.svelte" props %}
+        <!-- <form id="reserve-form">
           <div class="row">
             <div class="col-12 d-none d-sm-block">
               <select name="destination">
@@ -93,7 +94,7 @@
               <a class="submit reserve" href="#">Забронировать</a>
             </div>
           </div>
-        </form>
+        </form> -->
       </div>
     </div>
   </div>

@@ -1,14 +1,4 @@
-<!-- <a href="{% url 'index' %}">Главная</a><br/>
-        <a href="{% url 'menu' %}">Меню</a><br/>
-        <a href="{% url 'delivery' %}">Доставка</a><br/>
-        <a href="{% url 'reservation' %}">Бронирование</a><br/>
-        <a href="{% url 'events' %}">События </a><br/>
-        <a href="{% url 'career' %}">Карьера </a><br/>
-        <a href="{% url 'franchise' %}">Франчайзи </a><br/>
-        <a href="{% url 'contacts' %}">Контакты </a><br/>
-        <a href="{% url 'feedback' %}">Обратная свзяь </a><br/>
-        <a href="{% url 'login' %}">Войти </a><br/> -->
-
+{% load django_svelte %}
 <!DOCTYPE html>
 <head>
   <meta charset="UTF-8" />
@@ -535,7 +525,9 @@
       </div>
     </div>
   </div>
-  <div
+
+  {% display_svelte "Feedback.svelte" component_props %}
+  <!-- <div
     class="modal-wrapper modal fade"
     id="feedback"
     tabindex="-1"
@@ -578,7 +570,7 @@
         </form>
       </div>
     </div>
-  </div>
+  </div> -->
   <div class="modal modal-wrapper fade" id="item" tabindex="-1" role="dialog">
     <div class="modal-dialog">
       <div class="modal-content">
@@ -672,7 +664,7 @@
       </div>
     </div>
   </div>
-  <div
+  <!-- <div
     class="modal modal-wrapper fade"
     id="reserved"
     tabindex="-1"
@@ -700,7 +692,7 @@
         </div>
       </div>
     </div>
-  </div>
+  </div> -->
   <div class="modal-wrapper modal fade" id="cart" tabindex="-1" role="dialog">
     <div class="modal-dialog">
       <div class="modal-content">

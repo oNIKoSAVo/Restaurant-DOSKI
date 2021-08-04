@@ -40,7 +40,7 @@ def reservation(request):
             description=request.POST.get('description')
         )
         if(reservation):
-            return JsonResponse({"status": "success"})
+            return JsonResponse({"status": "success", "id": reservation.id})
         else:
             return JsonResponse({"status": "error"})
     restaraunts = Restaraunt.objects.all()

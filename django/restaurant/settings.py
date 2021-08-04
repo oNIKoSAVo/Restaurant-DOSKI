@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-0o(twcpw(n(mi^!h9dpq6)q@w-#s!dv2(s_8_@m_xeud$^o2_7
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['157.90.231.91', 'localhost']
+ALLOWED_HOSTS = ['157.90.231.91', '127.0.0.1', 'localhost']
 
 
 # Application definition
@@ -50,6 +50,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    # 'restaurant.nocache.NoCache'
 ]
 
 ROOT_URLCONF = 'restaurant.urls'

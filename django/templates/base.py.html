@@ -1,21 +1,4 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <title>!DOCTYPE</title>
-    <meta charset="utf-8" />
-  </head>
-  <body>
-    <p>
-      Разум — это Будда, а прекращение умозрительного мышления — это путь.
-      Перестав мыслить понятиями и размышлять о путях существования и небытия, о
-      душе и плоти, о пассивном и активном и о других подобных вещах, начинаешь
-      осознавать, что разум — это Будда, что Будда — это сущность разума, и что
-      разум подобен бесконечности.
-    </p>
-
-    <div class="menu">
-        Меню:<br />
-        <a href="{% url 'index' %}">Главная</a><br/>
+<!-- <a href="{% url 'index' %}">Главная</a><br/>
         <a href="{% url 'menu' %}">Меню</a><br/>
         <a href="{% url 'delivery' %}">Доставка</a><br/>
         <a href="{% url 'reservation' %}">Бронирование</a><br/>
@@ -24,15 +7,1334 @@
         <a href="{% url 'franchise' %}">Франчайзи </a><br/>
         <a href="{% url 'contacts' %}">Контакты </a><br/>
         <a href="{% url 'feedback' %}">Обратная свзяь </a><br/>
-        <a href="{% url 'login' %}">Войти </a><br/>
+        <a href="{% url 'login' %}">Войти </a><br/> -->
+
+<!DOCTYPE html>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://respublica.bar/" />
+  <meta
+    property="og:image"
+    content="https://www.respublica.bar/images/logo.png"
+  />
+  <meta property="og:image:width" content="900" />
+  <meta property="og:image:height" content="439" />
+  <meta property="og:site_name" content="Франшиза Бар Respublica" />
+  <meta
+    name="description"
+    content="Современный уютный бар с прибылью от 500 тыс рублей в месяц"
+  />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <title>Бар "Respublica"</title>
+  <link rel="icon" href="/static/favicon.png" />
+  <link href="/static/style.css" rel="stylesheet" />
+</head>
+<body>
+  <script>
+    !(function (e, t, n, c, o, a, f) {
+      e.fbq ||
+        ((o = e.fbq =
+          function () {
+            o.callMethod
+              ? o.callMethod.apply(o, arguments)
+              : o.queue.push(arguments);
+          }),
+        e._fbq || (e._fbq = o),
+        (o.push = o),
+        (o.loaded = !0),
+        (o.version = "2.0"),
+        (o.queue = []),
+        ((a = t.createElement(n)).async = !0),
+        (a.src = "https://connect.facebook.net/en_US/fbevents.js"),
+        (f = t.getElementsByTagName(n)[0]).parentNode.insertBefore(a, f));
+    })(window, document, "script"),
+      fbq("init", "249879825918890"),
+      fbq("track", "PageView");
+  </script>
+  <noscript
+    ><img
+      height="1"
+      width="1"
+      style="display: none"
+      src="https://www.facebook.com/tr?id=249879825918890&amp;ev=PageView&amp;noscript=1"
+  /></noscript>
+  <script>
+    !(function (e, t, n, c, o, a, f) {
+      e.fbq ||
+        ((o = e.fbq =
+          function () {
+            o.callMethod
+              ? o.callMethod.apply(o, arguments)
+              : o.queue.push(arguments);
+          }),
+        e._fbq || (e._fbq = o),
+        (o.push = o),
+        (o.loaded = !0),
+        (o.version = "2.0"),
+        (o.queue = []),
+        ((a = t.createElement(n)).async = !0),
+        (a.src = "https://connect.facebook.net/en_US/fbevents.js"),
+        (f = t.getElementsByTagName(n)[0]).parentNode.insertBefore(a, f));
+    })(window, document, "script"),
+      fbq("init", "249879825918890"),
+      fbq("track", "PageView");
+  </script>
+  <noscript
+    ><img
+      height="1"
+      width="1"
+      style="display: none"
+      src="https://www.facebook.com/tr?id=249879825918890&amp;ev=PageView&amp;noscript=1"
+  /></noscript>
+  <header>
+    <div class="navbar box-shadow">
+      <div class="container d-flex justify-content-between">
+        <div
+          class="
+            col-4 col-md-4 col-lg-5
+            align-items-center
+            justify-content-around
+            px-0
+            d-sm-flex d-none
+          "
+        >
+          <a class="menu-item" href="{% url 'menu' %}">Меню</a
+          ><a class="menu-item" href="{% url 'delivery' %}">Доставка</a
+          ><a class="menu-item" href="{% url 'reservation' %}">Бронирование</a
+          ><a class="menu-item" href="{% url 'events' %}">События</a
+          ><a class="menu-item" href="{% url 'career' %}">Карьера</a>
+        </div>
+        <div class="col-2 d-sm-none d-block navbar-toggler">
+          <img
+            class="notactive mr-sm-2"
+            src="/static/app/img/menu.png"
+            height="33"
+          /><img
+            class="active mr-sm-2"
+            src="/static/app/img/close-menu.png"
+            height="33"
+          />
+        </div>
+        <div
+          class="
+            col-2
+            underlogo
+            d-sm-flex
+            align-items-center
+            px-0
+            col-md-8
+            justify-content-center
+            col-lg-2
+            d-none
+          "
+        >
+          <a class="d-flex align-items-center" href="{% url 'index' %}"
+            ><img src="/static/app/img/logo@2x.png" alt="RESPUBLICA" width="83"
+          /></a>
+        </div>
+        <div class="col-8 d-sm-none d-block text-center">
+          <a href="{% url 'index' %}"
+            ><img
+              src="/static/app/img/mobile-logo.png"
+              alt="RESPUBLICA"
+              height="21"
+          /></a>
+        </div>
+        <div class="col-2 d-sm-none d-block">
+          <img class="mr-sm-2" src="/static/app/img/phone.png" height="24" />
+        </div>
+        <div
+          class="
+            col-4 col-md-4 col-lg-5
+            d-none d-sm-flex
+            align-items-center
+            justify-content-around
+            px-0
+          "
+        >
+          <a class="menu-item" href="{% url 'franchise' %}">Франчайзи</a
+          ><a class="menu-item" href="{% url 'contacts' %}">Контакты</a
+          ><a class="login gradient1" href="#signinup" data-modal
+            ><img
+              class="mr-sm-2"
+              src="/static/app/img/login-icon.png"
+              width="19"
+            /><span class="d-none d-sm-inline">Войти</span></a
+          ><a class="phone gradient1" href="tel:+73832279050"
+            ><img
+              class="mr-sm-2"
+              src="/static/app/img/phone.png"
+              width="16"
+            /><span class="d-none d-sm-inline">227-90-50</span></a
+          >
+        </div>
+      </div>
     </div>
+  </header>
 
-    <br/>
-    <br/>
-    <br/>
-    <br/>
-    <br/>
+  {% block content %} {% endblock content %}
 
-    {% block content %} {% endblock content %}
-  </body>
-</html>
+  <section id="map">
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-6 col-12">
+          <div class="row pb-sm-4">
+            <div class="col-sm-6 col-12">
+              <div class="section-title pt-0 text-sm-left text-center">
+                Наши бары:
+              </div>
+              <ul class="bars text-sm-left text-center">
+                <li>ул. Ленина 6</li>
+                <li>ул. Дуси Ковальчук 179/2</li>
+                <li>ул. Покрышкина 6</li>
+                <li>ул. Бориса Богаткова 201/1</li>
+              </ul>
+              <div class="text-center text-sm-left">
+                <a class="phone" href="tel:+7(383)227-90-50"
+                  >+7 (383) 227-90-50</a
+                >
+              </div>
+            </div>
+            <div class="col-sm-6" style="position: relative; z-index: 0">
+              <a class="submit mb-4" href="#feedback" data-modal
+                >Оставить отзыв<img
+                  src="/static/app/img/feedback-icon.png"
+                  width="24" /></a
+              ><a class="mt-3 alternative" href="#"
+                >Вызвать такси<img src="/static/app/img/arrow-right.png" width="24"
+              /></a>
+              <div class="text-sm-right text-center mt-sm-2 mt-4">
+                <img src="/static/app/img/yandex.png" height="22" />
+              </div>
+            </div>
+          </div>
+          <div class="row mt-4 pt-4">
+            <div class="col-sm-4 d-none d-sm-block">
+              <img src="/static/app/img/qr.png" height="129" />
+            </div>
+            <div class="col-sm-8">
+              <div class="app-text text-sm-left text-center pb-3 pb-sm-0">
+                Скачай для удобства<br />мобильное приложение
+              </div>
+              <div class="app-buttons mb-sm-0 mb-3">
+                <a class="download active" href="#"
+                  >Скачать для<img src="/static/app/img/apple.png" width="18" /></a
+                ><a class="download" href="#"
+                  >Скачать для<img src="/static/app/img/android.png" width="18"
+                /></a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-6 pl-sm-2 pt-2 pt-sm-0">
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m16!1m12!1m3!1d18293.325820378202!2d82.9231845436431!3d55.031550407857374!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!2m1!1zcmVzcHVibGljYSDQsdCw0YA!5e0!3m2!1sru!2sru!4v1626850287804!5m2!1sru!2sru"
+            style="border: 0"
+            allowfullscreen=""
+            loading="lazy"
+          ></iframe>
+        </div>
+      </div>
+    </div>
+  </section>
+  <footer id="contacts">
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-3 col-8 offset-2 mb-3 offset-sm-0">
+          <img src="/static/app/img/footer_logo.png" style="max-width: 100%" />
+        </div>
+        <div class="col-sm-3 text-center mb-2 mt-3 mt-sm-0">
+          <a href="https://instagram.com/respublica_bar" target="_blank"
+            ><img src="/static/app/img/insta.png" width="25" />respublica_bar</a
+          >
+        </div>
+        <div class="col-sm-3 text-center mb-2">
+          <a href="https://www.respublica.bar" target="_blank"
+            ><img
+              src="/static/app/img/web.png"
+              width="25"
+            />www.respublica.bar</a
+          >
+        </div>
+        <div class="col-sm-3 text-center mb-2">
+          <a href="https://vk.com/bar_respublica" target="_blank"
+            ><img src="/static/app/img/vk.png" width="25" />bar_respublica</a
+          >
+        </div>
+      </div>
+    </div>
+  </footer>
+  <div id="menu">
+    <div class="menu-container">
+      <ul>
+        <li><a class="menu-item" href="/menu.html">Меню</a></li>
+        <li><a class="menu-item" href="/delivery.html">Доставка</a></li>
+        <li><a class="menu-item" href="/reserve.html">Бронирование</a></li>
+        <li><a class="menu-item" href="/events.html">События</a></li>
+        <li><a class="menu-item" href="/job.html">Карьера</a></li>
+        <li><a class="menu-item" href="/franchise.html">Франчайзи</a></li>
+        <li><a class="menu-item" href="/contacts.html">Контакты</a></li>
+        <li class="mt-4 login">
+          <img class="mr-2" src="/static/app/img/login-icon.png" width="19" /><a
+            href="#signinup"
+            data-modal
+            >Войти</a
+          >
+        </li>
+        <li class="phone">
+          <img class="mr-2" src="/static/app/img/phone.png" height="24" /><a
+            href="tel:+73832279050"
+            >227-90-50</a
+          >
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div
+    class="modal modal-wrapper fade"
+    id="signinup"
+    tabindex="-1"
+    role="dialog"
+  >
+    <div class="modal-dialog" style="max-width: 424px">
+      <div class="modal-content">
+        <button
+          class="close"
+          type="button"
+          data-dismiss="modal"
+          aria-label="Close"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <div class="modal-header mt-3 mt-sm-0">
+          <div class="modal-title">Личный кабинет</div>
+        </div>
+        <div class="pb-3">
+          <a
+            class="mt-0 mb-3 submit d-block text-center"
+            href="#login"
+            data-modal
+            >Войти</a
+          ><a
+            class="download active d-block text-center"
+            href="#register"
+            data-modal
+            >Зарегистрироваться</a
+          >
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal modal-wrapper fade" id="login" tabindex="-1" role="dialog">
+    <div class="modal-dialog" style="max-width: 492px">
+      <div class="modal-content">
+        <button
+          class="close"
+          type="button"
+          data-dismiss="modal"
+          aria-label="Close"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <div class="modal-header"><div class="modal-title">Вход</div></div>
+        <form action="">
+          <input class="login-input" name="login" placeholder="Логин" />
+          <input
+            class="password-input"
+            type="password"
+            name="password"
+            placeholder="Пароль"
+          />
+          <div class="text-center"><a class="submit" href="#">Войти</a></div>
+        </form>
+        <div class="modal-description text-center mt-4">
+          <a href="#forgot-password" data-modal>Забыли пароль?</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div
+    class="modal-wrapper modal fade"
+    id="register"
+    tabindex="-1"
+    role="dialog"
+  >
+    <div class="modal-content" style="max-width: 492px">
+      <div class="modal-header">
+        <button
+          class="close"
+          type="button"
+          data-dismiss="modal"
+          aria-label="Close"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <div class="modal-title">Регистрация</div>
+      </div>
+      <div class="stages">
+        <form class="stage" action="">
+          <div class="modal-description">Введите Ваш номер телефона</div>
+          <input
+            class="phone-input"
+            type="tel"
+            name="phone"
+            placeholder="Ваш телефон"
+          />
+          <div class="text-center">
+            <a class="submit send-register" href="#">Получить код</a>
+          </div>
+        </form>
+        <form class="stage" action="">
+          <div class="modal-description">Введите код из СМС</div>
+          <div class="d-flex justify-content-between code-inputs">
+            <input
+              class="code-input"
+              type="number"
+              name="code1"
+              max="9"
+              min="0"
+              step="1"
+            />
+            <input
+              class="code-input"
+              type="number"
+              name="code2"
+              max="9"
+              min="0"
+              step="1"
+            />
+            <input
+              class="code-input"
+              type="number"
+              name="code3"
+              max="9"
+              min="0"
+              step="1"
+            />
+            <input
+              class="code-input"
+              type="number"
+              name="code4"
+              max="9"
+              min="0"
+              step="1"
+            />
+          </div>
+          <div class="text-center">
+            <a class="submit verify-registration" href="#"
+              >Зарегистрироваться</a
+            >
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  <div
+    class="modal-wrapper modal fade"
+    id="forgot-password"
+    tabindex="-1"
+    role="dialog"
+  >
+    <div class="modal-dialog" style="max-width: 492px">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button
+            class="close"
+            type="button"
+            data-dismiss="modal"
+            aria-label="Close"
+          >
+            <span aria-hidden="true">&times;</span>
+          </button>
+          <div class="modal-title">Забыли пароль?</div>
+        </div>
+        <div class="stages">
+          <form class="stage" action="">
+            <div class="modal-description">Введите Ваш номер телефона</div>
+            <input
+              class="phone-input"
+              type="tel"
+              name="phone"
+              placeholder="Ваш телефон"
+            />
+            <div class="text-center">
+              <a class="submit send-reset" href="#">Получить код</a>
+            </div>
+          </form>
+          <form class="stage" action="">
+            <div class="modal-description">Введите код из СМС</div>
+            <div class="d-flex justify-content-between code-inputs">
+              <input
+                class="code-input"
+                type="number"
+                name="code1"
+                max="9"
+                min="0"
+                step="1"
+              />
+              <input
+                class="code-input"
+                type="number"
+                name="code2"
+                max="9"
+                min="0"
+                step="1"
+              />
+              <input
+                class="code-input"
+                type="number"
+                name="code3"
+                max="9"
+                min="0"
+                step="1"
+              />
+              <input
+                class="code-input"
+                type="number"
+                name="code4"
+                max="9"
+                min="0"
+                step="1"
+              />
+            </div>
+            <div class="text-center">
+              <a class="submit reset-password" href="#">Зарегистрироваться</a>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div
+    class="modal modal-wrapper fade"
+    id="deleteaccount"
+    tabindex="-1"
+    role="dialog"
+  >
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <button
+          class="close"
+          type="button"
+          data-dismiss="modal"
+          aria-label="Close"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <div class="modal-header mt-3">
+          <div class="modal-title">Вы точно хотите удалить аккаунт?</div>
+          <div class="modal-title success">Аккаунт удален</div>
+        </div>
+        <div class="pb-3 text-center">
+          <a class="mt-0 mb-3 submit delete-account" href="#">Ок</a
+          ><a class="download active close-modal" href="#">Отмена</a
+          ><a class="mt-0 mb-3 submit success close-modal" href="#">ОК</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div
+    class="modal-wrapper modal fade"
+    id="feedback"
+    tabindex="-1"
+    role="dialog"
+  >
+    <div class="modal-dialog" style="max-width: 659px">
+      <div class="modal-content">
+        <button
+          class="close"
+          type="button"
+          data-dismiss="modal"
+          aria-label="Close"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <div class="modal-header">
+          <div class="modal-title">Оставьте свой отзыв</div>
+          <div class="modal-title success">Ваш отзыв успешно отправлен</div>
+        </div>
+        <div class="modal-description black">
+          С нетерпением ждем ваших замечаний, пожеланий, предложений!
+        </div>
+        <form action="">
+          <input name="phone" placeholder="Ваше имя" />
+          <input
+            class="phone-input"
+            type="tel"
+            name="phone"
+            placeholder="Ваш телефон"
+          />
+          <textarea
+            name="comment"
+            placeholder="Напишите свой отзыв..."
+            rows="4"
+          ></textarea>
+          <div class="text-center" style="margin-top: 20px">
+            <a class="submit send-feedback" href="#">Отправить отзыв</a
+            ><a class="close-modal submit success" href="#">Ок</a>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  <div class="modal modal-wrapper fade" id="item" tabindex="-1" role="dialog">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <button
+          class="close"
+          type="button"
+          data-dismiss="modal"
+          aria-label="Close"
+        >
+          <span aria-hidden="true">&times;</span></button
+        ><img class="dish-img" src="/static/app/img/product1.jpg" />
+        <div class="modal-header">
+          <div class="modal-title">Жареный картофель с грибами</div>
+        </div>
+        <div class="dish-description">
+          Картофель и грибы, обжаренные в специях. Подается со сметаной.
+        </div>
+        <div class="dish-details">
+          <div class="dish-details_sizes">100/15 гр /</div>
+          <div class="dish-details_price">168.-</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div
+    class="modal modal-wrapper fade"
+    id="item-buy"
+    tabindex="-1"
+    role="dialog"
+  >
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <button
+          class="close"
+          type="button"
+          data-dismiss="modal"
+          aria-label="Close"
+        >
+          <span aria-hidden="true">&times;</span></button
+        ><img class="dish-img" src="/static/app/img/product1.jpg" />
+        <div class="modal-header">
+          <div class="modal-title">Жареный картофель с грибами</div>
+        </div>
+        <div class="dish-description">
+          Картофель и грибы, обжаренные в специях. Подается со сметаной.
+        </div>
+        <div class="d-flex align-items-center">
+          <div class="calculations">
+            <div class="minus-btn">-</div>
+            <div class="item-quantity">0</div>
+            <div class="plus-btn">+</div>
+          </div>
+          <div class="dish-details">
+            <div class="dish-details_sizes">100/15 гр /</div>
+            <div class="dish-details_price">168.-</div>
+          </div>
+        </div>
+        <div class="text-left mt-3">
+          <a class="submit addcart" href="#advices" data-modal
+            >Добавить в корзину</a
+          >
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal modal-wrapper fade" id="table" tabindex="-1" role="dialog">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <button
+          class="close"
+          type="button"
+          data-dismiss="modal"
+          aria-label="Close"
+        >
+          <span aria-hidden="true">&times;</span></button
+        ><img class="modal-table" src="/static/app/img/table.jpg" />
+        <div class="modal-header mt-3">
+          <div class="modal-title">Стол №4</div>
+          <div class="people-quantity">
+            <img src="/static/app/img/a-profile-icon.png" width="21" />4
+          </div>
+        </div>
+        <div class="modal-description">
+          Столик с видом на город для компании до 4-х человек
+        </div>
+        <div class="text-center">
+          <a class="mt-0 mb-3 submit select-table close-modal" href="#"
+            >Выбрать стол</a
+          >
+        </div>
+      </div>
+    </div>
+  </div>
+  <div
+    class="modal modal-wrapper fade"
+    id="reserved"
+    tabindex="-1"
+    role="dialog"
+  >
+    <div class="modal-dialog limited" style="max-width: 506px">
+      <div class="modal-content">
+        <button
+          class="close"
+          type="button"
+          data-dismiss="modal"
+          aria-label="Close"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <div class="modal-subtitle mt-1 mb-2">531216</div>
+        <div class="modal-header">
+          <div class="modal-title">
+            СФОТОГРАФИРУЙТЕ ИЛИ СОХРАНИТЕ НОМЕР БРОНИ
+          </div>
+        </div>
+        <div class="modal-description">для предъявления его в заведении</div>
+        <div class="text-center">
+          <a class="mt-0 mb-3 submit" href="#askpreorder" data-modal>ОК</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal-wrapper modal fade" id="cart" tabindex="-1" role="dialog">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <button
+          class="close"
+          type="button"
+          data-dismiss="modal"
+          aria-label="Close"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <div class="stages">
+          <div class="stage">
+            <div class="modal-header pt-1">
+              <div class="modal-title text-left">Корзина</div>
+            </div>
+            <div class="cart-full pb-sm-4 mb-4">
+              <div class="cart-item">
+                <div class="cart-item_imgwrapper">
+                  <img
+                    class="cart-item_img"
+                    src="/static/app/img/product1.jpg"
+                  />
+                </div>
+                <div class="cart-item_title">Пицца «Ди Поло» 375гр</div>
+                <div class="calculation-wrap">
+                  <div class="calculations">
+                    <div class="minus-btn">-</div>
+                    <div class="item-quantity">0</div>
+                    <div class="plus-btn">+</div>
+                  </div>
+                </div>
+                <div class="cart-item_price text-right">149.-</div>
+              </div>
+              <div class="cart-item">
+                <div class="cart-item_imgwrapper">
+                  <img
+                    class="cart-item_img"
+                    src="/static/app/img/product1.jpg"
+                  />
+                </div>
+                <div class="cart-item_title">Пицца «Ди Поло» 375гр</div>
+                <div class="calculation-wrap">
+                  <div class="calculations">
+                    <div class="minus-btn">-</div>
+                    <div class="item-quantity">0</div>
+                    <div class="plus-btn">+</div>
+                  </div>
+                </div>
+                <div class="cart-item_price text-right">149.-</div>
+              </div>
+              <div class="cart-item">
+                <div class="cart-item_imgwrapper">
+                  <img
+                    class="cart-item_img"
+                    src="/static/app/img/product1.jpg"
+                  />
+                </div>
+                <div class="cart-item_title">Пицца «Ди Поло» 375гр</div>
+                <div class="calculation-wrap">
+                  <div class="calculations">
+                    <div class="minus-btn">-</div>
+                    <div class="item-quantity">0</div>
+                    <div class="plus-btn">+</div>
+                  </div>
+                </div>
+                <div class="cart-item_price text-right">149.-</div>
+              </div>
+              <div class="cart-item">
+                <div class="cart-item_imgwrapper">
+                  <img
+                    class="cart-item_img"
+                    src="/static/app/img/product1.jpg"
+                  />
+                </div>
+                <div class="cart-item_title">
+                  Жареный картофель с грибами 280гр
+                </div>
+                <div class="calculation-wrap">
+                  <div class="calculations">
+                    <div class="minus-btn">-</div>
+                    <div class="item-quantity">0</div>
+                    <div class="plus-btn">+</div>
+                  </div>
+                </div>
+                <div class="cart-item_price text-right">149.-</div>
+              </div>
+              <div class="cart-sum cart-item">
+                <div class="cart-summary_title">ИТОГО:</div>
+                <div class="d-none d-md-table-cell"></div>
+                <div class="d-none d-md-table-cell"></div>
+                <div class="cart-summary_amount text-right">914.-</div>
+              </div>
+            </div>
+            <div class="modal-header">
+              <div class="modal-title text-left mb-3">Рекомендуем к заказу</div>
+            </div>
+            <div class="recommendations row">
+              <div class="dish-item col-sm-4 col-10">
+                <img class="dish-img" src="/static/app/img/product1.jpg" />
+                <div class="dish-title">Эби темпура</div>
+                <div class="dish-description">
+                  хиты горячих закусок из нашего меню: сырные палочки, ржаные
+                  гренки, картофель фри, колбаски, рыбные палочки. подается с
+                  соусом тартар и кетчупом.
+                </div>
+                <div class="dish-details">
+                  <div class="dish-details_sizes">100/15 гр /</div>
+                  <div class="dish-details_price">168.-</div>
+                </div>
+                <div class="calculations">
+                  <div class="minus-btn">-</div>
+                  <div class="item-quantity">0</div>
+                  <div class="plus-btn">+</div>
+                </div>
+              </div>
+              <div class="dish-item col-sm-4 col-10">
+                <img class="dish-img" src="/static/app/img/product1.jpg" />
+                <div class="dish-title">Эби темпура</div>
+                <div class="dish-description">
+                  хиты горячих закусок из нашего меню: сырные палочки, ржаные
+                  гренки, картофель фри, колбаски, рыбные палочки. подается с
+                  соусом тартар и кетчупом.
+                </div>
+                <div class="dish-details">
+                  <div class="dish-details_sizes">100/15 гр /</div>
+                  <div class="dish-details_price">168.-</div>
+                </div>
+                <div class="calculations">
+                  <div class="minus-btn">-</div>
+                  <div class="item-quantity">0</div>
+                  <div class="plus-btn">+</div>
+                </div>
+              </div>
+              <div class="dish-item col-sm-4 col-10">
+                <img class="dish-img" src="/static/app/img/product1.jpg" />
+                <div class="dish-title">Эби темпура</div>
+                <div class="dish-description">
+                  хиты горячих закусок из нашего меню: сырные палочки, ржаные
+                  гренки, картофель фри, колбаски, рыбные палочки. подается с
+                  соусом тартар и кетчупом.
+                </div>
+                <div class="dish-details">
+                  <div class="dish-details_sizes">100/15 гр /</div>
+                  <div class="dish-details_price">168.-</div>
+                </div>
+                <div class="calculations">
+                  <div class="minus-btn">-</div>
+                  <div class="item-quantity">0</div>
+                  <div class="plus-btn">+</div>
+                </div>
+              </div>
+            </div>
+            <div class="text-center text-sm-left">
+              <a class="submit checkout-btn" href="#">Оформить заказ</a>
+            </div>
+          </div>
+          <div class="stage">
+            <div class="modal-header pt-1">
+              <div class="modal-title text-center">Оформление заказа</div>
+            </div>
+            <form class="row" action="" id="checkoutform">
+              <div class="col-sm-12">
+                <input name="name" placeholder="Введите Ваше ФИО" />
+              </div>
+              <div class="col-sm-12">
+                <input name="addres" placeholder="Введите адрес" />
+              </div>
+              <div class="col-sm-12">
+                <input name="phone" placeholder="Номер телефона" />
+              </div>
+              <div class="col-sm-12">
+                <input name="comment" placeholder="Пожелания к заказу" />
+              </div>
+              <div class="col-sm-12">
+                <select name="paymentType">
+                  <option value="">Способ оплаты</option>
+                  <option value="Банковская карта">Банковская карта</option>
+                  <option value="Наличные">Наличные</option>
+                  <option value="Онлайн оплата">Онлайн оплата</option>
+                </select>
+              </div>
+            </form>
+            <div class="text-center">
+              <a class="submit checkout-final" href="#">Оформить заказ</a>
+            </div>
+          </div>
+          <div class="stage">
+            <div class="modal-header pt-1">
+              <div class="modal-title text-center">
+                Спасибо! Ваш заказ принят
+              </div>
+            </div>
+            <div class="text-center">
+              <a class="submit close-modal" href="#">Ок</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div
+    class="modal modal-wrapper fade"
+    id="askpreorder"
+    tabindex="-1"
+    role="dialog"
+  >
+    <div class="modal-dialog limited" style="max-width: 424px">
+      <div class="modal-content">
+        <button
+          class="close"
+          type="button"
+          data-dismiss="modal"
+          aria-label="Close"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <div class="modal-header mt-3">
+          <div class="modal-title">Хотите сделать предзаказ?</div>
+        </div>
+        <div class="pb-3 text-center">
+          <a class="mt-0 mb-3 mr-3 submit" href="/preorder.html">Да</a
+          ><a class="download active ml-3 close-modal" href="#">Нет</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div
+    class="modal-wrapper modal fade"
+    id="preorder"
+    tabindex="-1"
+    role="dialog"
+  >
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header pb-4 pt-0">
+          <div class="modal-title text-left">Содержание предзаказа</div>
+          <button
+            class="close"
+            type="button"
+            data-dismiss="modal"
+            aria-label="Close"
+          >
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="cart-full pb-sm-4 mb-sm-4">
+          <div class="cart-item">
+            <div class="cart-item_imgwrapper">
+              <img class="cart-item_img" src="/static/app/img/product1.jpg" />
+            </div>
+            <div class="cart-item_title">Пицца «Ди Поло» 375гр</div>
+            <div class="calculation-wrap">
+              <div class="calculations">
+                <div class="minus-btn">-</div>
+                <div class="item-quantity">0</div>
+                <div class="plus-btn">+</div>
+              </div>
+            </div>
+            <div class="cart-item_price text-right">149.-</div>
+          </div>
+          <div class="cart-item">
+            <div class="cart-item_imgwrapper">
+              <img class="cart-item_img" src="/static/app/img/product1.jpg" />
+            </div>
+            <div class="cart-item_title">Пицца «Ди Поло» 375гр</div>
+            <div class="calculation-wrap">
+              <div class="calculations">
+                <div class="minus-btn">-</div>
+                <div class="item-quantity">0</div>
+                <div class="plus-btn">+</div>
+              </div>
+            </div>
+            <div class="cart-item_price text-right">149.-</div>
+          </div>
+          <div class="cart-item">
+            <div class="cart-item_imgwrapper">
+              <img class="cart-item_img" src="/static/app/img/product1.jpg" />
+            </div>
+            <div class="cart-item_title">Пицца «Ди Поло» 375гр</div>
+            <div class="calculation-wrap">
+              <div class="calculations">
+                <div class="minus-btn">-</div>
+                <div class="item-quantity">0</div>
+                <div class="plus-btn">+</div>
+              </div>
+            </div>
+            <div class="cart-item_price text-right">149.-</div>
+          </div>
+          <div class="cart-item">
+            <div>
+              <img class="cart-item_img" src="/static/app/img/product1.jpg" />
+            </div>
+            <div class="cart-item_title">Жареный картофель с грибами 280гр</div>
+            <div class="calculation-wrap">
+              <div class="calculations">
+                <div class="minus-btn">-</div>
+                <div class="item-quantity">0</div>
+                <div class="plus-btn">+</div>
+              </div>
+            </div>
+            <div class="cart-item_price text-right">149.-</div>
+          </div>
+          <div class="cart-sum cart-item">
+            <div class="cart-summary_title">ИТОГО:</div>
+            <div class="d-none d-md-table-cell"></div>
+            <div class="d-none d-md-table-cell"></div>
+            <div class="cart-summary_amount text-right">914.-</div>
+          </div>
+        </div>
+        <div
+          class="
+            text-center
+            preorder-buttons
+            mb-4
+            mt-3
+            d-flex
+            justify-content-around
+            align-items-center
+          "
+        >
+          <a class="submit" href="#">Скачать</a
+          ><a class="download active" href="#">Распечатать</a
+          ><a class="download active" href="#">Поделиться</a>
+        </div>
+        <p class="mb-0 modal-description">
+          *Вы можете прийти в заведение с вашим предзаказом и оплатить его
+        </p>
+      </div>
+    </div>
+  </div>
+  <div
+    class="modal-wrapper modal fade"
+    id="jobmodal"
+    tabindex="-1"
+    role="dialog"
+  >
+    <div class="modal-dialog" style="max-width: 747px">
+      <div class="modal-content">
+        <button
+          class="close"
+          type="button"
+          data-dismiss="modal"
+          aria-label="Close"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <div class="d-flex justify-content-between align-items-center">
+          <span class="step">Шаг 1</span><span class="step">Шаг 2</span
+          ><span class="step">Шаг 3</span>
+        </div>
+        <div class="modal-header pb-4 pt-0 success">
+          <div class="modal-title text-left">Заявка успешно отправлена</div>
+        </div>
+        <p class="modal-description success">
+          С тобой свяжутся в ближайшее время
+        </p>
+        <form id="regForm" action="">
+          <div class="tab row">
+            <div class="tab-title col-12">КАК ТЕБЯ ЗОВУТ?</div>
+            <div class="col-sm-4">
+              <input placeholder="Имя" oninput='this.className=""' />
+            </div>
+            <div class="col-sm-4">
+              <input placeholder="Фамилия" oninput='this.className=""' />
+            </div>
+            <div class="col-sm-4">
+              <input placeholder="Отчество" oninput='this.className=""' />
+            </div>
+            <div class="col-12">
+              <input
+                class="phone-input"
+                placeholder="Телефон"
+                oninput='this.className=""'
+              />
+            </div>
+            <div class="col-12 rules">
+              <input id="rules" type="checkbox" /> <label for="rules"></label
+              ><a href="#">Согласие на обработку персональных данных</a>
+            </div>
+          </div>
+          <div class="tab row">
+            <div class="tab-title col-12">ГДЕ ХОЧЕШЬ РАБОТАТЬ</div>
+            <div class="col-12">
+              <select name="job">
+                <option value="">Выбери должность</option>
+                <option value="Повар">Повар</option>
+              </select>
+            </div>
+            <div class="col-12">
+              <select name="city">
+                <option value="">Выбери город</option>
+                <option value="Новосибирск">Новосибирск</option>
+              </select>
+            </div>
+            <div class="col-12">
+              <select name="bar">
+                <option value="">Выбери бар</option>
+                <option value="Гоголя">Гоголя</option>
+              </select>
+            </div>
+          </div>
+          <div class="tab row">
+            <div class="tab-title col-12">Пара слов о себе</div>
+            <div class="col-12">
+              <input
+                class="datepicker"
+                placeholder="Дата рождения"
+                oninput='this.className=""'
+              />
+            </div>
+            <div class="col-12">
+              <select name="citizen">
+                <option value="">Выбери гражданство</option>
+                <option value="РФ">РФ</option>
+              </select>
+            </div>
+            <div class="col-12">
+              <textarea placeholder="Расскажи о себе"></textarea>
+            </div>
+          </div>
+          <div
+            class="
+              text-center
+              d-flex
+              justify-content-between
+              align-items-center
+            "
+          >
+            <a class="download mr-2 active" id="prevBtn" href="#">Назад</a
+            ><a class="submit ml-2" id="nextBtn" href="#">Далее</a
+            ><a class="submit success close-modal" href="#">ОК</a>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  <div
+    class="modal modal-wrapper fade"
+    id="succesjob"
+    tabindex="-1"
+    role="dialog"
+  >
+    <div class="modal-dialog" style="max-width: 484px">
+      <div class="modal-content">
+        <button
+          class="close"
+          type="button"
+          data-dismiss="modal"
+          aria-label="Close"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <div class="modal-header mt-3">
+          <div class="modal-title text-left text-sm-center">
+            Заявка успешно отправлена
+          </div>
+        </div>
+        <p class="modal-description">С тобой свяжутся в ближайшее время</p>
+        <div class="pb-3 text-center">
+          <a class="submit close-modal" href="#">Ок</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div
+    class="modal-wrapper modal fade"
+    id="advices"
+    tabindex="-1"
+    role="dialog"
+  >
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header pt-1">
+          <div class="modal-title text-left mb-3">что берут с этим блюдом</div>
+          <button
+            class="close"
+            type="button"
+            data-dismiss="modal"
+            aria-label="Close"
+          >
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="recommendations row">
+          <div class="dish-item col-sm-4 col-10">
+            <img class="dish-img" src="/static/app/img/product1.jpg" />
+            <div class="dish-title">Эби темпура</div>
+            <div class="dish-description">
+              хиты горячих закусок из нашего меню: сырные палочки, ржаные
+              гренки, картофель фри, колбаски, рыбные палочки. подается с соусом
+              тартар и кетчупом.
+            </div>
+            <div class="dish-details">
+              <div class="dish-details_sizes">100/15 гр /</div>
+              <div class="dish-details_price">168.-</div>
+            </div>
+            <div class="calculations">
+              <div class="minus-btn">-</div>
+              <div class="item-quantity">0</div>
+              <div class="plus-btn">+</div>
+            </div>
+          </div>
+          <div class="dish-item col-sm-4 col-10">
+            <img class="dish-img" src="/static/app/img/product1.jpg" />
+            <div class="dish-title">Эби темпура</div>
+            <div class="dish-description">
+              хиты горячих закусок из нашего меню: сырные палочки, ржаные
+              гренки, картофель фри, колбаски, рыбные палочки. подается с соусом
+              тартар и кетчупом.
+            </div>
+            <div class="dish-details">
+              <div class="dish-details_sizes">100/15 гр /</div>
+              <div class="dish-details_price">168.-</div>
+            </div>
+            <div class="calculations">
+              <div class="minus-btn">-</div>
+              <div class="item-quantity">0</div>
+              <div class="plus-btn">+</div>
+            </div>
+          </div>
+          <div class="dish-item col-sm-4 col-10">
+            <img class="dish-img" src="/static/app/img/product1.jpg" />
+            <div class="dish-title">Эби темпура</div>
+            <div class="dish-description">
+              хиты горячих закусок из нашего меню: сырные палочки, ржаные
+              гренки, картофель фри, колбаски, рыбные палочки. подается с соусом
+              тартар и кетчупом.
+            </div>
+            <div class="dish-details">
+              <div class="dish-details_sizes">100/15 гр /</div>
+              <div class="dish-details_price">168.-</div>
+            </div>
+            <div class="calculations">
+              <div class="minus-btn">-</div>
+              <div class="item-quantity">0</div>
+              <div class="plus-btn">+</div>
+            </div>
+          </div>
+        </div>
+        <div class="text-left" style="margin-top: 20px">
+          <a class="close-modal submit" href="#">Вернуться к предзаказу</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="/static/bundle.bundle.js"></script>
+</body>
+<div id="menu">
+  <div class="menu-container">
+    <img class="close" src="/static/app/img/close.png" width="26" />
+    <div class="phone d-block d-sm-none">
+      <a href="tel:88005558597">8 800 555 85 97</a
+      ><small> БЕСПЛАТНО ПО РОССИИ</small>
+    </div>
+    <ul>
+      <li><a href="#aftermain">Преимущества</a></li>
+      <li><a href="#main-description">О компании</a></li>
+      <li><a href="#format">Индивидуальные решения</a></li>
+      <li><a href="#calculator">Финансовые показатели</a></li>
+      <li><a href="#calc">Калькулятор дохода</a></li>
+      <li><a href="#videos">Видео</a></li>
+      <li><a href="#faq">FAQ</a></li>
+      <li><a href="#contacts">Контакты</a></li>
+    </ul>
+    <button
+      class="d-block d-lg-none btn btn-color"
+      type="button"
+      data-title="Заполните форму"
+      data-subtitle="Специалист компании свяжется с Вами в течение 24 часов"
+    >
+      Заказать звонок
+    </button>
+  </div>
+</div>
+<div class="modal fade" id="static-modal" tabindex="-1" role="dialog">
+  <div class="modal-dialog form-wrapper">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button
+          class="close"
+          type="button"
+          data-dismiss="modal"
+          aria-label="Close"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <h4 class="modal-title">Оставить заявку</h4>
+      </div>
+      <form action="">
+        <div class="form-field">
+          <label>Ваше имя</label>
+          <div class="input-wrapper"><input required name="name" /></div>
+        </div>
+        <div class="form-field">
+          <label>Ваша почта</label>
+          <div class="input-wrapper"><input type="email" name="email" /></div>
+        </div>
+        <div class="form-field">
+          <label>Ваш город</label>
+          <div class="input-wrapper"><input required name="city" /></div>
+        </div>
+        <div class="form-field">
+          <label>Ваш телефон</label>
+          <div class="input-wrapper">
+            <input type="hidden" name="subject" value="Заказать звонок" />
+            <input
+              class="phone-input"
+              required
+              name="phone"
+              placeholder="+7(___)-___-__-__"
+            />
+          </div>
+        </div>
+        <div class="form-field">
+          <label>Ваша потребность</label>
+          <div class="input-wrapper">
+            <textarea name="description" cols="30" rows="10"> </textarea>
+          </div>
+        </div>
+        <p>
+          <img
+            src="/static/app/img/locker.png"
+            style="float: left; margin: 20px 25px 20px 0"
+          />Политика безопасности персональных данных:Вся полученная информация
+          используется исключительно в целях коммуникации с использованием
+          заполнившими форму обратной связи. Компания ООО «СТМ-Косметика»
+          обязуется не разглашать полученную информацию третьим лицам и
+          сторонним организациям.
+        </p>
+        <div class="text-center" style="margin-top: 20px">
+          <input class="btn" type="submit" value="Отправить" />
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

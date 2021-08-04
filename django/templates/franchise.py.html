@@ -1,6 +1,374 @@
-{% extends 'base.py.html' %} {% load django_svelte %}
-{% block content %}
-    Франчайзи!
-    {% display_svelte "Franchise.svelte" component_props %}
-   <br/> FROM VIEW: {{ data }}
-{% endblock content %}
+<!DOCTYPE html>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://respublica.bar/" />
+  <meta
+    property="og:image"
+    content="https://www.respublica.bar/images/logo.png"
+  />
+  <meta property="og:image:width" content="900" />
+  <meta property="og:image:height" content="439" />
+  <meta property="og:site_name" content="Франшиза Бар Respublica" />
+  <meta
+    name="description"
+    content="Современный уютный бар с прибылью от 500 тыс рублей в месяц"
+  />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <link rel="shortcut icon" href="/static/favicon.ico" type="image/x-icon" />
+  <link rel="icon" href="/static/favicon.ico" type="image/x-icon" />
+  <title>Франшиза Бар "Respublica"</title>
+  <link rel="icon" href="/static/favicon.png" />
+  <link href="/static/style.css" rel="stylesheet" />
+</head>
+<body>
+  <script>
+    !(function (e, t, n, c, o, a, f) {
+      e.fbq ||
+        ((o = e.fbq =
+          function () {
+            o.callMethod
+              ? o.callMethod.apply(o, arguments)
+              : o.queue.push(arguments);
+          }),
+        e._fbq || (e._fbq = o),
+        (o.push = o),
+        (o.loaded = !0),
+        (o.version = "2.0"),
+        (o.queue = []),
+        ((a = t.createElement(n)).async = !0),
+        (a.src = "https://connect.facebook.net/en_US/fbevents.js"),
+        (f = t.getElementsByTagName(n)[0]).parentNode.insertBefore(a, f));
+    })(window, document, "script"),
+      fbq("init", "249879825918890"),
+      fbq("track", "PageView");
+  </script>
+  <noscript
+    ><img
+      height="1"
+      width="1"
+      style="display: none"
+      src="https://www.facebook.com/tr?id=249879825918890&amp;ev=PageView&amp;noscript=1"
+  /></noscript>
+  <header>
+    <div class="navbar box-shadow">
+      <div class="container d-flex justify-content-between">
+        <div
+          class="
+            col-4 col-md-4 col-lg-5
+            d-flex
+            align-items-center
+            justify-content-around
+            px-0
+          "
+        >
+          <a class="menu-item" href="#whywe">Почему мы?</a
+          ><a class="menu-item d-none d-sm-inline" href="#conditions"
+            >Поддержка сотрудничества</a
+          >
+        </div>
+        <div
+          class="
+            col-2
+            underlogo
+            d-flex
+            align-items-center
+            px-0
+            col-md-8
+            justify-content-center
+            col-lg-2
+          "
+        >
+          <a class="d-flex align-items-center" href="{% url 'index' %}"
+            ><img src="/static/app/img/logo@2x.png" alt="STM Cosmetics" width="83"
+          /></a>
+        </div>
+        <div
+          class="
+            col-4 col-md-4 col-lg-5
+            d-flex
+            align-items-center
+            justify-content-around
+            px-0
+          "
+        >
+          <a class="menu-item" href="#newform">Оставить заявку</a
+          ><a
+            class="phone mb-1 gradient1 d-block d-sm-none mr-2"
+            href="tel:+73832279050"
+            ><img src="/static/app/img/phone.png" style="width: 24px !important" /></a
+          ><a
+            class="phone mb-1 gradient1 d-none d-sm-block"
+            href="tel:+73832279050"
+            ><img src="/static/app/img/phone.png" width="16" />+7 (383) 227-90-50</a
+          >
+        </div>
+      </div>
+    </div>
+  </header>
+  <div class="main-slide franchise">
+    <h1>
+      <img src="/static/app/img/main-logo.png" style="max-width: 364px" />современный
+      уютный бар с прибылью<br /><font>от 500 тыс. руб в месяц</font
+      ><a class="submit" href="#newform">Оставить заявку</a>
+    </h1>
+  </div>
+  <div id="whywe">
+    <div class="container">
+      <div class="row">
+        <div class="col-12"><div class="section-title">Почему мы?</div></div>
+        <div class="col-sm-3">
+          <div class="box-icon">
+            <img src="/static/app/img/icon1.png" width="61" />
+          </div>
+          <div class="box-text">
+            Проверенные временем и качеством рецептуры блюд и напитков
+          </div>
+        </div>
+        <div class="col-sm-3">
+          <div class="box-icon">
+            <img src="/static/app/img/icon2.png" width="61" />
+          </div>
+          <div class="box-text">
+            Привлекательный бренд для Гостей любого возраста и пола
+          </div>
+        </div>
+        <div class="col-sm-3" id="conditions">
+          <div class="box-icon">
+            <img src="/static/app/img/icon3.png" width="61" />
+          </div>
+          <div class="box-text">Фабрика-партнер с выверенной логистикой</div>
+        </div>
+        <div class="col-sm-3">
+          <div class="box-icon">
+            <img src="/static/app/img/icon4.png" width="61" />
+          </div>
+          <div class="box-text">Полная поддержка на всех этапах развития</div>
+        </div>
+        <div class="col-12 mt-4">
+          <div class="section-title">
+            ПОДДЕРЖКА НА ВСЕХ ЭТАПАХ СОТРУДНИЧЕСТВА
+          </div>
+        </div>
+        <div class="col-sm-3">
+          <div class="box-icon">
+            <img src="/static/app/img/icon5.png" width="61" />
+          </div>
+          <div class="box-text">
+            <b>Консультация по подготовке </b>проектной документации и готовые
+            дизайн-проекты.
+          </div>
+        </div>
+        <div class="col-sm-3">
+          <div class="box-icon">
+            <img src="/static/app/img/icon6.png" width="61" />
+          </div>
+          <div class="box-text">
+            <b>Надежные поставщики </b>с утвержденным уровнем цен
+          </div>
+        </div>
+        <div class="col-sm-3">
+          <div class="box-icon">
+            <img src="/static/app/img/icon7.png" width="61" />
+          </div>
+          <div class="box-text">
+            <b>Помощь в поиске </b>поставщиков по индивидуальному запросу
+          </div>
+        </div>
+        <div class="col-sm-3">
+          <div class="box-icon">
+            <img src="/static/app/img/icon8.png" width="61" />
+          </div>
+          <div class="box-text">
+            <b>Обучение персонала </b>с помощью разработанных методик и систем
+            подтверждения квалификации.
+          </div>
+        </div>
+        <div class="col-sm-3">
+          <div class="box-icon">
+            <img src="/static/app/img/icon9.png" width="61" />
+          </div>
+          <div class="box-text">
+            <b>Консультации по правовым вопросам </b>и лицензированию.
+          </div>
+        </div>
+        <div class="col-sm-3">
+          <div class="box-icon">
+            <img src="/static/app/img/icon10.png" width="61" />
+          </div>
+          <div class="box-text">
+            <b>Рекламная поддержка </b>на федеральном уровне.
+          </div>
+        </div>
+        <div class="col-sm-3">
+          <div class="box-icon">
+            <img src="/static/app/img/icon11.png" width="61" />
+          </div>
+          <div class="box-text">
+            <b>Готовые решения </b>по локальному маркетингу.
+          </div>
+        </div>
+        <div class="col-sm-3">
+          <div class="box-icon">
+            <img src="/static/app/img/icon12.png" width="61" />
+          </div>
+          <div class="box-text">
+            <b>Регулярное обновление меню </b>по утвержденному графику.
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <section id="newform">
+    <div class="container">
+      <div class="row">
+        <div class="col-6"></div>
+        <div class="col-sm-6">
+          <div class="section-title pb-1">Оставьте свои контакты</div>
+          <p>И в ближайшее время мы свяжемся с вами</p>
+          <form action="">
+            <div class="form-field">
+              <div class="input-wrapper">
+                <img src="/static/app/img/user.png" />
+                <input
+                  class="input"
+                  required
+                  placeholder="Введите ваше ФИО"
+                  name="name"
+                />
+              </div>
+            </div>
+            <div class="form-field">
+              <div class="input-wrapper">
+                <img src="/static/app/img/phone.png" />
+                <input type="hidden" name="subject" value="Заказать звонок" />
+                <input
+                  class="input phone-input"
+                  required
+                  name="phone"
+                  placeholder="Ваш телефон"
+                />
+              </div>
+            </div>
+            <input class="mt-3" type="submit" value="Оставьте заявку" />
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+  <footer id="contacts">
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-3 col-8 offset-2 mb-3 offset-sm-0">
+          <img src="/static/app/img/footer_logo.png" style="max-width: 100%" />
+        </div>
+        <div class="col-sm-3 text-center mb-2">
+          <a href="https://instagram.com/respublica_bar" target="_blank"
+            ><img src="/static/app/img/insta.png" width="25" />respublica_bar</a
+          >
+        </div>
+        <div class="col-sm-3 text-center mb-2">
+          <a href="https://www.respublica.bar" target="_blank"
+            ><img src="/static/app/img/web.png" width="25" />www.respublica.bar</a
+          >
+        </div>
+        <div class="col-sm-3 text-center mb-2">
+          <a href="https://vk.com/bar_respublica" target="_blank"
+            ><img src="/static/app/img/vk.png" width="25" />bar_respublica</a
+          >
+        </div>
+      </div>
+    </div>
+  </footer>
+  <script src="/bundle.bundle.js"></script>
+</body>
+<div id="menu">
+  <div class="menu-container">
+    <img class="close" src="/static/app/img/close.png" width="26" />
+    <div class="phone d-block d-sm-none">
+      <a href="tel:88005558597">8 800 555 85 97</a
+      ><small> БЕСПЛАТНО ПО РОССИИ</small>
+    </div>
+    <ul>
+      <li><a href="#aftermain">Преимущества</a></li>
+      <li><a href="#main-description">О компании</a></li>
+      <li><a href="#format">Индивидуальные решения</a></li>
+      <li><a href="#calculator">Финансовые показатели</a></li>
+      <li><a href="#calc">Калькулятор дохода</a></li>
+      <li><a href="#videos">Видео</a></li>
+      <li><a href="#faq">FAQ</a></li>
+      <li><a href="#contacts">Контакты</a></li>
+    </ul>
+    <button
+      class="d-block d-lg-none btn btn-color"
+      type="button"
+      data-title="Заполните форму"
+      data-subtitle="Специалист компании свяжется с Вами в течение 24 часов"
+    >
+      Заказать звонок
+    </button>
+  </div>
+</div>
+<div class="modal fade" id="static-modal" tabindex="-1" role="dialog">
+  <div class="modal-dialog form-wrapper">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button
+          class="close"
+          type="button"
+          data-dismiss="modal"
+          aria-label="Close"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <h4 class="modal-title">Оставить заявку</h4>
+      </div>
+      <form action="">
+        <div class="form-field">
+          <label>Ваше имя</label>
+          <div class="input-wrapper"><input required name="name" /></div>
+        </div>
+        <div class="form-field">
+          <label>Ваша почта</label>
+          <div class="input-wrapper"><input type="email" name="email" /></div>
+        </div>
+        <div class="form-field">
+          <label>Ваш город</label>
+          <div class="input-wrapper"><input required name="city" /></div>
+        </div>
+        <div class="form-field">
+          <label>Ваш телефон</label>
+          <div class="input-wrapper">
+            <input type="hidden" name="subject" value="Заказать звонок" />
+            <input
+              class="phone-input"
+              required
+              name="phone"
+              placeholder="+7(___)-___-__-__"
+            />
+          </div>
+        </div>
+        <div class="form-field">
+          <label>Ваша потребность</label>
+          <div class="input-wrapper">
+            <textarea name="description" cols="30" rows="10"> </textarea>
+          </div>
+        </div>
+        <p>
+          <img
+            src="/static/app/img/locker.png"
+            style="float: left; margin: 20px 25px 20px 0"
+          />Политика безопасности персональных данных:Вся полученная информация
+          используется исключительно в целях коммуникации с использованием
+          заполнившими форму обратной связи. Компания ООО «СТМ-Косметика»
+          обязуется не разглашать полученную информацию третьим лицам и
+          сторонним организациям.
+        </p>
+        <div class="text-center" style="margin-top: 20px">
+          <input class="btn" type="submit" value="Отправить" />
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

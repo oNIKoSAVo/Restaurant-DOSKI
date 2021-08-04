@@ -124,6 +124,7 @@ STATIC_URL = '/static/'
 
 STATICFILES_DIRS = [
     BASE_DIR.parent / "svelte" / "public" / "build",
+    BASE_DIR.parent / "django" / "static",
 ]
 
 print(STATICFILES_DIRS)

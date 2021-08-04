@@ -1,6 +1,101 @@
 {% extends 'base.py.html' %} {% load django_svelte %}
 {% block content %}
-    Бронгирование!
-    {% display_svelte "Reservation.svelte"  props %}
-    <br/> FROM VIEW: {{ data }}
+<div class="inner-page container">
+    <div class="row">
+      <div class="col-sm-7">
+        <div class="breadcrumbs">
+          <a href="/">Главная страница</a>/<a href="#">Бронирование</a>/<a
+            href="#"
+          ></a>
+        </div>
+        <div class="section-title pb-1 pb-sm-4">Бронирование</div>
+        <div class="d-block d-sm-none">
+          <select name="destination" placeholder="Укажите заведение">
+            <option value="ул. Бориса Богаткова 201.1">
+              ул. Бориса Богаткова 201.1
+            </option>
+            <option value="ул. Ленина 6">ул. Ленина 6</option>
+          </select>
+        </div>
+        <a href="#table" data-modal
+          ><img src="/static/app/img/tables.png" id="svg"
+        /></a>
+        <div class="table-description">
+          *Если ваша компания превышает количество человек, вмещаемое одним
+          столом, свяжитесь с администратором бара.
+        </div>
+        <div class="table-labels">
+          <div class="label">
+            <div class="label-box" style="background: #308410"></div>
+            – Свободно
+          </div>
+          <div class="label">
+            <div class="label-box" style="background: #ff2400"></div>
+            – ЗАБРОНИРОВАНО
+          </div>
+          <div class="label">
+            <div class="label-box" style="background: #7f7f7f"></div>
+            – ВЫ ВЫБРАЛИ
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-5 mt-4 mt-sm-0">
+        <a class="submit big d-sm-block d-none" href="#"
+          >забронируй столик в приложении и получи бонусы</a
+        >
+        <form id="reserve-form">
+          <div class="row">
+            <div class="col-12 d-none d-sm-block">
+              <select name="destination">
+                <option value="ул. Бориса Богаткова 201.1">
+                  ул. Бориса Богаткова 201.1
+                </option>
+                <option value="ул. Ленина 6">ул. Ленина 6</option>
+              </select>
+            </div>
+            <div class="col-sm-6">
+              <input class="datepicker" placeholder="Дата" />
+            </div>
+            <div class="col-md-3 col-6"><input placeholder="От" /></div>
+            <div class="col-md-3 col-6"><input placeholder="До" /></div>
+            <div class="col-md-6">
+              <select name="persons" placeholder="Количество человек" value="">
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+              </select>
+            </div>
+            <div class="col-sm-6">
+              <input name="name" placeholder="Ваше имя" />
+            </div>
+            <div class="col-12">
+              <input
+                class="phone-input"
+                name="phone"
+                placeholder="Номер телефона для связи"
+              />
+            </div>
+            <div class="col-12">
+              <textarea
+                name="message"
+                rows="8"
+                placeholder="Пожелания к брони..."
+              ></textarea>
+            </div>
+            <div class="col-12 rules">
+              <input id="rules" type="checkbox" /> <label for="rules"></label
+              ><a href="#">C правилами посещения</a>&nbsp;ознакомлен
+            </div>
+            <div class="col-12">
+              <a class="submit reserve" href="#">Забронировать</a>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+    <!-- {% display_svelte "Reservation.svelte"  props %} -->
 {% endblock content %}

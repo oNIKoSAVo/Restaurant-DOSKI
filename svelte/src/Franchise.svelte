@@ -15,11 +15,32 @@
 </script>
 
 <form on:submit={handleSubmit} preventDefault={validate}>
-  Имя<br />
-  <input type="text" name="name" bind:value={name} /><br />
-  Телефон<br />
-  <input type="text" name="phone" bind:value={phone} /><br />
-  <button>Отправить</button>
+  <div class="form-field">
+    <div class="input-wrapper">
+      <img src="/static/app/img/user.png" />
+      <input
+        class="input"
+        required
+        placeholder="Введите ваше ФИО"
+        name="name"
+        bind:value={name}
+      />
+    </div>
+  </div>
+  <div class="form-field">
+    <div class="input-wrapper">
+      <img src="/static/app/img/phone.png" />
+      <input type="hidden" name="subject" value="Заказать звонок" />
+      <input
+        class="input phone-input"
+        required
+        name="phone"
+        placeholder="Ваш телефон"
+        bind:value={phone}
+      />
+    </div>
+  </div>
+  <input class="mt-3" type="submit" value="Оставьте заявку" />
 </form>
 
 <style>

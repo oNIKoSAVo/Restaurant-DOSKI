@@ -65,25 +65,36 @@
     }
   }
 
-  // <img src="/media/tables/Ленина 6 этаж 1.svg" id="svg" />;
-  let el = document.createElement("svg");
-  fetch("http://localhost:8000/media/tables/Ленина 6 этаж 1.svg")
-    .then((r) => r.text())
-    .then((text) => {
-      el.innerHTML = text;
-      el.id = "svg";
-      document.getElementById("table").appendChild(el);
-      let rects = document.querySelectorAll("rect.cls-5");
-      console.log({ rects });
-      rects.forEach((rect) =>
-        rect.addEventListener("click", function () {
-          rects.forEach((r) => (r.style.fill = "green"));
-          table = rect.nextSibling.textContent;
-          this.style.fill = "#7f7f7f";
+  function handleOnChangeRestaraunt(e) {
+    console.log(restaraunts);
+    const findRestaraunt = restaraunts.find(elem => elem.id == restaraunt);
+    console.log(findRestaraunt)
+    appendSchemes(findRestaraunt.schemes);
+  }
+
+  function appendSchemes(schemes) {
+    document.getElementById("table").innerHTML = "";
+    schemes.forEach((schema) => {
+      let el = document.createElement("svg");
+      fetch(schema.url)
+        .then((r) => r.text())
+        .then((text) => {
+          el.innerHTML = text;
+          el.class = "svg";
+          document.getElementById("table").appendChild(el);
+          let rects = document.querySelectorAll("rect.cls-5");
+          console.log({ rects });
+          rects.forEach((rect) =>
+            rect.addEventListener("click", function () {
+              rects.forEach((r) => (r.style.fill = "green"));
+              table = rect.nextSibling.textContent;
+              this.style.fill = "#7f7f7f";
+            })
+          );
         })
-      );
-    })
-    .catch(console.error.bind(console));
+        .catch(console.error.bind(console));
+    });
+  }
 </script>
 
 <div
@@ -117,7 +128,8 @@
 <form id="reserve-form">
   <div class="row">
     <div class="col-12 d-none d-sm-block">
-      <select bind:value={restaraunt}>
+      <!-- svelte-ignore a11y-no-onchange -->
+      <select bind:value={restaraunt} on:change={handleOnChangeRestaraunt}>
         {#each restaraunts as address}
           <option value={address.id}>
             {address.text}

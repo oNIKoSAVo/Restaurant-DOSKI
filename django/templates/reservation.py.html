@@ -1,50 +1,47 @@
-{% extends 'base.py.html' %} {% load django_svelte %}
-{% block content %}
+{% extends 'base.py.html' %} {% load django_svelte %} {% block content %}
 <div class="inner-page container">
-    <div class="row">
-      <div class="col-sm-7">
-        <div class="breadcrumbs">
-          <a href="/">Главная страница</a>/<a href="#">Бронирование</a>/<a
-            href="#"
-          ></a>
+  <div class="row">
+    <div class="col-sm-7">
+      <div class="breadcrumbs">
+        <a href="/">Главная страница</a>/<a href="#">Бронирование</a>/<a
+          href="#"
+        ></a>
+      </div>
+      <div class="section-title pb-1 pb-sm-4">Бронирование</div>
+      <div class="d-block d-sm-none">
+        <select name="destination" placeholder="Укажите заведение">
+          <option value="ул. Бориса Богаткова 201.1">
+            ул. Бориса Богаткова 201.1
+          </option>
+          <option value="ул. Ленина 6">ул. Ленина 6</option>
+        </select>
+      </div>
+      <a href="#table" data-modal id="table"> </a>
+      <div class="table-description">
+        *Если ваша компания превышает количество человек, вмещаемое одним
+        столом, свяжитесь с администратором бара.
+      </div>
+      <div class="table-labels">
+        <div class="label">
+          <div class="label-box" style="background: #308410"></div>
+          – Свободно
         </div>
-        <div class="section-title pb-1 pb-sm-4">Бронирование</div>
-        <div class="d-block d-sm-none">
-          <select name="destination" placeholder="Укажите заведение">
-            <option value="ул. Бориса Богаткова 201.1">
-              ул. Бориса Богаткова 201.1
-            </option>
-            <option value="ул. Ленина 6">ул. Ленина 6</option>
-          </select>
+        <div class="label">
+          <div class="label-box" style="background: #ff2400"></div>
+          – ЗАБРОНИРОВАНО
         </div>
-        <a href="#table" data-modal
-          ><img src="/static/app/img/tables.png" id="svg"
-        /></a>
-        <div class="table-description">
-          *Если ваша компания превышает количество человек, вмещаемое одним
-          столом, свяжитесь с администратором бара.
-        </div>
-        <div class="table-labels">
-          <div class="label">
-            <div class="label-box" style="background: #308410"></div>
-            – Свободно
-          </div>
-          <div class="label">
-            <div class="label-box" style="background: #ff2400"></div>
-            – ЗАБРОНИРОВАНО
-          </div>
-          <div class="label">
-            <div class="label-box" style="background: #7f7f7f"></div>
-            – ВЫ ВЫБРАЛИ
-          </div>
+        <div class="label">
+          <div class="label-box" style="background: #7f7f7f"></div>
+          – ВЫ ВЫБРАЛИ
         </div>
       </div>
-      <div class="col-sm-5 mt-4 mt-sm-0">
-        <a class="submit big d-sm-block d-none" href="#"
-          >забронируй столик в приложении и получи бонусы</a
-        >
-        {% display_svelte "Reservation.svelte" props %}
-        <!-- <form id="reserve-form">
+    </div>
+    <div class="col-sm-5 mt-4 mt-sm-0">
+      <a class="submit big d-sm-block d-none" href="#"
+        >забронируй столик в приложении и получи бонусы</a
+      >
+      {% display_svelte "Reservation.svelte" props %}
+      <!-- <form id="reserve-form">
           <div class="row">
             <div class="col-12 d-none d-sm-block">
               <select name="destination">
@@ -95,8 +92,8 @@
             </div>
           </div>
         </form> -->
-      </div>
     </div>
   </div>
-    <!-- {% display_svelte "Reservation.svelte"  props %} -->
+</div>
+<!-- {% display_svelte "Reservation.svelte"  props %} -->
 {% endblock content %}

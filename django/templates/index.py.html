@@ -1,44 +1,47 @@
-{% extends 'base.py.html' %}
-{% block content %}
+{% extends 'base.py.html' %} {% block content %}
 <div class="main-slide">
-    <div class="container">
-      <a class="left-link" href="{% url 'reservation' %}"
-        ><img
-          class="mr-2"
-          src="/static/app/img/calendar.png"
-          width="37"
-        />Бронирование</a
-      ><a class="right-link" href="{% url 'delivery' %}"
-        ><img class="mr-2" src="/static/app/img/delivery.png" width="37" />Доставка</a
-      ><a href="#"
-        ><img class="mr-2" src="/static/app/img/scrolldown.png" width="37"
-      /></a>
-    </div>
+  <div class="container">
+    <a class="left-link" href="{% url 'reservation' %}"
+      ><img
+        class="mr-2"
+        src="/static/app/img/calendar.png"
+        width="37"
+      />Бронирование</a
+    ><a class="right-link" href="{% url 'delivery' %}"
+      ><img
+        class="mr-2"
+        src="/static/app/img/delivery.png"
+        width="37"
+      />Доставка</a
+    ><a href="#"
+      ><img class="mr-2" src="/static/app/img/scrolldown.png" width="37"
+    /></a>
   </div>
-  <div id="topslider">
-    <div class="container">
-      <div class="row">
-        <div class="col-12">
-          <div class="section-title text-center">Новости и акции</div>
-          <div class="swiper-wrap">
-            <div class="swiper-container">
-              <div class="swiper-wrapper">
-                <div class="swiper-slide">
-                  <img src="/static/app/img/slide1.jpg" />
-                </div>
-                <div class="swiper-slide">
-                  <img src="/static/app/img/slide1.jpg" />
-                </div>
-                <div class="swiper-slide">
-                  <img src="/static/app/img/slide1.jpg" />
-                </div>
+</div>
+<div id="topslider">
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <div class="section-title text-center">Новости и акции</div>
+        <div class="swiper-wrap">
+          <div class="swiper-container">
+            <div class="swiper-wrapper">
+              <div class="swiper-slide">
+                <img src="/static/app/img/slide1.jpg" />
+              </div>
+              <div class="swiper-slide">
+                <img src="/static/app/img/slide1.jpg" />
+              </div>
+              <div class="swiper-slide">
+                <img src="/static/app/img/slide1.jpg" />
               </div>
             </div>
-            <div class="swiper-button-prev"></div>
-            <div class="swiper-button-next"></div>
           </div>
+          <div class="swiper-button-prev"></div>
+          <div class="swiper-button-next"></div>
         </div>
       </div>
     </div>
   </div>
+</div>
 {% endblock content %}

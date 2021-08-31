@@ -15,7 +15,7 @@ def menu(request):
 
 
 def delivery(request):
-    return render(request, 'delivery.py.html', {'data': sys._getframe(0).f_code.co_name})
+    return render(request, 'delivery.py.html', {'menues': Menue.objects.all(), 'categories': Category.objects.all()})
 
 
 def reservation(request):

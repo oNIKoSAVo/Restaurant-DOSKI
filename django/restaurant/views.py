@@ -48,8 +48,16 @@ def reservation(request):
             else:
                 return JsonResponse({"status": "error"})
     restaraunts = Restaraunt.objects.all()
-    restaraunts = [{'id': restaraunt.id, 'text': restaraunt.address}
-                   for restaraunt in restaraunts]
+    restaraunts = [{
+        'id': restaraunt.id, 
+        'text': restaraunt.address, 
+        'schemes': [{
+            'id': schema.id,
+            'url': schema.schema.url,
+            'description': schema.description 
+            }for schema in restaraunt.schemes.all()]
+        }for restaraunt in restaraunts
+    ]
     return render(request, 'reservation.py.html', {'data': sys._getframe(0).f_code.co_name, 'props': {'restaraunts': restaraunts}})
 
 

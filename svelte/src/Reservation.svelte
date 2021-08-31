@@ -64,9 +64,34 @@
       responseIdReservation = response.id;
     }
   }
+
+  // <img src="/media/tables/Ленина 6 этаж 1.svg" id="svg" />;
+  let el = document.createElement("svg");
+  fetch("http://localhost:8000/media/tables/Ленина 6 этаж 1.svg")
+    .then((r) => r.text())
+    .then((text) => {
+      el.innerHTML = text;
+      el.id = "svg";
+      document.getElementById("table").appendChild(el);
+      let rects = document.querySelectorAll("rect.cls-5");
+      console.log({ rects });
+      rects.forEach((rect) =>
+        rect.addEventListener("click", function () {
+          rects.forEach((r) => (r.style.fill = "green"));
+          table = rect.nextSibling.textContent;
+          this.style.fill = "#7f7f7f";
+        })
+      );
+    })
+    .catch(console.error.bind(console));
 </script>
 
-<div class="modal modal-wrapper fade {responseIdReservation != "" ? "show" : "" }" id="reserved" tabindex="-1" role="dialog">
+<div
+  class="modal modal-wrapper fade {responseIdReservation != '' ? 'show' : ''}"
+  id="reserved"
+  tabindex="-1"
+  role="dialog"
+>
   <div class="modal-dialog limited" style="max-width: 506px">
     <div class="modal-content">
       <button
@@ -158,6 +183,7 @@
         >C правилами посещения</a
       >&nbsp;ознакомлен
     </div>
+
     <div class="col-12">
       <a class="submit" href="#" on:click={handleSubmit}>Забронировать</a>
     </div>

@@ -28,21 +28,25 @@ def reservation(request):
             date + " " + time_str_start, '%d/%m/%Y %H:%M')
         date_end = datetime.strptime(
             date + " " + time_str_end, '%d/%m/%Y %H:%M')
-        reservation = Reservation.objects.create(
-            restaraunt=Restaraunt.objects.get(
-                pk=request.POST.get('restaraunt')),
-            start=date_start,
-            end=date_end,
-            persons=request.POST.get('persons'),
-            table=request.POST.get('table'),
-            name=request.POST.get('name'),
-            phone=request.POST.get('phone'),
-            description=request.POST.get('description')
-        )
-        if(reservation):
-            return JsonResponse({"status": "success", "id": reservation.id})
+        if request.POST.get('type') == "check":
+            reservations = Reservation.objects.filter(end__gte=date_start)
+            return JsonResponse({"tables":[reserv.table for reserv in reservations]})
         else:
-            return JsonResponse({"status": "error"})
+            reservation = Reservation.objects.create(
+                restaraunt=Restaraunt.objects.get(
+                    pk=request.POST.get('restaraunt')),
+                start=date_start,
+                end=date_end,
+                persons=request.POST.get('persons'),
+                table=request.POST.get('table'),
+                name=request.POST.get('name'),
+                phone=request.POST.get('phone'),
+                description=request.POST.get('description')
+            )
+            if(reservation):
+                return JsonResponse({"status": "success", "id": reservation.id})
+            else:
+                return JsonResponse({"status": "error"})
     restaraunts = Restaraunt.objects.all()
     restaraunts = [{'id': restaraunt.id, 'text': restaraunt.address}
                    for restaraunt in restaraunts]

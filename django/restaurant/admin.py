@@ -33,6 +33,10 @@ class OrderAdmin(admin.ModelAdmin):
     list_filter =['restaraunt', 'price',  'created_at',]
     inlines = [MenuInOrderInLine]
 
+
+class ReservationAdmin(admin.ModelAdmin):
+    list_display = ['id', 'restaraunt', 'persons', 'table', 'start', 'end', 'name', 'phone']
+
 admin.site.register(Order, OrderAdmin)
 
 admin.site.register(Profile)
@@ -41,5 +45,5 @@ admin.site.register(Category)
 admin.site.register(Feedback)
 admin.site.register(Franchising)
 admin.site.register(Сareer)
-admin.site.register(Reservation)
+admin.site.register(Reservation, ReservationAdmin)
 

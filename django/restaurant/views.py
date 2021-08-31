@@ -2,7 +2,7 @@ import sys
 from datetime import datetime
 
 from django.http.response import JsonResponse
-from restaurant.models import Feedback, Franchising, Reservation, Restaraunt, Сareer
+from restaurant.models import Feedback, Franchising, Reservation, Restaraunt, Сareer, Menue, Category
 from django.shortcuts import get_object_or_404, render, redirect
 
 
@@ -11,7 +11,7 @@ def index(request):
 
 
 def menu(request):
-    return render(request, 'menu.py.html', {'data': sys._getframe(0).f_code.co_name})
+    return render(request, 'menu.py.html', {'menues': Menue.objects.all(), 'categories': Category.objects.all() })
 
 
 def delivery(request):

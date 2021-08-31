@@ -53,6 +53,10 @@ class Menue(models.Model):
     dish = models.CharField('Блюдо', max_length=128, blank=False, null=False)
     category = models.ForeignKey(Category, verbose_name='Категория', related_name='menues', on_delete=models.DO_NOTHING)
     restaraunt = models.ForeignKey(Restaraunt, verbose_name='Ресторан', related_name='menues', on_delete=models.DO_NOTHING)
+    description = models.TextField('Описание', max_length=600, blank=False, null=False, default="")
+    price = models.FloatField('Цена', blank=False, null=False, default=0)
+    weight = models.CharField('Вес', max_length=128, blank=False, null=False, default="")
+    image = models.ImageField('Изображение', upload_to='images/', blank=True, null=True, default="images/product.jpg")
 
     def __str__(self):
         return self.category.name + " | " + self.dish

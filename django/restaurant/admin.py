@@ -1,11 +1,17 @@
+from django.utils.safestring import mark_safe
 from django.contrib import admin
 from .models import Category, Feedback, Franchising, MenuInOrder, Menue, Order, Profile, Reservation, Restaraunt, Сareer
 
 admin.site.site_header = 'Respublica administrator'
 
 class MenueAdmin(admin.ModelAdmin):
-    list_display = ['id', 'dish', 'category', 'restaraunt']
-    list_filter = ['category']
+    list_display = ['id', 'image_preview', 'dish', 'category', 'restaraunt']
+    list_filter = ['category', 'restaraunt']
+
+    def image_preview(self, obj):
+        return mark_safe("<img src='/media/{}'  width='100' />".format(obj.image))
+    image_preview.short_description = 'Изображение'
+    image_preview.allow_tags = True
 admin.site.register(Menue, MenueAdmin)
 
 class RestarauntAdmin(admin.ModelAdmin):

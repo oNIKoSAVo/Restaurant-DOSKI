@@ -30,68 +30,39 @@
         </div>
         <div class="col-2 d-none d-md-block">
           <div class="tab-cont">
-            <a class="but active" href="#profile">Закуски</a
-            ><a class="but" href="#reserve">Салаты</a
-            ><a class="but" href="#orders">Роллы</a
-            ><a class="but" href="#edit">Пицца</a>
+            {% for category in categories %}
+              <a class="but" href="#category_{{ category.id }}">{{ category.name }}</a>
+              <!-- <a class="but" href="#reserve">Салаты</a>
+              <a class="but" href="#orders">Роллы</a>
+              <a class="but" href="#edit">Пицца</a> -->
+            {% endfor %}
           </div>
         </div>
         <div class="col-lg-10 col-md-9 col-12">
-          <div class="tab-content row" id="profile">
-            <div class="subcategory-title col-12">вино</div>
-            <div class="dish-item col-sm-3">
-              <img class="dish-img" src="/static/app/img/product.jpg" />
-              <div class="dish-title">Ассорти горячих закусок</div>
-              <div class="dish-description">
-                хиты горячих закусок из нашего меню: сырные палочки, ржаные
-                гренки, картофель фри, колбаски, рыбные палочки. подается с
-                соусом тартар и кетчупом.
-              </div>
-              <div class="dish-details">
-                <div class="dish-details_sizes">400/25/25 ГР/</div>
-                <div class="dish-details_price">287.-</div>
-              </div>
+
+          {% for category in categories %}
+            <div class="tab-content row" id="category_{{ category.id }}">
+              <div class="subcategory-title col-12">{{ category.name }}</div>
+              {% for menue in category.menues.all %}
+                <div class="dish-item col-sm-3">
+                  <img class="dish-img" src="{{ menue.image.url }}" />
+                  <div class="dish-title">{{ menue.dish }}</div>
+                  <div class="dish-description">
+                    {{ menue.description }}
+                  </div>
+                  <div class="dish-details">
+                    <div class="dish-details_sizes">{{ menue.weight }}</div>
+                    <div class="dish-details_price">{{ menue.price }}.-</div>
+                  </div>
+                </div>
+              {% endfor %}
             </div>
-            <div class="dish-item col-sm-3">
-              <img class="dish-img" src="/static/app/img/product1.jpg" />
-              <div class="dish-title">Эби темпура</div>
-              <div class="dish-description">
-                очищенные креветки в кляре и хлопьях темпура, обжаренные во
-                фритюре. подается с острымм соусом кимчи.
-              </div>
-              <div class="dish-details">
-                <div class="dish-details_sizes">100/15 гр /</div>
-                <div class="dish-details_price">168.-</div>
-              </div>
-            </div>
-            <div class="dish-item col-sm-3">
-              <img class="dish-img" src="/static/app/img/product2.jpg" />
-              <div class="dish-title">Гренки ржаные</div>
-              <div class="dish-description">
-                обжаренные брусочки ржаного хлеба с добавлением чеснока.
-                подаются с соусом тартар
-              </div>
-              <div class="dish-details">
-                <div class="dish-details_sizes">150/25 гр /</div>
-                <div class="dish-details_price">110.-</div>
-              </div>
-            </div>
-            <div class="dish-item col-sm-3">
-              <img class="dish-img" src="/static/app/img/product3.jpg" />
-              <div class="dish-title">Сырные палочки</div>
-              <div class="dish-description">
-                расплавленные твердый сыр в хрустящей панировке. подается с
-                соусом тартар.
-              </div>
-              <div class="dish-details">
-                <div class="dish-details_sizes">200/25 гр /</div>
-                <div class="dish-details_price">146.-</div>
-              </div>
-            </div>
-          </div>
-          <div class="tab-content" id="reserve"></div>
+          {% endfor %}
+
+
+          <!-- <div class="tab-content" id="reserve"></div>
           <div class="tab-content" id="orders"></div>
-          <div class="tab-content" id="edit"></div>
+          <div class="tab-content" id="edit"></div> -->
         </div>
       </div>
     </div>

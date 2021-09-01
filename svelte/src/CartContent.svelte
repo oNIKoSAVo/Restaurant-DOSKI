@@ -10,4 +10,3 @@
 <!--    price={cartItem.price}-->
 <!--  />-->
 <!--{/each}-->
-<div>dsdadasd</div>

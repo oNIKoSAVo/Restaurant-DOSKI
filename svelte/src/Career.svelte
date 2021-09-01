@@ -1,9 +1,5 @@
 <script>
-  import Datepicker from "svelte-calendar";
   import { careerRequest } from "./api";
-
-  let showModal = false;
-  let showModalSuccess = false;
 
   let first_name = "";
   let middle_name = "";
@@ -15,31 +11,6 @@
   let b_day = "";
   let citizenship = "";
   let about = "";
-
-  export const daysOfWeek = [
-    ["Воскресенье", "Вс"],
-    ["Monday", "Пн"],
-    ["Tuesday", "Вт"],
-    ["Wednesday", "Ср"],
-    ["Thursday", "Чт"],
-    ["Friday", "Пт"],
-    ["Saturday", "Cб"],
-  ];
-
-  export const monthsOfYear = [
-    ["Январь", "Январь"],
-    ["Февраль", "Февраль"],
-    ["Март", "Март"],
-    ["Апрель", "Апрель"],
-    ["Май", "Май"],
-    ["Июнь", "Июнь"],
-    ["Июль", "Июль"],
-    ["Август", "Август"],
-    ["Сентябрь", "Сентябрь"],
-    ["Октябрь", "Октябрь"],
-    ["Ноябрь", "Ноябрь"],
-    ["Декабрь", "Декабрь"],
-  ];
 
   function validate() {
     console.log("I'm the validate() function");
@@ -60,165 +31,10 @@
       citizenship,
       about,
     });
-    if(response.status == "success"){
-      showModal = false;
-      showModalSuccess = true;
-    }
+    console.log(response);
   }
-
-  function handleNextClick(e) {
-    if (e.target.innerHTML == "Отправить") handleSubmit(e);
-  }
-
-  document.querySelector("#jobmodal").addEventListener("click", () => {
-    showModal = true;
-  });
 </script>
 
-<div
-  class="modal-wrapper modal fade {showModal ? 'show' : ''}"
-  id="jobmodal"
-  tabindex="-1"
-  role="dialog"
->
-  <div class="modal-dialog" style="max-width: 747px">
-    <div class="modal-content">
-      <button
-        class="close"
-        type="button"
-        data-dismiss="modal"
-        aria-label="Close"
-      >
-        <span aria-hidden="true">&times;</span>
-      </button>
-      <div class="d-flex justify-content-between align-items-center">
-        <span class="step">Шаг 1</span><span class="step">Шаг 2</span><span
-          class="step">Шаг 3</span
-        >
-      </div>
-      <div class="modal-header pb-4 pt-0 success">
-        <div class="modal-title text-left">Заявка успешно отправлена</div>
-      </div>
-      <p class="modal-description success">
-        С тобой свяжутся в ближайшее время
-      </p>
-      <form id="regForm" action="">
-        <div class="tab row">
-          <div class="tab-title col-12">КАК ТЕБЯ ЗОВУТ?</div>
-          <div class="col-sm-4">
-            <input placeholder="Имя" bind:value={first_name} />
-          </div>
-          <div class="col-sm-4">
-            <input placeholder="Фамилия" bind:value={last_name} />
-          </div>
-          <div class="col-sm-4">
-            <input placeholder="Отчество" bind:value={middle_name} />
-          </div>
-          <div class="col-12">
-            <input
-              class="phone-input"
-              placeholder="Телефон"
-              bind:value={phone}
-            />
-          </div>
-          <div class="col-12 rules">
-            <input id="rules" type="checkbox" /> <label for="rules" /><a
-              href="#">Согласие на обработку персональных данных</a
-            >
-          </div>
-        </div>
-        <div class="tab row">
-          <div class="tab-title col-12">ГДЕ ХОЧЕШЬ РАБОТАТЬ</div>
-          <div class="col-12">
-            <select name="job" bind:value={position}>
-              <option value="">Выбери должность</option>
-              <option value="Повар">Повар</option>
-            </select>
-          </div>
-          <div class="col-12">
-            <select name="city" bind:value={city}>
-              <option value="">Выбери город</option>
-              <option value="Новосибирск">Новосибирск</option>
-            </select>
-          </div>
-          <div class="col-12">
-            <select name="bar" bind:value={bar}>
-              <option value="">Выбери бар</option>
-              <option value="Гоголя">Гоголя</option>
-            </select>
-          </div>
-        </div>
-        <div class="tab row">
-          <div class="tab-title col-12">Пара слов о себе</div>
-          <div class="col-12">
-            <div class="col-sm-6 svelte-1lorc63">
-              <Datepicker
-                format={"#{d}/#{m}/#{Y}"}
-                {daysOfWeek}
-                {monthsOfYear}
-                bind:formattedSelected={b_day}
-              />
-            </div>
-          </div>
-          <div class="col-12">
-            <select name="citizen" bind:value={citizenship}>
-              <option value="">Выбери гражданство</option>
-              <option value="РФ">РФ</option>
-            </select>
-          </div>
-          <div class="col-12">
-            <textarea placeholder="Расскажи о себе" bind:value={about}/>
-          </div>
-        </div>
-        <div
-          class="
-          text-center
-          d-flex
-          justify-content-between
-          align-items-center
-        "
-        >
-          <a class="download mr-2 active" id="prevBtn" href="#">Назад</a><a
-            class="submit ml-2"
-            id="nextBtn"
-            on:click={handleNextClick}
-            href="#">Далее</a
-          ><a class="submit success close-modal" href="#">ОК</a>
-        </div>
-      </form>
-    </div>
-  </div>
-</div>
-
-<div
-  class="modal modal-wrapper fade {showModalSuccess ? 'show' : ''}"
-  tabindex="-1"
-  role="dialog"
->
-  <div class="modal-dialog" style="max-width: 484px">
-    <div class="modal-content">
-      <button
-        class="close"
-        type="button"
-        data-dismiss="modal"
-        aria-label="Close"
-      >
-        <span aria-hidden="true">&times;</span>
-      </button>
-      <div class="modal-header mt-3">
-        <div class="modal-title text-left text-sm-center">
-          Заявка успешно отправлена
-        </div>
-      </div>
-      <p class="modal-description">С тобой свяжутся в ближайшее время</p>
-      <div class="pb-3 text-center">
-        <a class="submit close-modal" href="#">Ок</a>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- 
 <form on:submit={handleSubmit} preventDefault={validate}>
 
   <br/> ----------- <br/>
@@ -253,9 +69,9 @@
   О себе<br />
   <textarea name="about" bind:value={about} /><br />
   <button>Отправить</button>
-</form> -->
+</form>
+
 <style>
-  .svelte-1lorc63 {
-    width: 200px;
+  .main {
   }
 </style>

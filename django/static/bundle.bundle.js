@@ -18860,29 +18860,31 @@ object-assign
             (i()(e).hide(), i()(e).next().show());
         }
         i()(function () {
-          h()(".datepicker", {
-            customDays: ["Пн", "Вт", "Ср", "Чт", "Пт", "Сб", "Вс"],
-            formatter: function (e, t, n) {
-              var i = t.toLocaleDateString();
-              e.value = i.replaceAll("/", ".");
-            },
-            overlayPlaceholder: "Год в формате гггг",
-            customMonths: [
-              "Январь",
-              "Февраль",
-              "Март",
-              "Апрель",
-              "Май",
-              "Июнь",
-              "Июль",
-              "Август",
-              "Сентябрь",
-              "Октябрь",
-              "Ноябрь",
-              "Декабрь",
-            ],
-            onSelect: function (e, t) {},
-          });
+        //   h()(".datepicker", 
+        //   {
+        //     customDays: ["Пн", "Вт", "Ср", "Чт", "Пт", "Сб", "Вс"],
+        //     formatter: function (e, t, n) {
+        //       var i = t.toLocaleDateString();
+        //       e.value = i.replaceAll("/", ".");
+        //     },
+        //     overlayPlaceholder: "Год в формате гггг",
+        //     customMonths: [
+        //       "Январь",
+        //       "Февраль",
+        //       "Март",
+        //       "Апрель",
+        //       "Май",
+        //       "Июнь",
+        //       "Июль",
+        //       "Август",
+        //       "Сентябрь",
+        //       "Октябрь",
+        //       "Ноябрь",
+        //       "Декабрь",
+        //     ],
+        //     onSelect: function (e, t) {},
+        //   }
+        //   );
           if (
             (i()("input[type='number']").on("keydown", function () {
               (!i()(this).val() ||

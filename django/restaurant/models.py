@@ -65,6 +65,7 @@ class Menue(models.Model):
     price = models.FloatField('Цена', blank=False, null=False, default=0)
     weight = models.CharField('Вес', max_length=128, blank=False, null=False, default="")
     image = models.ImageField('Изображение', upload_to='images/', blank=True, null=True, default="images/product.jpg")
+    ident = models.IntegerField('Ident RKeeper',  blank=True, null=True)
 
     def __str__(self):
         return self.category.name + " | " + self.dish

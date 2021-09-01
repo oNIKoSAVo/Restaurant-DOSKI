@@ -1,6 +1,71 @@
 {% extends 'base.py.html' %} {% load django_svelte %}
 {% block content %}
-    Карьера!
+<div id="job">
+    <div class="swiper-wrap">
+      <div class="swiper-container">
+        <div class="swiper-wrapper jobs-slider">
+          <div class="swiper-slide">
+            <div id="scene" data-relative-input="true">
+              <img
+                class="leafs"
+                data-depth="0.25"
+                src="/static/app/img/lefttop-job.png"
+              /><img
+                class="burger"
+                data-depth="0.2"
+                src="/static/app/img/righttop-job.png"
+              /><img
+                class="pizza"
+                data-depth="0.5"
+                src="/static/app/img/leftbottom-job.png"
+              /><img
+                class="sushi"
+                data-depth="0.3"
+                src="/static/app/img/rightbottom-job.png"
+              />
+            </div>
+            <div class="container">
+              <div class="row align-items center">
+                <div
+                  class="col-sm-5"
+                  style="
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
+                  "
+                >
+                  <div>
+                    <h1>Хочешь получить работу <font>повара?</font></h1>
+                    <p>
+                      Заполни анкету и стань частью команды сети баров
+                      «Республика»
+                    </p>
+                    <a class="submit" id="jobmodal"
+                      >Заполнить анкету</a
+                    >
+                  </div>
+                </div>
+                <div class="col-sm-7 text-right" style="position: relative">
+                  <img class="man" data-depth="0.1" src="/static/app/img/cook.png" /><a
+                    class="clickme"
+                    href="#"
+                    ><img src="/static/app/img/clickme.png"
+                  /></a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="swiper-slide"><img src="/static/app/img/slide1.jpg" /></div>
+          <div class="swiper-slide"><img src="/static/app/img/slide1.jpg" /></div>
+        </div>
+        <div class="container" style="position: absolute">
+          <div class="row">
+            <div class="swiper-button-prev"></div>
+            <div class="swiper-button-next"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
     {% display_svelte "Career.svelte" %}
-    <br/> FROM VIEW: {{ data }}
 {% endblock content %}

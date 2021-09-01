@@ -78,6 +78,7 @@ def events(request):
 
 def career(request):
     if request.method == "POST":
+        b_day = datetime.strptime(request.POST.get('b_day'), '%d/%m/%Y')
         career = Сareer.objects.create(
             first_name=request.POST.get('first_name'),
             middle_name=request.POST.get('middle_name'),
@@ -86,7 +87,7 @@ def career(request):
             position=request.POST.get('position'),
             city=request.POST.get('city'),
             bar=request.POST.get('bar'),
-            b_day=request.POST.get('b_day'),
+            b_day=b_day,
             citizenship=request.POST.get('citizenship'),
             about=request.POST.get('about'),
         )

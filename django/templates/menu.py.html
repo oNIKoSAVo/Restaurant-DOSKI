@@ -7,14 +7,14 @@
           <div class="button-dropdown tab-cont d-sm-none d-block">
             <a class="dropdown-toggle" href="javascript:void(0)">Закуски</a>
             <ul class="dropdown-menu">
-              <li><a class="but active" href="#profile">Закуски</a></li>
-              <li><a class="but" href="#reserve">Салаты</a></li>
-              <li><a class="but" href="#edit">Пицца</a></li>
+              {% for category in categories %}
+                <li><a class="but" href="#category_{{ category.id }}">{{ category.name }}</a></li>
+              {% endfor %}
             </ul>
           </div>
           <div class="breadcrumbs">
             <a href="/">Главная страница</a>/<a href="#">Меню</a>/<a href="#"
-              >Закуски</a
+              >{{Закуски}}</a
             >
           </div>
           <div class="d-flex title-row">

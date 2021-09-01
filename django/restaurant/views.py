@@ -15,7 +15,7 @@ def menu(request):
 
 
 def delivery(request):
-    return render(request, 'delivery.py.html', {'data': sys._getframe(0).f_code.co_name})
+    return render(request, 'delivery.py.html', {'menues': Menue.objects.all(), 'categories': Category.objects.all()})
 
 
 def reservation(request):
@@ -28,24 +28,36 @@ def reservation(request):
             date + " " + time_str_start, '%d/%m/%Y %H:%M')
         date_end = datetime.strptime(
             date + " " + time_str_end, '%d/%m/%Y %H:%M')
-        reservation = Reservation.objects.create(
-            restaraunt=Restaraunt.objects.get(
-                pk=request.POST.get('restaraunt')),
-            start=date_start,
-            end=date_end,
-            persons=request.POST.get('persons'),
-            table=request.POST.get('table'),
-            name=request.POST.get('name'),
-            phone=request.POST.get('phone'),
-            description=request.POST.get('description')
-        )
-        if(reservation):
-            return JsonResponse({"status": "success", "id": reservation.id})
+        if request.POST.get('type') == "check":
+            reservations = Reservation.objects.filter(end__gte=date_start)
+            return JsonResponse({"tables":[reserv.table for reserv in reservations]})
         else:
-            return JsonResponse({"status": "error"})
+            reservation = Reservation.objects.create(
+                restaraunt=Restaraunt.objects.get(
+                    pk=request.POST.get('restaraunt')),
+                start=date_start,
+                end=date_end,
+                persons=request.POST.get('persons'),
+                table=request.POST.get('table'),
+                name=request.POST.get('name'),
+                phone=request.POST.get('phone'),
+                description=request.POST.get('description')
+            )
+            if(reservation):
+                return JsonResponse({"status": "success", "id": reservation.id})
+            else:
+                return JsonResponse({"status": "error"})
     restaraunts = Restaraunt.objects.all()
-    restaraunts = [{'id': restaraunt.id, 'text': restaraunt.address}
-                   for restaraunt in restaraunts]
+    restaraunts = [{
+        'id': restaraunt.id, 
+        'text': restaraunt.address, 
+        'schemes': [{
+            'id': schema.id,
+            'url': schema.schema.url,
+            'description': schema.description 
+            }for schema in restaraunt.schemes.all()]
+        }for restaraunt in restaraunts
+    ]
     return render(request, 'reservation.py.html', {'data': sys._getframe(0).f_code.co_name, 'props': {'restaraunts': restaraunts}})
 
 

@@ -30,10 +30,18 @@ class Profile(models.Model):
 class Restaraunt(models.Model):
     address = models.CharField('Адрес', max_length=128, blank=False, null=False)
     phone = models.CharField('Телефон', max_length=128, blank=False, null=False)
-    schema = models.CharField('Схема зала', max_length=128, blank=False, null=False)
 
     def __str__(self):
         return self.address + " " + self.phone
+
+    class Meta:
+        verbose_name = 'ресторан'
+        verbose_name_plural = 'рестораны'
+
+class RestarauntSchema(models.Model):
+    restaraunt = models.ForeignKey(Restaraunt, related_name='schemes', default=None, on_delete=models.DO_NOTHING)
+    schema = models.FileField('Схема зала (SVG)', upload_to='tables/', blank=False, null=False)
+    description = models.TextField('Описание', max_length=150, blank=False, null=False, default="")
 
     class Meta:
         verbose_name = 'ресторан'

@@ -1,6 +1,6 @@
 from django.utils.safestring import mark_safe
 from django.contrib import admin
-from .models import Category, Feedback, Franchising, MenuInOrder, Menue, Order, Profile, Reservation, Restaraunt, Сareer
+from .models import Category, Feedback, Franchising, MenuInOrder, Menue, Order, Profile, Reservation, Restaraunt, Сareer, RestarauntSchema
 
 admin.site.site_header = 'Respublica administrator'
 
@@ -14,8 +14,12 @@ class MenueAdmin(admin.ModelAdmin):
     image_preview.allow_tags = True
 admin.site.register(Menue, MenueAdmin)
 
+class RestarauntSchemaAdmin(admin.StackedInline):
+    model = RestarauntSchema
+
 class RestarauntAdmin(admin.ModelAdmin):
     list_display = ['id', 'address', 'phone']
+    inlines = [RestarauntSchemaAdmin]
 admin.site.register(Restaraunt, RestarauntAdmin)
 
 
@@ -29,6 +33,10 @@ class OrderAdmin(admin.ModelAdmin):
     list_filter =['restaraunt', 'price',  'created_at',]
     inlines = [MenuInOrderInLine]
 
+
+class ReservationAdmin(admin.ModelAdmin):
+    list_display = ['id', 'restaraunt', 'persons', 'table', 'start', 'end', 'name', 'phone']
+
 admin.site.register(Order, OrderAdmin)
 
 admin.site.register(Profile)
@@ -37,5 +45,5 @@ admin.site.register(Category)
 admin.site.register(Feedback)
 admin.site.register(Franchising)
 admin.site.register(Сareer)
-admin.site.register(Reservation)
+admin.site.register(Reservation, ReservationAdmin)
 

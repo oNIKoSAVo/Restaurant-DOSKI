@@ -44,7 +44,7 @@
             <div class="tab-content row" id="category_{{ category.id }}">
               <div class="subcategory-title col-12">{{ category.name }}</div>
               {% for menue in category.menues.all %}
-                <div class="dish-item col-sm-3">
+                <div class="dish-item col-sm-3" id="{{ menue.id }}">
                   <img class="dish-img" src="{{ menue.image.url }}" />
                   <div class="dish-title">{{ menue.dish }}</div>
                   <div class="dish-description">

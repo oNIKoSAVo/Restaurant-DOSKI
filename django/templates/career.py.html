@@ -40,7 +40,7 @@
                       Заполни анкету и стань частью команды сети баров
                       «Республика»
                     </p>
-                    <a class="submit" href="#jobmodal" data-modal
+                    <a class="submit" id="jobmodal"
                       >Заполнить анкету</a
                     >
                   </div>
@@ -67,6 +67,5 @@
       </div>
     </div>
   </div>
-    { display_svelte "Career.svelte" }
-    <br/> FROM VIEW: {{ data }}
+    {% display_svelte "Career.svelte" %}
 {% endblock content %}

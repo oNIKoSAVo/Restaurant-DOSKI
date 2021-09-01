@@ -58,7 +58,7 @@
               class="cart d-none d-sm-flex"
               href="#cart"
               data-modal
-              ><div class="cart-summary">1 756.-</div>
+              ><div class="cart-summary">0.-</div>
               <img src="/static/app/img/cart.png" width="69"
             /></a>
           </div>
@@ -77,26 +77,24 @@
           /></a>
         </div>
         {% for category in categories %}
-          <div class="tab-content row" id="category_{{ category.id }}">
-            {% for menue in category.menues.all %}
-              <div class="dish-item col-sm-3">
-                <img class="dish-img" src="{{ menue.image.url }}" />
-                <div class="dish-title">{{ menue.dish }}</div>
-                <div class="dish-description">
-                  {{ menue.description }}
-                </div>
-                <div class="dish-details">
-                  <div class="dish-details_sizes">{{ menue.weight }}</div>
-                  <div class="dish-details_price">{{ menue.price }}.-</div>
-                  <div class="calculations" data-menue-id="{{ menue.id }}">
-                    <div class="minus-btn">-</div>
-                    <div class="item-quantity">0</div>
-                    <div class="plus-btn">+</div>
-                  </div>
-                </div>
+        <div class="tab-content row" id="category_{{ category.id }}">
+          {% for menue in category.menues.all %}
+          <div class="dish-item col-sm-3">
+            <img class="dish-img" src="{{ menue.image.url }}" />
+            <div class="dish-title">{{ menue.dish }}</div>
+            <div class="dish-description">{{ menue.description }}</div>
+            <div class="dish-details">
+              <div class="dish-details_sizes">{{ menue.weight }}</div>
+              <div class="dish-details_price">{{ menue.price }}.-</div>
+              <div class="calculations" data-menue-id="{{ menue.id }}">
+                <div class="minus-btn">-</div>
+                <div class="item-quantity">0</div>
+                <div class="plus-btn">+</div>
               </div>
-            {% endfor %}
+            </div>
           </div>
+          {% endfor %}
+        </div>
         {% endfor %}
 
         <div class="tab-content" id="reserve"></div>
@@ -118,5 +116,4 @@
   </div>
 </div>
 
-{% display_svelte "Delivery.svelte" props %}
-{% endblock content %}
+{% display_svelte "Delivery.svelte" props %} {% endblock content %}

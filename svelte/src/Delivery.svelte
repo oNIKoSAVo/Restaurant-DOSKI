@@ -33,19 +33,59 @@
       .join("");
     document.querySelector(".cart-full.pb-sm-4.mb-4").innerHTML = cartHtml;
 
-    document.querySelectorAll(".plus-btn").forEach(
-      (el) =>
-        (el.onclick = (e) => {
-          const cartItem = e.target.parentNode.parentNode.parentNode;
-          const cartName = cartItem.querySelector(
-            ".cart-item > .cart-item_title"
-          ).textContent;
-          cart = cart.map((ci) => {
-            if (ci.name === cartName) ci.quantity++;
-            return ci;
-          });
-        })
-    );
+    document
+      .querySelectorAll(
+        ".cart-item > .calculation-wrap>.calculations >.plus-btn"
+      )
+      .forEach(
+        (el) =>
+          (el.onclick = (e) => {
+            const cartItem = e.target.parentNode.parentNode.parentNode;
+            const quantityEl = cartItem.querySelector(".item-quantity");
+            quantityEl.textContent = Number(quantityEl.textContent) + 1;
+            const cartName = cartItem.querySelector(
+              ".cart-item > .cart-item_title"
+            ).textContent;
+            cart = cart.map((ci) => {
+              if (ci.name === cartName) {
+                ci.quantity++;
+                const quantityEl = document
+                  .getElementById(ci.id)
+                  .querySelector(".item-quantity");
+                quantityEl.textContent = Number(quantityEl.textContent) + 1;
+              }
+
+              return ci;
+            });
+          })
+      );
+
+    document
+      .querySelectorAll(
+        ".cart-item > .calculation-wrap>.calculations >.minus-btn"
+      )
+      .forEach(
+        (el) =>
+          (el.onclick = (e) => {
+            const cartItem = e.target.parentNode.parentNode.parentNode;
+            const quantityEl = cartItem.querySelector(".item-quantity");
+            quantityEl.textContent = Number(quantityEl.textContent) - 1;
+            const cartName = cartItem.querySelector(
+              ".cart-item > .cart-item_title"
+            ).textContent;
+            cart = cart.map((ci) => {
+              if (ci.name === cartName) {
+                ci.quantity--;
+                const quantityEl = document
+                  .getElementById(ci.id)
+                  .querySelector(".item-quantity");
+                quantityEl.textContent = Number(quantityEl.textContent) - 1;
+              }
+
+              return ci;
+            });
+          })
+      );
   }
 
   function getPrice(parentNode) {
@@ -117,6 +157,7 @@
           name: productCard.querySelector(".dish-title").textContent,
           quantity: 1,
           img: productCard.querySelector(".dish-img").getAttribute("src"),
+          id: productCard.id,
         },
       ];
     }
@@ -126,8 +167,7 @@
     // let quantity = parentNode.querySelector(".item-quantity").innerText;
     setPrice();
     parentNode.querySelector(".item-quantity").innerText =
-      cart[productIndex]?.quantity || cart[0].quantity;
-
+      cart[productIndex]?.quantity || cart[cart.length - 1].quantity;
     renderCartItems();
   }
 </script>

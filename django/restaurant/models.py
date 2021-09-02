@@ -49,6 +49,7 @@ class RestarauntSchema(models.Model):
 
 class Category(models.Model):
     name = models.CharField('Категория', max_length=128, blank=False, null=False)
+    parent = models.IntegerField('Родитель', blank=True, null=True)
 
     def __str__(self):
         return "%s" % (self.name)

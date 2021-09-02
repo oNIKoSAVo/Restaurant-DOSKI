@@ -25,7 +25,8 @@ class Command(BaseCommand):
         for item in root.iter('Item'):
             name = item.get('Name')
             if(len(item.get('CategPath').split('Меню')) > 1):
-                category = item.get('CategPath').split('Меню')[1].replace("\\", "")
+                category = item.get('CategPath').split("\\")[-1]
+                print(category)
                 if(category in categories):
                     # print(name)
                     # print(categories[category])

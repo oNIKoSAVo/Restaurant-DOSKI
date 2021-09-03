@@ -31,7 +31,7 @@ class Command(BaseCommand):
                     # print(name)
                     # print(categories[category])
                     if(name not in menues):
-                        Menue.objects.create(dish=name, category_id=categories[category], restaraunt_id=1)
+                        Menue.objects.create(dish=name, category_id=categories[category], restaraunt_id=1, ident=item.get('ItemIdent'))
                         n = n+1
 
         self.stdout.write(self.style.SUCCESS('Successfully import "%s"' % n))

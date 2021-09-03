@@ -60,6 +60,8 @@ def reservation(request):
     ]
     return render(request, 'reservation.py.html', {'data': sys._getframe(0).f_code.co_name, 'props': {'restaraunts': restaraunts}})
 
+def preorder(request):
+    return render(request, 'preorder.py.html', {'menues': Menue.objects.all(), 'categories': Category.objects.all() })
 
 def feedback(request):
     if request.method == "POST":

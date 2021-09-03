@@ -1,0 +1,128 @@
+{% extends 'base.py.html' %} {% load django_svelte %} {% block content %}
+<div class="menu-section delivery-section delivery">
+  <div class="big-offer d-xl-block d-none">
+    <a class="close" href="#"><img src="/static/app/img/x.png" width="20" /></a
+    ><a class="offer-text" href="#"
+      >закажи блюда в приложении и получи бонусы</a
+    >
+  </div>
+  <div class="inner-page container">
+    <div class="row">
+      <div class="col-12">
+        <div class="button-dropdown tab-cont d-sm-none d-block">
+          <a class="dropdown-toggle" href="javascript:void(0)">Закуски</a>
+          <ul class="dropdown-menu">
+            {% for category in categories %}
+            <li>
+              <a class="but" href="#category_{{ category.id }}"
+                >{{ category.name }}</a
+              >
+            </li>
+            {% endfor %}
+          </ul>
+        </div>
+        <div class="breadcrumbs">
+          <a href="/">Главная страница</a>/<a href="#">Предзаказ</a>/<a
+            href="#"
+            >Закуски</a
+          >
+        </div>
+      </div>
+      <div class="col-2 d-sm-block d-none">
+        <div
+          class="
+            section-title
+            d-flex
+            align-items-center
+            justify-content-between
+          "
+        >
+          Закуски
+        </div>
+        <div class="tab-cont">
+          {% for category in categories %}
+          <a class="but" href="#category_{{ category.id }}"
+            >{{ category.name }}</a
+          >
+          {% endfor %}
+        </div>
+      </div>
+      <div class="col-sm-10">
+        <div class="order-history row ml-0 mr-0">
+          <div class="col-md-4 px-0 px-1">
+            <div class="delivery-title">Количество человек:</div>
+            <div class="calculations">
+              <div class="minus-btn">-</div>
+              <div class="item-quantity">0</div>
+              <div class="plus-btn">+</div>
+            </div>
+          </div>
+          <div class="col-md-4 px-0 px-1">
+            <div class="delivery-title">Сумма блюд:<b>7 656.-</b></div>
+            <div class="delivery-conditions mb-3">
+              Добавленное количество гр на человека (еда): <b>250гр</b>
+            </div>
+            <div class="delivery-conditions">
+              Добавленное количество мл на человека (напитки):<b>500мл</b>
+            </div>
+          </div>
+          <div class="col-md-4 px-0 px-1 mt-3 mt-sm-0 mb-2 mb-sm-0">
+            <a class="download active" href="#preorder" data-modal
+              >Смотреть весь предзаказ</a
+            >
+          </div>
+        </div>
+        <div
+          class="
+            d-flex d-sm-none
+            align-items-center
+            justify-content-between
+            mb-3
+          "
+        >
+          <div class="section-title pb-1">Закуски</div>
+          <a class="cart d-block d-sm-none" href="#cart" data-modal
+            ><img src="/static/app/img/cart.png" width="69"
+          /></a>
+        </div>
+        {% for category in categories %}
+        <div class="tab-content row" id="category_{{ category.id }}">
+          {% for menue in category.menues.all %}
+          <div class="dish-item col-sm-3" id="{{ menue.id }}">
+            <img class="dish-img" src="{{ menue.image.url }}" />
+            <div class="dish-title">{{ menue.dish }}</div>
+            <div class="dish-description">{{ menue.description }}</div>
+            <div class="dish-details">
+              <div class="dish-details_sizes">{{ menue.weight }}</div>
+              <div class="dish-details_price">{{ menue.price }}.-</div>
+              <div class="calculations" data-menue-id="{{ menue.id }}">
+                <div class="minus-btn">-</div>
+                <div class="item-quantity">0</div>
+                <div class="plus-btn">+</div>
+              </div>
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+        {% endfor %}
+
+        <div class="tab-content" id="reserve"></div>
+        <div class="tab-content" id="orders"></div>
+        <div class="tab-content" id="edit"></div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-12 d-block d-lg-none">
+        <div class="big-offer">
+          <a class="close" href="#"
+            ><img src="/static/app/img/x.png" width="20" /></a
+          ><a class="offer-text" href="#"
+            >закажи блюда в приложении и получи бонусы</a
+          >
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% display_svelte "Delivery.svelte" props %} {% endblock content %}

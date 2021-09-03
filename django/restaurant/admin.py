@@ -1,6 +1,6 @@
 from django.utils.safestring import mark_safe
 from django.contrib import admin
-from .models import Category, Feedback, Franchising, MenuInOrder, Menue, Order, Profile, Reservation, Restaraunt, Сareer, RestarauntSchema
+from .models import Category, Feedback, Franchising, MenuInOrder, Menue, Order, Profile, Reservation, Restaraunt, Сareer, RestarauntSchema, Event
 
 admin.site.site_header = 'Respublica administrator'
 
@@ -46,4 +46,6 @@ admin.site.register(Feedback)
 admin.site.register(Franchising)
 admin.site.register(Сareer)
 admin.site.register(Reservation, ReservationAdmin)
+
+admin.site.register(Event)
 

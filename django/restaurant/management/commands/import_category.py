@@ -5,7 +5,7 @@ from restaurant.models import Category
 import xml.etree.ElementTree as ET
 
 class Command(BaseCommand):
-    help = 'Импорт продукции из XML'
+    help = 'Импорт категорий из XML'
 
     def handle(self, *args, **options):
         tree = ET.parse(settings.BASE_DIR / 'stuff' / 'menu.XML')

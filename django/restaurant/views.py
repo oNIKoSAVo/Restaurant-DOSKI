@@ -1,6 +1,7 @@
 import sys
 from datetime import datetime
 
+from django.db.models import Q
 from django.http.response import JsonResponse
 from restaurant.models import Feedback, Franchising, Reservation, Restaraunt, Сareer, Menue, Category
 from django.shortcuts import get_object_or_404, render, redirect
@@ -11,11 +12,29 @@ def index(request):
 
 
 def menu(request):
-    return render(request, 'menu.py.html', {'menues': Menue.objects.all(), 'categories': Category.objects.all() })
+    return render(request, 'menu.py.html', {'menues': Menue.objects.all(), 'categories': Category.objects.all()})
 
 
 def delivery(request):
-    return render(request, 'delivery.py.html', {'menues': Menue.objects.all(), 'categories': Category.objects.all()})
+    not_display_categories_ids = []
+    not_display_categories = Category.objects\
+        .filter(
+            Q(name="Сигареты/Кальяны") | 
+            Q(name="Вино/Вермут/Шампанское") | 
+            Q(name="Крепкий алкоголь") | 
+            Q(name="Пиво") | 
+            Q(name="Алкогольные коктейли"))
+
+    not_display_categories_ids = [category.id for category in not_display_categories]
+
+    for category_id in not_display_categories_ids:
+        child = Category.objects.filter(parent=category_id)
+        for c in child:
+            not_display_categories_ids.append(c.id)
+
+    categories = Category.objects.exclude(id__in=not_display_categories_ids)
+
+    return render(request, 'delivery.py.html', {'categories': categories})
 
 
 def reservation(request):
@@ -30,7 +49,7 @@ def reservation(request):
             date + " " + time_str_end, '%d/%m/%Y %H:%M')
         if request.POST.get('type') == "check":
             reservations = Reservation.objects.filter(end__gte=date_start)
-            return JsonResponse({"tables":[reserv.table for reserv in reservations]})
+            return JsonResponse({"tables": [reserv.table for reserv in reservations]})
         else:
             reservation = Reservation.objects.create(
                 restaraunt=Restaraunt.objects.get(
@@ -49,19 +68,21 @@ def reservation(request):
                 return JsonResponse({"status": "error"})
     restaraunts = Restaraunt.objects.all()
     restaraunts = [{
-        'id': restaraunt.id, 
-        'text': restaraunt.address, 
+        'id': restaraunt.id,
+        'text': restaraunt.address,
         'schemes': [{
             'id': schema.id,
             'url': schema.schema.url,
-            'description': schema.description 
-            }for schema in restaraunt.schemes.all()]
-        }for restaraunt in restaraunts
+            'description': schema.description
+        }for schema in restaraunt.schemes.all()]
+    }for restaraunt in restaraunts
     ]
     return render(request, 'reservation.py.html', {'data': sys._getframe(0).f_code.co_name, 'props': {'restaraunts': restaraunts}})
 
+
 def preorder(request):
-    return render(request, 'preorder.py.html', {'menues': Menue.objects.all(), 'categories': Category.objects.all() })
+    return render(request, 'preorder.py.html', {'menues': Menue.objects.all(), 'categories': Category.objects.all()})
+
 
 def feedback(request):
     if request.method == "POST":

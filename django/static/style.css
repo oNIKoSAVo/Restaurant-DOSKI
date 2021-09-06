@@ -5228,7 +5228,7 @@ a.close.disabled {
   overflow: hidden;
 }
 .modal-open .modal {
-    overflow-x: hidden;
+  overflow-x: hidden;
   overflow-y: auto;
 }
 .modal {
@@ -10021,8 +10021,15 @@ a.download:hover {
 .cart-full .cart-sum * {
   padding: 20px 0 10px 0;
 }
-.cart-full .cart-summary_title,
-.cart-full .cart-summary_amount {
+
+.cart-sum {
+  display: flex;
+  justify-content: space-between;
+}
+
+/*.cart-full*/
+.cart-summary_title,
+/*.cart-full*/ .cart-summary_amount {
   font-family: Bebas Neue;
   font-style: normal;
   font-weight: bold;
@@ -10030,7 +10037,8 @@ a.download:hover {
   line-height: 27px;
   color: #000000;
 }
-.cart-full .cart-summary_amount {
+/*.cart-full*/
+.cart-summary_amount {
   color: #d57e29;
 }
 .cart-full .cart-item_price {

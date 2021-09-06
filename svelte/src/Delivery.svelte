@@ -1,17 +1,26 @@
 <script>
-  let price = 0;
   let cart = [];
 
+  $: price = cart.reduce(
+    (acc, cartItem) => acc + cartItem.price * cartItem.quantity,
+    0
+  );
+  $: setPrice(price);
+  let amount = 1;
+  $: priceWithQuantity = price * amount;
+  $: console.log(priceWithQuantity);
+  $: console.log({ cart });
+  window.renderCartItems = renderCartItems;
   // $: document.querySelector(".cart-summary").textContent = price;
 
   function renderCartItems() {
     console.log(cart.length);
-    if (cart.length === 0) {
-      document.querySelector(
-        ".cart-full.pb-sm-4.mb-4"
-      ).innerHTML = `<h1>Пусто</h1>`;
-      return;
-    }
+    // if (cart.length === 0) {
+    //   document.querySelector(
+    //     ".cart-full.pb-sm-4.mb-4"
+    //   ).innerHTML = `<h1>Пусто</h1>`;
+    //   return;
+    // }
 
     const cartHtml = cart
       .map((cartItem) => {
@@ -31,7 +40,9 @@
           </div>`;
       })
       .join("");
-    document.querySelector(".cart-full.pb-sm-4.mb-4").innerHTML = cartHtml;
+    document
+      .querySelectorAll(".cart-full")
+      .forEach((el) => (el.innerHTML = cartHtml));
 
     document
       .querySelectorAll(
@@ -48,7 +59,7 @@
             ).textContent;
             cart = cart.map((ci) => {
               if (ci.name === cartName) {
-                ci.quantity++;
+                ci.quantity += 1;
                 const quantityEl = document
                   .getElementById(ci.id)
                   .querySelector(".item-quantity");
@@ -68,37 +79,51 @@
         (el) =>
           (el.onclick = (e) => {
             const cartItem = e.target.parentNode.parentNode.parentNode;
-            const quantityEl = cartItem.querySelector(".item-quantity");
-            quantityEl.textContent = Number(quantityEl.textContent) - 1;
+            const quantityElInCart = cartItem.querySelector(".item-quantity");
+            // quantityEl.textContent = Number(quantityEl.textContent) - 1;
             const cartName = cartItem.querySelector(
               ".cart-item > .cart-item_title"
             ).textContent;
             cart = cart.map((ci) => {
-              if (ci.name === cartName) {
-                ci.quantity--;
+              if (ci.name === cartName && ci.quantity !== 0) {
+                ci.quantity -= 1;
                 const quantityEl = document
                   .getElementById(ci.id)
                   .querySelector(".item-quantity");
-                quantityEl.textContent = Number(quantityEl.textContent) - 1;
+                quantityEl.textContent = ci.quantity;
+                quantityElInCart.textContent = ci.quantity;
               }
 
               return ci;
             });
           })
       );
+    // setPrice();
   }
 
   function getPrice(parentNode) {
-    return Number(
-      parentNode.parentNode
-        .querySelector(".dish-details_price")
-        .textContent.slice(0, -2)
-        .replace(",", ".")
-    );
+    try {
+      return Number(
+        parentNode.parentNode
+          .querySelector(".dish-details_price")
+          ?.textContent.slice(0, -2)
+          .replace(",", ".")
+      );
+    } catch (err) {}
   }
 
   function setPrice() {
-    document.querySelector(".cart-summary").textContent = price + ".-";
+    try {
+      document.querySelector(".cart-summary").textContent = price + ".-";
+    } catch (err) {
+      // console.log("start", priceWithQuantity);
+      setTimeout(() => {
+        document.querySelector(".delivery-title b").textContent =
+          priceWithQuantity + ".-";
+        document.querySelector(".cart-summary_amount.text-right").textContent =
+          priceWithQuantity + ".-";
+      }, 0);
+    }
   }
 
   document
@@ -114,24 +139,34 @@
   function handleClickOnMinus(e) {
     const parentNode = e.target.parentNode;
     const quantity = parentNode.querySelector(".item-quantity").innerText;
+    const productCard = e.target.parentNode.parentNode.parentNode;
+
+    if (productCard.id === "order-data") {
+      if (parseInt(quantity) === 1 || amount === 1) return;
+
+      const quantityEl = parentNode.querySelector(".item-quantity");
+      amount -= 1;
+      quantityEl.innerText = amount;
+      // setPrice();
+      return;
+    }
 
     if (parseInt(quantity) === 0) return;
-    const productCard = e.target.parentNode.parentNode.parentNode;
 
     const productIndex = cart.findIndex((el) => {
       return el.name === productCard.querySelector(".dish-title").textContent;
     });
 
     cart = cart.map((el, i) => {
-      if (i === productIndex) el.quantity--;
+      if (i === productIndex) el.quantity -= 1;
       return el;
     });
 
     parentNode.querySelector(".item-quantity").innerText =
       parseInt(quantity) - 1;
     const menuItemPrice = getPrice(parentNode);
-    price -= menuItemPrice;
-    setPrice();
+    if (menuItemPrice) price -= menuItemPrice;
+    // setPrice();
     renderCartItems();
     // document.querySelector('.cart-full.pb-sm-4.mb-4').innerHTML=
   }
@@ -139,14 +174,23 @@
   function handleClickOnPlus(e) {
     const parentNode = e.target.parentNode;
     const productCard = e.target.parentNode.parentNode.parentNode;
+
     const menuItemPrice = getPrice(parentNode);
+    if (productCard.id === "order-data") {
+      const quantityEl = parentNode.querySelector(".item-quantity");
+      amount += 1;
+      quantityEl.innerText = amount;
+      // setPrice();
+      return;
+    }
+
     const productIndex = cart.findIndex((el) => {
       return el.name === productCard.querySelector(".dish-title").textContent;
     });
 
     if (productIndex !== -1) {
       cart = cart.map((el, i) => {
-        if (i === productIndex) el.quantity++;
+        if (i === productIndex) el.quantity += 1;
         return el;
       });
     } else {
@@ -165,7 +209,7 @@
     price += menuItemPrice;
 
     // let quantity = parentNode.querySelector(".item-quantity").innerText;
-    setPrice();
+    // setPrice();
     parentNode.querySelector(".item-quantity").innerText =
       cart[productIndex]?.quantity || cart[cart.length - 1].quantity;
     renderCartItems();

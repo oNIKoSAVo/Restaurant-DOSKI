@@ -16,7 +16,7 @@
                 <div class="swiper-slide">
                   <img src="{{ event.image.url }}" />
                   <div class="event-content">
-                    <div class="event-time">{{ event.data }}</div>
+                    <div class="event-time">{{ event.date }}</div>
                     <div class="event-title">{{ event.name }}</div>
                     <div class="event-description">
                       {{ event.description }}
@@ -54,7 +54,7 @@
         <div class="event-column">
           <img src="{{ event.image.url }}" />
           <div class="event-content">
-            <div class="event-time">{{ event.data }}</div>
+            <div class="event-time">{{ event.date|date:'d.m' }} в {{ event.date|date:'H:i' }}</div>
             <div class="event-title">{{ event.name }}</div>
             <div class="event-description">
               {{ event.description }}

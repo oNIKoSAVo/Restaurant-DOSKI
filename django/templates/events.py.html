@@ -12,20 +12,22 @@
         <div class="swiper-wrap events-slider">
           <div class="swiper-container">
             <div class="swiper-wrapper">
-              <div class="swiper-slide">
-                <img src="/static/app/img/event-test.jpeg" />
-                <div class="event-content">
-                  <div class="event-time">05.09 в 19:00</div>
-                  <div class="event-title">La Discoteca</div>
-                  <div class="event-description">
-                    Дискотека с лучшими хитами 2020 года
+              {% for event in events %}
+                <div class="swiper-slide">
+                  <img src="{{ event.image.url }}" />
+                  <div class="event-content">
+                    <div class="event-time">{{ event.data }}</div>
+                    <div class="event-title">{{ event.name }}</div>
+                    <div class="event-description">
+                      {{ event.description }}
+                    </div>
+                    <a class="event-button submit" href="/reservation"
+                      >Забронировать столик на эту дату</a
+                    >
                   </div>
-                  <a class="event-button submit" href="/reserve.html"
-                    >Забронировать столик на эту дату</a
-                  >
                 </div>
-              </div>
-              <div class="swiper-slide">
+              {% endfor %}
+              <!-- <div class="swiper-slide">
                 <img src="/static/app/img/event1.jpeg" />
                 <div class="event-content">
                   <div class="event-time">05.09 в 19:00</div>
@@ -37,7 +39,7 @@
                     >Забронировать столик на эту дату</a
                   >
                 </div>
-              </div>
+              </div> -->
             </div>
           </div>
           <div class="swiper-button-prev"></div>
@@ -48,20 +50,22 @@
   </div>
   <div class="d-md-block d-none" id="events">
     <div class="col-container">
-      <div class="event-column">
-        <img src="/static/app/img/event-test.jpeg" />
-        <div class="event-content">
-          <div class="event-time">05.09 в 19:00</div>
-          <div class="event-title">La Discoteca</div>
-          <div class="event-description">
-            Дискотека с лучшими хитами 2020 года
+      {% for event in events %}
+        <div class="event-column">
+          <img src="{{ event.image.url }}" />
+          <div class="event-content">
+            <div class="event-time">{{ event.data }}</div>
+            <div class="event-title">{{ event.name }}</div>
+            <div class="event-description">
+              {{ event.description }}
+            </div>
+            <a class="event-button submit" href="/reservation"
+              >Забронировать столик на эту дату</a
+            >
           </div>
-          <a class="event-button submit" href="/reserve.html"
-            >Забронировать столик на эту дату</a
-          >
         </div>
-      </div>
-      <div class="event-column">
+      {% endfor %}
+      <!-- <div class="event-column">
         <img src="/static/app/img/event1.jpeg" />
         <div class="event-content">
           <div class="event-time">05.09 в 19:00</div>
@@ -73,8 +77,8 @@
             >Забронировать столик на эту дату</a
           >
         </div>
-      </div>
-      <div class="event-column">
+      </div> -->
+      <!-- <div class="event-column">
         <img src="/static/app/img/event-test.jpeg" />
         <div class="event-content">
           <div class="event-time">05.09 в 19:00</div>
@@ -86,8 +90,8 @@
             >Забронировать столик на эту дату</a
           >
         </div>
-      </div>
-      <div class="event-column">
+      </div> -->
+      <!-- <div class="event-column">
         <img src="/static/app/img/event1.jpeg" />
         <div class="event-content">
           <div class="event-time">05.09 в 19:00</div>
@@ -99,8 +103,8 @@
             >Забронировать столик на эту дату</a
           >
         </div>
-      </div>
-      <div class="event-column">
+      </div> -->
+      <!-- <div class="event-column">
         <img src="/static/app/img/event-test.jpeg" />
         <div class="event-content">
           <div class="event-time">05.09 в 19:00</div>
@@ -112,7 +116,7 @@
             >Забронировать столик на эту дату</a
           >
         </div>
-      </div>
+      </div> -->
     </div>
   </div>
 {% endblock content %}

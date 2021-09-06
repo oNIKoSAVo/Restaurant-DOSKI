@@ -3,7 +3,7 @@ from datetime import datetime
 
 from django.db.models import Q
 from django.http.response import JsonResponse
-from restaurant.models import Feedback, Franchising, Reservation, Restaraunt, Сareer, Menue, Category
+from restaurant.models import Feedback, Franchising, Reservation, Restaraunt, Сareer, Menue, Category, Event
 from django.shortcuts import get_object_or_404, render, redirect
 
 
@@ -96,7 +96,7 @@ def feedback(request):
 
 
 def events(request):
-    return render(request, 'events.py.html', {'data': sys._getframe(0).f_code.co_name})
+    return render(request, 'events.py.html', {'events': Event.objects.all()})
 
 
 def career(request):

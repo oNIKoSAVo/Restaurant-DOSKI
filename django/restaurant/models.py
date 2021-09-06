@@ -152,7 +152,6 @@ class Event(models.Model):
     description = models.TextField('Описание', max_length=128, blank=True, null=True)
     image = models.ImageField('Изображение', upload_to='images/', blank=True, null=True)
     date = models.DateTimeField('Дата', blank=False, null=False)
-    link = models.TextField('Ссылка', max_length=128, blank=False, null=False)
 
     class Meta:
         verbose_name = 'событие'

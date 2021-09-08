@@ -67,9 +67,10 @@
 
   function handleOnChangeRestaraunt(e) {
     console.log(restaraunts);
-    const findRestaraunt = restaraunts.find(elem => elem.id == restaraunt);
-    console.log(findRestaraunt)
-    appendSchemes(findRestaraunt.schemes);
+    const findRestaraunt = restaraunts.find((elem) => elem.id == restaraunt);
+    console.log(findRestaraunt);
+    // appendSchemes(findRestaraunt.schemes);
+    appendSchemes([{ url: "/media/tables/Ленина 6.svg" }]);
   }
 
   function appendSchemes(schemes) {

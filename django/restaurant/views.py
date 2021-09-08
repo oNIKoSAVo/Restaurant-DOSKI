@@ -191,4 +191,8 @@ def create_order(request):
     for m in menues:
         MenuInOrder.objects.create(menue=m, order=order)
 
-    return JsonResponse(Payment().create_payment(order=order, receipt=receipt), safe=False)
+    payment = Payment().create_payment(order=order, receipt=receipt)
+    if("payment_url" in payment):
+        return JsonResponse({"payment_url": payment["payment_url"]})
+    else:
+        return JsonResponse({"error": "can't create payment link"})

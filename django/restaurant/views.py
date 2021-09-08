@@ -146,12 +146,12 @@ def login(request):
 
 def create_order(request):
     data=json.loads(request.body)
-    manue = data["menue"]
+    menue = data["menue"]
     fio = data["fio"]
     address = data["address"]
     phone = data["phone"]
-    about = data["about"]
-    payment_type = data["payment_type"]
+    comment = data["comment"]
+    payment_type = data["paymentType"]
 
     profile = Profile.objects.filter(phone=phone)
     if(not profile.exists()):
@@ -172,26 +172,28 @@ def create_order(request):
     menues = []
     receipt = []
     total_price = 0
-    for m in manue:
+    for m in menue:
         menue_id = m["id"]
         quantity = m["quantity"]
-        menue = Menue.objects.get(id=menue_id)
+        menue_item = Menue.objects.get(id=menue_id)
         receipt.append({
-            "name": menue.dish,
-            "price": menue.price,
+            "name": menue_item.dish,
+            "price": menue_item.price,
             "discount": 0,
             "resultPrice": 10,
             "quantity": quantity
         })
         for q in range(quantity):
-            total_price += menue.price
-            menues.append(menue)
-    order = Order.objects.create(user=user, restaraunt_id=1, price=total_price)
+            total_price += menue_item.price
+            menues.append(menue_item)
+    order = Order.objects.create(user=user, restaraunt_id=1, price=total_price, payment=payment_type, comment=comment, address=address)
 
     for m in menues:
         MenuInOrder.objects.create(menue=m, order=order)
 
-    payment = Payment().create_payment(order=order, receipt=receipt)
+    # payment = Payment().create_payment(order=order, receipt=receipt)
+    payment = Payment().create_terminal(order=order)
+    print(payment)
     if("payment_url" in payment):
         return JsonResponse({"payment_url": payment["payment_url"]})
     else:

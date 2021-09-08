@@ -1,6 +1,10 @@
 from django.db import models
 from django.contrib.auth.models import User
 
+class PaymentTypes(models.IntegerChoices):
+    ONLINE = 0, 'Онлайн оплата'
+    CARD = 1, 'Картой'
+    CASH = 2, 'Наличными'
 
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
@@ -80,9 +84,11 @@ class Order(models.Model):
                               on_delete=models.CASCADE, blank=False, null=False)
     restaraunt = models.ForeignKey(Restaraunt, verbose_name='Ресторан', related_name='orders', on_delete=models.DO_NOTHING,  blank=False, null=False)
     price = models.FloatField('Сумма заказа', blank=False, null=False, default=0)
-
-    # payment = models.IntegerChoices()
-    # paid = models.BooleanField("Оплачено", blank=False, null=False, default=False)
+    comment = models.TextField('Комментарий к заказу', max_length=128, blank=True, null=True)
+    address = models.TextField('Адресс', max_length=300, blank=True, null=True)
+    payment = models.IntegerField(
+        'Тип оплаты', choices=PaymentTypes.choices, default=PaymentTypes.ONLINE)
+    paid = models.BooleanField("Оплачено", blank=False, null=False, default=False)
     created_at = models.DateTimeField('Время создания', auto_now_add=True)
     updated_at = models.DateTimeField('Время изменения', auto_now=True)
 

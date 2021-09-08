@@ -1,9 +1,13 @@
+from restaurant.lib.payment import Payment
 import sys
+import json
+import random
 from datetime import datetime
+from django.contrib.auth.models import User
 
 from django.db.models import Q
 from django.http.response import JsonResponse
-from restaurant.models import Feedback, Franchising, Reservation, Restaraunt, Сareer, Menue, Category, Event
+from restaurant.models import Feedback, Franchising, Reservation, Restaraunt, Сareer, Menue, Category, Event, MenuInOrder, Order, Profile
 from django.shortcuts import get_object_or_404, render, redirect
 
 
@@ -138,3 +142,53 @@ def contacts(request):
 
 def login(request):
     return render(request, 'login.py.html', {'data': sys._getframe(0).f_code.co_name})
+
+
+def create_order(request):
+    data=json.loads(request.body)
+    manue = data["menue"]
+    fio = data["fio"]
+    address = data["address"]
+    phone = data["phone"]
+    about = data["about"]
+    payment_type = data["payment_type"]
+
+    profile = Profile.objects.filter(phone=phone)
+    if(not profile.exists()):
+        user = User.objects.create_user(username=phone, password=''.join(random.choice('1234567890') for _ in range(4)))
+        if(len(fio.split(" ")) >=3):
+            first_name = fio.split(" ")[1]
+            second_name = fio.split(" ")[2]
+            last_name = fio.split(" ")[0]
+        else:
+            first_name = fio
+            second_name = fio
+            last_name = fio
+
+        profile = Profile.objects.create(user=user, first_name=first_name, second_name=second_name, last_name=last_name, phone=phone)
+    else:
+        user = profile.first().user
+
+    menues = []
+    receipt = []
+    total_price = 0
+    for m in manue:
+        menue_id = m["id"]
+        quantity = m["quantity"]
+        menue = Menue.objects.get(id=menue_id)
+        receipt.append({
+            "name": menue.dish,
+            "price": menue.price,
+            "discount": 0,
+            "resultPrice": 10,
+            "quantity": quantity
+        })
+        for q in range(quantity):
+            total_price += menue.price
+            menues.append(menue)
+    order = Order.objects.create(user=user, restaraunt_id=1, price=total_price)
+
+    for m in menues:
+        MenuInOrder.objects.create(menue=m, order=order)
+
+    return JsonResponse(Payment().create_payment(order=order, receipt=receipt), safe=False)

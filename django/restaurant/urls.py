@@ -28,6 +28,7 @@ urlpatterns = [
     path('menu', views.menu, name='menu'),
     path('delivery', views.delivery, name='delivery'),
     path('preorder', views.preorder, name='preorder'),
+    path('create_order', views.create_order, name='create_order'),
     path('reservation', views.reservation, name='reservation'),
     path('feedback', views.feedback, name='feedback'),
     path('events', views.events, name='events'),

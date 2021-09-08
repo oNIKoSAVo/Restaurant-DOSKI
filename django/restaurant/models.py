@@ -10,7 +10,7 @@ class Profile(models.Model):
         max_length=128, blank=True, null=True, default=None)
     last_name = models.CharField(
         max_length=128, blank=True, null=True, default=None)
-    birthday = models.DateField(auto_now=False, auto_now_add=False)
+    birthday = models.DateField(auto_now=False, auto_now_add=False, blank=True, null=True, default=None)
 
     phone = models.CharField(max_length=16, blank=True,
                              null=True, default=None)
@@ -81,6 +81,8 @@ class Order(models.Model):
     restaraunt = models.ForeignKey(Restaraunt, verbose_name='Ресторан', related_name='orders', on_delete=models.DO_NOTHING,  blank=False, null=False)
     price = models.FloatField('Сумма заказа', blank=False, null=False, default=0)
 
+    # payment = models.IntegerChoices()
+    # paid = models.BooleanField("Оплачено", blank=False, null=False, default=False)
     created_at = models.DateTimeField('Время создания', auto_now_add=True)
     updated_at = models.DateTimeField('Время изменения', auto_now=True)
 

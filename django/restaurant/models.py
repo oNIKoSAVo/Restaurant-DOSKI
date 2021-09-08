@@ -26,8 +26,8 @@ class Profile(models.Model):
     class Meta:
         verbose_name = 'профиль'
         verbose_name_plural = 'профили'
-        app_label = 'auth'
-        db_table = 'restaurant_profile'
+        # app_label = 'auth'
+        # db_table = 'restaurant_profile'
         
 
 

@@ -11076,6 +11076,11 @@ textarea {
 .breadcrumbs a:first-child {
   margin-left: 0;
 }
+#table svg {
+  display: block;
+  width: 600px;
+}
+
 #table .modal-table {
   max-width: 100%;
   margin: 25px 0 0 0;

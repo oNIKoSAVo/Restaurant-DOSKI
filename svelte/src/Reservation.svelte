@@ -70,7 +70,7 @@
     const findRestaraunt = restaraunts.find((elem) => elem.id == restaraunt);
     console.log(findRestaraunt);
     // appendSchemes(findRestaraunt.schemes);
-    appendSchemes([{ url: "/media/tables/Ленина 6.svg" }]);
+    appendSchemes([{ url: "/media/tables/Покрышкина.svg" }]);
   }
 
   function appendSchemes(schemes) {
@@ -83,12 +83,15 @@
           el.innerHTML = text;
           el.class = "svg";
           document.getElementById("table").appendChild(el);
-          let rects = document.querySelectorAll("rect.cls-5");
-          console.log({ rects });
-          rects.forEach((rect) =>
-            rect.addEventListener("click", function () {
-              rects.forEach((r) => (r.style.fill = "green"));
-              table = rect.nextSibling.textContent;
+          let paths = [...document.querySelectorAll("path")].filter((path) => {
+            if (!isNaN(path.id)) return path;
+          });
+          console.log({ paths });
+          paths.forEach((path) =>
+            path.addEventListener("click", function () {
+              paths.forEach((r) => (r.style.fill = "green"));
+              // table = path.nextSibling.textContent;
+              table = this.id;
               this.style.fill = "#7f7f7f";
             })
           );
@@ -175,6 +178,13 @@
         name="table"
         placeholder="Стол"
         bind:value={table}
+        on:change={() => {
+          let paths = [...document.querySelectorAll("path")].filter((path) => {
+            if (!isNaN(path.id)) return path;
+          });
+          paths.forEach((r) => (r.style.fill = "green"));
+          document.getElementById(table).style.fill = "#7f7f7f";
+        }}
       /><br /><br />
       <input
         class="phone-input"

@@ -3,8 +3,22 @@ import requests
 
 class Payment:
 
-    def create_terminal(self):
-        pass
+    def create_terminal(self, order):
+        response = requests.post("https://api.invoice.su/api/v2/CreateTerminal",
+                                 headers={
+                                     "Authorization": "Basic YzI0MzYwY2ZhYzBhMGM0MGM1MTg0MDVmNmJjNjhjYjA6MTUyNmZlYzAxYjVkMTFmNGRmNGYyMTYwNjI3Y2UzNTE=",
+                                     "Content-Type": "application/json"
+                                 },
+                                 data={
+
+                                     "name": "Республика",
+                                     "description": "Зааказ доставки",
+                                     "type": "dynamical",
+                                     "defaultPrice": order.price
+                                 }
+                                 )
+
+        return response.json()
 
     def create_payment(self, order, receipt):
         response = requests.post("https://api.invoice.su/api/v2/CreatePayment",

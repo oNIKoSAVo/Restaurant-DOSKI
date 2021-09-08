@@ -173,7 +173,9 @@
       });
 
       const result = await response.json();
-      console.log(result);
+      if(result.payment_url){
+        window.location.href = result.payment_url;
+      }
     });
   });
 

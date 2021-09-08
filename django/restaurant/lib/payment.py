@@ -6,11 +6,10 @@ class Payment:
     def create_terminal(self, order):
         response = requests.post("https://api.invoice.su/api/v2/CreateTerminal",
                                  headers={
-                                     "Authorization": "Basic YzI0MzYwY2ZhYzBhMGM0MGM1MTg0MDVmNmJjNjhjYjA6MTUyNmZlYzAxYjVkMTFmNGRmNGYyMTYwNjI3Y2UzNTE=",
+                                     "Authorization": "Basic Nzk1MjkwNTY3MDY6ZDVkOThiYzI0YWZjMmM1OTNkOGEzMjMzOGJhZmI3ZmY=",
                                      "Content-Type": "application/json"
                                  },
-                                 data={
-
+                                 json={
                                      "name": "Республика",
                                      "description": "Зааказ доставки",
                                      "type": "dynamical",
@@ -23,10 +22,10 @@ class Payment:
     def create_payment(self, order, receipt):
         response = requests.post("https://api.invoice.su/api/v2/CreatePayment",
                                  headers={
-                                     "Authorization": "Basic YzI0MzYwY2ZhYzBhMGM0MGM1MTg0MDVmNmJjNjhjYjA6MTUyNmZlYzAxYjVkMTFmNGRmNGYyMTYwNjI3Y2UzNTE=",
+                                     "Authorization": "Basic Nzk1MjkwNTY3MDY6ZDVkOThiYzI0YWZjMmM1OTNkOGEzMjMzOGJhZmI3ZmY=",
                                      "Content-Type": "application/json"
                                  },
-                                 data={
+                                 json={
                                      "order": {
                                          "currency": "RUB",
                                          "amount": order.price,
@@ -34,7 +33,7 @@ class Payment:
                                          "id": order.id
                                      },
                                      "settings": {
-                                         "terminal_id": 45,
+                                         "terminal_id": "fbbc04115d0fc892829526af30a1b2b5",
                                          "payment_method": "card",
                                          "success_url": "https://example.com/success",
                                          "fail_url": "https://example.com/error"

@@ -33,7 +33,7 @@ class Payment:
                                          "id": order.id
                                      },
                                      "settings": {
-                                         "terminal_id": "fbbc04115d0fc892829526af30a1b2b5",
+                                         "terminal_id": "9a73af7faff347bf8844c66d8333ae84",
                                          "payment_method": "card",
                                          "success_url": "https://example.com/success",
                                          "fail_url": "https://example.com/error"

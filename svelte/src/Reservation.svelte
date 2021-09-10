@@ -3,8 +3,10 @@
   import { reservationRequest } from "./api";
 
   export let restaraunts;
+  export let reservation;
 
-  let restaraunt = "";
+  
+  let restaraunt = reservation.restaraunt_id ? parseInt(reservation.restaraunt_id) : "";
   let date = "";
   let start = "";
   let end = "";
@@ -45,6 +47,10 @@
     console.log("I'm the validate() function");
   }
 
+  document.addEventListener("DOMContentLoaded", () => {
+    handleOnChangeRestaraunt();
+  })
+
   async function handleSubmit(e) {
     e.preventDefault();
     e.stopPropagation();
@@ -72,6 +78,7 @@
     // appendSchemes(findRestaraunt.schemes);
     appendSchemes([{ url: "/media/tables/Покрышкина.svg" }]);
   }
+
 
   function appendSchemes(schemes) {
     document.getElementById("table").innerHTML = "";
@@ -143,6 +150,7 @@
     </div>
     <div class="col-sm-6 svelte-1lorc63">
       <Datepicker
+        selected={new Date(reservation.date.replace(/(\d{2})-(\d{2})-(\d{4})/,'$3-$2-$1'))}
         format={"#{d}/#{m}/#{Y}"}
         {daysOfWeek}
         {monthsOfYear}

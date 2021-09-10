@@ -1,3 +1,4 @@
+import requests
 from restaurant.lib.payment import Payment
 import sys
 import json
@@ -70,6 +71,9 @@ def reservation(request):
                 return JsonResponse({"status": "success", "id": reservation.id})
             else:
                 return JsonResponse({"status": "error"})
+    # if request.GET.get('date') is not None and requests.GET.get('restaraunt') is not None:
+    #     restaraunts = Restaraunt.objects.all()
+    # else:
     restaraunts = Restaraunt.objects.all()
     restaraunts = [{
         'id': restaraunt.id,
@@ -81,7 +85,7 @@ def reservation(request):
         }for schema in restaraunt.schemes.all()]
     }for restaraunt in restaraunts
     ]
-    return render(request, 'reservation.py.html', {'data': sys._getframe(0).f_code.co_name, 'props': {'restaraunts': restaraunts}})
+    return render(request, 'reservation.py.html', {'data': sys._getframe(0).f_code.co_name, 'props': {'restaraunts': restaraunts, 'reservation': {'restaraunt_id': request.GET.get('restaraunt'), 'date': request.GET.get('date')}}})
 
 
 def preorder(request):

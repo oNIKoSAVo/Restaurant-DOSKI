@@ -150,7 +150,7 @@
     </div>
     <div class="col-sm-6 svelte-1lorc63">
       <Datepicker
-        selected={new Date(reservation.date.replace(/(\d{2})-(\d{2})-(\d{4})/,'$3-$2-$1'))}
+        selected={(reservation.date ? new Date(reservation.date.replace(/(\d{2})-(\d{2})-(\d{4})/,'$3-$2-$1')) : new Date())}
         format={"#{d}/#{m}/#{Y}"}
         {daysOfWeek}
         {monthsOfYear}

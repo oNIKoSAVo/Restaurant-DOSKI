@@ -59,7 +59,7 @@
             <div class="event-description">
               {{ event.description }}
             </div>
-            <a class="event-button submit" href="/reservation"
+            <a class="event-button submit" href="/reservation?restaraunt={{ event.restaraunt.id }}&date={{ event.date|date:'d-m-Y' }}"
               >Забронировать столик на эту дату</a
             >
           </div>

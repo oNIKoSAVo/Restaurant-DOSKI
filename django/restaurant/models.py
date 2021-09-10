@@ -160,6 +160,7 @@ class Event(models.Model):
     description = models.TextField('Описание', max_length=128, blank=True, null=True)
     image = models.ImageField('Изображение', upload_to='images/', blank=True, null=True)
     date = models.DateTimeField('Дата', blank=False, null=False)
+    restaraunt = models.ForeignKey(Restaraunt, verbose_name='Ресторан', on_delete=models.DO_NOTHING, blank=True, null=True)
 
     class Meta:
         verbose_name = 'событие'

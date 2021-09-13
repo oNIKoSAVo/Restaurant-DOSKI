@@ -17,27 +17,21 @@ def index(request):
 
 
 def menu(request):
-    return render(request, 'menu.py.html', {'menues': Menue.objects.all(), 'categories': Category.objects.all()})
+    categories = Category.get_without(categories_skip=[
+        
+    ])
+
+    return render(request, 'menu.py.html', {'menues': Menue.objects.all(), 'categories': categories})
 
 
 def delivery(request):
-    not_display_categories_ids = []
-    not_display_categories = Category.objects\
-        .filter(
-            Q(name="Сигареты/Кальяны") | 
-            Q(name="Вино/Вермут/Шампанское") | 
-            Q(name="Крепкий алкоголь") | 
-            Q(name="Пиво") | 
-            Q(name="Алкогольные коктейли"))
-
-    not_display_categories_ids = [category.id for category in not_display_categories]
-
-    for category_id in not_display_categories_ids:
-        child = Category.objects.filter(parent=category_id)
-        for c in child:
-            not_display_categories_ids.append(c.id)
-
-    categories = Category.objects.exclude(id__in=not_display_categories_ids)
+    categories = Category.get_without(categories_skip=[
+        "Сигареты/Кальяны",
+        "Вино/Вермут/Шампанское",
+        "Крепкий алкоголь",
+        "Пиво",
+        "Алкогольные коктейли"
+    ])
 
     return render(request, 'delivery.py.html', {'categories': categories})
 
@@ -149,7 +143,7 @@ def login(request):
 
 
 def create_order(request):
-    data=json.loads(request.body)
+    data = json.loads(request.body)
     menue = data["menue"]
     fio = data["fio"]
     address = data["address"]
@@ -159,8 +153,9 @@ def create_order(request):
 
     profile = Profile.objects.filter(phone=phone)
     if(not profile.exists()):
-        user = User.objects.create_user(username=phone, password=''.join(random.choice('1234567890') for _ in range(4)))
-        if(len(fio.split(" ")) >=3):
+        user = User.objects.create_user(username=phone, password=''.join(
+            random.choice('1234567890') for _ in range(4)))
+        if(len(fio.split(" ")) >= 3):
             first_name = fio.split(" ")[1]
             second_name = fio.split(" ")[2]
             last_name = fio.split(" ")[0]
@@ -169,7 +164,8 @@ def create_order(request):
             second_name = fio
             last_name = fio
 
-        profile = Profile.objects.create(user=user, first_name=first_name, second_name=second_name, last_name=last_name, phone=phone)
+        profile = Profile.objects.create(
+            user=user, first_name=first_name, second_name=second_name, last_name=last_name, phone=phone)
     else:
         user = profile.first().user
 
@@ -190,13 +186,14 @@ def create_order(request):
         for q in range(quantity):
             total_price += menue_item.price
             menues.append(menue_item)
-    order = Order.objects.create(user=user, restaraunt_id=1, price=total_price, payment=payment_type, comment=comment, address=address)
+    order = Order.objects.create(user=user, restaraunt_id=1, price=total_price,
+                                 payment=payment_type, comment=comment, address=address)
 
     for m in menues:
         MenuInOrder.objects.create(menue=m, order=order)
 
-    payment = Payment().create_payment(order=order, receipt=receipt) # payment_url
-    #payment = Payment().create_terminal(order=order) # link
+    payment = Payment().create_payment(order=order, receipt=receipt)  # payment_url
+    # payment = Payment().create_terminal(order=order) # link
     print(payment)
     if("payment_url" in payment):
         return JsonResponse({"payment_url": payment["payment_url"]})

@@ -1,5 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.db.models import Q
+from functools import reduce
 
 class PaymentTypes(models.IntegerChoices):
     ONLINE = 0, 'Онлайн оплата'
@@ -57,6 +59,25 @@ class Category(models.Model):
 
     def __str__(self):
         return "%s" % (self.name)
+
+    @staticmethod
+    def get_without(categories_skip = []):
+        if(len(categories_skip) == 0):
+            return Category.objects.all()
+        not_display_categories_ids = []
+        not_display_categories = Category.objects\
+            .filter(
+                reduce(lambda x, y: x | y, [Q(name=item) for item in categories_skip]))
+
+        not_display_categories_ids = [
+            category.id for category in not_display_categories]
+
+        for category_id in not_display_categories_ids:
+            child = Category.objects.filter(parent=category_id)
+            for c in child:
+                not_display_categories_ids.append(c.id)
+
+        return Category.objects.exclude(id__in=not_display_categories_ids)
 
     class Meta:
         verbose_name = 'категория'

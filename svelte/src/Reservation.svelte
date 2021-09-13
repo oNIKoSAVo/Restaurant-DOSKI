@@ -70,7 +70,8 @@
     const findRestaraunt = restaraunts.find((elem) => elem.id == restaraunt);
     console.log(findRestaraunt);
     // appendSchemes(findRestaraunt.schemes);
-    appendSchemes([{ url: "/media/tables/Покрышкина.svg" }]);
+    console.log({ findRestaraunt });
+    appendSchemes([{ url: findRestaraunt.schemes[0]?.url }]);
   }
 
   function appendSchemes(schemes) {

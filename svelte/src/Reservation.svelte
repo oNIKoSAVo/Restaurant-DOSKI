@@ -1,6 +1,8 @@
 <script>
   import Datepicker from "svelte-calendar";
   import { reservationRequest } from "./api";
+  import isNumeric from "validator/es/lib/isNumeric";
+  import isAlpha from "validator/es/lib/isAlpha";
 
   export let restaraunts;
 
@@ -41,9 +43,13 @@
     ["Декабрь", "Декабрь"],
   ];
 
-  function validate() {
-    console.log("I'm the validate() function");
-  }
+  // function validate(e, validateFn, stateValue) {
+  //   if (validateFn(e.target.value) || e.target.value === "") {
+  //     stateValue = e.target.value;
+  //   } else {
+  //     e.target.value = stateValue;
+  //   }
+  // }
 
   async function handleSubmit(e) {
     e.preventDefault();
@@ -151,10 +157,30 @@
       />
     </div>
     <div class="col-md-3 col-6">
-      <input placeholder="От" bind:value={start} />
+      <input
+        placeholder="От"
+        value={start}
+        on:input={(e) => {
+          if (isNumeric(e.target.value) || e.target.value === "") {
+            start = e.target.value;
+          } else {
+            e.target.value = start;
+          }
+        }}
+      />
     </div>
     <div class="col-md-3 col-6">
-      <input placeholder="До" bind:value={end} />
+      <input
+        placeholder="До"
+        value={end}
+        on:input={(e) => {
+          if (isNumeric(e.target.value) || e.target.value === "") {
+            end = e.target.value;
+          } else {
+            e.target.value = end;
+          }
+        }}
+      />
     </div>
     <div class="col-md-6">
       <select
@@ -171,15 +197,33 @@
       </select>
     </div>
     <div class="col-sm-6">
-      <input name="name" placeholder="Ваше имя" bind:value={name} />
+      <input
+        name="name"
+        placeholder="Ваше имя"
+        value={name}
+        on:input={(e) => {
+          if (isAlpha(e.target.value, "ru-RU") || e.target.value === "") {
+            name = e.target.value;
+          } else {
+            e.target.value = name;
+          }
+        }}
+      />
     </div>
     <div class="col-12">
       <input
         type="text"
         name="table"
         placeholder="Стол"
-        bind:value={table}
-        on:change={() => {
+        value={table}
+        on:input={(e) => {
+          if (isNumeric(e.target.value) || e.target.value === "") {
+            table = e.target.value;
+          } else {
+            e.target.value = table;
+          }
+        }}
+        on:change={(e) => {
           let paths = [...document.querySelectorAll("path")].filter((path) => {
             if (!isNaN(path.id)) return path;
           });

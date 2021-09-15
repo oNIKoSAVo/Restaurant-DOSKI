@@ -11079,6 +11079,7 @@ textarea {
 #table svg {
   display: block;
   width: 600px;
+  cursor: pointer;
 }
 
 #table .modal-table {

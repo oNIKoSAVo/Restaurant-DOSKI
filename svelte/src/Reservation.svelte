@@ -54,7 +54,7 @@
   // }
 
   document.addEventListener("DOMContentLoaded", () => {
-    handleOnChangeRestaraunt();
+    appendSchemes([{ url: restaraunts[0]?.schemes[0]?.url }]);
   })
 
   async function handleSubmit(e) {

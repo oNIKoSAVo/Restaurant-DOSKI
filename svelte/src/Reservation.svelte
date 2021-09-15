@@ -3,6 +3,7 @@
   import { reservationRequest } from "./api";
   import isNumeric from "validator/es/lib/isNumeric";
   import isAlpha from "validator/es/lib/isAlpha";
+  import jquery from "jquery";
 
   export let restaraunts;
 
@@ -80,6 +81,17 @@
     appendSchemes([{ url: findRestaraunt.schemes[0]?.url }]);
   }
 
+  function openModal(id) {
+    jquery(".modal").removeClass("show").hide();
+    // saveTop = jquery("html").scrollTop();
+    // jquery(".modal-title").text(title);
+    // jquery(".modal-subtitle").text(subtitle);
+    jquery("html,body").addClass("locked");
+    jquery("body").css("overflow", "hidden");
+    // jquery("body").css("top", -saveTop);
+    jquery(id).addClass("show").show();
+  }
+
   function appendSchemes(schemes) {
     document.getElementById("table").innerHTML = "";
     schemes.forEach((schema) => {
@@ -95,8 +107,18 @@
           });
           console.log({ paths });
           paths.forEach((path) =>
-            path.addEventListener("click", function () {
+            path.addEventListener("click", function (e) {
+              e.stopPropagation();
               paths.forEach((r) => (r.style.fill = "green"));
+              openModal("#table-modal");
+              // const tableModal = document.getElementById("table-modal");
+              // document.onclick = (e) => {
+              //   console.log("documented");
+              //   tableModal.classList.remove("show");
+              //   document.onclick = null;
+              // };
+              // console.log({ tableModal });
+              // tableModal.classList.add("show");
               // table = path.nextSibling.textContent;
               table = this.id;
               this.style.fill = "#7f7f7f";

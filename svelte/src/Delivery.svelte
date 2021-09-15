@@ -137,6 +137,8 @@
       elem.addEventListener("click", (e) => handleClickOnPlus(e))
     );
   function handleClickOnMinus(e) {
+    e.stopPropagation();
+
     const parentNode = e.target.parentNode;
     const quantity = parentNode.querySelector(".item-quantity").innerText;
     const productCard = e.target.parentNode.parentNode.parentNode;
@@ -172,6 +174,7 @@
   }
 
   function handleClickOnPlus(e) {
+    e.stopPropagation();
     const parentNode = e.target.parentNode;
     const productCard = e.target.parentNode.parentNode.parentNode;
 

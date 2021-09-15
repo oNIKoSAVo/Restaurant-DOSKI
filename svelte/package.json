@@ -19,6 +19,7 @@
     "svelte-calendar": "^2.0.4"
   },
   "dependencies": {
+    "jquery": "^3.6.0",
     "qs": "^6.10.1",
     "sirv-cli": "^1.0.0",
     "validator": "^13.6.0"

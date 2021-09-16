@@ -3833,18 +3833,20 @@ footer {
   width: 100%;
   height: 100%;
   position: fixed;
-  overflow-y: auto;
+  //overflow-y: auto;
 
   .menu-container {
-    margin-top: 70px;
+    //margin-top: 70px;
     background: #000;
     height: 100%;
     float: right;
     display: flex;
     align-items: center;
     padding: 0 35px;
-    overflow-y: auto;
-
+    //overflow-y: auto;
+    @media (max-height: 600px) {
+      margin-top: 30px;
+    }
     .close {
       float: right;
       cursor: pointer;
@@ -3879,7 +3881,12 @@ footer {
         letter-spacing: 0.02em;
         border-bottom: 1px solid black;
         color: white;
-
+        @media (max-height: 725px) {
+          font-size: 22px;
+        }
+        @media (max-width: 640px) {
+          font-size: 20px;
+        }
         &:hover {
           border-bottom: none;
           text-decoration: none;
@@ -5761,6 +5768,9 @@ section.light {
 
   #menu .menu-container ul li {
     margin: 2vh 0 2vh 0;
+    @media (max-height: 725px) {
+      margin: 1.5vh 0;
+    }
     text-align: center;
   }
   .navbar-toggler {

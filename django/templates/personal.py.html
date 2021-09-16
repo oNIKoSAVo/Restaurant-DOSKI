@@ -1,0 +1,162 @@
+{% extends 'base.py.html' %}
+{% block content %}
+<div class="inner-page container personal">
+  <div class="row">
+      <div class="col-lg-3 col-sm-4 d-sm-none d-block">
+          <div class="button-dropdown tab-cont"><a class="dropdown-toggle" href="javascript:void(0)"><img
+                      class="activeicon" src="/static/app/img/a-profile-icon.png"><img class="inactiveicon"
+                      src="/static/app/img/profile-icon.png">Мой профиль</a>
+              <ul class="dropdown-menu">
+                  <li><a class="but" href="#profile"><img class="activeicon"
+                              src="/static/app/img/a-profile-icon.png"><img class="inactiveicon"
+                              src="/static/app/img/profile-icon.png">Мой профиль</a></li>
+                  <li><a class="but" href="#reserve"><img class="activeicon"
+                              src="/static/app/img/a-reserve-icon.png"><img class="inactiveicon"
+                              src="/static/app/img/reserve-icon.png">История бронирования</a></li>
+                  <li><a class="but" href="#orders"><img class="activeicon" src="/static/app/img/a-orders-icon.png"><img
+                              class="inactiveicon" src="/static/app/img/orders-icon.png">История заказов</a></li>
+                  <li><a class="but" href="#edit"><img class="activeicon" src="/static/app/img/a-edit-icon.png"><img
+                              class="inactiveicon" src="/static/app/img/edit-icon.png">Изменить личные данные</a></li>
+              </ul>
+          </div>
+      </div>
+      <div class="col-12 mb-4">
+          <div class="breadcrumbs"><a href="/">Главная страница</a>/<a href="#">Личный кабинет</a>/<a
+                  href="#"></a></div>
+      </div>
+      <div class="col-lg-3 col-sm-4 d-sm-block d-none">
+          <div class="tab-cont"><a class="but active" href="#profile"><img class="activeicon"
+                      src="/static/app/img/a-profile-icon.png"><img class="inactiveicon"
+                      src="/static/app/img/profile-icon.png">Мой профиль</a><a class="but" href="#reserve"> <img
+                      class="activeicon" src="/static/app/img/a-reserve-icon.png"><img class="inactiveicon"
+                      src="/static/app/img/reserve-icon.png">История бронирования</a><a class="but" href="#orders"> <img
+                      class="activeicon" src="/static/app/img/a-orders-icon.png"><img class="inactiveicon"
+                      src="/static/app/img/orders-icon.png">История заказов</a><a class="but" href="#edit"> <img
+                      class="activeicon" src="/static/app/img/a-edit-icon.png"><img class="inactiveicon"
+                      src="/static/app/img/edit-icon.png">Изменить личные данные</a></div><a class="download active"
+              href="#deleteaccount" data-modal>Удалить аккаунт</a>
+      </div>
+      <div class="col-sm-6">
+          <div class="tab-content" id="profile">
+              <div class="section-title">Личный кабинет</div>
+              <div class="row">
+                  <div class="col-12">
+                      <table class="details-data">
+                          <tr>
+                              <th>Фио</th>
+                              <td>{{ request.user.profile.last_name }} {{ request.user.profile.first_name }} {{ request.user.profile.second_name }}</td>
+                          </tr>
+                          <tr>
+                              <th>Номер телефона:</th>
+                              <td>{{ request.user.profile.phone }}</td>
+                          </tr>
+                          <tr>
+                              <th>Дата рождения:</th>
+                              <td>{{ request.user.profile.birthday|date:'d.m.Y' }}</td>
+                          </tr>
+                          <tr>
+                              <th>Email:</th>
+                              <td>konstantin@mail.ru</td>
+                          </tr>
+                      </table>
+                  </div>
+                  <div class="col-12 mt-3 d-sm-none d-block"><a class="download active" href="#deleteaccount"
+                          data-modal>Удалить аккаунт</a></div>
+              </div>
+          </div>
+          <div class="tab-content" id="reserve" style="display:none">
+              <div class="section-title">История бронирования</div>
+              {% for reservation in reservations %}
+                <div class="row">
+                    <div class="col-12">
+                        <div class="order-history">
+                            <table class="reserve-data">
+                                <tr>
+                                    <th>Дата:</th>
+                                    <td>{{reservation.start|date:'d.m.Y'}}</td>
+                                </tr>
+                                <tr>
+                                    <th>Адрес бара:</th>
+                                    <td>{{ reservation.restaraunt.address }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Время брони:</th>
+                                    <td>с {{reservation.start|date:'H:i'}} до {{reservation.end|date:'H:i'}}</td>
+                                </tr>
+                                <tr>
+                                    <th>Кол-во человек:</th>
+                                    <td>{{ reservation.persons }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Номер стола:</th>
+                                    <td>{{ reservation.table }}</td>
+                                </tr>
+                            </table><a class="submit" href="#">Бронировать повторно</a>
+                        </div>
+                    </div>
+                </div>
+              {% endfor %}
+          </div>
+          <div class="tab-content" id="orders" style="display:none">
+              <div class="section-title">История заказов</div>
+              {% for result in results %}
+                <div class="row">
+                    <div class="col-12">
+                        <div class="order-history">
+                            <div class="order-time"><img src="/static/app/img/order-time.png" width="17">{{ result.order.created_at|date:'d.m.Y' }} в {{ result.order.created_at|date:'H:i' }}
+                            </div>
+                           
+                              <div class="order-items">
+                                {% for menue in result.menue %}
+                                  <div class="order-item">
+                                      <div class="order-item_title">{{ menue.total }} х {{ menue.menue__dish }}</div>
+                                      <div class="order-item_price">{{ menue.total_price }}.-</div>
+                                  </div>
+                                {% endfor %}
+                                  <div class="order-item summary mt-3">
+                                      <div class="order-item_title">ИТОГО:</div>
+                                      <div class="order-item_price">{{ result.order.price }}.-</div>
+                                  </div>
+                              </div><a class="submit" href="#">Повторить заказ</a>
+                        </div>
+                    </div>
+                </div>
+              {% endfor %}
+          </div>
+          <div class="tab-content" id="edit" style="display:none">
+              <div class="section-title">Изменение данных</div>
+              <form class="edit-personal" action="">
+                  <div class="row">
+                      <div class="col-md-4"><label>ФИО</label></div>
+                      <div class="col-md-8"><input placeholder="Каменев Валетин Павлович"></div>
+                  </div>
+                  <div class="row">
+                      <div class="col-md-4"><label>Номер телефона</label></div>
+                      <div class="col-md-8"><input class="phone-input" type="tel"
+                              placeholder="+7 (999) 999-99-99"></div>
+                  </div>
+                  <div class="row">
+                      <div class="col-md-4"><label>Дата рождения</label></div>
+                      <div class="col-md-8"><input class="datepicker" type="date" placeholder="22.12.1980"></div>
+                  </div>
+                  <div class="row">
+                      <div class="col-md-4"><label>E-mail</label></div>
+                      <div class="col-md-8"><input class="phone-input" type="email" placeholder="mail@mail.ru">
+                      </div>
+                  </div>
+                  <div class="row">
+                      <div class="col-12 mt-md-4"><a class="submit" href="#">Сохранить</a></div>
+                  </div>
+              </form>
+          </div>
+      </div>
+      <div class="col-sm-3">
+          <div class="big-offer mt-4 mt-sm-0">
+              <div class="offer-text">Cкачай приложение и получи бонус</div><a class="mt-3 offer-button"
+                  href="#">Скачать для<img src="/static/app/img/apple.png" width="18"></a><a class="offer-button"
+                  href="#">Скачать для<img src="/static/app/img/android.png" width="18"></a>
+          </div>
+      </div>
+  </div>
+</div>
+{% endblock content %}

@@ -1,3 +1,4 @@
+from django.db.models.aggregates import Sum
 import requests
 from restaurant.lib.payment import Payment
 import sys
@@ -5,15 +6,65 @@ import json
 import random
 from datetime import datetime
 from django.contrib.auth.models import User
+from django.contrib.auth import authenticate, login
 
-from django.db.models import Q
+from django.db.models import Q, Count
 from django.http.response import JsonResponse
 from restaurant.models import Feedback, Franchising, Reservation, Restaraunt, Сareer, Menue, Category, Event, MenuInOrder, Order, Profile
 from django.shortcuts import get_object_or_404, render, redirect
+from django.views.decorators.http import require_http_methods
 
 
 def index(request):
     return render(request, 'index.py.html', {'data': sys._getframe(0).f_code.co_name})
+
+@require_http_methods(["POST"])
+def singup(request):
+    phone = request.POST.get('phone') #TODO NEED VALIDATE PHONE NUMBER
+
+    user = User.objects.filter(username=phone)
+    if(user.exists()):
+        return JsonResponse({"error": "Такой номер уже зарегестрирован"})
+    else:
+        password = ''.join(
+            random.choice('1234567890') for _ in range(4))
+
+        user = User.objects.create_user(username=phone, password=password)
+        profile = Profile.objects.create(
+            user=user, phone=phone)
+        
+        if(user and profile):
+            return JsonResponse({"success": "Успешно зарегестрирован", "password": password})
+
+    return JsonResponse({"error": "Ошибка..."})
+
+@require_http_methods(["POST"])
+def signin(request):
+    phone = request.POST.get('phone') #TODO NEED VALIDATE PHONE NUMBER
+    password = request.POST.get('password')
+    user = authenticate(request, username=phone, password=password)
+    if user is not None:
+        login(request, user)
+        return JsonResponse({"success": "Прошел"})
+    else:
+        return JsonResponse({"error": "НЕПРЕЛ"})
+
+
+def personal(request):
+    if not request.user.is_authenticated:
+        return redirect('/#signin')
+
+    user = request.user
+    reservations = Reservation.objects.filter(phone=request.user.profile.phone)
+    results = []
+    for order in user.orders.all():
+        results.append({
+            "order": order,
+            "menue": order.menues
+                .values('menue__dish', 'menue__image', 'menue_id')
+                .annotate(total=Count('id')).annotate(total_price=Sum('menue__price'))
+        })
+    return render(request, 'personal.py.html', {'reservations': reservations, 'results': results})
 
 
 def menu(request):
@@ -195,10 +246,6 @@ def franchise(request):
 
 def contacts(request):
     return render(request, 'contacts.py.html', {'data': sys._getframe(0).f_code.co_name})
-
-
-def login(request):
-    return render(request, 'login.py.html', {'data': sys._getframe(0).f_code.co_name})
 
 
 def create_order(request):

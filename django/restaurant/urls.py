@@ -35,7 +35,9 @@ urlpatterns = [
     path('career', views.career, name='career'),
     path('franchise', views.franchise, name='franchise'),
     path('contacts', views.contacts, name='contacts'),
-    path('login', views.login, name='login'),
+    path('signin', views.signin, name='signin'),
+    path('singup', views.singup, name='singup'),
+    path('personal', views.personal, name='personal'),    
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

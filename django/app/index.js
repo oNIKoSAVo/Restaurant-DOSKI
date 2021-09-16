@@ -532,6 +532,7 @@ $(function () {
   $(".navbar-toggler").on("click", function () {
     $("#menu").fadeToggle(300);
     $(this).toggleClass("activated");
+    $("html,body").toggleClass("locked");
   });
   $(".modal-wrapper").on("click", function (e) {
     e.stopPropagation();

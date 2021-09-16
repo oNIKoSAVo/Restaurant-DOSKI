@@ -64,7 +64,7 @@
   async function handleSubmit(e) {
     e.preventDefault();
     e.stopPropagation();
-
+    openModal("#askpreorder");
     const response = await reservationRequest({
       restaraunt,
       date,
@@ -82,6 +82,8 @@
   }
 
   function handleOnChangeRestaraunt(e) {
+    // openModal("#peoplenumber");
+
     console.log(restaraunts);
     const findRestaraunt = restaraunts.find((elem) => elem.id == restaraunt);
     console.log(findRestaraunt);

@@ -3881,11 +3881,21 @@ footer {
         letter-spacing: 0.02em;
         border-bottom: 1px solid black;
         color: white;
-        @media (max-height: 725px) {
+        @media (max-height: 615px) {
           font-size: 22px;
         }
-        @media (max-width: 640px) {
+        @media (max-height: 575px) {
           font-size: 20px;
+        }
+
+        @media (max-height: 540px) {
+          font-size: 18px;
+        }
+        @media (max-height: 480px) {
+          font-size: 16px;
+        }
+        @media (max-height: 430px) {
+          font-size: 14px;
         }
         &:hover {
           border-bottom: none;
@@ -4614,6 +4624,8 @@ a.success {
   }
 
   #menu .menu-container {
+    margin-top: 60px;
+
     border-top-left-radius: 0;
     padding: 16px 20px 40px 20px;
     border-bottom-left-radius: 0;
@@ -5768,9 +5780,13 @@ section.light {
 
   #menu .menu-container ul li {
     margin: 2vh 0 2vh 0;
-    @media (max-height: 725px) {
-      margin: 1.5vh 0;
-    }
+    //@media (max-height: 725px) {
+    //  margin: 1.5vh 0;
+    //}
+    //@media (max-height: 540px) {
+    //  margin: 1vh 0;
+    //}
+
     text-align: center;
   }
   .navbar-toggler {

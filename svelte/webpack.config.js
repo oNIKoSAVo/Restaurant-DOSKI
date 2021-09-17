@@ -6,6 +6,7 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 // const HtmlWebpackPugPlugin = require('html-webpack-pug-plugin');
 const ImageminWebpWebpackPlugin = require("imagemin-webp-webpack-plugin");
 const env = process.env.NODE_ENV;
+const CopyWebpackPlugin = require("copy-webpack-plugin");
 
 let templates = [];
 // let dir = 'app';
@@ -23,6 +24,7 @@ let templates = [];
 //     // );
 //   }
 // });
+// console.log({ path: path.join(__dirname, "../django/static") });
 
 module.exports = {
   entry: {
@@ -35,14 +37,14 @@ module.exports = {
     minimize: true,
   },
   output: {
-    path: path.resolve(__dirname, "static"),
+    path: path.resolve(__dirname, "../django/static"),
 
     filename: "[name].bundle.js",
     publicPath: "/",
   },
 
   devServer: {
-    contentBase: path.join(__dirname, "static"),
+    contentBase: path.join(__dirname, "../django/static"),
     compress: true,
     host: "0.0.0.0",
     // disableHostCheck: true,
@@ -98,7 +100,7 @@ module.exports = {
       {
         test: /\.(sa|sc|c)ss$/,
         use: [
-          env == "development" ? "style-loader" : MiniCssExtractPlugin.loader,
+          /*env == "development" ? "style-loader" :*/ MiniCssExtractPlugin.loader,
           "css-loader",
           "postcss-loader",
           "sass-loader",
@@ -137,6 +139,18 @@ module.exports = {
     },
   },
   plugins: [
+    new CopyWebpackPlugin({
+      patterns: [
+        {
+          from: path.resolve(__dirname, "./app/images"),
+          to: path.resolve(__dirname, "../django/static/app/img"),
+        },
+        {
+          from: path.resolve(__dirname, "./app/fonts"),
+          to: path.resolve(__dirname, "../django/static/app/fonts"),
+        },
+      ],
+    }),
     new webpack.HotModuleReplacementPlugin(),
     new webpack.ProvidePlugin({
       $: "jquery",
@@ -149,6 +163,7 @@ module.exports = {
       filename: "[name].css",
       chunkFilename: "[id].css",
     }),
+
     // ...templates,
     // new HtmlWebpackPugPlugin({
     //   favicon: "./app/favicon.png",

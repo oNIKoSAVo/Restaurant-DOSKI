@@ -2,3 +2,7 @@
 *.pyc
 __pycache__/
 node_modules
+static/*
+*.zip
+*.7z
+*.lock

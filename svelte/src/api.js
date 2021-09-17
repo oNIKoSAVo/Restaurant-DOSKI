@@ -33,3 +33,11 @@ export function reservationRequest(data) {
 export function careerRequest(data) {
   return request("POST", "/career", data);
 }
+
+export function signUp(data){
+  return request("POST", "/signup", data);
+}
+
+export function signIn(data){
+  return request("POST", "/signin", data);
+}

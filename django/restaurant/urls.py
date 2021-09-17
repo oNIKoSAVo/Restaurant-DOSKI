@@ -36,7 +36,7 @@ urlpatterns = [
     path('franchise', views.franchise, name='franchise'),
     path('contacts', views.contacts, name='contacts'),
     path('signin', views.signin, name='signin'),
-    path('singup', views.singup, name='singup'),
+    path('signup', views.signup, name='signup'),
     path('personal', views.personal, name='personal'),    
 ]
 

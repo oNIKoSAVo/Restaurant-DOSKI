@@ -17,3 +17,23 @@ function getCookie(name) {
 export const getCSRFtoken = function() {
     return getCookie("csrftoken")
 }
+
+
+export const ModalHiddenEventListener = (el, fn, owner) => {
+  const opts = {
+      attributeFilter: ['style']
+  },
+  mo = new MutationObserver(mutations => {
+      for (let mutation of mutations) {
+          if (mutation.type === 'attributes' 
+          && mutation.attributeName ==='style' ) {
+              mo.disconnect();
+              fn({
+                  owner: owner,
+                  element: mutation.target
+              });
+          }
+      }
+  });
+  mo.observe(el, opts);
+};

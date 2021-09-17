@@ -91,6 +91,7 @@ let exportable = [];
   "Reservation",
   "Career",
   "Delivery",
+  "Sign",
   // "CartContent",
 ].forEach((d) => exportable.push(componentExportDetails(d)));
 

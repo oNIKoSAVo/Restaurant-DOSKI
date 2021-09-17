@@ -19,7 +19,7 @@ def index(request):
     return render(request, 'index.py.html', {'data': sys._getframe(0).f_code.co_name})
 
 @require_http_methods(["POST"])
-def singup(request):
+def signup(request):
     phone = request.POST.get('phone') #TODO NEED VALIDATE PHONE NUMBER
 
     user = User.objects.filter(username=phone)

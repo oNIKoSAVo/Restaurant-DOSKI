@@ -2069,6 +2069,10 @@ textarea {
   }
 }
 #table {
+  svg {
+    width: 630px;
+    cursor: pointer;
+  }
   .modal-table {
     max-width: 100%;
     margin: 25px 0 0 0;

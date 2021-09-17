@@ -19,7 +19,7 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge" />
   <title>Бар "Respublica"</title>
   <link rel="icon" href="/static/favicon.png" />
-  <link href="/static/style.css" rel="stylesheet" />
+  <link href="/static/bundle.css" rel="stylesheet" />
 </head>
 <body>
   <script>
@@ -513,49 +513,49 @@
 
   {% display_svelte "Feedback.svelte" component_props %}
   <!-- <div
-    class="modal-wrapper modal fade"
-    id="feedback"
-    tabindex="-1"
-    role="dialog"
-  >
-    <div class="modal-dialog" style="max-width: 659px">
-      <div class="modal-content">
-        <button
-          class="close"
-          type="button"
-          data-dismiss="modal"
-          aria-label="Close"
-        >
-          <span aria-hidden="true">&times;</span>
-        </button>
-        <div class="modal-header">
-          <div class="modal-title">Оставьте свой отзыв</div>
-          <div class="modal-title success">Ваш отзыв успешно отправлен</div>
-        </div>
-        <div class="modal-description black">
-          С нетерпением ждем ваших замечаний, пожеланий, предложений!
-        </div>
-        <form action="">
-          <input name="phone" placeholder="Ваше имя" />
-          <input
-            class="phone-input"
-            type="tel"
-            name="phone"
-            placeholder="Ваш телефон"
-          />
-          <textarea
-            name="comment"
-            placeholder="Напишите свой отзыв..."
-            rows="4"
-          ></textarea>
-          <div class="text-center" style="margin-top: 20px">
-            <a class="submit send-feedback" href="#">Отправить отзыв</a
-            ><a class="close-modal submit success" href="#">Ок</a>
-          </div>
-        </form>
+  class="modal-wrapper modal fade"
+  id="feedback"
+  tabindex="-1"
+  role="dialog"
+>
+  <div class="modal-dialog" style="max-width: 659px">
+    <div class="modal-content">
+      <button
+        class="close"
+        type="button"
+        data-dismiss="modal"
+        aria-label="Close"
+      >
+        <span aria-hidden="true">&times;</span>
+      </button>
+      <div class="modal-header">
+        <div class="modal-title">Оставьте свой отзыв</div>
+        <div class="modal-title success">Ваш отзыв успешно отправлен</div>
       </div>
+      <div class="modal-description black">
+        С нетерпением ждем ваших замечаний, пожеланий, предложений!
+      </div>
+      <form action="">
+        <input name="phone" placeholder="Ваше имя" />
+        <input
+          class="phone-input"
+          type="tel"
+          name="phone"
+          placeholder="Ваш телефон"
+        />
+        <textarea
+          name="comment"
+          placeholder="Напишите свой отзыв..."
+          rows="4"
+        ></textarea>
+        <div class="text-center" style="margin-top: 20px">
+          <a class="submit send-feedback" href="#">Отправить отзыв</a
+          ><a class="close-modal submit success" href="#">Ок</a>
+        </div>
+      </form>
     </div>
-  </div> -->
+  </div>
+</div> -->
   <div class="modal modal-wrapper fade" id="item" tabindex="-1" role="dialog">
     <div class="modal-dialog">
       <div class="modal-content">
@@ -638,9 +638,14 @@
           <span aria-hidden="true">&times;</span></button
         ><img class="modal-table" src="/static/app/img/table.jpg" />
         <div class="modal-header mt-3">
-          <div class="modal-title">Стол №4</div>
+          <div class="modal-title">
+            Стол №<span id="table-modal-number">4</span>
+          </div>
           <div class="people-quantity">
-            <img src="/static/app/img/a-profile-icon.png" width="21" />4
+            <img src="/static/app/img/a-profile-icon.png" width="21" /><span
+              id="table-modal-people-quantity"
+              >4</span
+            >
           </div>
         </div>
         <div class="modal-description">
@@ -655,34 +660,34 @@
     </div>
   </div>
   <!-- <div
-    class="modal modal-wrapper fade"
-    id="reserved"
-    tabindex="-1"
-    role="dialog"
-  >
-    <div class="modal-dialog limited" style="max-width: 506px">
-      <div class="modal-content">
-        <button
-          class="close"
-          type="button"
-          data-dismiss="modal"
-          aria-label="Close"
-        >
-          <span aria-hidden="true">&times;</span>
-        </button>
-        <div class="modal-subtitle mt-1 mb-2">531216</div>
-        <div class="modal-header">
-          <div class="modal-title">
-            СФОТОГРАФИРУЙТЕ ИЛИ СОХРАНИТЕ НОМЕР БРОНИ
-          </div>
-        </div>
-        <div class="modal-description">для предъявления его в заведении</div>
-        <div class="text-center">
-          <a class="mt-0 mb-3 submit" href="#askpreorder" data-modal>ОК</a>
+  class="modal modal-wrapper fade"
+  id="reserved"
+  tabindex="-1"
+  role="dialog"
+>
+  <div class="modal-dialog limited" style="max-width: 506px">
+    <div class="modal-content">
+      <button
+        class="close"
+        type="button"
+        data-dismiss="modal"
+        aria-label="Close"
+      >
+        <span aria-hidden="true">&times;</span>
+      </button>
+      <div class="modal-subtitle mt-1 mb-2">531216</div>
+      <div class="modal-header">
+        <div class="modal-title">
+          СФОТОГРАФИРУЙТЕ ИЛИ СОХРАНИТЕ НОМЕР БРОНИ
         </div>
       </div>
+      <div class="modal-description">для предъявления его в заведении</div>
+      <div class="text-center">
+        <a class="mt-0 mb-3 submit" href="#askpreorder" data-modal>ОК</a>
+      </div>
     </div>
-  </div> -->
+  </div>
+</div> -->
   <div class="modal-wrapper modal fade" id="cart" tabindex="-1" role="dialog">
     <div class="modal-dialog">
       <div class="modal-content">
@@ -911,6 +916,40 @@
     </div>
   </div>
   <div
+    class="modal modal-wrapper fade"
+    id="peoplenumber"
+    tabindex="-1"
+    role="dialog"
+  >
+    <div class="modal-dialog limited" style="max-width: 424px">
+      <div class="modal-content">
+        <button
+          class="close"
+          type="button"
+          data-dismiss="modal"
+          aria-label="Close"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <div class="modal-header mt-3">
+          <div class="modal-title">Ожидаемое количество человек?</div>
+        </div>
+
+        <div class="input-group mb-3">
+          <input
+            type="text"
+            class="form-control"
+            placeholder="Введите количество человек"
+            aria-label="Username"
+          />
+        </div>
+        <div class="pb-3 text-center">
+          <a class="mt-0 mb-3 mr-3 submit" href="/preorder.html">Да</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div
     class="modal-wrapper modal fade"
     id="preorder"
     tabindex="-1"
@@ -959,139 +998,139 @@
     </div>
   </div>
   <!-- <div
-    class="modal-wrapper modal fade"
-    id="jobmodal"
-    tabindex="-1"
-    role="dialog"
-  >
-    <div class="modal-dialog" style="max-width: 747px">
-      <div class="modal-content">
-        <button
-          class="close"
-          type="button"
-          data-dismiss="modal"
-          aria-label="Close"
-        >
-          <span aria-hidden="true">&times;</span>
-        </button>
-        <div class="d-flex justify-content-between align-items-center">
-          <span class="step">Шаг 1</span><span class="step">Шаг 2</span
-          ><span class="step">Шаг 3</span>
-        </div>
-        <div class="modal-header pb-4 pt-0 success">
-          <div class="modal-title text-left">Заявка успешно отправлена</div>
-        </div>
-        <p class="modal-description success">
-          С тобой свяжутся в ближайшее время
-        </p>
-        <form id="regForm" action="">
-          <div class="tab row">
-            <div class="tab-title col-12">КАК ТЕБЯ ЗОВУТ?</div>
-            <div class="col-sm-4">
-              <input placeholder="Имя" oninput='this.className=""' />
-            </div>
-            <div class="col-sm-4">
-              <input placeholder="Фамилия" oninput='this.className=""' />
-            </div>
-            <div class="col-sm-4">
-              <input placeholder="Отчество" oninput='this.className=""' />
-            </div>
-            <div class="col-12">
-              <input
-                class="phone-input"
-                placeholder="Телефон"
-                oninput='this.className=""'
-              />
-            </div>
-            <div class="col-12 rules">
-              <input id="rules" type="checkbox" /> <label for="rules"></label
-              ><a href="#">Согласие на обработку персональных данных</a>
-            </div>
-          </div>
-          <div class="tab row">
-            <div class="tab-title col-12">ГДЕ ХОЧЕШЬ РАБОТАТЬ</div>
-            <div class="col-12">
-              <select name="job">
-                <option value="">Выбери должность</option>
-                <option value="Повар">Повар</option>
-              </select>
-            </div>
-            <div class="col-12">
-              <select name="city">
-                <option value="">Выбери город</option>
-                <option value="Новосибирск">Новосибирск</option>
-              </select>
-            </div>
-            <div class="col-12">
-              <select name="bar">
-                <option value="">Выбери бар</option>
-                <option value="Гоголя">Гоголя</option>
-              </select>
-            </div>
-          </div>
-          <div class="tab row">
-            <div class="tab-title col-12">Пара слов о себе</div>
-            <div class="col-12">
-              <input
-                class="datepicker"
-                placeholder="Дата рождения"
-                oninput='this.className=""'
-              />
-            </div>
-            <div class="col-12">
-              <select name="citizen">
-                <option value="">Выбери гражданство</option>
-                <option value="РФ">РФ</option>
-              </select>
-            </div>
-            <div class="col-12">
-              <textarea placeholder="Расскажи о себе"></textarea>
-            </div>
-          </div>
-          <div
-            class="
-              text-center
-              d-flex
-              justify-content-between
-              align-items-center
-            "
-          >
-            <a class="download mr-2 active" id="prevBtn" href="#">Назад</a
-            ><a class="submit ml-2" id="nextBtn" href="#">Далее</a
-            ><a class="submit success close-modal" href="#">ОК</a>
-          </div>
-        </form>
+  class="modal-wrapper modal fade"
+  id="jobmodal"
+  tabindex="-1"
+  role="dialog"
+>
+  <div class="modal-dialog" style="max-width: 747px">
+    <div class="modal-content">
+      <button
+        class="close"
+        type="button"
+        data-dismiss="modal"
+        aria-label="Close"
+      >
+        <span aria-hidden="true">&times;</span>
+      </button>
+      <div class="d-flex justify-content-between align-items-center">
+        <span class="step">Шаг 1</span><span class="step">Шаг 2</span
+        ><span class="step">Шаг 3</span>
       </div>
+      <div class="modal-header pb-4 pt-0 success">
+        <div class="modal-title text-left">Заявка успешно отправлена</div>
+      </div>
+      <p class="modal-description success">
+        С тобой свяжутся в ближайшее время
+      </p>
+      <form id="regForm" action="">
+        <div class="tab row">
+          <div class="tab-title col-12">КАК ТЕБЯ ЗОВУТ?</div>
+          <div class="col-sm-4">
+            <input placeholder="Имя" oninput='this.className=""' />
+          </div>
+          <div class="col-sm-4">
+            <input placeholder="Фамилия" oninput='this.className=""' />
+          </div>
+          <div class="col-sm-4">
+            <input placeholder="Отчество" oninput='this.className=""' />
+          </div>
+          <div class="col-12">
+            <input
+              class="phone-input"
+              placeholder="Телефон"
+              oninput='this.className=""'
+            />
+          </div>
+          <div class="col-12 rules">
+            <input id="rules" type="checkbox" /> <label for="rules"></label
+            ><a href="#">Согласие на обработку персональных данных</a>
+          </div>
+        </div>
+        <div class="tab row">
+          <div class="tab-title col-12">ГДЕ ХОЧЕШЬ РАБОТАТЬ</div>
+          <div class="col-12">
+            <select name="job">
+              <option value="">Выбери должность</option>
+              <option value="Повар">Повар</option>
+            </select>
+          </div>
+          <div class="col-12">
+            <select name="city">
+              <option value="">Выбери город</option>
+              <option value="Новосибирск">Новосибирск</option>
+            </select>
+          </div>
+          <div class="col-12">
+            <select name="bar">
+              <option value="">Выбери бар</option>
+              <option value="Гоголя">Гоголя</option>
+            </select>
+          </div>
+        </div>
+        <div class="tab row">
+          <div class="tab-title col-12">Пара слов о себе</div>
+          <div class="col-12">
+            <input
+              class="datepicker"
+              placeholder="Дата рождения"
+              oninput='this.className=""'
+            />
+          </div>
+          <div class="col-12">
+            <select name="citizen">
+              <option value="">Выбери гражданство</option>
+              <option value="РФ">РФ</option>
+            </select>
+          </div>
+          <div class="col-12">
+            <textarea placeholder="Расскажи о себе"></textarea>
+          </div>
+        </div>
+        <div
+          class="
+            text-center
+            d-flex
+            justify-content-between
+            align-items-center
+          "
+        >
+          <a class="download mr-2 active" id="prevBtn" href="#">Назад</a
+          ><a class="submit ml-2" id="nextBtn" href="#">Далее</a
+          ><a class="submit success close-modal" href="#">ОК</a>
+        </div>
+      </form>
     </div>
-  </div> -->
+  </div>
+</div> -->
   <!-- <div
-    class="modal modal-wrapper fade"
-    id="succesjob"
-    tabindex="-1"
-    role="dialog"
-  >
-    <div class="modal-dialog" style="max-width: 484px">
-      <div class="modal-content">
-        <button
-          class="close"
-          type="button"
-          data-dismiss="modal"
-          aria-label="Close"
-        >
-          <span aria-hidden="true">&times;</span>
-        </button>
-        <div class="modal-header mt-3">
-          <div class="modal-title text-left text-sm-center">
-            Заявка успешно отправлена
-          </div>
-        </div>
-        <p class="modal-description">С тобой свяжутся в ближайшее время</p>
-        <div class="pb-3 text-center">
-          <a class="submit close-modal" href="#">Ок</a>
+  class="modal modal-wrapper fade"
+  id="succesjob"
+  tabindex="-1"
+  role="dialog"
+>
+  <div class="modal-dialog" style="max-width: 484px">
+    <div class="modal-content">
+      <button
+        class="close"
+        type="button"
+        data-dismiss="modal"
+        aria-label="Close"
+      >
+        <span aria-hidden="true">&times;</span>
+      </button>
+      <div class="modal-header mt-3">
+        <div class="modal-title text-left text-sm-center">
+          Заявка успешно отправлена
         </div>
       </div>
+      <p class="modal-description">С тобой свяжутся в ближайшее время</p>
+      <div class="pb-3 text-center">
+        <a class="submit close-modal" href="#">Ок</a>
+      </div>
     </div>
-  </div> -->
+  </div>
+</div> -->
   <div
     class="modal-wrapper modal fade"
     id="advices"

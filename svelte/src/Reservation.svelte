@@ -58,10 +58,19 @@
     appendSchemes([{ url: restaraunts[0]?.schemes[0]?.url }]);
   })
 
+  function slicePeopleForTable(id) {
+    let peopleQuantity = "";
+    for (let i = 0; i < id.length; i++) {
+      peopleQuantity += id[i];
+      if (isNaN(+peopleQuantity)) return peopleQuantity.slice(0, -1);
+    }
+    return peopleQuantity;
+  }
+
   async function handleSubmit(e) {
     e.preventDefault();
     e.stopPropagation();
-
+    openModal("#askpreorder");
     const response = await reservationRequest({
       restaraunt,
       date,
@@ -79,6 +88,8 @@
   }
 
   function handleOnChangeRestaraunt(e) {
+    // openModal("#peoplenumber");
+
     console.log(restaraunts);
     const findRestaraunt = restaraunts.find((elem) => elem.id == restaraunt);
     console.log(findRestaraunt);
@@ -111,21 +122,21 @@
           let paths = [...document.querySelectorAll("path")].filter((path) => {
             if (!isNaN(path.id)) return path;
           });
-          console.log({ paths });
+
           paths.forEach((path) =>
             path.addEventListener("click", function (e) {
               e.stopPropagation();
               paths.forEach((r) => (r.style.fill = "green"));
               openModal("#table-modal");
-              // const tableModal = document.getElementById("table-modal");
-              // document.onclick = (e) => {
-              //   console.log("documented");
-              //   tableModal.classList.remove("show");
-              //   document.onclick = null;
-              // };
-              // console.log({ tableModal });
-              // tableModal.classList.add("show");
-              // table = path.nextSibling.textContent;
+              document.getElementById(
+                "table-modal-people-quantity"
+              ).textContent = slicePeopleForTable(this.nextElementSibling.id);
+              console.log({
+                sliced: slicePeopleForTable(this.nextElementSibling.id),
+              });
+              console.log({ el: this });
+              document.getElementById("table-modal-number").textContent =
+                this.id;
               table = this.id;
               this.style.fill = "#7f7f7f";
             })

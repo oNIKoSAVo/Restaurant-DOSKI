@@ -255,19 +255,28 @@
   <div id="menu">
     <div class="menu-container">
       <ul>
-        <li><a class="menu-item" href="/menu.html">Меню</a></li>
-        <li><a class="menu-item" href="/delivery.html">Доставка</a></li>
-        <li><a class="menu-item" href="/reserve.html">Бронирование</a></li>
-        <li><a class="menu-item" href="/events.html">События</a></li>
-        <li><a class="menu-item" href="/job.html">Карьера</a></li>
-        <li><a class="menu-item" href="/franchise.html">Франчайзи</a></li>
-        <li><a class="menu-item" href="/contacts.html">Контакты</a></li>
-        <li class="mt-4 login">
-          <img class="mr-2" src="/static/app/img/login-icon.png" width="19" /><a
-            href="#signinup"
-            data-modal
-            >Войти</a
-          >
+        <li><a class="menu-item" href="{% url 'menu' %}">Меню</a></li>
+        <li><a class="menu-item" href="{% url 'delivery' %}">Доставка</a></li>
+        <li><a class="menu-item" href="{% url 'reservation' %}">Бронирование</a></li>
+        <li><a class="menu-item" href="{% url 'events' %}">События</a></li>
+        <li><a class="menu-item" href="{% url 'career' %}">Карьера</a></li>
+        <li><a class="menu-item" href="{% url 'franchise' %}">Франчайзи</a></li>
+        <li><a class="menu-item" href="{% url 'contacts' %}">Контакты</a></li>
+        <li class="mt-4">
+          <img class="mr-2" src="/static/app/img/login-icon.png" width="19" />
+          {% if user.is_authenticated %}
+              <a
+                  href="/personal"
+                  >Войти</a
+              >
+          {% else %}
+              <a
+                class="login sign"
+                href="#signinup"
+                data-modal
+                >Войти</a
+            >
+          {% endif %}
         </li>
         <li class="phone">
           <img class="mr-2" src="/static/app/img/phone.png" height="24" /><a

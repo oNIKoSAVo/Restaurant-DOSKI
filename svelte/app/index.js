@@ -53,6 +53,18 @@ $(".call,.open-modal").on("click", function (e) {
     el: document.getElementById("static-modal"),
   }).show();
 });
+
+function openJobModal(e) {
+  e.preventDefault();
+  openModal("#jobmodal");
+}
+
+// $("#jobmodal-btn").on("click", openJobModal);
+// $(".clickme").on("click", openJobModal);
+$(".login.sign.gradient1").on("click", function (e) {
+  e.preventDefault();
+  openModal("#signinup");
+});
 if ($("html").scrollTop() > $(".navbar").height()) $("body").addClass("fixed");
 else $("body").removeClass("fixed");
 function number(value) {
@@ -403,7 +415,8 @@ $(function () {
     // Успешный исход
     nextStage($(this).parents(".stage"));
   });
-  $("#nextBtn").on("click", function () {
+  $("#nextBtn").on("click", function (e) {
+    if (e.target.textContent === "Отправить") return;
     nextPrev(1);
   });
   $("#prevBtn").on("click", function () {

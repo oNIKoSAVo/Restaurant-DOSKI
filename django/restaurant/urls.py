@@ -28,13 +28,16 @@ urlpatterns = [
     path('menu', views.menu, name='menu'),
     path('delivery', views.delivery, name='delivery'),
     path('preorder', views.preorder, name='preorder'),
+    path('create_order', views.create_order, name='create_order'),
     path('reservation', views.reservation, name='reservation'),
     path('feedback', views.feedback, name='feedback'),
     path('events', views.events, name='events'),
     path('career', views.career, name='career'),
     path('franchise', views.franchise, name='franchise'),
     path('contacts', views.contacts, name='contacts'),
-    path('login', views.login, name='login'),
+    path('signin', views.signin, name='signin'),
+    path('signup', views.signup, name='signup'),
+    path('personal', views.personal, name='personal'),    
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

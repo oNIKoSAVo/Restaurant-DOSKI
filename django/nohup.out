@@ -1,0 +1,2158 @@
+Watching for file changes with StatReloader
+Performing system checks...
+
+System check identified no issues (0 silenced).
+September 13, 2021 - 10:43:17
+Django version 3.2.7, using settings 'restaurant.settings'
+Starting development server at http://0.0.0.0:8000/
+Quit the server with CONTROL-C.
+Watching for file changes with StatReloader
+Performing system checks...
+
+System check identified no issues (0 silenced).
+September 13, 2021 - 10:43:22
+Django version 3.2.7, using settings 'restaurant.settings'
+Starting development server at http://0.0.0.0:8000/
+Quit the server with CONTROL-C.
+Invalid HTTP_HOST header: '65.21.7.155:8000'. You may need to add '65.21.7.155' to ALLOWED_HOSTS.
+Bad Request: /
+[13/Sep/2021 10:43:37] "GET / HTTP/1.1" 400 65532
+/home/respublicarunner/restaurant/django/restaurant/settings.py changed, reloading.
+Watching for file changes with StatReloader
+Performing system checks...
+
+System check identified no issues (0 silenced).
+September 13, 2021 - 10:45:04
+Django version 3.2.7, using settings 'restaurant.settings'
+Starting development server at http://0.0.0.0:8000/
+Quit the server with CONTROL-C.
+[13/Sep/2021 10:45:07] "GET / HTTP/1.1" 200 49510
+[13/Sep/2021 10:45:08] "GET /static/Feedback.js HTTP/1.1" 200 32555
+[13/Sep/2021 10:45:08] "GET /static/Feedback.css HTTP/1.1" 404 1898
+[13/Sep/2021 10:45:08] "GET /static/style.css HTTP/1.1" 200 302624
+[13/Sep/2021 10:45:08] "GET /static/bundle.bundle.js HTTP/1.1" 200 750903
+[13/Sep/2021 10:45:09] "GET /static/app/img/vk.png HTTP/1.1" 200 1214
+[13/Sep/2021 10:45:09] "GET /static/app/img/insta.png HTTP/1.1" 200 2043
+[13/Sep/2021 10:45:09] "GET /static/app/img/web.png HTTP/1.1" 200 2185
+[13/Sep/2021 10:45:09] "GET /static/app/img/table.jpg HTTP/1.1" 200 172695
+[13/Sep/2021 10:45:09] "GET /static/Feedback.css HTTP/1.1" 404 1898
+[13/Sep/2021 10:45:09] "GET /static/app/img/product1.jpg HTTP/1.1" 200 180742
+[13/Sep/2021 10:45:09] "GET /static/app/fonts/bebasneuebold.woff2 HTTP/1.1" 200 9660
+[13/Sep/2021 10:45:09] "GET /static/app/fonts/bebasneueregular.woff2 HTTP/1.1" 200 9724
+[13/Sep/2021 10:45:09] "GET /static/app/fonts/MullerLight.woff2 HTTP/1.1" 200 25404
+[13/Sep/2021 10:45:09] "GET /static/app/fonts/MullerRegular.woff2 HTTP/1.1" 200 24764
+[13/Sep/2021 10:45:09] "GET /static/app/img/underlogo.png HTTP/1.1" 200 43917
+[13/Sep/2021 10:45:09] "GET /static/app/img/bron-back.png HTTP/1.1" 200 47776
+[13/Sep/2021 10:45:09] "GET /static/app/img/delivery-back.png HTTP/1.1" 200 80980
+[13/Sep/2021 10:45:09] "GET /static/app/img/header-back.jpg HTTP/1.1" 200 103814
+[13/Sep/2021 10:45:09] "GET /static/app/img/bottom-part.png HTTP/1.1" 200 444051
+[13/Sep/2021 10:45:09] "GET /static/app/img/logo@2x.png HTTP/1.1" 200 8919
+[13/Sep/2021 10:45:09] "GET /static/app/img/login-icon.png HTTP/1.1" 200 760
+[13/Sep/2021 10:45:10] "GET /static/app/img/phone.png HTTP/1.1" 200 679
+[13/Sep/2021 10:45:10] "GET /static/app/img/calendar.png HTTP/1.1" 200 1841
+[13/Sep/2021 10:45:10] "GET /static/app/img/delivery.png HTTP/1.1" 200 1120
+[13/Sep/2021 10:45:10] "GET /static/app/img/scrolldown.png HTTP/1.1" 200 19337
+[13/Sep/2021 10:45:10] "GET /static/app/img/arrow-right.png HTTP/1.1" 200 224
+[13/Sep/2021 10:45:10] "GET /static/app/img/feedback-icon.png HTTP/1.1" 200 730
+[13/Sep/2021 10:45:10] "GET /static/app/img/yandex.png HTTP/1.1" 200 4556
+[13/Sep/2021 10:45:10] "GET /static/app/img/footer_logo.png HTTP/1.1" 200 6198
+[13/Sep/2021 10:45:10] "GET /static/app/img/a-profile-icon.png HTTP/1.1" 200 1310
+[13/Sep/2021 10:45:10] "GET /static/app/img/close.png HTTP/1.1" 200 338
+[13/Sep/2021 10:45:10] "GET /static/app/img/locker.png HTTP/1.1" 200 685
+[13/Sep/2021 10:45:10] "GET /static/app/img/menu.png HTTP/1.1" 200 342
+[13/Sep/2021 10:45:10] "GET /static/app/img/close-menu.png HTTP/1.1" 200 507
+[13/Sep/2021 10:45:11] "GET /static/app/img/mobile-logo.png HTTP/1.1" 200 6707
+[13/Sep/2021 10:45:11] "GET /static/app/img/main.jpg HTTP/1.1" 200 802021
+[13/Sep/2021 10:45:11] "GET /static/app/img/map-top.png HTTP/1.1" 200 383587
+[13/Sep/2021 10:45:11] "GET /static/favicon.png HTTP/1.1" 200 8919
+[13/Sep/2021 10:45:13] "GET /static/app/img/slide1.jpg HTTP/1.1" 200 2162268
+[13/Sep/2021 10:45:23] "GET /reservation HTTP/1.1" 200 52774
+[13/Sep/2021 10:45:23] "GET /static/Reservation.css HTTP/1.1" 200 6576
+[13/Sep/2021 10:45:23] "GET /static/Reservation.js HTTP/1.1" 200 64503
+[13/Sep/2021 10:45:23] "GET /static/Feedback.css HTTP/1.1" 404 1898
+[13/Sep/2021 10:45:24] "GET /static/Feedback.css HTTP/1.1" 404 1898
+[13/Sep/2021 10:45:24] "GET /media/tables/%D0%9F%D0%BE%D0%BA%D1%80%D1%8B%D1%88%D0%BA%D0%B8%D0%BD%D0%B0.svg HTTP/1.1" 200 59550
+[13/Sep/2021 10:46:00] "GET / HTTP/1.1" 200 49510
+[13/Sep/2021 10:46:00] "GET /static/Feedback.css HTTP/1.1" 404 1898
+[13/Sep/2021 10:46:00] "GET /static/Feedback.js HTTP/1.1" 200 32555
+[13/Sep/2021 10:46:00] "GET /static/style.css HTTP/1.1" 200 302624
+[13/Sep/2021 10:46:00] "GET /static/bundle.bundle.js HTTP/1.1" 200 750903
+[13/Sep/2021 10:46:00] "GET /static/app/img/calendar.png HTTP/1.1" 200 1841
+[13/Sep/2021 10:46:00] "GET /static/app/img/phone.png HTTP/1.1" 200 679
+[13/Sep/2021 10:46:00] "GET /static/app/img/delivery.png HTTP/1.1" 200 1120
+[13/Sep/2021 10:46:00] "GET /static/app/img/scrolldown.png HTTP/1.1" 200 19337
+[13/Sep/2021 10:46:00] "GET /static/Feedback.css HTTP/1.1" 404 1898
+[13/Sep/2021 10:46:00] "GET /static/app/fonts/bebasneuebold.woff2 HTTP/1.1" 200 9660
+[13/Sep/2021 10:46:00] "GET /static/app/fonts/MullerRegular.woff2 HTTP/1.1" 200 24764
+[13/Sep/2021 10:46:00] "GET /static/app/fonts/bebasneueregular.woff2 HTTP/1.1" 200 9724
+[13/Sep/2021 10:46:00] "GET /static/app/fonts/MullerLight.woff2 HTTP/1.1" 200 25404
+[13/Sep/2021 10:46:00] "GET /static/app/img/underlogo.png HTTP/1.1" 200 43917
+[13/Sep/2021 10:46:00] "GET /static/app/img/delivery-back.png HTTP/1.1" 200 80980
+[13/Sep/2021 10:46:00] "GET /static/app/img/bron-back.png HTTP/1.1" 200 47776
+[13/Sep/2021 10:46:00] "GET /static/app/img/header-back.jpg HTTP/1.1" 200 103814
+[13/Sep/2021 10:46:01] "GET /static/app/img/slide1.jpg HTTP/1.1" 200 2162268
+[13/Sep/2021 10:46:01] "GET /static/app/img/logo@2x.png HTTP/1.1" 200 8919
+[13/Sep/2021 10:46:01] "GET /static/app/img/login-icon.png HTTP/1.1" 200 760
+[13/Sep/2021 10:46:01] "GET /static/app/img/bottom-part.png HTTP/1.1" 200 444051
+[13/Sep/2021 10:46:01] "GET /static/app/img/feedback-icon.png HTTP/1.1" 200 730
+[13/Sep/2021 10:46:01] "GET /static/app/img/arrow-right.png HTTP/1.1" 200 224
+[13/Sep/2021 10:46:01] "GET /static/app/img/map-top.png HTTP/1.1" 200 383587
+[13/Sep/2021 10:46:01] "GET /static/app/img/yandex.png HTTP/1.1" 200 4556
+[13/Sep/2021 10:46:01] "GET /static/app/img/insta.png HTTP/1.1" 200 2043
+[13/Sep/2021 10:46:01] "GET /static/app/img/footer_logo.png HTTP/1.1" 200 6198
+[13/Sep/2021 10:46:01] "GET /static/app/img/main.jpg HTTP/1.1" 200 802021
+[13/Sep/2021 10:46:01] "GET /static/app/img/web.png HTTP/1.1" 200 2185
+[13/Sep/2021 10:46:01] "GET /static/app/img/vk.png HTTP/1.1" 200 1214
+[13/Sep/2021 10:46:01] "GET /static/app/img/product1.jpg HTTP/1.1" 200 180742
+[13/Sep/2021 10:46:01] "GET /static/app/img/a-profile-icon.png HTTP/1.1" 200 1310
+[13/Sep/2021 10:46:01] "GET /static/app/img/table.jpg HTTP/1.1" 200 172695
+[13/Sep/2021 10:46:01] "GET /static/app/img/close.png HTTP/1.1" 200 338
+[13/Sep/2021 10:46:01] "GET /static/app/img/locker.png HTTP/1.1" 200 685
+[13/Sep/2021 10:46:01] "GET /static/app/img/close-menu.png HTTP/1.1" 200 507
+[13/Sep/2021 10:46:01] "GET /static/app/img/menu.png HTTP/1.1" 200 342
+[13/Sep/2021 10:46:01] "GET /static/app/img/mobile-logo.png HTTP/1.1" 200 6707
+[13/Sep/2021 10:46:01] "GET /static/favicon.png HTTP/1.1" 200 8919
+[13/Sep/2021 10:46:05] "GET /delivery HTTP/1.1" 200 51502
+[13/Sep/2021 10:46:05] "GET /static/Delivery.js HTTP/1.1" 200 6904
+[13/Sep/2021 10:46:05] "GET /static/app/img/cart.png HTTP/1.1" 200 13719
+[13/Sep/2021 10:46:05] "GET /static/app/img/x.png HTTP/1.1" 200 378
+[13/Sep/2021 10:46:05] "GET /static/Delivery.css HTTP/1.1" 404 1898
+[13/Sep/2021 10:46:05] "GET /static/Feedback.css HTTP/1.1" 404 1898
+[13/Sep/2021 10:46:05] "GET /static/app/fonts/MullerBold.woff2 HTTP/1.1" 200 25360
+[13/Sep/2021 10:46:05] "GET /static/app/img/bubble.png HTTP/1.1" 200 9509
+[13/Sep/2021 10:46:05] "GET /static/app/img/leftside.png HTTP/1.1" 200 452765
+[13/Sep/2021 10:46:05] "GET /static/Feedback.css HTTP/1.1" 404 1898
+[13/Sep/2021 10:47:44] "GET /admin HTTP/1.1" 301 0
+[13/Sep/2021 10:47:45] "GET /admin/ HTTP/1.1" 302 0
+[13/Sep/2021 10:47:45] "GET /admin/login/?next=/admin/ HTTP/1.1" 200 2283
+[13/Sep/2021 10:47:45] "GET /static/admin/css/base.css HTTP/1.1" 200 19513
+[13/Sep/2021 10:47:45] "GET /static/admin/css/nav_sidebar.css HTTP/1.1" 200 2271
+[13/Sep/2021 10:47:45] "GET /static/admin/js/nav_sidebar.js HTTP/1.1" 200 1360
+[13/Sep/2021 10:47:45] "GET /static/admin/css/login.css HTTP/1.1" 200 939
+[13/Sep/2021 10:47:45] "GET /static/admin/css/responsive.css HTTP/1.1" 200 18545
+[13/Sep/2021 10:47:45] "GET /static/admin/css/fonts.css HTTP/1.1" 200 423
+[13/Sep/2021 10:47:46] "GET /static/admin/fonts/Roboto-Regular-webfont.woff HTTP/1.1" 200 85876
+[13/Sep/2021 10:47:46] "GET /static/admin/fonts/Roboto-Light-webfont.woff HTTP/1.1" 200 85692
+[13/Sep/2021 10:47:49] "POST /admin/login/?next=/admin/ HTTP/1.1" 302 0
+[13/Sep/2021 10:47:49] "GET /admin/ HTTP/1.1" 200 8570
+[13/Sep/2021 10:47:49] "GET /static/admin/css/dashboard.css HTTP/1.1" 200 380
+[13/Sep/2021 10:47:50] "GET /static/admin/img/icon-addlink.svg HTTP/1.1" 200 331
+[13/Sep/2021 10:47:50] "GET /static/admin/img/icon-changelink.svg HTTP/1.1" 200 380
+[13/Sep/2021 10:47:50] "GET /static/admin/fonts/Roboto-Bold-webfont.woff HTTP/1.1" 200 86184
+[13/Sep/2021 10:47:56] "GET /admin/restaurant/restaraunt/ HTTP/1.1" 200 8263
+[13/Sep/2021 10:47:56] "GET /static/admin/js/jquery.init.js HTTP/1.1" 200 347
+[13/Sep/2021 10:47:56] "GET /static/admin/js/core.js HTTP/1.1" 200 5698
+[13/Sep/2021 10:47:56] "GET /static/admin/css/changelists.css HTTP/1.1" 200 6874
+[13/Sep/2021 10:47:56] "GET /admin/jsi18n/ HTTP/1.1" 200 15618
+[13/Sep/2021 10:47:56] "GET /static/admin/js/admin/RelatedObjectLookups.js HTTP/1.1" 200 5984
+[13/Sep/2021 10:47:56] "GET /static/admin/js/actions.js HTTP/1.1" 200 7664
+[13/Sep/2021 10:47:56] "GET /static/admin/js/urlify.js HTTP/1.1" 200 7902
+[13/Sep/2021 10:47:56] "GET /static/admin/js/prepopulate.js HTTP/1.1" 200 1531
+[13/Sep/2021 10:47:56] "GET /static/admin/js/vendor/jquery/jquery.js HTTP/1.1" 200 287630
+[13/Sep/2021 10:47:56] "GET /static/admin/js/vendor/xregexp/xregexp.js HTTP/1.1" 200 232381
+[13/Sep/2021 10:47:57] "GET /static/admin/img/tooltag-add.svg HTTP/1.1" 200 331
+[13/Sep/2021 10:48:00] "GET /admin/restaurant/restaraunt/add/ HTTP/1.1" 200 16307
+[13/Sep/2021 10:48:00] "GET /static/admin/css/forms.css HTTP/1.1" 200 8804
+[13/Sep/2021 10:48:00] "GET /static/admin/js/inlines.js HTTP/1.1" 200 15225
+[13/Sep/2021 10:48:00] "GET /admin/jsi18n/ HTTP/1.1" 200 15618
+[13/Sep/2021 10:48:00] "GET /static/admin/js/change_form.js HTTP/1.1" 200 606
+[13/Sep/2021 10:48:00] "GET /static/admin/js/prepopulate_init.js HTTP/1.1" 200 492
+[13/Sep/2021 10:48:00] "GET /static/admin/css/widgets.css HTTP/1.1" 200 11097
+[13/Sep/2021 10:48:00] "GET /static/admin/img/inline-delete.svg HTTP/1.1" 200 560
+[13/Sep/2021 10:48:52] "POST /admin/restaurant/restaraunt/add/ HTTP/1.1" 200 16514
+[13/Sep/2021 10:48:52] "GET /admin/jsi18n/ HTTP/1.1" 200 15618
+[13/Sep/2021 10:48:58] "POST /admin/restaurant/restaraunt/add/ HTTP/1.1" 302 0
+[13/Sep/2021 10:48:59] "GET /admin/restaurant/restaraunt/ HTTP/1.1" 200 10157
+[13/Sep/2021 10:48:59] "GET /admin/jsi18n/ HTTP/1.1" 200 15618
+[13/Sep/2021 10:48:59] "GET /static/admin/img/icon-yes.svg HTTP/1.1" 200 436
+[13/Sep/2021 10:50:22] "GET / HTTP/1.1" 200 49510
+[13/Sep/2021 10:50:22] "GET /static/style.css HTTP/1.1" 304 0
+[13/Sep/2021 10:50:23] "GET /static/Feedback.js HTTP/1.1" 304 0
+[13/Sep/2021 10:50:23] "GET /static/bundle.bundle.js HTTP/1.1" 304 0
+[13/Sep/2021 10:50:23] "GET /static/Feedback.css HTTP/1.1" 404 1898
+[13/Sep/2021 10:50:23] "GET /static/app/img/arrow-right.png HTTP/1.1" 200 224
+[13/Sep/2021 10:50:23] "GET /static/app/img/insta.png HTTP/1.1" 304 0
+[13/Sep/2021 10:50:23] "GET /static/app/img/yandex.png HTTP/1.1" 304 0
+[13/Sep/2021 10:50:23] "GET /static/app/img/web.png HTTP/1.1" 304 0
+[13/Sep/2021 10:50:23] "GET /static/app/img/vk.png HTTP/1.1" 304 0
+[13/Sep/2021 10:50:23] "GET /static/app/img/footer_logo.png HTTP/1.1" 304 0
+[13/Sep/2021 10:50:23] "GET /static/Feedback.css HTTP/1.1" 404 1898
+[13/Sep/2021 10:50:23] "GET /static/app/fonts/bebasneuebold.woff2 HTTP/1.1" 304 0
+[13/Sep/2021 10:50:23] "GET /static/app/fonts/bebasneueregular.woff2 HTTP/1.1" 304 0
+[13/Sep/2021 10:50:23] "GET /static/app/img/scrolldown.png HTTP/1.1" 304 0
+[13/Sep/2021 10:50:23] "GET /static/app/fonts/MullerRegular.woff2 HTTP/1.1" 304 0
+[13/Sep/2021 10:50:23] "GET /static/app/fonts/MullerLight.woff2 HTTP/1.1" 304 0
+[13/Sep/2021 10:50:23] "GET /static/app/img/slide1.jpg HTTP/1.1" 304 0
+[13/Sep/2021 10:50:23] "GET /static/app/img/logo@2x.png HTTP/1.1" 304 0
+[13/Sep/2021 10:50:23] "GET /static/app/img/calendar.png HTTP/1.1" 304 0
+[13/Sep/2021 10:50:23] "GET /static/app/img/delivery.png HTTP/1.1" 304 0
+[13/Sep/2021 10:50:23] "GET /static/app/img/login-icon.png HTTP/1.1" 304 0
+[13/Sep/2021 10:50:23] "GET /static/app/img/feedback-icon.png HTTP/1.1" 200 730
+[13/Sep/2021 10:50:23] "GET /static/app/img/product1.jpg HTTP/1.1" 304 0
+[13/Sep/2021 10:50:23] "GET /static/app/img/table.jpg HTTP/1.1" 304 0
+[13/Sep/2021 10:50:23] "GET /static/app/img/a-profile-icon.png HTTP/1.1" 304 0
+[13/Sep/2021 10:50:23] "GET /static/app/img/locker.png HTTP/1.1" 304 0
+[13/Sep/2021 10:50:23] "GET /static/app/img/close.png HTTP/1.1" 304 0
+[13/Sep/2021 10:50:23] "GET /static/app/img/menu.png HTTP/1.1" 200 342
+[13/Sep/2021 10:50:24] "GET /static/app/img/close-menu.png HTTP/1.1" 304 0
+[13/Sep/2021 10:50:24] "GET /static/app/img/mobile-logo.png HTTP/1.1" 304 0
+[13/Sep/2021 10:50:24] "GET /static/app/img/phone.png HTTP/1.1" 304 0
+[13/Sep/2021 10:50:24] "GET /static/app/img/main.jpg HTTP/1.1" 304 0
+[13/Sep/2021 10:50:24] "GET /static/app/img/header-back.jpg HTTP/1.1" 304 0
+[13/Sep/2021 10:50:24] "GET /static/app/img/underlogo.png HTTP/1.1" 304 0
+[13/Sep/2021 10:50:24] "GET /static/app/img/delivery-back.png HTTP/1.1" 200 80980
+[13/Sep/2021 10:50:24] "GET /static/app/img/bron-back.png HTTP/1.1" 304 0
+[13/Sep/2021 10:50:24] "GET /static/app/img/bottom-part.png HTTP/1.1" 304 0
+[13/Sep/2021 10:50:24] "GET /static/app/img/map-top.png HTTP/1.1" 304 0
+[13/Sep/2021 10:50:24] "GET /static/favicon.png HTTP/1.1" 200 8919
+[13/Sep/2021 10:50:28] "GET /delivery HTTP/1.1" 200 260215
+[13/Sep/2021 10:50:28] "GET /static/app/img/x.png HTTP/1.1" 200 378
+[13/Sep/2021 10:50:28] "GET /static/app/img/cart.png HTTP/1.1" 200 13719
+[13/Sep/2021 10:50:29] "GET /static/app/fonts/MullerBold.woff2 HTTP/1.1" 200 25360
+[13/Sep/2021 10:50:29] "GET /static/app/img/bubble.png HTTP/1.1" 200 9509
+[13/Sep/2021 10:50:29] "GET /media/images/product.jpg HTTP/1.1" 200 193880
+[13/Sep/2021 10:50:29] "GET /static/Delivery.css HTTP/1.1" 404 1898
+[13/Sep/2021 10:50:29] "GET /static/Delivery.js HTTP/1.1" 200 6904
+[13/Sep/2021 10:50:29] "GET /static/Feedback.css HTTP/1.1" 404 1898
+[13/Sep/2021 10:50:29] "GET /static/app/img/leftside.png HTTP/1.1" 200 452765
+[13/Sep/2021 10:50:29] "GET /static/Feedback.css HTTP/1.1" 404 1898
+[13/Sep/2021 10:50:30] "GET /static/favicon.png HTTP/1.1" 200 8919
+[13/Sep/2021 10:51:17] "GET /delivery HTTP/1.1" 200 260215
+[13/Sep/2021 10:51:17] "GET /static/style.css HTTP/1.1" 304 0
+[13/Sep/2021 10:51:18] "GET /static/Delivery.css HTTP/1.1" 404 1898
+[13/Sep/2021 10:51:18] "GET /static/Delivery.js HTTP/1.1" 200 6904
+[13/Sep/2021 10:51:18] "GET /static/bundle.bundle.js HTTP/1.1" 304 0
+[13/Sep/2021 10:51:18] "GET /static/Feedback.js HTTP/1.1" 304 0
+[13/Sep/2021 10:51:18] "GET /static/Feedback.css HTTP/1.1" 404 1898
+[13/Sep/2021 10:51:18] "GET /static/app/img/logo@2x.png HTTP/1.1" 304 0
+[13/Sep/2021 10:51:18] "GET /static/app/img/mobile-logo.png HTTP/1.1" 304 0
+[13/Sep/2021 10:51:18] "GET /static/app/img/phone.png HTTP/1.1" 304 0
+[13/Sep/2021 10:51:18] "GET /static/app/img/menu.png HTTP/1.1" 200 342
+[13/Sep/2021 10:51:18] "GET /static/app/img/x.png HTTP/1.1" 200 378
+[13/Sep/2021 10:51:18] "GET /static/app/img/cart.png HTTP/1.1" 304 0
+[13/Sep/2021 10:51:18] "GET /static/app/img/login-icon.png HTTP/1.1" 304 0
+[13/Sep/2021 10:51:18] "GET /static/Feedback.css HTTP/1.1" 404 1898
+[13/Sep/2021 10:51:18] "GET /media/images/product.jpg HTTP/1.1" 200 193880
+[13/Sep/2021 10:51:18] "GET /static/app/img/feedback-icon.png HTTP/1.1" 200 730
+[13/Sep/2021 10:51:18] "GET /static/app/img/close-menu.png HTTP/1.1" 200 507
+[13/Sep/2021 10:51:18] "GET /static/app/img/yandex.png HTTP/1.1" 304 0
+[13/Sep/2021 10:51:18] "GET /static/app/img/arrow-right.png HTTP/1.1" 200 224
+[13/Sep/2021 10:51:18] "GET /static/app/img/header-back.jpg HTTP/1.1" 304 0
+[13/Sep/2021 10:51:18] "GET /static/app/img/underlogo.png HTTP/1.1" 304 0
+[13/Sep/2021 10:51:18] "GET /static/app/img/vk.png HTTP/1.1" 200 1214
+[13/Sep/2021 10:51:18] "GET /static/app/img/footer_logo.png HTTP/1.1" 304 0
+[13/Sep/2021 10:51:18] "GET /static/app/img/insta.png HTTP/1.1" 304 0
+[13/Sep/2021 10:51:18] "GET /static/app/img/web.png HTTP/1.1" 304 0
+[13/Sep/2021 10:51:18] "GET /static/app/img/map-top.png HTTP/1.1" 304 0
+[13/Sep/2021 10:51:18] "GET /static/app/img/leftside.png HTTP/1.1" 304 0
+[13/Sep/2021 10:51:18] "GET /static/app/img/bubble.png HTTP/1.1" 304 0
+[13/Sep/2021 10:51:18] "GET /static/app/img/table.jpg HTTP/1.1" 200 172695
+[13/Sep/2021 10:51:18] "GET /static/app/img/a-profile-icon.png HTTP/1.1" 200 1310
+[13/Sep/2021 10:51:18] "GET /static/app/img/locker.png HTTP/1.1" 304 0
+[13/Sep/2021 10:51:18] "GET /static/app/img/close.png HTTP/1.1" 304 0
+[13/Sep/2021 10:51:18] "GET /static/app/img/product1.jpg HTTP/1.1" 200 180742
+[13/Sep/2021 10:55:28] "GET / HTTP/1.1" 200 49510
+[13/Sep/2021 10:55:29] "GET /static/app/img/menu.png HTTP/1.1" 200 342
+[13/Sep/2021 10:55:29] "GET /static/app/img/close-menu.png HTTP/1.1" 200 507
+[13/Sep/2021 10:55:29] "GET /static/app/img/logo@2x.png HTTP/1.1" 200 8919
+[13/Sep/2021 10:55:29] "GET /static/app/img/mobile-logo.png HTTP/1.1" 200 6707
+[13/Sep/2021 10:55:29] "GET /static/app/img/phone.png HTTP/1.1" 200 679
+[13/Sep/2021 10:55:29] "GET /static/style.css HTTP/1.1" 200 302624
+[13/Sep/2021 10:55:29] "GET /static/Feedback.css HTTP/1.1" 404 1898
+[13/Sep/2021 10:55:29] "GET /static/Feedback.js HTTP/1.1" 200 32555
+[13/Sep/2021 10:55:29] "GET /static/app/img/login-icon.png HTTP/1.1" 200 760
+[13/Sep/2021 10:55:29] "GET /static/app/img/calendar.png HTTP/1.1" 200 1841
+[13/Sep/2021 10:55:29] "GET /static/app/img/delivery.png HTTP/1.1" 200 1120
+[13/Sep/2021 10:55:29] "GET /static/app/img/scrolldown.png HTTP/1.1" 200 19337
+[13/Sep/2021 10:55:29] "GET /static/app/img/feedback-icon.png HTTP/1.1" 200 730
+[13/Sep/2021 10:55:29] "GET /static/app/img/arrow-right.png HTTP/1.1" 200 224
+[13/Sep/2021 10:55:29] "GET /static/app/img/yandex.png HTTP/1.1" 200 4556
+[13/Sep/2021 10:55:29] "GET /static/app/fonts/MullerLight.woff2 HTTP/1.1" 200 25404
+[13/Sep/2021 10:55:29] "GET /static/app/fonts/bebasneueregular.woff2 HTTP/1.1" 200 9724
+[13/Sep/2021 10:55:29] "GET /static/app/fonts/bebasneuebold.woff2 HTTP/1.1" 200 9660
+[13/Sep/2021 10:55:29] "GET /static/app/fonts/MullerRegular.woff2 HTTP/1.1" 200 24764
+[13/Sep/2021 10:55:29] "GET /static/app/img/underlogo.png HTTP/1.1" 200 43917
+[13/Sep/2021 10:55:29] "GET /static/app/img/header-back.jpg HTTP/1.1" 200 103814
+[13/Sep/2021 10:55:30] "GET /static/app/img/bottom-part.png HTTP/1.1" 200 444051
+[13/Sep/2021 10:55:30] "GET /static/app/img/main.jpg HTTP/1.1" 200 802021
+[13/Sep/2021 10:55:30] "GET /static/app/img/delivery-back.png HTTP/1.1" 200 80980
+[13/Sep/2021 10:55:30] "GET /static/app/img/bron-back.png HTTP/1.1" 200 47776
+[13/Sep/2021 10:55:30] "GET /static/app/img/footer_logo.png HTTP/1.1" 200 6198
+[13/Sep/2021 10:55:30] "GET /static/app/img/insta.png HTTP/1.1" 200 2043
+[13/Sep/2021 10:55:30] "GET /static/app/img/vk.png HTTP/1.1" 200 1214
+[13/Sep/2021 10:55:30] "GET /static/app/img/web.png HTTP/1.1" 200 2185
+[13/Sep/2021 10:55:30] "GET /static/app/img/table.jpg HTTP/1.1" 200 172695
+[13/Sep/2021 10:55:30] "GET /static/app/img/product1.jpg HTTP/1.1" 200 180742
+[13/Sep/2021 10:55:30] "GET /static/app/img/a-profile-icon.png HTTP/1.1" 200 1310
+[13/Sep/2021 10:55:30] "GET /static/app/img/close.png HTTP/1.1" 200 338
+[13/Sep/2021 10:55:30] "GET /static/app/img/locker.png HTTP/1.1" 200 685
+[13/Sep/2021 10:55:30] "GET /static/app/img/map-top.png HTTP/1.1" 200 383587
+[13/Sep/2021 10:55:30] "GET /static/app/img/slide1.jpg HTTP/1.1" 200 2162268
+[13/Sep/2021 10:55:31] "GET /static/bundle.bundle.js HTTP/1.1" 200 750903
+[13/Sep/2021 10:55:32] "GET /static/favicon.png HTTP/1.1" 200 8919
+[13/Sep/2021 10:55:32] "GET /static/favicon.png HTTP/1.1" 200 8919
+[13/Sep/2021 10:57:00] "GET / HTTP/1.0" 200 49510
+[13/Sep/2021 10:57:00] "GET /static/style.css HTTP/1.0" 200 302624
+[13/Sep/2021 10:57:00] "GET /static/Feedback.css HTTP/1.0" 404 1901
+[13/Sep/2021 10:57:00] "GET /static/Feedback.js HTTP/1.0" 200 32555
+[13/Sep/2021 10:57:00] "GET /static/bundle.bundle.js HTTP/1.0" 200 750903
+[13/Sep/2021 10:57:00] "GET /static/app/img/close.png HTTP/1.0" 200 338
+[13/Sep/2021 10:57:00] "GET /static/app/img/a-profile-icon.png HTTP/1.0" 200 1310
+[13/Sep/2021 10:57:00] "GET /static/app/img/locker.png HTTP/1.0" 200 685
+[13/Sep/2021 10:57:00] "GET /static/app/img/table.jpg HTTP/1.0" 200 172695
+[13/Sep/2021 10:57:00] "GET /static/app/img/menu.png HTTP/1.0" 200 342
+[13/Sep/2021 10:57:01] "GET /static/Feedback.css HTTP/1.0" 404 1901
+[13/Sep/2021 10:57:01] "GET /static/app/fonts/bebasneueregular.woff2 HTTP/1.0" 200 9724
+[13/Sep/2021 10:57:01] "GET /static/app/fonts/MullerLight.woff2 HTTP/1.0" 200 25404
+[13/Sep/2021 10:57:01] "GET /static/app/fonts/bebasneuebold.woff2 HTTP/1.0" 200 9660
+[13/Sep/2021 10:57:01] "GET /static/app/fonts/MullerRegular.woff2 HTTP/1.0" 200 24764
+[13/Sep/2021 10:57:01] "GET /static/app/img/header-back.jpg HTTP/1.0" 200 103814
+[13/Sep/2021 10:57:01] "GET /static/app/img/underlogo.png HTTP/1.0" 200 43917
+[13/Sep/2021 10:57:01] "GET /static/app/img/main.jpg HTTP/1.0" 200 802021
+[13/Sep/2021 10:57:01] "GET /static/app/img/bron-back.png HTTP/1.0" 200 47776
+[13/Sep/2021 10:57:01] "GET /static/app/img/delivery-back.png HTTP/1.0" 200 80980
+[13/Sep/2021 10:57:01] "GET /static/app/img/bottom-part.png HTTP/1.0" 200 444051
+[13/Sep/2021 10:57:01] "GET /static/app/img/map-top.png HTTP/1.0" 200 383587
+[13/Sep/2021 10:57:01] "GET /static/app/img/slide1.jpg HTTP/1.0" 200 2162268
+[13/Sep/2021 10:57:01] "GET /static/app/img/logo@2x.png HTTP/1.0" 200 8919
+[13/Sep/2021 10:57:01] "GET /static/app/img/login-icon.png HTTP/1.0" 200 760
+[13/Sep/2021 10:57:01] "GET /static/app/img/feedback-icon.png HTTP/1.0" 200 730
+[13/Sep/2021 10:57:01] "GET /static/app/img/arrow-right.png HTTP/1.0" 200 224
+[13/Sep/2021 10:57:01] "GET /static/app/img/yandex.png HTTP/1.0" 200 4556
+[13/Sep/2021 10:57:01] "GET /static/app/img/footer_logo.png HTTP/1.0" 200 6198
+[13/Sep/2021 10:57:01] "GET /static/app/img/insta.png HTTP/1.0" 200 2043
+[13/Sep/2021 10:57:01] "GET /static/app/img/web.png HTTP/1.0" 200 2185
+[13/Sep/2021 10:57:01] "GET /static/app/img/calendar.png HTTP/1.0" 200 1841
+[13/Sep/2021 10:57:01] "GET /static/app/img/vk.png HTTP/1.0" 200 1214
+[13/Sep/2021 10:57:01] "GET /static/app/img/phone.png HTTP/1.0" 200 679
+[13/Sep/2021 10:57:01] "GET /static/app/img/scrolldown.png HTTP/1.0" 200 19337
+[13/Sep/2021 10:57:01] "GET /static/app/img/delivery.png HTTP/1.0" 200 1120
+[13/Sep/2021 10:57:01] "GET /static/app/img/close-menu.png HTTP/1.0" 200 507
+[13/Sep/2021 10:57:01] "GET /static/app/img/mobile-logo.png HTTP/1.0" 200 6707
+[13/Sep/2021 10:57:01] "GET /static/app/img/product1.jpg HTTP/1.0" 200 180742
+[13/Sep/2021 10:57:01] "GET /static/favicon.png HTTP/1.0" 200 8919
+[13/Sep/2021 10:58:37] "GET / HTTP/1.0" 200 49510
+[13/Sep/2021 10:58:37] "GET /static/style.css HTTP/1.0" 200 302624
+[13/Sep/2021 10:58:37] "GET /static/Feedback.css HTTP/1.0" 404 1901
+[13/Sep/2021 10:58:37] "GET /static/app/img/menu.png HTTP/1.0" 200 342
+[13/Sep/2021 10:58:37] "GET /static/app/img/close-menu.png HTTP/1.0" 200 507
+[13/Sep/2021 10:58:37] "GET /static/Feedback.js HTTP/1.0" 200 32555
+[13/Sep/2021 10:58:37] "GET /static/app/img/logo@2x.png HTTP/1.0" 200 8919
+[13/Sep/2021 10:58:37] "GET /static/bundle.bundle.js HTTP/1.0" 200 750903
+[13/Sep/2021 10:58:37] "GET /static/app/img/mobile-logo.png HTTP/1.0" 200 6707
+[13/Sep/2021 10:58:37] "GET /static/app/img/phone.png HTTP/1.0" 200 679
+[13/Sep/2021 10:58:37] "GET /static/app/img/login-icon.png HTTP/1.0" 200 760
+[13/Sep/2021 10:58:37] "GET /static/app/img/calendar.png HTTP/1.0" 200 1841
+[13/Sep/2021 10:58:37] "GET /static/app/img/delivery.png HTTP/1.0" 200 1120
+[13/Sep/2021 10:58:37] "GET /static/app/img/scrolldown.png HTTP/1.0" 200 19337
+[13/Sep/2021 10:58:37] "GET /static/app/img/feedback-icon.png HTTP/1.0" 200 730
+[13/Sep/2021 10:58:37] "GET /static/app/img/slide1.jpg HTTP/1.0" 200 2162268
+[13/Sep/2021 10:58:37] "GET /static/app/img/arrow-right.png HTTP/1.0" 200 224
+[13/Sep/2021 10:58:37] "GET /static/app/img/yandex.png HTTP/1.0" 200 4556
+[13/Sep/2021 10:58:37] "GET /static/Feedback.css HTTP/1.0" 404 1901
+[13/Sep/2021 10:58:37] "GET /static/app/img/footer_logo.png HTTP/1.0" 200 6198
+[13/Sep/2021 10:58:37] "GET /static/app/img/web.png HTTP/1.0" 200 2185
+[13/Sep/2021 10:58:37] "GET /static/app/img/insta.png HTTP/1.0" 200 2043
+[13/Sep/2021 10:58:37] "GET /static/app/img/vk.png HTTP/1.0" 200 1214
+[13/Sep/2021 10:58:37] "GET /static/app/fonts/MullerLight.woff2 HTTP/1.0" 200 25404
+[13/Sep/2021 10:58:37] "GET /static/app/fonts/bebasneuebold.woff2 HTTP/1.0" 200 9660
+[13/Sep/2021 10:58:37] "GET /static/app/fonts/bebasneueregular.woff2 HTTP/1.0" 200 9724
+[13/Sep/2021 10:58:37] "GET /static/app/fonts/MullerRegular.woff2 HTTP/1.0" 200 24764
+[13/Sep/2021 10:58:38] "GET /static/app/img/bottom-part.png HTTP/1.0" 200 444051
+[13/Sep/2021 10:58:38] "GET /static/app/img/delivery-back.png HTTP/1.0" 200 80980
+[13/Sep/2021 10:58:38] "GET /static/app/img/main.jpg HTTP/1.0" 200 802021
+[13/Sep/2021 10:58:38] "GET /static/app/img/header-back.jpg HTTP/1.0" 200 103814
+[13/Sep/2021 10:58:38] "GET /static/app/img/underlogo.png HTTP/1.0" 200 43917
+[13/Sep/2021 10:58:38] "GET /static/app/img/bron-back.png HTTP/1.0" 200 47776
+[13/Sep/2021 10:58:38] "GET /static/app/img/product1.jpg HTTP/1.0" 200 180742
+[13/Sep/2021 10:58:38] "GET /static/app/img/table.jpg HTTP/1.0" 200 172695
+[13/Sep/2021 10:58:38] "GET /static/app/img/a-profile-icon.png HTTP/1.0" 200 1310
+[13/Sep/2021 10:58:38] "GET /static/app/img/close.png HTTP/1.0" 200 338
+[13/Sep/2021 10:58:38] "GET /static/app/img/locker.png HTTP/1.0" 200 685
+[13/Sep/2021 10:58:38] "GET /static/app/img/map-top.png HTTP/1.0" 200 383587
+[13/Sep/2021 10:58:39] "GET /static/favicon.png HTTP/1.0" 200 8919
+[13/Sep/2021 10:58:39] "GET /static/favicon.png HTTP/1.0" 200 8919
+[13/Sep/2021 11:14:20] "GET / HTTP/1.0" 200 49510
+[13/Sep/2021 11:14:20] "GET /static/style.css HTTP/1.0" 304 0
+[13/Sep/2021 11:14:20] "GET /static/Feedback.css HTTP/1.0" 404 1901
+[13/Sep/2021 11:14:20] "GET /static/Feedback.js HTTP/1.0" 304 0
+[13/Sep/2021 11:14:20] "GET /static/bundle.bundle.js HTTP/1.0" 304 0
+[13/Sep/2021 11:14:20] "GET /static/app/img/menu.png HTTP/1.0" 304 0
+[13/Sep/2021 11:14:20] "GET /static/app/img/close-menu.png HTTP/1.0" 304 0
+[13/Sep/2021 11:14:20] "GET /static/app/img/logo@2x.png HTTP/1.0" 304 0
+[13/Sep/2021 11:14:20] "GET /static/app/img/mobile-logo.png HTTP/1.0" 304 0
+[13/Sep/2021 11:14:20] "GET /static/Feedback.css HTTP/1.0" 404 1901
+[13/Sep/2021 11:14:20] "GET /static/app/img/login-icon.png HTTP/1.0" 304 0
+[13/Sep/2021 11:14:20] "GET /static/app/img/phone.png HTTP/1.0" 304 0
+[13/Sep/2021 11:14:20] "GET /static/app/img/calendar.png HTTP/1.0" 304 0
+[13/Sep/2021 11:14:20] "GET /static/app/img/vk.png HTTP/1.0" 304 0
+[13/Sep/2021 11:14:20] "GET /static/app/img/delivery.png HTTP/1.0" 304 0
+[13/Sep/2021 11:14:20] "GET /static/app/img/header-back.jpg HTTP/1.0" 304 0
+[13/Sep/2021 11:14:20] "GET /static/app/img/main.jpg HTTP/1.0" 304 0
+[13/Sep/2021 11:14:20] "GET /static/app/img/underlogo.png HTTP/1.0" 304 0
+[13/Sep/2021 11:14:20] "GET /static/app/img/bron-back.png HTTP/1.0" 304 0
+[13/Sep/2021 11:14:20] "GET /static/app/img/scrolldown.png HTTP/1.0" 304 0
+[13/Sep/2021 11:14:20] "GET /static/app/img/slide1.jpg HTTP/1.0" 304 0
+[13/Sep/2021 11:14:20] "GET /static/app/img/delivery-back.png HTTP/1.0" 304 0
+[13/Sep/2021 11:14:20] "GET /static/app/img/bottom-part.png HTTP/1.0" 304 0
+[13/Sep/2021 11:14:20] "GET /static/app/img/map-top.png HTTP/1.0" 304 0
+[13/Sep/2021 11:14:20] "GET /static/app/img/feedback-icon.png HTTP/1.0" 304 0
+[13/Sep/2021 11:14:20] "GET /static/app/img/arrow-right.png HTTP/1.0" 304 0
+[13/Sep/2021 11:14:20] "GET /static/app/img/footer_logo.png HTTP/1.0" 304 0
+[13/Sep/2021 11:14:20] "GET /static/app/img/yandex.png HTTP/1.0" 304 0
+[13/Sep/2021 11:14:20] "GET /static/app/img/web.png HTTP/1.0" 304 0
+[13/Sep/2021 11:14:20] "GET /static/app/img/product1.jpg HTTP/1.0" 304 0
+[13/Sep/2021 11:14:20] "GET /static/app/img/table.jpg HTTP/1.0" 304 0
+[13/Sep/2021 11:14:20] "GET /static/app/img/a-profile-icon.png HTTP/1.0" 304 0
+[13/Sep/2021 11:14:20] "GET /static/app/img/locker.png HTTP/1.0" 304 0
+[13/Sep/2021 11:14:20] "GET /static/app/img/close.png HTTP/1.0" 304 0
+[13/Sep/2021 11:14:20] "GET /static/app/img/insta.png HTTP/1.0" 304 0
+[13/Sep/2021 11:42:08] code 400, message Bad request syntax ('\x01\x01æ')
+[13/Sep/2021 11:42:08] "æ" 400 -
+[13/Sep/2021 12:09:54] "GET / HTTP/1.0" 200 49510
+[13/Sep/2021 12:09:54] "GET /static/style.css HTTP/1.0" 304 0
+[13/Sep/2021 12:09:54] "GET /static/Feedback.css HTTP/1.0" 404 1901
+[13/Sep/2021 12:09:54] "GET /static/Feedback.js HTTP/1.0" 200 32555
+[13/Sep/2021 12:09:54] "GET /static/bundle.bundle.js HTTP/1.0" 304 0
+[13/Sep/2021 12:09:54] "GET /static/app/img/delivery.png HTTP/1.0" 304 0
+[13/Sep/2021 12:09:54] "GET /static/app/img/feedback-icon.png HTTP/1.0" 304 0
+[13/Sep/2021 12:09:54] "GET /static/app/img/arrow-right.png HTTP/1.0" 304 0
+[13/Sep/2021 12:09:54] "GET /static/app/img/scrolldown.png HTTP/1.0" 304 0
+[13/Sep/2021 12:09:54] "GET /static/app/img/slide1.jpg HTTP/1.0" 304 0
+[13/Sep/2021 12:09:54] "GET /static/app/img/footer_logo.png HTTP/1.0" 304 0
+[13/Sep/2021 12:09:54] "GET /static/app/img/yandex.png HTTP/1.0" 304 0
+[13/Sep/2021 12:09:54] "GET /static/Feedback.css HTTP/1.0" 404 1901
+[13/Sep/2021 12:09:54] "GET /static/app/fonts/bebasneuebold.woff2 HTTP/1.0" 200 9660
+[13/Sep/2021 12:09:54] "GET /static/app/img/header-back.jpg HTTP/1.0" 200 103814
+[13/Sep/2021 12:09:54] "GET /static/app/img/vk.png HTTP/1.0" 200 1214
+[13/Sep/2021 12:09:54] "GET /static/app/img/calendar.png HTTP/1.0" 304 0
+[13/Sep/2021 12:09:54] "GET /static/app/img/underlogo.png HTTP/1.0" 200 43917
+[13/Sep/2021 12:09:54] "GET /static/app/img/phone.png HTTP/1.0" 304 0
+[13/Sep/2021 12:09:54] "GET /static/app/fonts/bebasneueregular.woff2 HTTP/1.0" 200 9724
+[13/Sep/2021 12:09:54] "GET /static/app/fonts/MullerRegular.woff2 HTTP/1.0" 200 24764
+[13/Sep/2021 12:09:54] "GET /static/app/fonts/MullerLight.woff2 HTTP/1.0" 200 25404
+[13/Sep/2021 12:09:54] "GET /static/app/img/main.jpg HTTP/1.0" 304 0
+[13/Sep/2021 12:09:54] "GET /static/app/img/bron-back.png HTTP/1.0" 304 0
+[13/Sep/2021 12:09:54] "GET /static/app/img/delivery-back.png HTTP/1.0" 304 0
+[13/Sep/2021 12:09:54] "GET /static/app/img/bottom-part.png HTTP/1.0" 304 0
+[13/Sep/2021 12:09:54] "GET /static/app/img/login-icon.png HTTP/1.0" 304 0
+[13/Sep/2021 12:09:54] "GET /static/app/img/logo@2x.png HTTP/1.0" 304 0
+[13/Sep/2021 12:09:54] "GET /static/app/img/map-top.png HTTP/1.0" 304 0
+[13/Sep/2021 12:09:54] "GET /static/app/img/insta.png HTTP/1.0" 200 2043
+[13/Sep/2021 12:09:54] "GET /static/app/img/web.png HTTP/1.0" 200 2185
+[13/Sep/2021 12:09:54] "GET /static/app/img/product1.jpg HTTP/1.0" 200 180742
+[13/Sep/2021 12:09:54] "GET /static/app/img/a-profile-icon.png HTTP/1.0" 304 0
+[13/Sep/2021 12:09:54] "GET /static/app/img/table.jpg HTTP/1.0" 304 0
+[13/Sep/2021 12:09:54] "GET /static/app/img/locker.png HTTP/1.0" 304 0
+[13/Sep/2021 12:09:54] "GET /static/app/img/close.png HTTP/1.0" 304 0
+[13/Sep/2021 12:09:54] "GET /static/app/img/menu.png HTTP/1.0" 200 342
+[13/Sep/2021 12:09:54] "GET /static/app/img/close-menu.png HTTP/1.0" 304 0
+[13/Sep/2021 12:09:54] "GET /static/app/img/mobile-logo.png HTTP/1.0" 304 0
+[13/Sep/2021 12:10:01] "GET /admin HTTP/1.0" 301 0
+[13/Sep/2021 12:10:01] "GET /admin/ HTTP/1.0" 302 0
+[13/Sep/2021 12:10:02] "GET /admin/login/?next=/admin/ HTTP/1.0" 200 2283
+[13/Sep/2021 12:10:02] "GET /static/admin/css/nav_sidebar.css HTTP/1.0" 200 2271
+[13/Sep/2021 12:10:02] "GET /static/admin/js/nav_sidebar.js HTTP/1.0" 200 1360
+[13/Sep/2021 12:10:02] "GET /static/admin/css/base.css HTTP/1.0" 200 19513
+[13/Sep/2021 12:10:02] "GET /static/admin/css/login.css HTTP/1.0" 200 939
+[13/Sep/2021 12:10:02] "GET /static/admin/css/responsive.css HTTP/1.0" 200 18545
+[13/Sep/2021 12:10:02] "GET /static/admin/css/fonts.css HTTP/1.0" 200 423
+[13/Sep/2021 12:10:02] "GET /static/admin/fonts/Roboto-Light-webfont.woff HTTP/1.0" 200 85692
+[13/Sep/2021 12:10:02] "GET /static/admin/fonts/Roboto-Regular-webfont.woff HTTP/1.0" 200 85876
+Not Found: /favicon.ico
+[13/Sep/2021 12:10:02] "GET /favicon.ico HTTP/1.0" 404 3855
+[13/Sep/2021 12:10:06] "POST /admin/login/?next=/admin/ HTTP/1.0" 302 0
+[13/Sep/2021 12:10:06] "GET /admin/ HTTP/1.0" 200 8910
+[13/Sep/2021 12:10:06] "GET /static/admin/css/dashboard.css HTTP/1.0" 200 380
+[13/Sep/2021 12:10:06] "GET /static/admin/img/icon-addlink.svg HTTP/1.0" 200 331
+[13/Sep/2021 12:10:06] "GET /static/admin/img/icon-changelink.svg HTTP/1.0" 200 380
+[13/Sep/2021 12:10:06] "GET /static/admin/fonts/Roboto-Bold-webfont.woff HTTP/1.0" 200 86184
+[13/Sep/2021 12:10:18] "GET /admin/ HTTP/1.0" 302 0
+[13/Sep/2021 12:10:18] "GET /admin/login/?next=/admin/ HTTP/1.0" 200 2283
+[13/Sep/2021 12:11:24] "GET /admin/ HTTP/1.0" 302 0
+[13/Sep/2021 12:11:24] "GET /admin/login/?next=/admin/ HTTP/1.0" 200 2283
+[13/Sep/2021 12:11:24] "GET /static/admin/css/base.css HTTP/1.0" 200 19513
+[13/Sep/2021 12:11:24] "GET /static/admin/css/nav_sidebar.css HTTP/1.0" 200 2271
+[13/Sep/2021 12:11:24] "GET /static/admin/css/login.css HTTP/1.0" 200 939
+[13/Sep/2021 12:11:24] "GET /static/admin/css/responsive.css HTTP/1.0" 200 18545
+[13/Sep/2021 12:11:24] "GET /static/admin/js/nav_sidebar.js HTTP/1.0" 200 1360
+[13/Sep/2021 12:11:24] "GET /static/admin/css/fonts.css HTTP/1.0" 200 423
+[13/Sep/2021 12:11:24] "GET /static/admin/fonts/Roboto-Regular-webfont.woff HTTP/1.0" 200 85876
+[13/Sep/2021 12:11:24] "GET /static/admin/fonts/Roboto-Light-webfont.woff HTTP/1.0" 200 85692
+Not Found: /favicon.ico
+[13/Sep/2021 12:11:25] "GET /favicon.ico HTTP/1.0" 404 3855
+[13/Sep/2021 12:11:31] "POST /admin/login/?next=/admin/ HTTP/1.0" 302 0
+[13/Sep/2021 12:11:31] "GET /admin/ HTTP/1.0" 200 8910
+[13/Sep/2021 12:11:31] "GET /static/admin/css/dashboard.css HTTP/1.0" 200 380
+[13/Sep/2021 12:11:31] "GET /static/admin/img/icon-changelink.svg HTTP/1.0" 200 380
+[13/Sep/2021 12:11:31] "GET /static/admin/img/icon-addlink.svg HTTP/1.0" 200 331
+[13/Sep/2021 12:11:31] "GET /static/admin/fonts/Roboto-Bold-webfont.woff HTTP/1.0" 200 86184
+[13/Sep/2021 12:58:45] "GET / HTTP/1.1" 200 49510
+[13/Sep/2021 15:05:22] "GET /admin/ HTTP/1.0" 200 8910
+[13/Sep/2021 15:05:22] "GET /static/admin/css/base.css HTTP/1.0" 200 19513
+[13/Sep/2021 15:05:22] "GET /static/admin/css/nav_sidebar.css HTTP/1.0" 200 2271
+[13/Sep/2021 15:05:22] "GET /static/admin/css/dashboard.css HTTP/1.0" 200 380
+[13/Sep/2021 15:05:22] "GET /static/admin/css/responsive.css HTTP/1.0" 200 18545
+[13/Sep/2021 15:05:22] "GET /static/admin/css/fonts.css HTTP/1.0" 200 423
+[13/Sep/2021 15:05:23] "GET /static/admin/img/icon-addlink.svg HTTP/1.0" 200 331
+[13/Sep/2021 15:05:23] "GET /static/admin/img/icon-changelink.svg HTTP/1.0" 200 380
+[13/Sep/2021 15:05:23] "GET /static/admin/fonts/Roboto-Light-webfont.woff HTTP/1.0" 200 85692
+[13/Sep/2021 15:05:23] "GET /static/admin/fonts/Roboto-Regular-webfont.woff HTTP/1.0" 200 85876
+[13/Sep/2021 15:05:23] "GET /static/admin/fonts/Roboto-Bold-webfont.woff HTTP/1.0" 200 86184
+[13/Sep/2021 16:28:07] "GET / HTTP/1.1" 200 49510
+[13/Sep/2021 17:11:22] "GET / HTTP/1.0" 200 49510
+[13/Sep/2021 17:11:22] "GET /static/style.css HTTP/1.0" 200 302624
+[13/Sep/2021 17:11:22] "GET /static/app/img/menu.png HTTP/1.0" 200 342
+[13/Sep/2021 17:11:22] "GET /static/Feedback.js HTTP/1.0" 200 32555
+[13/Sep/2021 17:11:22] "GET /static/Feedback.css HTTP/1.0" 404 1901
+[13/Sep/2021 17:11:22] "GET /static/bundle.bundle.js HTTP/1.0" 200 750903
+[13/Sep/2021 17:11:22] "GET /static/app/img/close-menu.png HTTP/1.0" 200 507
+[13/Sep/2021 17:11:22] "GET /static/app/img/logo@2x.png HTTP/1.0" 200 8919
+[13/Sep/2021 17:11:22] "GET /static/app/img/mobile-logo.png HTTP/1.0" 200 6707
+[13/Sep/2021 17:11:22] "GET /static/app/img/login-icon.png HTTP/1.0" 200 760
+[13/Sep/2021 17:11:22] "GET /static/app/img/phone.png HTTP/1.0" 200 679
+[13/Sep/2021 17:11:22] "GET /static/app/img/calendar.png HTTP/1.0" 200 1841
+[13/Sep/2021 17:11:22] "GET /static/app/img/delivery.png HTTP/1.0" 200 1120
+[13/Sep/2021 17:11:22] "GET /static/app/img/scrolldown.png HTTP/1.0" 200 19337
+[13/Sep/2021 17:11:22] "GET /static/app/img/slide1.jpg HTTP/1.0" 200 2162268
+[13/Sep/2021 17:11:22] "GET /static/app/img/feedback-icon.png HTTP/1.0" 200 730
+[13/Sep/2021 17:11:22] "GET /static/app/img/arrow-right.png HTTP/1.0" 200 224
+[13/Sep/2021 17:11:22] "GET /static/app/img/yandex.png HTTP/1.0" 200 4556
+[13/Sep/2021 17:11:22] "GET /static/Feedback.css HTTP/1.0" 404 1901
+[13/Sep/2021 17:11:22] "GET /static/app/img/bottom-part.png HTTP/1.0" 200 444051
+[13/Sep/2021 17:11:22] "GET /static/app/fonts/MullerLight.woff2 HTTP/1.0" 200 25404
+[13/Sep/2021 17:11:22] "GET /static/app/fonts/bebasneuebold.woff2 HTTP/1.0" 200 9660
+[13/Sep/2021 17:11:22] "GET /static/app/fonts/bebasneueregular.woff2 HTTP/1.0" 200 9724
+[13/Sep/2021 17:11:22] "GET /static/app/fonts/MullerRegular.woff2 HTTP/1.0" 200 24764
+[13/Sep/2021 17:11:22] "GET /static/app/img/underlogo.png HTTP/1.0" 200 43917
+[13/Sep/2021 17:11:22] "GET /static/app/img/main.jpg HTTP/1.0" 200 802021
+[13/Sep/2021 17:11:22] "GET /static/app/img/header-back.jpg HTTP/1.0" 200 103814
+[13/Sep/2021 17:11:22] "GET /static/app/img/bron-back.png HTTP/1.0" 200 47776
+[13/Sep/2021 17:11:22] "GET /static/app/img/delivery-back.png HTTP/1.0" 200 80980
+[13/Sep/2021 17:11:23] "GET /static/app/img/footer_logo.png HTTP/1.0" 200 6198
+[13/Sep/2021 17:11:23] "GET /static/app/img/insta.png HTTP/1.0" 200 2043
+[13/Sep/2021 17:11:23] "GET /static/app/img/web.png HTTP/1.0" 200 2185
+[13/Sep/2021 17:11:23] "GET /static/app/img/vk.png HTTP/1.0" 200 1214
+[13/Sep/2021 17:11:23] "GET /static/app/img/product1.jpg HTTP/1.0" 200 180742
+[13/Sep/2021 17:11:23] "GET /static/app/img/table.jpg HTTP/1.0" 200 172695
+[13/Sep/2021 17:11:23] "GET /static/app/img/a-profile-icon.png HTTP/1.0" 200 1310
+[13/Sep/2021 17:11:23] "GET /static/app/img/close.png HTTP/1.0" 200 338
+[13/Sep/2021 17:11:23] "GET /static/app/img/locker.png HTTP/1.0" 200 685
+[13/Sep/2021 17:11:23] "GET /static/app/img/map-top.png HTTP/1.0" 200 383587
+[13/Sep/2021 17:11:24] "GET /static/favicon.png HTTP/1.0" 200 8919
+[13/Sep/2021 17:11:29] "GET /reservation HTTP/1.0" 200 52990
+[13/Sep/2021 17:11:29] "GET /static/Reservation.css HTTP/1.0" 200 6576
+[13/Sep/2021 17:11:29] "GET /static/Feedback.css HTTP/1.0" 404 1901
+[13/Sep/2021 17:11:29] "GET /static/Reservation.js HTTP/1.0" 200 64503
+[13/Sep/2021 17:11:30] "GET /static/Feedback.css HTTP/1.0" 404 1901
+[13/Sep/2021 17:11:30] "GET /media/tables/%D0%9F%D0%BE%D0%BA%D1%80%D1%8B%D1%88%D0%BA%D0%B8%D0%BD%D0%B0.svg HTTP/1.0" 200 59550
+[13/Sep/2021 17:11:33] "GET /reservation HTTP/1.0" 200 52990
+[13/Sep/2021 17:11:33] "GET /static/Feedback.css HTTP/1.0" 404 1901
+[13/Sep/2021 17:11:33] "GET /static/favicon.png HTTP/1.0" 200 8919
+Invalid HTTP_HOST header: 'fuwu.sogou.com'. You may need to add 'fuwu.sogou.com' to ALLOWED_HOSTS.
+Invalid HTTP_HOST header: 'fuwu.sogou.com'. You may need to add 'fuwu.sogou.com' to ALLOWED_HOSTS.
+[13/Sep/2021 17:56:58] code 400, message Bad request version ('À\x14À')
+[13/Sep/2021 17:56:58] You're accessing the development server over HTTPS, but it only supports HTTP.
+
+Bad Request: /http:/fuwu.sogou.com/404/index.html
+[13/Sep/2021 17:56:58] "GET http://fuwu.sogou.com/404/index.html HTTP/1.1" 400 65581
+Bad Request: /http:/fuwu.sogou.com/404/index.html
+[13/Sep/2021 17:56:58] "GET http://fuwu.sogou.com/404/index.html HTTP/1.1" 400 65583
+[13/Sep/2021 17:57:05] code 400, message Bad request syntax ('\x05\x01\x00')
+[13/Sep/2021 17:57:05] " " 400 -
+[13/Sep/2021 17:57:05,285] - Broken pipe from ('222.186.19.235', 37244)
+
+[13/Sep/2021 20:35:31] code 400, message Bad HTTP/0.9 request type ('\x03\x00\x00/*à\x00\x00\x00\x00\x00Cookie:')
+[13/Sep/2021 20:35:31] "  /*à     Cookie: mstshash=Administr" 400 -
+[13/Sep/2021 21:49:27] code 400, message Bad HTTP/0.9 request type ('\x03\x00\x00/*à\x00\x00\x00\x00\x00Cookie:')
+[13/Sep/2021 21:49:27] "  /*à     Cookie: mstshash=Administr" 400 -
+[13/Sep/2021 22:07:29,484] - Broken pipe from ('74.120.14.41', 53636)
+
+[13/Sep/2021 22:07:30] "GET / HTTP/1.1" 200 49510
+[13/Sep/2021 22:07:30,727] - Broken pipe from ('74.120.14.41', 46718)
+
+[13/Sep/2021 22:07:30] "GET / HTTP/1.1" 200 49510
+[14/Sep/2021 02:40:06] code 400, message Bad request version ('À\x14À')
+[14/Sep/2021 02:40:06] You're accessing the development server over HTTPS, but it only supports HTTP.
+
+[14/Sep/2021 04:01:56] "GET /admin/ HTTP/1.0" 302 0
+[14/Sep/2021 04:01:56] "GET /admin/login/?next=/admin/ HTTP/1.0" 200 2283
+[14/Sep/2021 04:01:56] "GET /static/admin/css/nav_sidebar.css HTTP/1.0" 200 2271
+[14/Sep/2021 04:01:56] "GET /static/admin/css/base.css HTTP/1.0" 200 19513
+[14/Sep/2021 04:01:56] "GET /static/admin/css/login.css HTTP/1.0" 200 939
+[14/Sep/2021 04:01:56] "GET /static/admin/css/responsive.css HTTP/1.0" 200 18545
+[14/Sep/2021 04:01:56] "GET /static/admin/js/nav_sidebar.js HTTP/1.0" 200 1360
+[14/Sep/2021 04:01:57] "GET /static/admin/css/fonts.css HTTP/1.0" 200 423
+[14/Sep/2021 04:01:57] "GET /static/admin/fonts/Roboto-Light-webfont.woff HTTP/1.0" 200 85692
+[14/Sep/2021 04:01:57] "GET /static/admin/fonts/Roboto-Regular-webfont.woff HTTP/1.0" 200 85876
+Not Found: /favicon.ico
+[14/Sep/2021 04:01:57] "GET /favicon.ico HTTP/1.0" 404 3855
+[14/Sep/2021 04:02:05] "POST /admin/login/?next=/admin/ HTTP/1.0" 302 0
+[14/Sep/2021 04:02:05] "GET /admin/ HTTP/1.0" 200 8910
+[14/Sep/2021 04:02:05] "GET /static/admin/css/dashboard.css HTTP/1.0" 200 380
+[14/Sep/2021 04:02:05] "GET /static/admin/img/icon-changelink.svg HTTP/1.0" 200 380
+[14/Sep/2021 04:02:05] "GET /static/admin/img/icon-addlink.svg HTTP/1.0" 200 331
+[14/Sep/2021 04:02:05] "GET /static/admin/fonts/Roboto-Bold-webfont.woff HTTP/1.0" 200 86184
+[14/Sep/2021 04:13:50] "GET /admin/restaurant/restaraunt/ HTTP/1.0" 200 9922
+[14/Sep/2021 04:13:50] "GET /static/admin/css/changelists.css HTTP/1.0" 200 6874
+[14/Sep/2021 04:13:50] "GET /admin/jsi18n/ HTTP/1.0" 200 15618
+[14/Sep/2021 04:13:50] "GET /static/admin/js/vendor/jquery/jquery.js HTTP/1.0" 200 287630
+[14/Sep/2021 04:13:50] "GET /static/admin/js/jquery.init.js HTTP/1.0" 200 347
+[14/Sep/2021 04:13:50] "GET /static/admin/js/admin/RelatedObjectLookups.js HTTP/1.0" 200 5984
+[14/Sep/2021 04:13:50] "GET /static/admin/js/actions.js HTTP/1.0" 200 7664
+[14/Sep/2021 04:13:50] "GET /static/admin/js/core.js HTTP/1.0" 200 5698
+[14/Sep/2021 04:13:50] "GET /static/admin/js/urlify.js HTTP/1.0" 200 7902
+[14/Sep/2021 04:13:50] "GET /static/admin/js/prepopulate.js HTTP/1.0" 200 1531
+[14/Sep/2021 04:13:50] "GET /static/admin/js/vendor/xregexp/xregexp.js HTTP/1.0" 200 232381
+[14/Sep/2021 04:13:51] "GET /static/admin/img/tooltag-add.svg HTTP/1.0" 200 331
+[14/Sep/2021 04:13:58] "GET /admin/restaurant/restaraunt/1/change/ HTTP/1.0" 200 16647
+[14/Sep/2021 04:13:58] "GET /static/admin/js/inlines.js HTTP/1.0" 200 15225
+[14/Sep/2021 04:13:58] "GET /static/admin/js/prepopulate_init.js HTTP/1.0" 200 492
+[14/Sep/2021 04:13:58] "GET /static/admin/css/forms.css HTTP/1.0" 200 8804
+[14/Sep/2021 04:13:58] "GET /admin/jsi18n/ HTTP/1.0" 200 15618
+[14/Sep/2021 04:13:58] "GET /static/admin/css/widgets.css HTTP/1.0" 200 11097
+[14/Sep/2021 04:13:58] "GET /static/admin/js/change_form.js HTTP/1.0" 200 606
+[14/Sep/2021 04:13:58] "GET /static/admin/img/inline-delete.svg HTTP/1.0" 200 560
+[14/Sep/2021 04:14:37] "POST /admin/restaurant/restaraunt/1/change/ HTTP/1.0" 302 0
+[14/Sep/2021 04:14:37] "GET /admin/restaurant/restaraunt/ HTTP/1.0" 200 10163
+[14/Sep/2021 04:14:37] "GET /admin/jsi18n/ HTTP/1.0" 200 15618
+[14/Sep/2021 04:14:38] "GET /static/admin/img/icon-yes.svg HTTP/1.0" 200 436
+[14/Sep/2021 04:14:40] "GET /admin/restaurant/restaraunt/add/ HTTP/1.0" 200 16307
+[14/Sep/2021 04:14:40] "GET /admin/jsi18n/ HTTP/1.0" 200 15618
+[14/Sep/2021 04:15:08] "POST /admin/restaurant/restaraunt/add/ HTTP/1.0" 302 0
+[14/Sep/2021 04:15:08] "GET /admin/restaurant/restaraunt/ HTTP/1.0" 200 10461
+[14/Sep/2021 04:15:08] "GET /admin/jsi18n/ HTTP/1.0" 200 15618
+[14/Sep/2021 04:15:10] "GET /admin/restaurant/restaraunt/add/ HTTP/1.0" 200 16307
+[14/Sep/2021 04:15:11] "GET /admin/jsi18n/ HTTP/1.0" 200 15618
+[14/Sep/2021 04:15:33] "POST /admin/restaurant/restaraunt/add/ HTTP/1.0" 302 0
+[14/Sep/2021 04:15:33] "GET /admin/restaurant/restaraunt/ HTTP/1.0" 200 10749
+[14/Sep/2021 04:15:33] "GET /admin/jsi18n/ HTTP/1.0" 200 15618
+[14/Sep/2021 04:15:35] "GET /admin/restaurant/restaraunt/add/ HTTP/1.0" 200 16307
+[14/Sep/2021 04:15:35] "GET /admin/jsi18n/ HTTP/1.0" 200 15618
+[14/Sep/2021 04:15:52] "POST /admin/restaurant/restaraunt/add/ HTTP/1.0" 302 0
+[14/Sep/2021 04:15:53] "GET /admin/restaurant/restaraunt/ HTTP/1.0" 200 11062
+[14/Sep/2021 04:15:53] "GET /admin/jsi18n/ HTTP/1.0" 200 15618
+[14/Sep/2021 05:02:21] "GET / HTTP/1.0" 200 49510
+[14/Sep/2021 05:34:40] "GET / HTTP/1.0" 200 49510
+[14/Sep/2021 05:34:40] "GET /static/style.css HTTP/1.0" 304 0
+[14/Sep/2021 05:34:40] "GET /static/Feedback.js HTTP/1.0" 304 0
+[14/Sep/2021 05:34:40] "GET /static/bundle.bundle.js HTTP/1.0" 304 0
+[14/Sep/2021 05:34:40] "GET /static/app/img/menu.png HTTP/1.0" 304 0
+[14/Sep/2021 05:34:40] "GET /static/app/img/close-menu.png HTTP/1.0" 304 0
+[14/Sep/2021 05:34:40] "GET /static/Feedback.css HTTP/1.0" 404 1901
+[14/Sep/2021 05:34:40] "GET /static/app/img/logo@2x.png HTTP/1.0" 304 0
+[14/Sep/2021 05:34:40] "GET /static/app/img/mobile-logo.png HTTP/1.0" 304 0
+[14/Sep/2021 05:34:40] "GET /static/app/fonts/MullerLight.woff2 HTTP/1.0" 304 0
+[14/Sep/2021 05:34:40] "GET /static/app/fonts/MullerRegular.woff2 HTTP/1.0" 304 0
+[14/Sep/2021 05:34:40] "GET /static/app/fonts/bebasneuebold.woff2 HTTP/1.0" 304 0
+[14/Sep/2021 05:34:40] "GET /static/app/fonts/bebasneueregular.woff2 HTTP/1.0" 304 0
+[14/Sep/2021 05:34:40] "GET /static/app/img/main.jpg HTTP/1.0" 304 0
+[14/Sep/2021 05:34:40] "GET /static/app/img/bottom-part.png HTTP/1.0" 304 0
+[14/Sep/2021 05:34:40] "GET /static/app/img/header-back.jpg HTTP/1.0" 304 0
+[14/Sep/2021 05:34:40] "GET /static/app/img/underlogo.png HTTP/1.0" 304 0
+[14/Sep/2021 05:34:40] "GET /static/app/img/bron-back.png HTTP/1.0" 304 0
+[14/Sep/2021 05:34:40] "GET /static/app/img/delivery-back.png HTTP/1.0" 304 0
+[14/Sep/2021 05:34:40] "GET /static/app/img/login-icon.png HTTP/1.0" 304 0
+[14/Sep/2021 05:34:40] "GET /static/app/img/delivery.png HTTP/1.0" 304 0
+[14/Sep/2021 05:34:40] "GET /static/app/img/scrolldown.png HTTP/1.0" 304 0
+[14/Sep/2021 05:34:40] "GET /static/app/img/calendar.png HTTP/1.0" 304 0
+[14/Sep/2021 05:34:40] "GET /static/app/img/phone.png HTTP/1.0" 304 0
+[14/Sep/2021 05:34:40] "GET /static/app/img/slide1.jpg HTTP/1.0" 200 2162268
+[14/Sep/2021 05:34:40] "GET /static/app/img/feedback-icon.png HTTP/1.0" 304 0
+[14/Sep/2021 05:34:40] "GET /static/app/img/arrow-right.png HTTP/1.0" 304 0
+[14/Sep/2021 05:34:40] "GET /static/app/img/yandex.png HTTP/1.0" 304 0
+[14/Sep/2021 05:34:40] "GET /static/app/img/insta.png HTTP/1.0" 304 0
+[14/Sep/2021 05:34:40] "GET /static/app/img/footer_logo.png HTTP/1.0" 304 0
+[14/Sep/2021 05:34:40] "GET /static/app/img/vk.png HTTP/1.0" 304 0
+[14/Sep/2021 05:34:40] "GET /static/app/img/web.png HTTP/1.0" 304 0
+[14/Sep/2021 05:34:40] "GET /static/app/img/product1.jpg HTTP/1.0" 304 0
+[14/Sep/2021 05:34:40] "GET /static/app/img/table.jpg HTTP/1.0" 304 0
+[14/Sep/2021 05:34:40] "GET /static/app/img/a-profile-icon.png HTTP/1.0" 304 0
+[14/Sep/2021 05:34:40] "GET /static/app/img/close.png HTTP/1.0" 304 0
+[14/Sep/2021 05:34:40] "GET /static/app/img/locker.png HTTP/1.0" 304 0
+[14/Sep/2021 05:34:40] "GET /static/app/img/map-top.png HTTP/1.0" 304 0
+[14/Sep/2021 05:34:42] "GET /reservation HTTP/1.0" 200 56353
+[14/Sep/2021 05:34:42] "GET /static/Reservation.js HTTP/1.0" 304 0
+[14/Sep/2021 05:34:42] "GET /static/Reservation.css HTTP/1.0" 304 0
+[14/Sep/2021 05:34:42] "GET /static/Feedback.css HTTP/1.0" 404 1901
+[14/Sep/2021 05:34:42] "GET /media/tables/%D0%9F%D0%BE%D0%BA%D1%80%D1%8B%D1%88%D0%BA%D0%B8%D0%BD%D0%B0.svg HTTP/1.0" 200 59550
+[14/Sep/2021 05:34:52] "GET /menu HTTP/1.0" 200 358813
+[14/Sep/2021 05:34:52] "GET /static/style.css HTTP/1.0" 200 302624
+[14/Sep/2021 05:34:52] "GET /static/app/img/download-menu.png HTTP/1.0" 200 1193
+[14/Sep/2021 05:34:52] "GET /media/images/product.jpg HTTP/1.0" 200 193880
+[14/Sep/2021 05:34:52] "GET /static/app/img/leftside.png HTTP/1.0" 200 452765
+[14/Sep/2021 05:34:52] "GET /static/app/img/rightside.png HTTP/1.0" 200 221631
+[14/Sep/2021 05:34:52] "GET /static/Feedback.css HTTP/1.0" 404 1901
+[14/Sep/2021 05:34:54] "GET /delivery HTTP/1.0" 200 260215
+[14/Sep/2021 05:34:54] "GET /static/app/img/cart.png HTTP/1.0" 200 13719
+[14/Sep/2021 05:34:54] "GET /static/app/img/x.png HTTP/1.0" 200 378
+[14/Sep/2021 05:34:54] "GET /static/app/img/bubble.png HTTP/1.0" 200 9509
+[14/Sep/2021 05:34:54] "GET /static/app/fonts/MullerBold.woff2 HTTP/1.0" 200 25360
+[14/Sep/2021 05:34:54] "GET /static/Delivery.js HTTP/1.0" 200 6904
+[14/Sep/2021 05:34:54] "GET /static/Delivery.css HTTP/1.0" 404 1901
+[14/Sep/2021 05:34:54] "GET /static/Feedback.css HTTP/1.0" 404 1901
+[14/Sep/2021 05:34:54] "GET /static/Feedback.css HTTP/1.0" 404 1901
+[14/Sep/2021 05:34:55] "GET /franchise HTTP/1.0" 200 14464
+[14/Sep/2021 05:34:56] "GET /static/app/img/icon1.png HTTP/1.0" 200 7424
+[14/Sep/2021 05:34:56] "GET /static/app/img/main-logo.png HTTP/1.0" 200 14515
+[14/Sep/2021 05:34:56] "GET /static/Franchise.js HTTP/1.0" 200 31903
+Not Found: /bundle.bundle.js
+[14/Sep/2021 05:34:56] "GET /static/Franchise.css HTTP/1.0" 404 1904
+[14/Sep/2021 05:34:56] "GET /bundle.bundle.js HTTP/1.0" 404 3870
+[14/Sep/2021 05:34:56] "GET /static/app/img/icon2.png HTTP/1.0" 200 7928
+[14/Sep/2021 05:34:56] "GET /static/app/img/bottom-part.png HTTP/1.0" 200 444051
+[14/Sep/2021 05:34:56] "GET /static/app/img/icon3.png HTTP/1.0" 200 8733
+[14/Sep/2021 05:34:56] "GET /static/app/img/icon4.png HTTP/1.0" 200 11237
+[14/Sep/2021 05:34:56] "GET /static/app/img/proces_photo.jpg HTTP/1.0" 200 587814
+[14/Sep/2021 05:34:56] "GET /static/app/img/icon5.png HTTP/1.0" 200 11914
+[14/Sep/2021 05:34:56] "GET /static/app/img/icon6.png HTTP/1.0" 200 7970
+[14/Sep/2021 05:34:56] "GET /static/app/img/icon7.png HTTP/1.0" 200 10483
+Not Found: /bundle.bundle.js
+[14/Sep/2021 05:34:56] "GET /bundle.bundle.js HTTP/1.0" 404 3870
+[14/Sep/2021 05:34:56] "GET /static/app/img/icon8.png HTTP/1.0" 200 13313
+[14/Sep/2021 05:34:56] "GET /static/app/img/icon9.png HTTP/1.0" 200 8412
+[14/Sep/2021 05:34:56] "GET /static/app/img/icon11.png HTTP/1.0" 200 8850
+[14/Sep/2021 05:34:56] "GET /static/app/img/icon10.png HTTP/1.0" 200 13702
+[14/Sep/2021 05:34:56] "GET /static/app/img/icon12.png HTTP/1.0" 200 7373
+[14/Sep/2021 05:34:56] "GET /static/app/img/contacts-form.jpg HTTP/1.0" 200 181100
+[14/Sep/2021 05:34:56] "GET /static/app/img/user.png HTTP/1.0" 200 333
+[14/Sep/2021 05:35:04] "GET / HTTP/1.0" 200 49510
+[14/Sep/2021 05:35:04] "GET /static/Feedback.css HTTP/1.0" 404 1901
+[14/Sep/2021 05:35:04] "GET /static/Feedback.js HTTP/1.0" 200 32555
+[14/Sep/2021 05:35:04] "GET /static/bundle.bundle.js HTTP/1.0" 200 750903
+[14/Sep/2021 05:35:04] "GET /static/app/img/delivery-back.png HTTP/1.0" 200 80980
+[14/Sep/2021 05:35:04] "GET /static/app/img/bron-back.png HTTP/1.0" 200 47776
+[14/Sep/2021 05:35:04] "GET /static/app/img/main.jpg HTTP/1.0" 200 802021
+[14/Sep/2021 05:35:04] "GET /static/app/img/product1.jpg HTTP/1.0" 200 180742
+[14/Sep/2021 05:35:04] "GET /static/app/img/table.jpg HTTP/1.0" 200 172695
+[14/Sep/2021 06:54:17,785] - Broken pipe from ('162.142.125.193', 46798)
+
+[14/Sep/2021 06:54:18] "GET / HTTP/1.1" 200 49510
+[14/Sep/2021 06:54:19,094] - Broken pipe from ('162.142.125.193', 44452)
+
+[14/Sep/2021 06:54:19] "GET / HTTP/1.1" 200 49510
+Invalid HTTP_HOST header: '2600932673'. You may need to add '2600932673' to ALLOWED_HOSTS.
+Bad Request: /console/login/LoginForm.jsp
+[14/Sep/2021 07:19:41] "GET /console/login/LoginForm.jsp HTTP/1.1" 400 65207
+[14/Sep/2021 07:24:05] "GET / HTTP/1.0" 200 49510
+[14/Sep/2021 07:24:05] "GET /static/style.css HTTP/1.0" 200 302624
+[14/Sep/2021 07:24:05] "GET /static/Feedback.css HTTP/1.0" 404 1901
+[14/Sep/2021 07:24:06] "GET /static/Feedback.js HTTP/1.0" 200 32555
+[14/Sep/2021 07:24:06] "GET /static/bundle.bundle.js HTTP/1.0" 200 750903
+[14/Sep/2021 07:24:06] "GET /static/Feedback.css HTTP/1.0" 404 1901
+[14/Sep/2021 07:24:06] "GET /static/app/fonts/bebasneuebold.woff2 HTTP/1.0" 200 9660
+[14/Sep/2021 07:24:06] "GET /static/app/fonts/bebasneueregular.woff2 HTTP/1.0" 200 9724
+[14/Sep/2021 07:24:06] "GET /static/app/fonts/MullerRegular.woff2 HTTP/1.0" 200 24764
+[14/Sep/2021 07:24:07] "GET /static/app/fonts/MullerLight.woff2 HTTP/1.0" 200 25404
+[14/Sep/2021 07:24:07] "GET /static/app/img/main.jpg HTTP/1.0" 200 802021
+[14/Sep/2021 07:24:07] "GET /static/app/img/delivery-back.png HTTP/1.0" 200 80980
+[14/Sep/2021 07:24:07] "GET /static/app/img/header-back.jpg HTTP/1.0" 200 103814
+[14/Sep/2021 07:24:07] "GET /static/app/img/bottom-part.png HTTP/1.0" 200 444051
+[14/Sep/2021 07:24:07] "GET /static/app/img/bron-back.png HTTP/1.0" 200 47776
+[14/Sep/2021 07:24:07] "GET /static/app/img/scrolldown.png HTTP/1.0" 200 19337
+[14/Sep/2021 07:24:07] "GET /static/app/img/delivery.png HTTP/1.0" 200 1120
+[14/Sep/2021 07:24:07] "GET /static/app/img/phone.png HTTP/1.0" 200 679
+[14/Sep/2021 07:24:07] "GET /static/app/img/mobile-logo.png HTTP/1.0" 200 6707
+[14/Sep/2021 07:24:07] "GET /static/app/img/calendar.png HTTP/1.0" 200 1841
+[14/Sep/2021 07:24:07] "GET /static/app/img/menu.png HTTP/1.0" 200 342
+[14/Sep/2021 07:24:07] "GET /static/app/img/close-menu.png HTTP/1.0" 200 507
+[14/Sep/2021 07:24:07] "GET /static/app/img/logo@2x.png HTTP/1.0" 200 8919
+[14/Sep/2021 07:24:07] "GET /static/app/img/login-icon.png HTTP/1.0" 200 760
+[14/Sep/2021 07:24:07] "GET /static/app/img/slide1.jpg HTTP/1.0" 200 2162268
+[14/Sep/2021 07:24:07] "GET /static/app/img/feedback-icon.png HTTP/1.0" 200 730
+[14/Sep/2021 07:24:07] "GET /static/app/img/arrow-right.png HTTP/1.0" 200 224
+[14/Sep/2021 07:24:07] "GET /static/app/img/yandex.png HTTP/1.0" 200 4556
+[14/Sep/2021 07:24:07] "GET /static/app/img/footer_logo.png HTTP/1.0" 200 6198
+[14/Sep/2021 07:24:07] "GET /static/app/img/insta.png HTTP/1.0" 200 2043
+[14/Sep/2021 07:24:07] "GET /static/app/img/vk.png HTTP/1.0" 200 1214
+[14/Sep/2021 07:24:07] "GET /static/app/img/web.png HTTP/1.0" 200 2185
+[14/Sep/2021 07:24:07] "GET /static/app/img/map-top.png HTTP/1.0" 200 383587
+[14/Sep/2021 07:24:07] "GET /static/app/img/product1.jpg HTTP/1.0" 200 180742
+[14/Sep/2021 07:24:07] "GET /static/app/img/table.jpg HTTP/1.0" 200 172695
+[14/Sep/2021 07:24:07] "GET /static/app/img/a-profile-icon.png HTTP/1.0" 200 1310
+[14/Sep/2021 07:24:07] "GET /static/app/img/close.png HTTP/1.0" 200 338
+[14/Sep/2021 07:24:08] "GET /static/app/img/locker.png HTTP/1.0" 200 685
+[14/Sep/2021 07:24:09] "GET /static/favicon.png HTTP/1.0" 200 8919
+[14/Sep/2021 07:26:13] "GET / HTTP/1.0" 200 49510
+[14/Sep/2021 07:26:13] "GET /static/style.css HTTP/1.0" 200 302624
+[14/Sep/2021 07:26:13] "GET /static/Feedback.css HTTP/1.0" 404 1901
+[14/Sep/2021 07:26:14] "GET /static/Feedback.js HTTP/1.0" 200 32555
+[14/Sep/2021 07:26:14] "GET /static/app/img/close-menu.png HTTP/1.0" 200 507
+[14/Sep/2021 07:26:14] "GET /static/app/img/menu.png HTTP/1.0" 200 342
+[14/Sep/2021 07:26:14] "GET /static/bundle.bundle.js HTTP/1.0" 200 750903
+[14/Sep/2021 07:26:14] "GET /static/app/img/logo@2x.png HTTP/1.0" 200 8919
+[14/Sep/2021 07:26:14] "GET /static/app/img/mobile-logo.png HTTP/1.0" 200 6707
+[14/Sep/2021 07:26:14] "GET /static/app/img/phone.png HTTP/1.0" 200 679
+[14/Sep/2021 07:26:14] "GET /static/app/img/login-icon.png HTTP/1.0" 200 760
+[14/Sep/2021 07:26:14] "GET /static/app/img/calendar.png HTTP/1.0" 200 1841
+[14/Sep/2021 07:26:14] "GET /static/app/img/delivery.png HTTP/1.0" 200 1120
+[14/Sep/2021 07:26:14] "GET /static/app/img/scrolldown.png HTTP/1.0" 200 19337
+[14/Sep/2021 07:26:14] "GET /static/app/img/slide1.jpg HTTP/1.0" 200 2162268
+[14/Sep/2021 07:26:14] "GET /static/app/img/feedback-icon.png HTTP/1.0" 200 730
+[14/Sep/2021 07:26:14] "GET /static/app/img/arrow-right.png HTTP/1.0" 200 224
+[14/Sep/2021 07:26:14] "GET /static/app/img/yandex.png HTTP/1.0" 200 4556
+[14/Sep/2021 07:26:14] "GET /static/app/img/footer_logo.png HTTP/1.0" 200 6198
+[14/Sep/2021 07:26:15] "GET /static/app/img/insta.png HTTP/1.0" 200 2043
+[14/Sep/2021 07:26:15] "GET /static/app/img/web.png HTTP/1.0" 200 2185
+[14/Sep/2021 07:26:15] "GET /static/app/img/underlogo.png HTTP/1.0" 200 43917
+[14/Sep/2021 07:26:15] "GET /static/app/fonts/MullerLight.woff2 HTTP/1.0" 200 25404
+[14/Sep/2021 07:26:15] "GET /static/app/fonts/bebasneuebold.woff2 HTTP/1.0" 200 9660
+[14/Sep/2021 07:26:15] "GET /static/app/fonts/bebasneueregular.woff2 HTTP/1.0" 200 9724
+[14/Sep/2021 07:26:15] "GET /static/app/fonts/MullerRegular.woff2 HTTP/1.0" 200 24764
+[14/Sep/2021 07:26:15] "GET /static/app/img/bron-back.png HTTP/1.0" 200 47776
+[14/Sep/2021 07:26:15] "GET /static/app/img/header-back.jpg HTTP/1.0" 200 103814
+[14/Sep/2021 07:26:15] "GET /static/app/img/bottom-part.png HTTP/1.0" 200 444051
+[14/Sep/2021 07:26:15] "GET /static/app/img/main.jpg HTTP/1.0" 200 802021
+[14/Sep/2021 07:26:15] "GET /static/app/img/delivery-back.png HTTP/1.0" 200 80980
+[14/Sep/2021 07:26:16] "GET /static/Feedback.js? HTTP/1.0" 200 32555
+[14/Sep/2021 07:26:16] "GET /static/app/img/vk.png HTTP/1.0" 200 1214
+[14/Sep/2021 07:26:16] "GET /static/app/img/product1.jpg HTTP/1.0" 200 180742
+[14/Sep/2021 07:26:16] "GET /static/app/img/a-profile-icon.png HTTP/1.0" 200 1310
+[14/Sep/2021 07:26:16] "GET /static/app/img/table.jpg HTTP/1.0" 200 172695
+[14/Sep/2021 07:26:16] "GET /static/app/img/close.png HTTP/1.0" 200 338
+[14/Sep/2021 07:26:16] "GET /static/app/img/locker.png HTTP/1.0" 200 685
+[14/Sep/2021 07:26:16] "GET /static/app/img/map-top.png HTTP/1.0" 200 383587
+[14/Sep/2021 07:26:19] "GET /static/favicon.png HTTP/1.0" 200 8919
+Not Found: /reserve.html
+[14/Sep/2021 07:26:28] "GET /reserve.html HTTP/1.0" 404 3858
+Not Found: /delivery.html
+[14/Sep/2021 07:26:49] "GET /delivery.html HTTP/1.0" 404 3861
+Not Found: /franchise.html
+[14/Sep/2021 07:26:51] "GET /franchise.html HTTP/1.0" 404 3864
+[14/Sep/2021 07:31:03] "GET / HTTP/1.1" 200 49510
+[14/Sep/2021 07:32:14] "GET /delivery HTTP/1.0" 200 260215
+[14/Sep/2021 07:32:14] "GET /static/app/img/x.png HTTP/1.0" 200 378
+[14/Sep/2021 07:32:14] "GET /static/app/img/cart.png HTTP/1.0" 200 13719
+[14/Sep/2021 07:32:14] "GET /media/images/product.jpg HTTP/1.0" 200 193880
+[14/Sep/2021 07:32:14] "GET /static/app/img/leftside.png HTTP/1.0" 200 452765
+[14/Sep/2021 07:32:14] "GET /static/app/img/bubble.png HTTP/1.0" 200 9509
+[14/Sep/2021 07:32:14] "GET /static/app/fonts/MullerBold.woff2 HTTP/1.0" 200 25360
+[14/Sep/2021 07:32:14] "GET /static/Delivery.js HTTP/1.0" 200 6904
+[14/Sep/2021 07:32:14] "GET /static/Delivery.css HTTP/1.0" 404 1901
+[14/Sep/2021 07:32:14] "GET /static/Feedback.js HTTP/1.0" 200 32555
+[14/Sep/2021 07:32:17] "GET /static/Delivery.js? HTTP/1.0" 200 6904
+Internal Server Error: /create_order
+Traceback (most recent call last):
+  File "/home/respublicarunner/.local/share/virtualenvs/django-B1l6Lil1/lib/python3.9/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+  File "/home/respublicarunner/.local/share/virtualenvs/django-B1l6Lil1/lib/python3.9/site-packages/django/core/handlers/base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/respublicarunner/restaurant/django/restaurant/views.py", line 156, in create_order
+    user = User.objects.create_user(username=phone, password=''.join(
+  File "/home/respublicarunner/.local/share/virtualenvs/django-B1l6Lil1/lib/python3.9/site-packages/django/contrib/auth/models.py", line 152, in create_user
+    return self._create_user(username, email, password, **extra_fields)
+  File "/home/respublicarunner/.local/share/virtualenvs/django-B1l6Lil1/lib/python3.9/site-packages/django/contrib/auth/models.py", line 137, in _create_user
+    raise ValueError('The given username must be set')
+ValueError: The given username must be set
+[14/Sep/2021 07:32:46] "POST /create_order HTTP/1.0" 500 73450
+[14/Sep/2021 07:32:58] "GET /delivery HTTP/1.0" 200 260215
+[14/Sep/2021 07:32:59] "GET /static/Delivery.js HTTP/1.0" 200 6904
+[14/Sep/2021 07:33:01] "GET /menu HTTP/1.0" 200 358813
+[14/Sep/2021 07:33:01] "GET /static/app/img/download-menu.png HTTP/1.0" 200 1193
+[14/Sep/2021 07:33:01] "GET /static/app/img/rightside.png HTTP/1.0" 200 221631
+[14/Sep/2021 07:33:08] "GET /preorder HTTP/1.0" 200 411440
+[14/Sep/2021 07:33:27] "GET /events HTTP/1.0" 200 51817
+[14/Sep/2021 07:33:28] "GET /static/app/img/events-bottom.png HTTP/1.0" 200 444051
+[14/Sep/2021 07:33:32] "GET /reservation HTTP/1.0" 200 56353
+[14/Sep/2021 07:33:32] "GET /static/Reservation.css HTTP/1.0" 200 6576
+[14/Sep/2021 07:33:32] "GET /static/Reservation.js HTTP/1.0" 200 64503
+[14/Sep/2021 07:33:32] "GET /static/Reservation.js? HTTP/1.0" 200 64503
+[14/Sep/2021 07:33:32] "GET /media/tables/%D0%9F%D0%BE%D0%BA%D1%80%D1%8B%D1%88%D0%BA%D0%B8%D0%BD%D0%B0.svg HTTP/1.0" 200 59550
+[14/Sep/2021 07:33:46] "GET /delivery HTTP/1.0" 200 260215
+[14/Sep/2021 07:33:52] "GET /reservation HTTP/1.0" 200 56353
+[14/Sep/2021 07:33:52] "GET /static/Reservation.js HTTP/1.0" 200 64503
+[14/Sep/2021 07:34:28] "GET /reservation HTTP/1.0" 200 56353
+[14/Sep/2021 07:34:29] "GET /static/favicon.png HTTP/1.0" 200 8919
+[14/Sep/2021 07:35:06] "GET /reservation HTTP/1.0" 200 56353
+[14/Sep/2021 07:35:07] "GET /static/favicon.png HTTP/1.0" 200 8919
+Internal Server Error: /reservation
+Traceback (most recent call last):
+  File "/home/respublicarunner/.local/share/virtualenvs/django-B1l6Lil1/lib/python3.9/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+  File "/home/respublicarunner/.local/share/virtualenvs/django-B1l6Lil1/lib/python3.9/site-packages/django/core/handlers/base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/respublicarunner/restaurant/django/restaurant/views.py", line 45, in reservation
+    date_start = datetime.strptime(
+  File "/usr/lib/python3.9/_strptime.py", line 568, in _strptime_datetime
+    tt, fraction, gmtoff_fraction = _strptime(data_string, format)
+  File "/usr/lib/python3.9/_strptime.py", line 349, in _strptime
+    raise ValueError("time data %r does not match format %r" %
+ValueError: time data '14/09/2021 ' does not match format '%d/%m/%Y %H:%M'
+[14/Sep/2021 07:35:26] "POST /reservation HTTP/1.0" 500 73308
+Internal Server Error: /reservation
+Traceback (most recent call last):
+  File "/home/respublicarunner/.local/share/virtualenvs/django-B1l6Lil1/lib/python3.9/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+  File "/home/respublicarunner/.local/share/virtualenvs/django-B1l6Lil1/lib/python3.9/site-packages/django/core/handlers/base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/respublicarunner/restaurant/django/restaurant/views.py", line 45, in reservation
+    date_start = datetime.strptime(
+  File "/usr/lib/python3.9/_strptime.py", line 568, in _strptime_datetime
+    tt, fraction, gmtoff_fraction = _strptime(data_string, format)
+  File "/usr/lib/python3.9/_strptime.py", line 349, in _strptime
+    raise ValueError("time data %r does not match format %r" %
+ValueError: time data '14/09/2021 ' does not match format '%d/%m/%Y %H:%M'
+[14/Sep/2021 07:35:28] "POST /reservation HTTP/1.0" 500 73308
+Internal Server Error: /reservation
+Traceback (most recent call last):
+  File "/home/respublicarunner/.local/share/virtualenvs/django-B1l6Lil1/lib/python3.9/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+  File "/home/respublicarunner/.local/share/virtualenvs/django-B1l6Lil1/lib/python3.9/site-packages/django/core/handlers/base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/respublicarunner/restaurant/django/restaurant/views.py", line 45, in reservation
+    date_start = datetime.strptime(
+  File "/usr/lib/python3.9/_strptime.py", line 568, in _strptime_datetime
+    tt, fraction, gmtoff_fraction = _strptime(data_string, format)
+  File "/usr/lib/python3.9/_strptime.py", line 349, in _strptime
+    raise ValueError("time data %r does not match format %r" %
+ValueError: time data '14/09/2021 ' does not match format '%d/%m/%Y %H:%M'
+[14/Sep/2021 07:35:35] "POST /reservation HTTP/1.0" 500 73326
+Internal Server Error: /reservation
+Traceback (most recent call last):
+  File "/home/respublicarunner/.local/share/virtualenvs/django-B1l6Lil1/lib/python3.9/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+  File "/home/respublicarunner/.local/share/virtualenvs/django-B1l6Lil1/lib/python3.9/site-packages/django/core/handlers/base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/respublicarunner/restaurant/django/restaurant/views.py", line 45, in reservation
+    date_start = datetime.strptime(
+  File "/usr/lib/python3.9/_strptime.py", line 568, in _strptime_datetime
+    tt, fraction, gmtoff_fraction = _strptime(data_string, format)
+  File "/usr/lib/python3.9/_strptime.py", line 349, in _strptime
+    raise ValueError("time data %r does not match format %r" %
+ValueError: time data '14/09/2021 ' does not match format '%d/%m/%Y %H:%M'
+[14/Sep/2021 07:35:38] "POST /reservation HTTP/1.0" 500 73328
+Internal Server Error: /reservation
+Traceback (most recent call last):
+  File "/home/respublicarunner/.local/share/virtualenvs/django-B1l6Lil1/lib/python3.9/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+  File "/home/respublicarunner/.local/share/virtualenvs/django-B1l6Lil1/lib/python3.9/site-packages/django/core/handlers/base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/respublicarunner/restaurant/django/restaurant/views.py", line 45, in reservation
+    date_start = datetime.strptime(
+  File "/usr/lib/python3.9/_strptime.py", line 568, in _strptime_datetime
+    tt, fraction, gmtoff_fraction = _strptime(data_string, format)
+  File "/usr/lib/python3.9/_strptime.py", line 349, in _strptime
+    raise ValueError("time data %r does not match format %r" %
+ValueError: time data '14/09/2021 ' does not match format '%d/%m/%Y %H:%M'
+[14/Sep/2021 07:35:38] "POST /reservation HTTP/1.0" 500 73328
+Internal Server Error: /reservation
+Traceback (most recent call last):
+  File "/home/respublicarunner/.local/share/virtualenvs/django-B1l6Lil1/lib/python3.9/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+  File "/home/respublicarunner/.local/share/virtualenvs/django-B1l6Lil1/lib/python3.9/site-packages/django/core/handlers/base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/respublicarunner/restaurant/django/restaurant/views.py", line 45, in reservation
+    date_start = datetime.strptime(
+  File "/usr/lib/python3.9/_strptime.py", line 568, in _strptime_datetime
+    tt, fraction, gmtoff_fraction = _strptime(data_string, format)
+  File "/usr/lib/python3.9/_strptime.py", line 349, in _strptime
+    raise ValueError("time data %r does not match format %r" %
+ValueError: time data '14/09/2021 ' does not match format '%d/%m/%Y %H:%M'
+[14/Sep/2021 07:35:39] "POST /reservation HTTP/1.0" 500 73328
+Internal Server Error: /reservation
+Traceback (most recent call last):
+  File "/home/respublicarunner/.local/share/virtualenvs/django-B1l6Lil1/lib/python3.9/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+  File "/home/respublicarunner/.local/share/virtualenvs/django-B1l6Lil1/lib/python3.9/site-packages/django/core/handlers/base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/respublicarunner/restaurant/django/restaurant/views.py", line 45, in reservation
+    date_start = datetime.strptime(
+  File "/usr/lib/python3.9/_strptime.py", line 568, in _strptime_datetime
+    tt, fraction, gmtoff_fraction = _strptime(data_string, format)
+  File "/usr/lib/python3.9/_strptime.py", line 349, in _strptime
+    raise ValueError("time data %r does not match format %r" %
+ValueError: time data '14/09/2021 1' does not match format '%d/%m/%Y %H:%M'
+[14/Sep/2021 07:35:43] "POST /reservation HTTP/1.0" 500 73339
+Internal Server Error: /reservation
+Traceback (most recent call last):
+  File "/home/respublicarunner/.local/share/virtualenvs/django-B1l6Lil1/lib/python3.9/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+  File "/home/respublicarunner/.local/share/virtualenvs/django-B1l6Lil1/lib/python3.9/site-packages/django/core/handlers/base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/respublicarunner/restaurant/django/restaurant/views.py", line 45, in reservation
+    date_start = datetime.strptime(
+  File "/usr/lib/python3.9/_strptime.py", line 568, in _strptime_datetime
+    tt, fraction, gmtoff_fraction = _strptime(data_string, format)
+  File "/usr/lib/python3.9/_strptime.py", line 349, in _strptime
+    raise ValueError("time data %r does not match format %r" %
+ValueError: time data '14/09/2021 1' does not match format '%d/%m/%Y %H:%M'
+[14/Sep/2021 07:35:43] "POST /reservation HTTP/1.0" 500 73339
+Internal Server Error: /reservation
+Traceback (most recent call last):
+  File "/home/respublicarunner/.local/share/virtualenvs/django-B1l6Lil1/lib/python3.9/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+  File "/home/respublicarunner/.local/share/virtualenvs/django-B1l6Lil1/lib/python3.9/site-packages/django/core/handlers/base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/respublicarunner/restaurant/django/restaurant/views.py", line 45, in reservation
+    date_start = datetime.strptime(
+  File "/usr/lib/python3.9/_strptime.py", line 568, in _strptime_datetime
+    tt, fraction, gmtoff_fraction = _strptime(data_string, format)
+  File "/usr/lib/python3.9/_strptime.py", line 349, in _strptime
+    raise ValueError("time data %r does not match format %r" %
+ValueError: time data '14/09/2021 1' does not match format '%d/%m/%Y %H:%M'
+[14/Sep/2021 07:35:43] "POST /reservation HTTP/1.0" 500 73339
+Internal Server Error: /reservation
+Traceback (most recent call last):
+  File "/home/respublicarunner/.local/share/virtualenvs/django-B1l6Lil1/lib/python3.9/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+  File "/home/respublicarunner/.local/share/virtualenvs/django-B1l6Lil1/lib/python3.9/site-packages/django/core/handlers/base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/respublicarunner/restaurant/django/restaurant/views.py", line 45, in reservation
+    date_start = datetime.strptime(
+  File "/usr/lib/python3.9/_strptime.py", line 568, in _strptime_datetime
+    tt, fraction, gmtoff_fraction = _strptime(data_string, format)
+  File "/usr/lib/python3.9/_strptime.py", line 349, in _strptime
+    raise ValueError("time data %r does not match format %r" %
+ValueError: time data '14/09/2021 1' does not match format '%d/%m/%Y %H:%M'
+[14/Sep/2021 07:35:43] "POST /reservation HTTP/1.0" 500 73339
+[14/Sep/2021 07:36:08] "GET /franchise HTTP/1.0" 200 14464
+[14/Sep/2021 07:36:08] "GET /static/app/img/main-logo.png HTTP/1.0" 200 14515
+[14/Sep/2021 07:36:08] "GET /static/Franchise.css HTTP/1.0" 404 1904
+[14/Sep/2021 07:36:08] "GET /static/Franchise.js HTTP/1.0" 200 31903
+[14/Sep/2021 07:36:08] "GET /static/app/img/proces_photo.jpg HTTP/1.0" 200 587814
+Not Found: /bundle.bundle.js
+[14/Sep/2021 07:36:08] "GET /bundle.bundle.js HTTP/1.0" 404 3870
+[14/Sep/2021 07:36:08] "GET /static/app/img/icon1.png HTTP/1.0" 200 7424
+[14/Sep/2021 07:36:08] "GET /static/app/img/icon2.png HTTP/1.0" 200 7928
+[14/Sep/2021 07:36:08] "GET /static/app/img/icon3.png HTTP/1.0" 200 8733
+[14/Sep/2021 07:36:08] "GET /static/app/img/icon4.png HTTP/1.0" 200 11237
+[14/Sep/2021 07:36:08] "GET /static/app/img/icon5.png HTTP/1.0" 200 11914
+[14/Sep/2021 07:36:08] "GET /static/Franchise.js? HTTP/1.0" 200 31903
+[14/Sep/2021 07:36:09] "GET /static/app/img/icon6.png HTTP/1.0" 200 7970
+[14/Sep/2021 07:36:09] "GET /static/app/img/icon7.png HTTP/1.0" 200 10483
+[14/Sep/2021 07:36:09] "GET /static/app/img/icon8.png HTTP/1.0" 200 13313
+[14/Sep/2021 07:36:09] "GET /static/app/img/icon9.png HTTP/1.0" 200 8412
+[14/Sep/2021 07:36:09] "GET /static/app/img/icon10.png HTTP/1.0" 200 13702
+[14/Sep/2021 07:36:09] "GET /static/app/img/icon11.png HTTP/1.0" 200 8850
+[14/Sep/2021 07:36:09] "GET /static/app/img/icon12.png HTTP/1.0" 200 7373
+[14/Sep/2021 07:36:09] "GET /static/app/img/contacts-form.jpg HTTP/1.0" 200 181100
+[14/Sep/2021 07:36:09] "GET /static/app/img/user.png HTTP/1.0" 200 333
+[14/Sep/2021 07:36:10] "GET / HTTP/1.0" 200 49510
+[14/Sep/2021 07:36:13] "GET /career HTTP/1.0" 200 50895
+[14/Sep/2021 07:36:13] "GET /static/Career.js HTTP/1.0" 200 36
+[14/Sep/2021 07:36:13] "GET /static/app/img/lefttop-job.png HTTP/1.0" 200 19267
+[14/Sep/2021 07:36:13] "GET /static/Career.css HTTP/1.0" 404 1895
+[14/Sep/2021 07:36:13] "GET /static/app/img/leftbottom-job.png HTTP/1.0" 200 140719
+[14/Sep/2021 07:36:13] "GET /static/app/img/righttop-job.png HTTP/1.0" 200 290494
+[14/Sep/2021 07:36:13] "GET /static/app/img/job_back.jpg HTTP/1.0" 200 937406
+[14/Sep/2021 07:36:13] "GET /static/app/img/rightbottom-job.png HTTP/1.0" 200 99778
+[14/Sep/2021 07:36:13] "GET /static/app/img/cook.png HTTP/1.0" 200 993054
+[14/Sep/2021 07:36:13] "GET /static/app/img/clickme.png HTTP/1.0" 200 35794
+[14/Sep/2021 07:36:26] "POST /feedback HTTP/1.0" 200 21
+[14/Sep/2021 07:36:30] "GET /career HTTP/1.0" 200 50895
+[14/Sep/2021 07:36:30] "GET /static/Career.css HTTP/1.0" 404 1895
+[14/Sep/2021 07:36:33] "GET / HTTP/1.0" 200 49510
+[14/Sep/2021 07:37:15] "GET /static/app/img/password-ico.png HTTP/1.0" 200 501
+[14/Sep/2021 07:37:25] "GET /contacts HTTP/1.0" 200 48211
+[14/Sep/2021 07:37:34] "GET /events HTTP/1.0" 200 51817
+[14/Sep/2021 07:52:26] "GET /reservation HTTP/1.0" 200 56353
+[14/Sep/2021 07:52:27] "GET /static/style.css HTTP/1.0" 304 0
+[14/Sep/2021 07:52:27] "GET /static/app/img/menu.png HTTP/1.0" 304 0
+[14/Sep/2021 07:52:27] "GET /static/Reservation.js HTTP/1.0" 200 64503
+[14/Sep/2021 07:52:27] "GET /static/Feedback.js HTTP/1.0" 304 0
+[14/Sep/2021 07:52:27] "GET /static/bundle.bundle.js HTTP/1.0" 304 0
+[14/Sep/2021 07:52:27] "GET /static/Reservation.css HTTP/1.0" 304 0
+[14/Sep/2021 07:52:27] "GET /static/Feedback.css HTTP/1.0" 404 1901
+[14/Sep/2021 07:52:27] "GET /static/app/img/close-menu.png HTTP/1.0" 304 0
+[14/Sep/2021 07:52:27] "GET /static/app/fonts/MullerRegular.woff2 HTTP/1.0" 304 0
+[14/Sep/2021 07:52:27] "GET /static/app/fonts/bebasneuebold.woff2 HTTP/1.0" 304 0
+[14/Sep/2021 07:52:27] "GET /static/app/fonts/bebasneueregular.woff2 HTTP/1.0" 304 0
+[14/Sep/2021 07:52:27] "GET /static/app/img/underlogo.png HTTP/1.0" 304 0
+[14/Sep/2021 07:52:27] "GET /static/app/img/header-back.jpg HTTP/1.0" 304 0
+[14/Sep/2021 07:52:27] "GET /static/app/img/logo@2x.png HTTP/1.0" 304 0
+[14/Sep/2021 07:52:27] "GET /static/app/img/phone.png HTTP/1.0" 304 0
+[14/Sep/2021 07:52:27] "GET /static/app/img/mobile-logo.png HTTP/1.0" 304 0
+[14/Sep/2021 07:52:27] "GET /static/app/img/login-icon.png HTTP/1.0" 304 0
+[14/Sep/2021 07:52:27] "GET /static/app/img/feedback-icon.png HTTP/1.0" 304 0
+[14/Sep/2021 07:52:27] "GET /static/app/img/arrow-right.png HTTP/1.0" 304 0
+[14/Sep/2021 07:52:27] "GET /static/Feedback.css HTTP/1.0" 404 1901
+[14/Sep/2021 07:52:27] "GET /static/app/fonts/MullerLight.woff2 HTTP/1.0" 304 0
+[14/Sep/2021 07:52:27] "GET /static/app/img/map-top.png HTTP/1.0" 304 0
+[14/Sep/2021 07:52:27] "GET /static/app/img/yandex.png HTTP/1.0" 304 0
+[14/Sep/2021 07:52:27] "GET /static/app/img/footer_logo.png HTTP/1.0" 304 0
+[14/Sep/2021 07:52:27] "GET /static/app/img/insta.png HTTP/1.0" 304 0
+[14/Sep/2021 07:52:27] "GET /static/app/img/vk.png HTTP/1.0" 304 0
+[14/Sep/2021 07:52:27] "GET /static/app/img/web.png HTTP/1.0" 304 0
+[14/Sep/2021 07:52:27] "GET /static/app/img/product1.jpg HTTP/1.0" 304 0
+[14/Sep/2021 07:52:27] "GET /static/app/img/table.jpg HTTP/1.0" 304 0
+[14/Sep/2021 07:52:27] "GET /static/app/img/a-profile-icon.png HTTP/1.0" 304 0
+[14/Sep/2021 07:52:27] "GET /static/app/img/close.png HTTP/1.0" 304 0
+[14/Sep/2021 07:52:27] "GET /media/tables/%D0%9F%D0%BE%D0%BA%D1%80%D1%8B%D1%88%D0%BA%D0%B8%D0%BD%D0%B0.svg HTTP/1.0" 304 0
+[14/Sep/2021 07:52:27] "GET /static/app/img/locker.png HTTP/1.0" 304 0
+[14/Sep/2021 07:59:44] "GET / HTTP/1.1" 200 49510
+[14/Sep/2021 08:24:43] "GET / HTTP/1.0" 200 49510
+[14/Sep/2021 08:24:47] "GET /admin HTTP/1.0" 301 0
+[14/Sep/2021 08:24:47] "GET /admin/ HTTP/1.0" 302 0
+[14/Sep/2021 08:24:47] "GET /admin/login/?next=/admin/ HTTP/1.0" 200 2283
+[14/Sep/2021 08:24:48] "GET /static/admin/css/base.css HTTP/1.0" 200 19513
+[14/Sep/2021 08:24:48] "GET /static/admin/css/nav_sidebar.css HTTP/1.0" 200 2271
+[14/Sep/2021 08:24:48] "GET /static/admin/css/login.css HTTP/1.0" 200 939
+[14/Sep/2021 08:24:48] "GET /static/admin/css/responsive.css HTTP/1.0" 200 18545
+[14/Sep/2021 08:24:48] "GET /static/admin/js/nav_sidebar.js HTTP/1.0" 200 1360
+[14/Sep/2021 08:24:48] "GET /static/admin/css/fonts.css HTTP/1.0" 200 423
+[14/Sep/2021 08:24:48] "GET /static/admin/fonts/Roboto-Light-webfont.woff HTTP/1.0" 200 85692
+[14/Sep/2021 08:24:48] "GET /static/admin/fonts/Roboto-Regular-webfont.woff HTTP/1.0" 200 85876
+Not Found: /favicon.ico
+[14/Sep/2021 08:24:48] "GET /favicon.ico HTTP/1.0" 404 3855
+[14/Sep/2021 08:24:51] "POST /admin/login/?next=/admin/ HTTP/1.0" 302 0
+[14/Sep/2021 08:24:51] "GET /admin/ HTTP/1.0" 200 10207
+[14/Sep/2021 08:24:51] "GET /static/admin/css/dashboard.css HTTP/1.0" 200 380
+[14/Sep/2021 08:24:52] "GET /static/admin/img/icon-addlink.svg HTTP/1.0" 200 331
+[14/Sep/2021 08:24:52] "GET /static/admin/img/icon-changelink.svg HTTP/1.0" 200 380
+[14/Sep/2021 08:24:52] "GET /static/admin/fonts/Roboto-Bold-webfont.woff HTTP/1.0" 200 86184
+[14/Sep/2021 08:24:58] "GET /admin/ HTTP/1.0" 200 10207
+[14/Sep/2021 08:25:00] "GET /admin/restaurant/order/ HTTP/1.0" 200 9974
+[14/Sep/2021 08:25:00] "GET /static/admin/css/changelists.css HTTP/1.0" 200 6874
+[14/Sep/2021 08:25:00] "GET /static/admin/js/jquery.init.js HTTP/1.0" 200 347
+[14/Sep/2021 08:25:00] "GET /static/admin/js/vendor/jquery/jquery.js HTTP/1.0" 200 287630
+[14/Sep/2021 08:25:00] "GET /static/admin/js/core.js HTTP/1.0" 200 5698
+[14/Sep/2021 08:25:00] "GET /admin/jsi18n/ HTTP/1.0" 200 15618
+[14/Sep/2021 08:25:00] "GET /static/admin/js/admin/RelatedObjectLookups.js HTTP/1.0" 200 5984
+[14/Sep/2021 08:25:00] "GET /static/admin/js/actions.js HTTP/1.0" 200 7664
+[14/Sep/2021 08:25:00] "GET /static/admin/js/urlify.js HTTP/1.0" 200 7902
+[14/Sep/2021 08:25:00] "GET /static/admin/js/prepopulate.js HTTP/1.0" 200 1531
+[14/Sep/2021 08:25:00] "GET /static/admin/js/vendor/xregexp/xregexp.js HTTP/1.0" 200 232381
+[14/Sep/2021 08:25:01] "GET /static/admin/js/core.js? HTTP/1.0" 200 5698
+[14/Sep/2021 08:25:01] "GET /static/admin/img/tooltag-add.svg HTTP/1.0" 200 331
+[14/Sep/2021 08:25:05] "GET /admin/restaurant/order/?created_at__gte=2021-09-07+00%3A00%3A00%2B00%3A00&created_at__lt=2021-09-15+00%3A00%3A00%2B00%3A00 HTTP/1.0" 200 10880
+[14/Sep/2021 08:25:05] "GET /static/admin/js/core.js HTTP/1.0" 200 5698
+[14/Sep/2021 08:25:05] "GET /admin/jsi18n/ HTTP/1.0" 200 15618
+[14/Sep/2021 08:25:08] "GET /admin/restaurant/event/ HTTP/1.0" 200 8239
+[14/Sep/2021 08:25:08] "GET /admin/jsi18n/ HTTP/1.0" 200 15618
+[14/Sep/2021 08:25:10] "GET /admin/restaurant/event/add/ HTTP/1.0" 200 12533
+[14/Sep/2021 08:25:10] "GET /static/admin/css/forms.css HTTP/1.0" 200 8804
+[14/Sep/2021 08:25:10] "GET /static/admin/js/calendar.js HTTP/1.0" 200 8466
+[14/Sep/2021 08:25:10] "GET /static/admin/js/admin/DateTimeShortcuts.js HTTP/1.0" 200 19634
+[14/Sep/2021 08:25:10] "GET /admin/jsi18n/ HTTP/1.0" 200 15618
+[14/Sep/2021 08:25:10] "GET /static/admin/css/widgets.css HTTP/1.0" 200 11097
+[14/Sep/2021 08:25:10] "GET /static/admin/js/prepopulate_init.js HTTP/1.0" 200 492
+[14/Sep/2021 08:25:10] "GET /static/admin/img/icon-deletelink.svg HTTP/1.0" 200 392
+[14/Sep/2021 08:25:10] "GET /static/admin/js/change_form.js HTTP/1.0" 200 606
+[14/Sep/2021 08:25:10] "GET /static/admin/img/icon-clock.svg HTTP/1.0" 200 677
+[14/Sep/2021 08:25:10] "GET /static/admin/img/icon-calendar.svg HTTP/1.0" 200 1086
+[14/Sep/2021 08:25:20] "GET /static/admin/img/calendar-icons.svg HTTP/1.0" 200 1094
+[14/Sep/2021 08:25:59,053] - Broken pipe from ('103.201.129.130', 56966)
+
+[14/Sep/2021 08:27:07] "GET /admin/restaurant/event/add/ HTTP/1.0" 200 12533
+[14/Sep/2021 08:27:15] "POST /admin/restaurant/event/add/ HTTP/1.0" 302 0
+[14/Sep/2021 08:27:15] "GET /admin/restaurant/event/1/change/ HTTP/1.0" 200 13562
+[14/Sep/2021 08:27:15] "GET /admin/jsi18n/ HTTP/1.0" 200 15618
+[14/Sep/2021 08:27:15] "GET /static/admin/img/icon-yes.svg HTTP/1.0" 200 436
+[14/Sep/2021 08:27:30] "GET / HTTP/1.0" 200 49510
+[14/Sep/2021 08:27:32] "GET /events HTTP/1.0" 200 53188
+[14/Sep/2021 08:27:32] "GET /media/images/%D1%81%D1%83%D0%BF_%D1%81%D1%8B%D1%80%D0%BD%D1%8B%D0%B9.jpg HTTP/1.0" 200 12827
+[14/Sep/2021 08:27:37] "GET /reservation?restaraunt=1&date=15-09-2021 HTTP/1.0" 200 56374
+[14/Sep/2021 08:27:38] "GET /static/Reservation.js HTTP/1.0" 200 64503
+[14/Sep/2021 08:27:55] "GET /admin/restaurant/event/add/ HTTP/1.0" 200 12533
+[14/Sep/2021 08:27:55] "GET /admin/jsi18n/ HTTP/1.0" 200 15618
+[14/Sep/2021 08:28:17] "POST /admin/restaurant/event/add/ HTTP/1.0" 302 0
+[14/Sep/2021 08:28:17] "GET /admin/restaurant/event/2/change/ HTTP/1.0" 200 13550
+[14/Sep/2021 08:28:18] "GET /admin/jsi18n/ HTTP/1.0" 200 15618
+[14/Sep/2021 08:28:19] "GET /events HTTP/1.0" 200 54519
+[14/Sep/2021 08:28:20] "GET /media/images/%D1%81%D1%83%D0%BF_%D1%81%D1%8B%D1%80%D0%BD%D1%8B%D0%B9.jpg HTTP/1.0" 304 0
+[14/Sep/2021 08:28:20] "GET /media/images/%D1%81%D1%83%D0%BF_%D1%81%D1%8B%D1%80%D0%BD%D1%8B%D0%B9_sKO63KT.jpg HTTP/1.0" 200 12827
+[14/Sep/2021 08:28:21] "GET /static/favicon.png HTTP/1.0" 200 8919
+[14/Sep/2021 08:28:29] "GET /reservation?restaraunt=2&date=16-09-2021 HTTP/1.0" 200 56374
+[14/Sep/2021 08:28:31] "GET /events HTTP/1.0" 200 54519
+[14/Sep/2021 08:28:32] "GET /media/images/%D1%81%D1%83%D0%BF_%D1%81%D1%8B%D1%80%D0%BD%D1%8B%D0%B9_sKO63KT.jpg HTTP/1.0" 304 0
+[14/Sep/2021 08:28:32] "GET /media/images/%D1%81%D1%83%D0%BF_%D1%81%D1%8B%D1%80%D0%BD%D1%8B%D0%B9.jpg HTTP/1.0" 304 0
+[14/Sep/2021 08:28:33] "GET /reservation?restaraunt=1&date=15-09-2021 HTTP/1.0" 200 56374
+[14/Sep/2021 08:28:36] "GET / HTTP/1.0" 200 49510
+[14/Sep/2021 08:29:31] "GET /menu HTTP/1.0" 200 358813
+[14/Sep/2021 08:29:31] "GET /static/app/img/download-menu.png HTTP/1.0" 200 1193
+[14/Sep/2021 08:29:32] "GET /static/app/img/rightside.png HTTP/1.0" 200 221631
+[14/Sep/2021 08:30:47] "GET /events HTTP/1.0" 200 54519
+[14/Sep/2021 08:30:47] "GET /media/images/%D1%81%D1%83%D0%BF_%D1%81%D1%8B%D1%80%D0%BD%D1%8B%D0%B9.jpg HTTP/1.0" 304 0
+[14/Sep/2021 08:30:47] "GET /media/images/%D1%81%D1%83%D0%BF_%D1%81%D1%8B%D1%80%D0%BD%D1%8B%D0%B9_sKO63KT.jpg HTTP/1.0" 304 0
+[14/Sep/2021 08:31:10] "GET /menu HTTP/1.0" 200 358813
+[14/Sep/2021 08:31:14] "GET /admin/restaurant/menue/ HTTP/1.0" 200 67080
+[14/Sep/2021 08:31:14] "GET /admin/jsi18n/ HTTP/1.0" 200 15618
+[14/Sep/2021 08:31:20] "GET /admin/restaurant/menue/?category__id__exact=1 HTTP/1.0" 200 16799
+[14/Sep/2021 08:31:20] "GET /admin/jsi18n/ HTTP/1.0" 200 15618
+[14/Sep/2021 08:31:27] "GET /admin/restaurant/menue/?category__id__exact=2 HTTP/1.0" 200 16799
+[14/Sep/2021 08:31:27] "GET /admin/jsi18n/ HTTP/1.0" 200 15618
+[14/Sep/2021 08:31:32] "GET /admin/restaurant/category/ HTTP/1.0" 200 23714
+[14/Sep/2021 08:31:32] "GET /admin/jsi18n/ HTTP/1.0" 200 15618
+[14/Sep/2021 08:31:53] "POST /admin/restaurant/category/ HTTP/1.0" 200 10858
+[14/Sep/2021 08:31:53] "GET /static/admin/js/cancel.js HTTP/1.0" 200 884
+Internal Server Error: /admin/restaurant/category/
+Traceback (most recent call last):
+  File "/home/respublicarunner/.local/share/virtualenvs/django-B1l6Lil1/lib/python3.9/site-packages/django/db/backends/base/base.py", line 242, in _commit
+    return self.connection.commit()
+sqlite3.IntegrityError: FOREIGN KEY constraint failed
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/respublicarunner/.local/share/virtualenvs/django-B1l6Lil1/lib/python3.9/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+  File "/home/respublicarunner/.local/share/virtualenvs/django-B1l6Lil1/lib/python3.9/site-packages/django/core/handlers/base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/respublicarunner/.local/share/virtualenvs/django-B1l6Lil1/lib/python3.9/site-packages/django/contrib/admin/options.py", line 616, in wrapper
+    return self.admin_site.admin_view(view)(*args, **kwargs)
+  File "/home/respublicarunner/.local/share/virtualenvs/django-B1l6Lil1/lib/python3.9/site-packages/django/utils/decorators.py", line 130, in _wrapped_view
+    response = view_func(request, *args, **kwargs)
+  File "/home/respublicarunner/.local/share/virtualenvs/django-B1l6Lil1/lib/python3.9/site-packages/django/views/decorators/cache.py", line 44, in _wrapped_view_func
+    response = view_func(request, *args, **kwargs)
+  File "/home/respublicarunner/.local/share/virtualenvs/django-B1l6Lil1/lib/python3.9/site-packages/django/contrib/admin/sites.py", line 232, in inner
+    return view(request, *args, **kwargs)
+  File "/home/respublicarunner/.local/share/virtualenvs/django-B1l6Lil1/lib/python3.9/site-packages/django/utils/decorators.py", line 43, in _wrapper
+    return bound_method(*args, **kwargs)
+  File "/home/respublicarunner/.local/share/virtualenvs/django-B1l6Lil1/lib/python3.9/site-packages/django/utils/decorators.py", line 130, in _wrapped_view
+    response = view_func(request, *args, **kwargs)
+  File "/home/respublicarunner/.local/share/virtualenvs/django-B1l6Lil1/lib/python3.9/site-packages/django/contrib/admin/options.py", line 1739, in changelist_view
+    response = self.response_action(request, queryset=cl.get_queryset(request))
+  File "/home/respublicarunner/.local/share/virtualenvs/django-B1l6Lil1/lib/python3.9/site-packages/django/contrib/admin/options.py", line 1408, in response_action
+    response = func(self, request, queryset)
+  File "/home/respublicarunner/.local/share/virtualenvs/django-B1l6Lil1/lib/python3.9/site-packages/django/contrib/admin/actions.py", line 45, in delete_selected
+    modeladmin.delete_queryset(request, queryset)
+  File "/home/respublicarunner/.local/share/virtualenvs/django-B1l6Lil1/lib/python3.9/site-packages/django/contrib/admin/options.py", line 1109, in delete_queryset
+    queryset.delete()
+  File "/home/respublicarunner/.local/share/virtualenvs/django-B1l6Lil1/lib/python3.9/site-packages/django/db/models/query.py", line 746, in delete
+    deleted, _rows_count = collector.delete()
+  File "/home/respublicarunner/.local/share/virtualenvs/django-B1l6Lil1/lib/python3.9/site-packages/django/db/models/deletion.py", line 435, in delete
+    signals.post_delete.send(
+  File "/home/respublicarunner/.local/share/virtualenvs/django-B1l6Lil1/lib/python3.9/site-packages/django/db/transaction.py", line 246, in __exit__
+    connection.commit()
+  File "/home/respublicarunner/.local/share/virtualenvs/django-B1l6Lil1/lib/python3.9/site-packages/django/utils/asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+  File "/home/respublicarunner/.local/share/virtualenvs/django-B1l6Lil1/lib/python3.9/site-packages/django/db/backends/base/base.py", line 266, in commit
+    self._commit()
+  File "/home/respublicarunner/.local/share/virtualenvs/django-B1l6Lil1/lib/python3.9/site-packages/django/db/backends/base/base.py", line 242, in _commit
+    return self.connection.commit()
+  File "/home/respublicarunner/.local/share/virtualenvs/django-B1l6Lil1/lib/python3.9/site-packages/django/db/utils.py", line 90, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "/home/respublicarunner/.local/share/virtualenvs/django-B1l6Lil1/lib/python3.9/site-packages/django/db/backends/base/base.py", line 242, in _commit
+    return self.connection.commit()
+django.db.utils.IntegrityError: FOREIGN KEY constraint failed
+[14/Sep/2021 08:31:55] "POST /admin/restaurant/category/ HTTP/1.0" 500 155472
+[14/Sep/2021 08:32:04] "POST /admin/restaurant/category/ HTTP/1.0" 200 10858
+Internal Server Error: /admin/restaurant/category/
+Traceback (most recent call last):
+  File "/home/respublicarunner/.local/share/virtualenvs/django-B1l6Lil1/lib/python3.9/site-packages/django/db/backends/base/base.py", line 242, in _commit
+    return self.connection.commit()
+sqlite3.IntegrityError: FOREIGN KEY constraint failed
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/respublicarunner/.local/share/virtualenvs/django-B1l6Lil1/lib/python3.9/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+  File "/home/respublicarunner/.local/share/virtualenvs/django-B1l6Lil1/lib/python3.9/site-packages/django/core/handlers/base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/respublicarunner/.local/share/virtualenvs/django-B1l6Lil1/lib/python3.9/site-packages/django/contrib/admin/options.py", line 616, in wrapper
+    return self.admin_site.admin_view(view)(*args, **kwargs)
+  File "/home/respublicarunner/.local/share/virtualenvs/django-B1l6Lil1/lib/python3.9/site-packages/django/utils/decorators.py", line 130, in _wrapped_view
+    response = view_func(request, *args, **kwargs)
+  File "/home/respublicarunner/.local/share/virtualenvs/django-B1l6Lil1/lib/python3.9/site-packages/django/views/decorators/cache.py", line 44, in _wrapped_view_func
+    response = view_func(request, *args, **kwargs)
+  File "/home/respublicarunner/.local/share/virtualenvs/django-B1l6Lil1/lib/python3.9/site-packages/django/contrib/admin/sites.py", line 232, in inner
+    return view(request, *args, **kwargs)
+  File "/home/respublicarunner/.local/share/virtualenvs/django-B1l6Lil1/lib/python3.9/site-packages/django/utils/decorators.py", line 43, in _wrapper
+    return bound_method(*args, **kwargs)
+  File "/home/respublicarunner/.local/share/virtualenvs/django-B1l6Lil1/lib/python3.9/site-packages/django/utils/decorators.py", line 130, in _wrapped_view
+    response = view_func(request, *args, **kwargs)
+  File "/home/respublicarunner/.local/share/virtualenvs/django-B1l6Lil1/lib/python3.9/site-packages/django/contrib/admin/options.py", line 1739, in changelist_view
+    response = self.response_action(request, queryset=cl.get_queryset(request))
+  File "/home/respublicarunner/.local/share/virtualenvs/django-B1l6Lil1/lib/python3.9/site-packages/django/contrib/admin/options.py", line 1408, in response_action
+    response = func(self, request, queryset)
+  File "/home/respublicarunner/.local/share/virtualenvs/django-B1l6Lil1/lib/python3.9/site-packages/django/contrib/admin/actions.py", line 45, in delete_selected
+    modeladmin.delete_queryset(request, queryset)
+  File "/home/respublicarunner/.local/share/virtualenvs/django-B1l6Lil1/lib/python3.9/site-packages/django/contrib/admin/options.py", line 1109, in delete_queryset
+    queryset.delete()
+  File "/home/respublicarunner/.local/share/virtualenvs/django-B1l6Lil1/lib/python3.9/site-packages/django/db/models/query.py", line 746, in delete
+    deleted, _rows_count = collector.delete()
+  File "/home/respublicarunner/.local/share/virtualenvs/django-B1l6Lil1/lib/python3.9/site-packages/django/db/models/deletion.py", line 435, in delete
+    signals.post_delete.send(
+  File "/home/respublicarunner/.local/share/virtualenvs/django-B1l6Lil1/lib/python3.9/site-packages/django/db/transaction.py", line 246, in __exit__
+    connection.commit()
+  File "/home/respublicarunner/.local/share/virtualenvs/django-B1l6Lil1/lib/python3.9/site-packages/django/utils/asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+  File "/home/respublicarunner/.local/share/virtualenvs/django-B1l6Lil1/lib/python3.9/site-packages/django/db/backends/base/base.py", line 266, in commit
+    self._commit()
+  File "/home/respublicarunner/.local/share/virtualenvs/django-B1l6Lil1/lib/python3.9/site-packages/django/db/backends/base/base.py", line 242, in _commit
+    return self.connection.commit()
+  File "/home/respublicarunner/.local/share/virtualenvs/django-B1l6Lil1/lib/python3.9/site-packages/django/db/utils.py", line 90, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "/home/respublicarunner/.local/share/virtualenvs/django-B1l6Lil1/lib/python3.9/site-packages/django/db/backends/base/base.py", line 242, in _commit
+    return self.connection.commit()
+django.db.utils.IntegrityError: FOREIGN KEY constraint failed
+[14/Sep/2021 08:32:06] "POST /admin/restaurant/category/ HTTP/1.0" 500 155472
+Internal Server Error: /admin/restaurant/category/
+Traceback (most recent call last):
+  File "/home/respublicarunner/.local/share/virtualenvs/django-B1l6Lil1/lib/python3.9/site-packages/django/db/backends/base/base.py", line 242, in _commit
+    return self.connection.commit()
+sqlite3.IntegrityError: FOREIGN KEY constraint failed
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/respublicarunner/.local/share/virtualenvs/django-B1l6Lil1/lib/python3.9/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+  File "/home/respublicarunner/.local/share/virtualenvs/django-B1l6Lil1/lib/python3.9/site-packages/django/core/handlers/base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/respublicarunner/.local/share/virtualenvs/django-B1l6Lil1/lib/python3.9/site-packages/django/contrib/admin/options.py", line 616, in wrapper
+    return self.admin_site.admin_view(view)(*args, **kwargs)
+  File "/home/respublicarunner/.local/share/virtualenvs/django-B1l6Lil1/lib/python3.9/site-packages/django/utils/decorators.py", line 130, in _wrapped_view
+    response = view_func(request, *args, **kwargs)
+  File "/home/respublicarunner/.local/share/virtualenvs/django-B1l6Lil1/lib/python3.9/site-packages/django/views/decorators/cache.py", line 44, in _wrapped_view_func
+    response = view_func(request, *args, **kwargs)
+  File "/home/respublicarunner/.local/share/virtualenvs/django-B1l6Lil1/lib/python3.9/site-packages/django/contrib/admin/sites.py", line 232, in inner
+    return view(request, *args, **kwargs)
+  File "/home/respublicarunner/.local/share/virtualenvs/django-B1l6Lil1/lib/python3.9/site-packages/django/utils/decorators.py", line 43, in _wrapper
+    return bound_method(*args, **kwargs)
+  File "/home/respublicarunner/.local/share/virtualenvs/django-B1l6Lil1/lib/python3.9/site-packages/django/utils/decorators.py", line 130, in _wrapped_view
+    response = view_func(request, *args, **kwargs)
+  File "/home/respublicarunner/.local/share/virtualenvs/django-B1l6Lil1/lib/python3.9/site-packages/django/contrib/admin/options.py", line 1739, in changelist_view
+    response = self.response_action(request, queryset=cl.get_queryset(request))
+  File "/home/respublicarunner/.local/share/virtualenvs/django-B1l6Lil1/lib/python3.9/site-packages/django/contrib/admin/options.py", line 1408, in response_action
+    response = func(self, request, queryset)
+  File "/home/respublicarunner/.local/share/virtualenvs/django-B1l6Lil1/lib/python3.9/site-packages/django/contrib/admin/actions.py", line 45, in delete_selected
+    modeladmin.delete_queryset(request, queryset)
+  File "/home/respublicarunner/.local/share/virtualenvs/django-B1l6Lil1/lib/python3.9/site-packages/django/contrib/admin/options.py", line 1109, in delete_queryset
+    queryset.delete()
+  File "/home/respublicarunner/.local/share/virtualenvs/django-B1l6Lil1/lib/python3.9/site-packages/django/db/models/query.py", line 746, in delete
+    deleted, _rows_count = collector.delete()
+  File "/home/respublicarunner/.local/share/virtualenvs/django-B1l6Lil1/lib/python3.9/site-packages/django/db/models/deletion.py", line 435, in delete
+    signals.post_delete.send(
+  File "/home/respublicarunner/.local/share/virtualenvs/django-B1l6Lil1/lib/python3.9/site-packages/django/db/transaction.py", line 246, in __exit__
+    connection.commit()
+  File "/home/respublicarunner/.local/share/virtualenvs/django-B1l6Lil1/lib/python3.9/site-packages/django/utils/asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+  File "/home/respublicarunner/.local/share/virtualenvs/django-B1l6Lil1/lib/python3.9/site-packages/django/db/backends/base/base.py", line 266, in commit
+    self._commit()
+  File "/home/respublicarunner/.local/share/virtualenvs/django-B1l6Lil1/lib/python3.9/site-packages/django/db/backends/base/base.py", line 242, in _commit
+    return self.connection.commit()
+  File "/home/respublicarunner/.local/share/virtualenvs/django-B1l6Lil1/lib/python3.9/site-packages/django/db/utils.py", line 90, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "/home/respublicarunner/.local/share/virtualenvs/django-B1l6Lil1/lib/python3.9/site-packages/django/db/backends/base/base.py", line 242, in _commit
+    return self.connection.commit()
+django.db.utils.IntegrityError: FOREIGN KEY constraint failed
+[14/Sep/2021 08:32:34] "POST /admin/restaurant/category/ HTTP/1.0" 500 155472
+[14/Sep/2021 08:32:38] "GET /admin/restaurant/category/ HTTP/1.0" 200 23714
+[14/Sep/2021 08:32:41] "POST /admin/restaurant/category/ HTTP/1.0" 200 10858
+Internal Server Error: /admin/restaurant/category/
+Traceback (most recent call last):
+  File "/home/respublicarunner/.local/share/virtualenvs/django-B1l6Lil1/lib/python3.9/site-packages/django/db/backends/base/base.py", line 242, in _commit
+    return self.connection.commit()
+sqlite3.IntegrityError: FOREIGN KEY constraint failed
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/respublicarunner/.local/share/virtualenvs/django-B1l6Lil1/lib/python3.9/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+  File "/home/respublicarunner/.local/share/virtualenvs/django-B1l6Lil1/lib/python3.9/site-packages/django/core/handlers/base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/respublicarunner/.local/share/virtualenvs/django-B1l6Lil1/lib/python3.9/site-packages/django/contrib/admin/options.py", line 616, in wrapper
+    return self.admin_site.admin_view(view)(*args, **kwargs)
+  File "/home/respublicarunner/.local/share/virtualenvs/django-B1l6Lil1/lib/python3.9/site-packages/django/utils/decorators.py", line 130, in _wrapped_view
+    response = view_func(request, *args, **kwargs)
+  File "/home/respublicarunner/.local/share/virtualenvs/django-B1l6Lil1/lib/python3.9/site-packages/django/views/decorators/cache.py", line 44, in _wrapped_view_func
+    response = view_func(request, *args, **kwargs)
+  File "/home/respublicarunner/.local/share/virtualenvs/django-B1l6Lil1/lib/python3.9/site-packages/django/contrib/admin/sites.py", line 232, in inner
+    return view(request, *args, **kwargs)
+  File "/home/respublicarunner/.local/share/virtualenvs/django-B1l6Lil1/lib/python3.9/site-packages/django/utils/decorators.py", line 43, in _wrapper
+    return bound_method(*args, **kwargs)
+  File "/home/respublicarunner/.local/share/virtualenvs/django-B1l6Lil1/lib/python3.9/site-packages/django/utils/decorators.py", line 130, in _wrapped_view
+    response = view_func(request, *args, **kwargs)
+  File "/home/respublicarunner/.local/share/virtualenvs/django-B1l6Lil1/lib/python3.9/site-packages/django/contrib/admin/options.py", line 1739, in changelist_view
+    response = self.response_action(request, queryset=cl.get_queryset(request))
+  File "/home/respublicarunner/.local/share/virtualenvs/django-B1l6Lil1/lib/python3.9/site-packages/django/contrib/admin/options.py", line 1408, in response_action
+    response = func(self, request, queryset)
+  File "/home/respublicarunner/.local/share/virtualenvs/django-B1l6Lil1/lib/python3.9/site-packages/django/contrib/admin/actions.py", line 45, in delete_selected
+    modeladmin.delete_queryset(request, queryset)
+  File "/home/respublicarunner/.local/share/virtualenvs/django-B1l6Lil1/lib/python3.9/site-packages/django/contrib/admin/options.py", line 1109, in delete_queryset
+    queryset.delete()
+  File "/home/respublicarunner/.local/share/virtualenvs/django-B1l6Lil1/lib/python3.9/site-packages/django/db/models/query.py", line 746, in delete
+    deleted, _rows_count = collector.delete()
+  File "/home/respublicarunner/.local/share/virtualenvs/django-B1l6Lil1/lib/python3.9/site-packages/django/db/models/deletion.py", line 435, in delete
+    signals.post_delete.send(
+  File "/home/respublicarunner/.local/share/virtualenvs/django-B1l6Lil1/lib/python3.9/site-packages/django/db/transaction.py", line 246, in __exit__
+    connection.commit()
+  File "/home/respublicarunner/.local/share/virtualenvs/django-B1l6Lil1/lib/python3.9/site-packages/django/utils/asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+  File "/home/respublicarunner/.local/share/virtualenvs/django-B1l6Lil1/lib/python3.9/site-packages/django/db/backends/base/base.py", line 266, in commit
+    self._commit()
+  File "/home/respublicarunner/.local/share/virtualenvs/django-B1l6Lil1/lib/python3.9/site-packages/django/db/backends/base/base.py", line 242, in _commit
+    return self.connection.commit()
+  File "/home/respublicarunner/.local/share/virtualenvs/django-B1l6Lil1/lib/python3.9/site-packages/django/db/utils.py", line 90, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "/home/respublicarunner/.local/share/virtualenvs/django-B1l6Lil1/lib/python3.9/site-packages/django/db/backends/base/base.py", line 242, in _commit
+    return self.connection.commit()
+django.db.utils.IntegrityError: FOREIGN KEY constraint failed
+[14/Sep/2021 08:32:42] "POST /admin/restaurant/category/ HTTP/1.0" 500 155472
+Internal Server Error: /admin/restaurant/category/
+Traceback (most recent call last):
+  File "/home/respublicarunner/.local/share/virtualenvs/django-B1l6Lil1/lib/python3.9/site-packages/django/db/backends/base/base.py", line 242, in _commit
+    return self.connection.commit()
+sqlite3.IntegrityError: FOREIGN KEY constraint failed
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/respublicarunner/.local/share/virtualenvs/django-B1l6Lil1/lib/python3.9/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+  File "/home/respublicarunner/.local/share/virtualenvs/django-B1l6Lil1/lib/python3.9/site-packages/django/core/handlers/base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/respublicarunner/.local/share/virtualenvs/django-B1l6Lil1/lib/python3.9/site-packages/django/contrib/admin/options.py", line 616, in wrapper
+    return self.admin_site.admin_view(view)(*args, **kwargs)
+  File "/home/respublicarunner/.local/share/virtualenvs/django-B1l6Lil1/lib/python3.9/site-packages/django/utils/decorators.py", line 130, in _wrapped_view
+    response = view_func(request, *args, **kwargs)
+  File "/home/respublicarunner/.local/share/virtualenvs/django-B1l6Lil1/lib/python3.9/site-packages/django/views/decorators/cache.py", line 44, in _wrapped_view_func
+    response = view_func(request, *args, **kwargs)
+  File "/home/respublicarunner/.local/share/virtualenvs/django-B1l6Lil1/lib/python3.9/site-packages/django/contrib/admin/sites.py", line 232, in inner
+    return view(request, *args, **kwargs)
+  File "/home/respublicarunner/.local/share/virtualenvs/django-B1l6Lil1/lib/python3.9/site-packages/django/utils/decorators.py", line 43, in _wrapper
+    return bound_method(*args, **kwargs)
+  File "/home/respublicarunner/.local/share/virtualenvs/django-B1l6Lil1/lib/python3.9/site-packages/django/utils/decorators.py", line 130, in _wrapped_view
+    response = view_func(request, *args, **kwargs)
+  File "/home/respublicarunner/.local/share/virtualenvs/django-B1l6Lil1/lib/python3.9/site-packages/django/contrib/admin/options.py", line 1739, in changelist_view
+    response = self.response_action(request, queryset=cl.get_queryset(request))
+  File "/home/respublicarunner/.local/share/virtualenvs/django-B1l6Lil1/lib/python3.9/site-packages/django/contrib/admin/options.py", line 1408, in response_action
+    response = func(self, request, queryset)
+  File "/home/respublicarunner/.local/share/virtualenvs/django-B1l6Lil1/lib/python3.9/site-packages/django/contrib/admin/actions.py", line 45, in delete_selected
+    modeladmin.delete_queryset(request, queryset)
+  File "/home/respublicarunner/.local/share/virtualenvs/django-B1l6Lil1/lib/python3.9/site-packages/django/contrib/admin/options.py", line 1109, in delete_queryset
+    queryset.delete()
+  File "/home/respublicarunner/.local/share/virtualenvs/django-B1l6Lil1/lib/python3.9/site-packages/django/db/models/query.py", line 746, in delete
+    deleted, _rows_count = collector.delete()
+  File "/home/respublicarunner/.local/share/virtualenvs/django-B1l6Lil1/lib/python3.9/site-packages/django/db/models/deletion.py", line 435, in delete
+    signals.post_delete.send(
+  File "/home/respublicarunner/.local/share/virtualenvs/django-B1l6Lil1/lib/python3.9/site-packages/django/db/transaction.py", line 246, in __exit__
+    connection.commit()
+  File "/home/respublicarunner/.local/share/virtualenvs/django-B1l6Lil1/lib/python3.9/site-packages/django/utils/asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+  File "/home/respublicarunner/.local/share/virtualenvs/django-B1l6Lil1/lib/python3.9/site-packages/django/db/backends/base/base.py", line 266, in commit
+    self._commit()
+  File "/home/respublicarunner/.local/share/virtualenvs/django-B1l6Lil1/lib/python3.9/site-packages/django/db/backends/base/base.py", line 242, in _commit
+    return self.connection.commit()
+  File "/home/respublicarunner/.local/share/virtualenvs/django-B1l6Lil1/lib/python3.9/site-packages/django/db/utils.py", line 90, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "/home/respublicarunner/.local/share/virtualenvs/django-B1l6Lil1/lib/python3.9/site-packages/django/db/backends/base/base.py", line 242, in _commit
+    return self.connection.commit()
+django.db.utils.IntegrityError: FOREIGN KEY constraint failed
+[14/Sep/2021 08:33:12] "POST /admin/restaurant/category/ HTTP/1.0" 500 155472
+[14/Sep/2021 08:33:14] "GET /admin/restaurant/category/ HTTP/1.0" 200 23714
+[14/Sep/2021 08:33:16] "POST /admin/restaurant/category/ HTTP/1.0" 200 10858
+Internal Server Error: /admin/restaurant/category/
+Traceback (most recent call last):
+  File "/home/respublicarunner/.local/share/virtualenvs/django-B1l6Lil1/lib/python3.9/site-packages/django/db/backends/base/base.py", line 242, in _commit
+    return self.connection.commit()
+sqlite3.IntegrityError: FOREIGN KEY constraint failed
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/respublicarunner/.local/share/virtualenvs/django-B1l6Lil1/lib/python3.9/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+  File "/home/respublicarunner/.local/share/virtualenvs/django-B1l6Lil1/lib/python3.9/site-packages/django/core/handlers/base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/respublicarunner/.local/share/virtualenvs/django-B1l6Lil1/lib/python3.9/site-packages/django/contrib/admin/options.py", line 616, in wrapper
+    return self.admin_site.admin_view(view)(*args, **kwargs)
+  File "/home/respublicarunner/.local/share/virtualenvs/django-B1l6Lil1/lib/python3.9/site-packages/django/utils/decorators.py", line 130, in _wrapped_view
+    response = view_func(request, *args, **kwargs)
+  File "/home/respublicarunner/.local/share/virtualenvs/django-B1l6Lil1/lib/python3.9/site-packages/django/views/decorators/cache.py", line 44, in _wrapped_view_func
+    response = view_func(request, *args, **kwargs)
+  File "/home/respublicarunner/.local/share/virtualenvs/django-B1l6Lil1/lib/python3.9/site-packages/django/contrib/admin/sites.py", line 232, in inner
+    return view(request, *args, **kwargs)
+  File "/home/respublicarunner/.local/share/virtualenvs/django-B1l6Lil1/lib/python3.9/site-packages/django/utils/decorators.py", line 43, in _wrapper
+    return bound_method(*args, **kwargs)
+  File "/home/respublicarunner/.local/share/virtualenvs/django-B1l6Lil1/lib/python3.9/site-packages/django/utils/decorators.py", line 130, in _wrapped_view
+    response = view_func(request, *args, **kwargs)
+  File "/home/respublicarunner/.local/share/virtualenvs/django-B1l6Lil1/lib/python3.9/site-packages/django/contrib/admin/options.py", line 1739, in changelist_view
+    response = self.response_action(request, queryset=cl.get_queryset(request))
+  File "/home/respublicarunner/.local/share/virtualenvs/django-B1l6Lil1/lib/python3.9/site-packages/django/contrib/admin/options.py", line 1408, in response_action
+    response = func(self, request, queryset)
+  File "/home/respublicarunner/.local/share/virtualenvs/django-B1l6Lil1/lib/python3.9/site-packages/django/contrib/admin/actions.py", line 45, in delete_selected
+    modeladmin.delete_queryset(request, queryset)
+  File "/home/respublicarunner/.local/share/virtualenvs/django-B1l6Lil1/lib/python3.9/site-packages/django/contrib/admin/options.py", line 1109, in delete_queryset
+    queryset.delete()
+  File "/home/respublicarunner/.local/share/virtualenvs/django-B1l6Lil1/lib/python3.9/site-packages/django/db/models/query.py", line 746, in delete
+    deleted, _rows_count = collector.delete()
+  File "/home/respublicarunner/.local/share/virtualenvs/django-B1l6Lil1/lib/python3.9/site-packages/django/db/models/deletion.py", line 435, in delete
+    signals.post_delete.send(
+  File "/home/respublicarunner/.local/share/virtualenvs/django-B1l6Lil1/lib/python3.9/site-packages/django/db/transaction.py", line 246, in __exit__
+    connection.commit()
+  File "/home/respublicarunner/.local/share/virtualenvs/django-B1l6Lil1/lib/python3.9/site-packages/django/utils/asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+  File "/home/respublicarunner/.local/share/virtualenvs/django-B1l6Lil1/lib/python3.9/site-packages/django/db/backends/base/base.py", line 266, in commit
+    self._commit()
+  File "/home/respublicarunner/.local/share/virtualenvs/django-B1l6Lil1/lib/python3.9/site-packages/django/db/backends/base/base.py", line 242, in _commit
+    return self.connection.commit()
+  File "/home/respublicarunner/.local/share/virtualenvs/django-B1l6Lil1/lib/python3.9/site-packages/django/db/utils.py", line 90, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "/home/respublicarunner/.local/share/virtualenvs/django-B1l6Lil1/lib/python3.9/site-packages/django/db/backends/base/base.py", line 242, in _commit
+    return self.connection.commit()
+django.db.utils.IntegrityError: FOREIGN KEY constraint failed
+[14/Sep/2021 08:33:18] "POST /admin/restaurant/category/ HTTP/1.0" 500 155472
+Internal Server Error: /admin/restaurant/category/
+Traceback (most recent call last):
+  File "/home/respublicarunner/.local/share/virtualenvs/django-B1l6Lil1/lib/python3.9/site-packages/django/db/backends/base/base.py", line 242, in _commit
+    return self.connection.commit()
+sqlite3.IntegrityError: FOREIGN KEY constraint failed
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/respublicarunner/.local/share/virtualenvs/django-B1l6Lil1/lib/python3.9/site-packages/django/core/handlers/exception.py", line 47, in inner
+    response = get_response(request)
+  File "/home/respublicarunner/.local/share/virtualenvs/django-B1l6Lil1/lib/python3.9/site-packages/django/core/handlers/base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/respublicarunner/.local/share/virtualenvs/django-B1l6Lil1/lib/python3.9/site-packages/django/contrib/admin/options.py", line 616, in wrapper
+    return self.admin_site.admin_view(view)(*args, **kwargs)
+  File "/home/respublicarunner/.local/share/virtualenvs/django-B1l6Lil1/lib/python3.9/site-packages/django/utils/decorators.py", line 130, in _wrapped_view
+    response = view_func(request, *args, **kwargs)
+  File "/home/respublicarunner/.local/share/virtualenvs/django-B1l6Lil1/lib/python3.9/site-packages/django/views/decorators/cache.py", line 44, in _wrapped_view_func
+    response = view_func(request, *args, **kwargs)
+  File "/home/respublicarunner/.local/share/virtualenvs/django-B1l6Lil1/lib/python3.9/site-packages/django/contrib/admin/sites.py", line 232, in inner
+    return view(request, *args, **kwargs)
+  File "/home/respublicarunner/.local/share/virtualenvs/django-B1l6Lil1/lib/python3.9/site-packages/django/utils/decorators.py", line 43, in _wrapper
+    return bound_method(*args, **kwargs)
+  File "/home/respublicarunner/.local/share/virtualenvs/django-B1l6Lil1/lib/python3.9/site-packages/django/utils/decorators.py", line 130, in _wrapped_view
+    response = view_func(request, *args, **kwargs)
+  File "/home/respublicarunner/.local/share/virtualenvs/django-B1l6Lil1/lib/python3.9/site-packages/django/contrib/admin/options.py", line 1739, in changelist_view
+    response = self.response_action(request, queryset=cl.get_queryset(request))
+  File "/home/respublicarunner/.local/share/virtualenvs/django-B1l6Lil1/lib/python3.9/site-packages/django/contrib/admin/options.py", line 1408, in response_action
+    response = func(self, request, queryset)
+  File "/home/respublicarunner/.local/share/virtualenvs/django-B1l6Lil1/lib/python3.9/site-packages/django/contrib/admin/actions.py", line 45, in delete_selected
+    modeladmin.delete_queryset(request, queryset)
+  File "/home/respublicarunner/.local/share/virtualenvs/django-B1l6Lil1/lib/python3.9/site-packages/django/contrib/admin/options.py", line 1109, in delete_queryset
+    queryset.delete()
+  File "/home/respublicarunner/.local/share/virtualenvs/django-B1l6Lil1/lib/python3.9/site-packages/django/db/models/query.py", line 746, in delete
+    deleted, _rows_count = collector.delete()
+  File "/home/respublicarunner/.local/share/virtualenvs/django-B1l6Lil1/lib/python3.9/site-packages/django/db/models/deletion.py", line 435, in delete
+    signals.post_delete.send(
+  File "/home/respublicarunner/.local/share/virtualenvs/django-B1l6Lil1/lib/python3.9/site-packages/django/db/transaction.py", line 246, in __exit__
+    connection.commit()
+  File "/home/respublicarunner/.local/share/virtualenvs/django-B1l6Lil1/lib/python3.9/site-packages/django/utils/asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+  File "/home/respublicarunner/.local/share/virtualenvs/django-B1l6Lil1/lib/python3.9/site-packages/django/db/backends/base/base.py", line 266, in commit
+    self._commit()
+  File "/home/respublicarunner/.local/share/virtualenvs/django-B1l6Lil1/lib/python3.9/site-packages/django/db/backends/base/base.py", line 242, in _commit
+    return self.connection.commit()
+  File "/home/respublicarunner/.local/share/virtualenvs/django-B1l6Lil1/lib/python3.9/site-packages/django/db/utils.py", line 90, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "/home/respublicarunner/.local/share/virtualenvs/django-B1l6Lil1/lib/python3.9/site-packages/django/db/backends/base/base.py", line 242, in _commit
+    return self.connection.commit()
+django.db.utils.IntegrityError: FOREIGN KEY constraint failed
+[14/Sep/2021 08:33:22] "POST /admin/restaurant/category/ HTTP/1.0" 500 155472
+[14/Sep/2021 08:33:47] "GET /admin/restaurant/category/ HTTP/1.0" 200 23714
+[14/Sep/2021 08:34:48] "GET / HTTP/1.0" 200 49510
+[14/Sep/2021 08:38:35] "POST /admin/restaurant/category/ HTTP/1.0" 200 11021
+Invalid HTTP_HOST header: '2600932673'. You may need to add '2600932673' to ALLOWED_HOSTS.
+Bad Request: /console/login/LoginForm.jsp
+[14/Sep/2021 09:00:08] "GET /console/login/LoginForm.jsp HTTP/1.1" 400 65206
+Invalid HTTP_HOST header: '2600932673'. You may need to add '2600932673' to ALLOWED_HOSTS.
+Bad Request: /console/login/LoginForm.jsp
+[14/Sep/2021 09:22:35] "GET /console/login/LoginForm.jsp HTTP/1.1" 400 65205
+[14/Sep/2021 09:59:30] "GET /static/Feedback.css HTTP/1.0" 404 1901
+[14/Sep/2021 09:59:30] "GET /static/style.css HTTP/1.0" 304 0
+[14/Sep/2021 09:59:30] "GET /static/Feedback.js HTTP/1.0" 304 0
+[14/Sep/2021 09:59:30] "GET /static/bundle.bundle.js HTTP/1.0" 304 0
+[14/Sep/2021 09:59:31] "GET /static/app/fonts/bebasneueregular.woff2 HTTP/1.0" 304 0
+[14/Sep/2021 09:59:31] "GET /static/app/fonts/bebasneuebold.woff2 HTTP/1.0" 304 0
+[14/Sep/2021 09:59:31] "GET /static/app/fonts/MullerRegular.woff2 HTTP/1.0" 304 0
+[14/Sep/2021 09:59:31] "GET /static/app/fonts/MullerLight.woff2 HTTP/1.0" 304 0
+[14/Sep/2021 09:59:32] "GET /static/app/img/close-menu.png HTTP/1.0" 304 0
+[14/Sep/2021 09:59:32] "GET /static/app/img/menu.png HTTP/1.0" 304 0
+[14/Sep/2021 09:59:32] "GET /static/app/img/mobile-logo.png HTTP/1.0" 304 0
+[14/Sep/2021 09:59:32] "GET /static/app/img/logo@2x.png HTTP/1.0" 304 0
+[14/Sep/2021 09:59:32] "GET /static/app/img/main.jpg HTTP/1.0" 304 0
+[14/Sep/2021 09:59:32] "GET /static/app/img/bottom-part.png HTTP/1.0" 304 0
+[14/Sep/2021 09:59:32] "GET /static/app/img/delivery-back.png HTTP/1.0" 304 0
+[14/Sep/2021 09:59:32] "GET /static/app/img/header-back.jpg HTTP/1.0" 304 0
+[14/Sep/2021 09:59:32] "GET /static/app/img/phone.png HTTP/1.0" 304 0
+[14/Sep/2021 09:59:32] "GET /static/app/img/bron-back.png HTTP/1.0" 304 0
+[14/Sep/2021 09:59:32] "GET /static/app/img/calendar.png HTTP/1.0" 304 0
+[14/Sep/2021 09:59:32] "GET /static/app/img/scrolldown.png HTTP/1.0" 304 0
+[14/Sep/2021 09:59:32] "GET /static/app/img/delivery.png HTTP/1.0" 304 0
+[14/Sep/2021 09:59:32] "GET /static/app/img/slide1.jpg HTTP/1.0" 304 0
+[14/Sep/2021 09:59:32] "GET /static/app/img/feedback-icon.png HTTP/1.0" 304 0
+[14/Sep/2021 09:59:32] "GET /static/app/img/arrow-right.png HTTP/1.0" 304 0
+[14/Sep/2021 09:59:32] "GET /static/app/img/login-icon.png HTTP/1.0" 304 0
+[14/Sep/2021 09:59:32] "GET /static/app/img/yandex.png HTTP/1.0" 304 0
+[14/Sep/2021 09:59:32] "GET /static/Feedback.js? HTTP/1.0" 200 32555
+[14/Sep/2021 09:59:32] "GET /static/app/img/footer_logo.png HTTP/1.0" 304 0
+[14/Sep/2021 09:59:32] "GET /static/app/img/insta.png HTTP/1.0" 304 0
+[14/Sep/2021 09:59:32] "GET /static/app/img/web.png HTTP/1.0" 304 0
+[14/Sep/2021 09:59:32] "GET /static/app/img/vk.png HTTP/1.0" 304 0
+[14/Sep/2021 09:59:32] "GET /static/app/img/map-top.png HTTP/1.0" 304 0
+[14/Sep/2021 09:59:33] "GET /static/app/img/close.png HTTP/1.0" 304 0
+[14/Sep/2021 09:59:33] "GET /static/app/img/locker.png HTTP/1.0" 304 0
+[14/Sep/2021 10:04:21] "GET / HTTP/1.0" 200 49510
+[14/Sep/2021 10:04:21] "GET /static/style.css HTTP/1.0" 200 302624
+[14/Sep/2021 10:04:21] "GET /static/app/img/menu.png HTTP/1.0" 200 342
+[14/Sep/2021 10:04:21] "GET /static/app/img/close-menu.png HTTP/1.0" 200 507
+[14/Sep/2021 10:04:21] "GET /static/app/img/logo@2x.png HTTP/1.0" 200 8919
+[14/Sep/2021 10:04:21] "GET /static/app/img/phone.png HTTP/1.0" 200 679
+[14/Sep/2021 10:04:21] "GET /static/app/img/mobile-logo.png HTTP/1.0" 200 6707
+[14/Sep/2021 10:04:21] "GET /static/Feedback.js HTTP/1.0" 200 32555
+[14/Sep/2021 10:04:21] "GET /static/Feedback.css HTTP/1.0" 404 1901
+[14/Sep/2021 10:04:21] "GET /static/bundle.bundle.js HTTP/1.0" 200 750903
+[14/Sep/2021 10:04:21] "GET /static/app/img/calendar.png HTTP/1.0" 200 1841
+[14/Sep/2021 10:04:21] "GET /static/app/img/login-icon.png HTTP/1.0" 200 760
+[14/Sep/2021 10:04:21] "GET /static/app/img/delivery.png HTTP/1.0" 200 1120
+[14/Sep/2021 10:04:21] "GET /static/app/img/scrolldown.png HTTP/1.0" 200 19337
+[14/Sep/2021 10:04:22] "GET /static/app/img/slide1.jpg HTTP/1.0" 200 2162268
+[14/Sep/2021 10:04:22] "GET /static/app/img/feedback-icon.png HTTP/1.0" 200 730
+[14/Sep/2021 10:04:22] "GET /static/app/img/arrow-right.png HTTP/1.0" 200 224
+[14/Sep/2021 10:04:22] "GET /static/app/img/yandex.png HTTP/1.0" 200 4556
+[14/Sep/2021 10:04:22] "GET /static/app/img/footer_logo.png HTTP/1.0" 200 6198
+[14/Sep/2021 10:04:22] "GET /static/app/img/insta.png HTTP/1.0" 200 2043
+[14/Sep/2021 10:04:22] "GET /static/app/img/web.png HTTP/1.0" 200 2185
+[14/Sep/2021 10:04:22] "GET /static/app/img/vk.png HTTP/1.0" 200 1214
+[14/Sep/2021 10:04:22] "GET /static/app/img/product1.jpg HTTP/1.0" 200 180742
+[14/Sep/2021 10:04:22] "GET /static/app/img/table.jpg HTTP/1.0" 200 172695
+[14/Sep/2021 10:04:23] "GET /static/app/img/a-profile-icon.png HTTP/1.0" 200 1310
+[14/Sep/2021 10:04:23] "GET /static/app/img/close.png HTTP/1.0" 200 338
+[14/Sep/2021 10:04:23] "GET /static/app/img/locker.png HTTP/1.0" 200 685
+[14/Sep/2021 10:04:33] "GET /static/app/img/header-back.jpg HTTP/1.0" 200 103814
+[14/Sep/2021 10:04:33] "GET /static/Feedback.css HTTP/1.0" 404 1901
+[14/Sep/2021 10:04:33] "GET /static/app/img/main.jpg HTTP/1.0" 200 802021
+[14/Sep/2021 10:04:33] "GET /static/app/img/bron-back.png HTTP/1.0" 200 47776
+[14/Sep/2021 10:04:33] "GET /static/app/fonts/bebasneuebold.woff2 HTTP/1.0" 200 9660
+[14/Sep/2021 10:04:34] "GET /static/app/fonts/bebasneueregular.woff2 HTTP/1.0" 200 9724
+[14/Sep/2021 10:04:34] "GET /static/app/fonts/MullerRegular.woff2 HTTP/1.0" 200 24764
+[14/Sep/2021 10:04:35] "GET /static/app/fonts/MullerLight.woff2 HTTP/1.0" 200 25404
+[14/Sep/2021 10:04:35] "GET /static/app/img/bottom-part.png HTTP/1.0" 200 444051
+[14/Sep/2021 10:04:36] "GET /static/app/img/delivery-back.png HTTP/1.0" 200 80980
+[14/Sep/2021 10:04:37] "GET /static/app/img/map-top.png HTTP/1.0" 200 383587
+[14/Sep/2021 10:05:16] "GET /static/favicon.png HTTP/1.0" 200 8919
+[14/Sep/2021 10:05:46] "GET / HTTP/1.0" 200 49510
+[14/Sep/2021 10:05:49] "GET /static/Feedback.css HTTP/1.0" 404 1901
+[14/Sep/2021 10:05:49] "GET /static/style.css HTTP/1.0" 200 302624
+[14/Sep/2021 10:05:50] "GET /static/Feedback.js HTTP/1.0" 200 32555
+[14/Sep/2021 10:05:50] "GET /static/bundle.bundle.js HTTP/1.0" 200 750903
+[14/Sep/2021 10:05:58] "GET /static/Feedback.css HTTP/1.0" 404 1901
+[14/Sep/2021 10:05:58] "GET /static/app/fonts/bebasneuebold.woff2 HTTP/1.0" 200 9660
+[14/Sep/2021 10:05:58] "GET /static/app/img/main.jpg HTTP/1.0" 200 802021
+[14/Sep/2021 10:05:58] "GET /static/app/img/header-back.jpg HTTP/1.0" 200 103814
+[14/Sep/2021 10:05:58] "GET /static/app/img/bottom-part.png HTTP/1.0" 200 444051
+[14/Sep/2021 10:05:58] "GET /static/app/img/bron-back.png HTTP/1.0" 200 47776
+[14/Sep/2021 10:05:58] "GET /static/app/img/delivery-back.png HTTP/1.0" 200 80980
+[14/Sep/2021 10:06:00] "GET /static/app/img/slide1.jpg HTTP/1.0" 200 2162268
+[14/Sep/2021 10:06:00] "GET /static/app/img/phone.png HTTP/1.0" 200 679
+[14/Sep/2021 10:06:01] "GET /static/app/img/menu.png HTTP/1.0" 200 342
+[14/Sep/2021 10:06:01] "GET /static/app/img/calendar.png HTTP/1.0" 200 1841
+[14/Sep/2021 10:06:01] "GET /static/app/img/scrolldown.png HTTP/1.0" 200 19337
+[14/Sep/2021 10:06:01] "GET /static/app/img/delivery.png HTTP/1.0" 200 1120
+[14/Sep/2021 10:06:02] "GET /static/app/img/mobile-logo.png HTTP/1.0" 200 6707
+[14/Sep/2021 10:06:06] "GET /static/app/img/close-menu.png HTTP/1.0" 200 507
+[14/Sep/2021 10:06:06] "GET /static/app/img/logo@2x.png HTTP/1.0" 200 8919
+[14/Sep/2021 10:06:06] "GET /static/app/img/login-icon.png HTTP/1.0" 200 760
+[14/Sep/2021 10:06:06] "GET /static/app/img/feedback-icon.png HTTP/1.0" 200 730
+[14/Sep/2021 10:06:07] "GET /static/app/img/arrow-right.png HTTP/1.0" 200 224
+[14/Sep/2021 10:06:07] "GET /static/app/img/yandex.png HTTP/1.0" 200 4556
+[14/Sep/2021 10:06:08] "GET /static/app/img/footer_logo.png HTTP/1.0" 200 6198
+[14/Sep/2021 10:06:08] "GET /static/app/img/insta.png HTTP/1.0" 200 2043
+[14/Sep/2021 10:06:08] "GET /static/app/img/web.png HTTP/1.0" 200 2185
+[14/Sep/2021 10:06:08] "GET /static/app/img/vk.png HTTP/1.0" 200 1214
+[14/Sep/2021 10:06:08] "GET /static/app/img/product1.jpg HTTP/1.0" 200 180742
+[14/Sep/2021 10:06:08] "GET /static/app/img/map-top.png HTTP/1.0" 200 383587
+[14/Sep/2021 10:06:10] "GET /static/app/img/a-profile-icon.png HTTP/1.0" 200 1310
+[14/Sep/2021 10:06:10] "GET /static/app/img/table.jpg HTTP/1.0" 200 172695
+[14/Sep/2021 10:06:11] "GET /static/app/img/close.png HTTP/1.0" 200 338
+[14/Sep/2021 10:06:12] "GET /static/app/img/locker.png HTTP/1.0" 200 685
+[14/Sep/2021 10:06:13] "GET /static/app/fonts/bebasneueregular.woff2 HTTP/1.0" 200 9724
+[14/Sep/2021 10:06:13] "GET /static/app/fonts/MullerRegular.woff2 HTTP/1.0" 200 24764
+[14/Sep/2021 10:06:13] "GET /static/app/fonts/MullerLight.woff2 HTTP/1.0" 200 25404
+[14/Sep/2021 10:16:48] "GET /static/app/img/table.jpg HTTP/1.0" 304 0
+[14/Sep/2021 10:16:48] "GET /static/app/img/product1.jpg HTTP/1.0" 304 0
+[14/Sep/2021 10:16:49] "GET /static/app/img/a-profile-icon.png HTTP/1.0" 304 0
+[14/Sep/2021 10:22:30] "GET / HTTP/1.0" 200 49510
+[14/Sep/2021 10:22:30] "GET /static/style.css HTTP/1.0" 304 0
+[14/Sep/2021 10:22:30] "GET /static/app/img/menu.png HTTP/1.0" 304 0
+[14/Sep/2021 10:22:30] "GET /static/Feedback.js HTTP/1.0" 304 0
+[14/Sep/2021 10:22:30] "GET /static/bundle.bundle.js HTTP/1.0" 304 0
+[14/Sep/2021 10:22:30] "GET /static/app/img/logo@2x.png HTTP/1.0" 304 0
+[14/Sep/2021 10:22:30] "GET /static/app/img/close-menu.png HTTP/1.0" 304 0
+[14/Sep/2021 10:22:30] "GET /static/app/img/mobile-logo.png HTTP/1.0" 304 0
+[14/Sep/2021 10:22:30] "GET /static/app/img/phone.png HTTP/1.0" 304 0
+[14/Sep/2021 10:22:30] "GET /static/app/img/login-icon.png HTTP/1.0" 304 0
+[14/Sep/2021 10:22:30] "GET /static/app/img/calendar.png HTTP/1.0" 304 0
+[14/Sep/2021 10:22:30] "GET /static/app/img/delivery.png HTTP/1.0" 304 0
+[14/Sep/2021 10:22:30] "GET /static/app/img/scrolldown.png HTTP/1.0" 304 0
+[14/Sep/2021 10:22:30] "GET /static/app/img/slide1.jpg HTTP/1.0" 304 0
+[14/Sep/2021 10:22:31] "GET /static/app/img/feedback-icon.png HTTP/1.0" 304 0
+[14/Sep/2021 10:22:31] "GET /static/app/img/arrow-right.png HTTP/1.0" 304 0
+[14/Sep/2021 10:22:31] "GET /static/app/img/yandex.png HTTP/1.0" 304 0
+[14/Sep/2021 10:22:31] "GET /static/app/img/footer_logo.png HTTP/1.0" 304 0
+[14/Sep/2021 10:22:31] "GET /static/app/img/insta.png HTTP/1.0" 304 0
+[14/Sep/2021 10:22:31] "GET /static/app/img/web.png HTTP/1.0" 304 0
+[14/Sep/2021 10:22:31] "GET /static/app/img/product1.jpg HTTP/1.0" 304 0
+[14/Sep/2021 10:22:31] "GET /static/app/img/vk.png HTTP/1.0" 304 0
+[14/Sep/2021 10:22:31] "GET /static/app/img/table.jpg HTTP/1.0" 304 0
+[14/Sep/2021 10:22:31] "GET /static/app/img/a-profile-icon.png HTTP/1.0" 304 0
+[14/Sep/2021 10:22:31] "GET /static/app/img/close.png HTTP/1.0" 304 0
+[14/Sep/2021 10:22:31] "GET /static/app/img/locker.png HTTP/1.0" 304 0
+[14/Sep/2021 10:22:31] "GET /static/app/img/underlogo.png HTTP/1.0" 304 0
+[14/Sep/2021 10:22:31] "GET /static/app/img/header-back.jpg HTTP/1.0" 304 0
+[14/Sep/2021 10:22:31] "GET /static/app/img/bron-back.png HTTP/1.0" 304 0
+[14/Sep/2021 10:22:31] "GET /static/app/img/main.jpg HTTP/1.0" 304 0
+[14/Sep/2021 10:22:31] "GET /static/app/img/delivery-back.png HTTP/1.0" 304 0
+[14/Sep/2021 10:22:31] "GET /static/app/img/bottom-part.png HTTP/1.0" 304 0
+[14/Sep/2021 10:22:31] "GET /static/app/fonts/bebasneuebold.woff2 HTTP/1.0" 304 0
+[14/Sep/2021 10:22:31] "GET /static/app/fonts/MullerLight.woff2 HTTP/1.0" 304 0
+[14/Sep/2021 10:22:31] "GET /static/app/fonts/bebasneueregular.woff2 HTTP/1.0" 304 0
+[14/Sep/2021 10:22:31] "GET /static/app/fonts/MullerRegular.woff2 HTTP/1.0" 304 0
+[14/Sep/2021 10:22:31] "GET /static/app/img/map-top.png HTTP/1.0" 304 0
+[14/Sep/2021 10:22:34] "GET /career HTTP/1.0" 200 50895
+[14/Sep/2021 10:22:34] "GET /static/app/img/lefttop-job.png HTTP/1.0" 200 19267
+[14/Sep/2021 10:22:34] "GET /static/app/img/righttop-job.png HTTP/1.0" 200 290494
+[14/Sep/2021 10:22:34] "GET /static/app/img/leftbottom-job.png HTTP/1.0" 200 140719
+[14/Sep/2021 10:22:34] "GET /static/Career.js HTTP/1.0" 200 36
+[14/Sep/2021 10:22:34] "GET /static/app/img/rightbottom-job.png HTTP/1.0" 200 99778
+[14/Sep/2021 10:22:34] "GET /static/app/img/clickme.png HTTP/1.0" 200 35794
+[14/Sep/2021 10:22:34] "GET /static/app/img/job_back.jpg HTTP/1.0" 200 937406
+[14/Sep/2021 10:22:34] "GET /static/app/img/cook.png HTTP/1.0" 200 993054
+[14/Sep/2021 10:22:36] "GET /menu HTTP/1.0" 200 358813
+[14/Sep/2021 10:22:36] "GET /media/images/product.jpg HTTP/1.0" 304 0
+[14/Sep/2021 10:22:36] "GET /static/app/img/leftside.png HTTP/1.0" 304 0
+[14/Sep/2021 10:22:38] "GET / HTTP/1.0" 200 49510
+[14/Sep/2021 10:22:42] "GET /contacts HTTP/1.0" 200 48211
+[14/Sep/2021 10:22:44] "GET / HTTP/1.0" 200 49510
+[14/Sep/2021 10:22:46] "GET /delivery HTTP/1.0" 200 260215
+[14/Sep/2021 10:22:46] "GET /static/app/img/x.png HTTP/1.0" 304 0
+[14/Sep/2021 10:22:46] "GET /static/app/img/cart.png HTTP/1.0" 304 0
+[14/Sep/2021 10:22:46] "GET /static/app/fonts/MullerBold.woff2 HTTP/1.0" 200 25360
+[14/Sep/2021 10:22:46] "GET /static/app/img/bubble.png HTTP/1.0" 304 0
+[14/Sep/2021 10:22:46] "GET /static/Delivery.js HTTP/1.0" 304 0
+[14/Sep/2021 10:22:48] "GET / HTTP/1.0" 200 49510
+[14/Sep/2021 10:37:41] "GET /delivery HTTP/1.0" 200 260215
+[14/Sep/2021 10:37:41] "GET /static/app/img/x.png HTTP/1.0" 200 378
+[14/Sep/2021 10:37:41] "GET /static/app/img/cart.png HTTP/1.0" 200 13719
+[14/Sep/2021 10:37:41] "GET /static/app/fonts/MullerBold.woff2 HTTP/1.0" 200 25360
+[14/Sep/2021 10:37:41] "GET /media/images/product.jpg HTTP/1.0" 200 193880
+[14/Sep/2021 10:37:41] "GET /static/Delivery.css HTTP/1.0" 404 1901
+[14/Sep/2021 10:37:41] "GET /static/Delivery.js HTTP/1.0" 200 6904
+[14/Sep/2021 10:37:41] "GET /static/Feedback.css HTTP/1.0" 404 1901
+[14/Sep/2021 10:37:41] "GET /static/Feedback.css HTTP/1.0" 404 1901
+[14/Sep/2021 10:38:00] "GET / HTTP/1.0" 200 49510
+[14/Sep/2021 10:38:03] "GET /menu HTTP/1.0" 200 358813
+[14/Sep/2021 10:38:15] "GET /delivery HTTP/1.0" 200 260215
+[14/Sep/2021 10:38:16] "GET /delivery HTTP/1.0" 200 260215
+[14/Sep/2021 10:38:24] "GET /reservation HTTP/1.0" 200 56353
+[14/Sep/2021 10:38:24] "GET /static/Reservation.css HTTP/1.0" 304 0
+[14/Sep/2021 10:38:25] "GET /media/tables/%D0%9F%D0%BE%D0%BA%D1%80%D1%8B%D1%88%D0%BA%D0%B8%D0%BD%D0%B0.svg HTTP/1.0" 304 0
+[14/Sep/2021 10:38:29] "GET / HTTP/1.0" 200 49510
+[14/Sep/2021 10:38:31] "GET /career HTTP/1.0" 200 50895
+[14/Sep/2021 10:38:32] "GET /events HTTP/1.0" 200 54519
+[14/Sep/2021 10:38:33] "GET /media/images/%D1%81%D1%83%D0%BF_%D1%81%D1%8B%D1%80%D0%BD%D1%8B%D0%B9_sKO63KT.jpg HTTP/1.0" 304 0
+[14/Sep/2021 10:38:33] "GET /media/images/%D1%81%D1%83%D0%BF_%D1%81%D1%8B%D1%80%D0%BD%D1%8B%D0%B9.jpg HTTP/1.0" 304 0
+[14/Sep/2021 10:38:33] "GET /static/app/img/events-bottom.png HTTP/1.0" 304 0
+[14/Sep/2021 10:38:33] "GET /reservation HTTP/1.0" 200 56353
+[14/Sep/2021 10:38:34] "GET /delivery HTTP/1.0" 200 260215
+[14/Sep/2021 10:38:36] "GET /menu HTTP/1.0" 200 358813
+[14/Sep/2021 10:38:38] "GET / HTTP/1.0" 200 49510
+[14/Sep/2021 10:38:43] "GET /franchise HTTP/1.0" 200 14464
+[14/Sep/2021 10:38:44] "GET /static/app/img/icon1.png HTTP/1.0" 200 7424
+[14/Sep/2021 10:38:44] "GET /static/app/img/main-logo.png HTTP/1.0" 200 14515
+[14/Sep/2021 10:38:44] "GET /static/app/img/proces_photo.jpg HTTP/1.0" 200 587814
+[14/Sep/2021 10:38:44] "GET /static/Franchise.css HTTP/1.0" 404 1904
+[14/Sep/2021 10:38:44] "GET /static/Franchise.js HTTP/1.0" 200 31903
+[14/Sep/2021 10:38:44] "GET /static/app/img/icon2.png HTTP/1.0" 200 7928
+[14/Sep/2021 10:38:44] "GET /static/app/img/icon3.png HTTP/1.0" 200 8733
+[14/Sep/2021 10:38:44] "GET /static/app/img/icon4.png HTTP/1.0" 200 11237
+[14/Sep/2021 10:38:44] "GET /static/app/img/icon5.png HTTP/1.0" 200 11914
+[14/Sep/2021 10:38:44] "GET /static/app/img/icon6.png HTTP/1.0" 200 7970
+[14/Sep/2021 10:38:44] "GET /static/app/img/icon7.png HTTP/1.0" 200 10483
+[14/Sep/2021 10:38:44] "GET /static/app/img/icon8.png HTTP/1.0" 200 13313
+[14/Sep/2021 10:38:44] "GET /static/app/img/icon9.png HTTP/1.0" 200 8412
+[14/Sep/2021 10:38:44] "GET /static/app/img/icon10.png HTTP/1.0" 200 13702
+[14/Sep/2021 10:38:44] "GET /static/app/img/icon11.png HTTP/1.0" 200 8850
+[14/Sep/2021 10:38:44] "GET /static/app/img/icon12.png HTTP/1.0" 200 7373
+[14/Sep/2021 10:38:44] "GET /static/app/img/user.png HTTP/1.0" 200 333
+[14/Sep/2021 10:38:44] "GET /static/app/img/contacts-form.jpg HTTP/1.0" 200 181100
+[14/Sep/2021 10:38:45] "GET / HTTP/1.0" 200 49510
+[14/Sep/2021 10:38:47] "GET /menu HTTP/1.0" 200 358813
+[14/Sep/2021 10:38:49] "GET /preorder HTTP/1.0" 200 411440
+[14/Sep/2021 10:38:53] "GET / HTTP/1.0" 200 49510
+[14/Sep/2021 10:39:01] "GET /menu HTTP/1.0" 200 358813
+[14/Sep/2021 10:39:14] "GET / HTTP/1.0" 200 49510
+[14/Sep/2021 10:39:17] "GET /events HTTP/1.0" 200 54519
+[14/Sep/2021 10:39:18] "GET /reservation HTTP/1.0" 200 56353
+[14/Sep/2021 10:39:19] "GET /delivery HTTP/1.0" 200 260215
+[14/Sep/2021 10:39:20] "GET /menu HTTP/1.0" 200 358813
+[14/Sep/2021 10:39:26] "GET /delivery HTTP/1.0" 200 260215
+[14/Sep/2021 10:39:27] "GET /static/Delivery.css HTTP/1.0" 404 1901
+[14/Sep/2021 10:39:27] "GET /static/Feedback.css HTTP/1.0" 404 1901
+[14/Sep/2021 10:39:27] "GET /static/favicon.png HTTP/1.0" 200 8919
+[14/Sep/2021 10:40:10] "GET /static/app/img/underlogo.png HTTP/1.0" 200 43917
+[14/Sep/2021 10:40:10] "GET /static/app/img/leftside.png HTTP/1.0" 200 452765
+[14/Sep/2021 10:40:10] "GET /static/app/img/bubble.png HTTP/1.0" 200 9509
+[14/Sep/2021 10:40:24] "GET /delivery HTTP/1.0" 200 260215
+[14/Sep/2021 10:40:24] "GET /static/Feedback.css HTTP/1.0" 404 1901
+[14/Sep/2021 10:40:24] "GET /static/Delivery.css HTTP/1.0" 404 1901
+[14/Sep/2021 10:40:24] "GET /static/favicon.png HTTP/1.0" 200 8919
+[14/Sep/2021 10:40:25] "GET / HTTP/1.0" 200 49510
+[14/Sep/2021 10:40:25] "GET /static/Feedback.css HTTP/1.0" 404 1901
+[14/Sep/2021 10:43:40] "GET / HTTP/1.0" 200 49510
+[14/Sep/2021 10:44:08] "GET / HTTP/1.0" 200 49510
+[14/Sep/2021 11:36:11] "GET / HTTP/1.1" 200 49510
+[14/Sep/2021 11:43:16] "GET /admin/restaurant/restaraunt/ HTTP/1.0" 200 10806
+[14/Sep/2021 11:43:17] "GET /static/admin/css/base.css HTTP/1.0" 304 0
+[14/Sep/2021 11:43:17] "GET /static/admin/css/nav_sidebar.css HTTP/1.0" 304 0
+[14/Sep/2021 11:43:17] "GET /static/admin/css/changelists.css HTTP/1.0" 304 0
+[14/Sep/2021 11:43:17] "GET /static/admin/css/responsive.css HTTP/1.0" 304 0
+[14/Sep/2021 11:43:17] "GET /static/admin/js/vendor/jquery/jquery.js HTTP/1.0" 304 0
+[14/Sep/2021 11:43:17] "GET /static/admin/css/fonts.css HTTP/1.0" 304 0
+[14/Sep/2021 11:43:17] "GET /admin/jsi18n/ HTTP/1.0" 200 15618
+[14/Sep/2021 11:43:17] "GET /static/admin/js/jquery.init.js HTTP/1.0" 304 0
+[14/Sep/2021 11:43:17] "GET /static/admin/js/core.js HTTP/1.0" 304 0
+[14/Sep/2021 11:43:17] "GET /static/admin/js/actions.js HTTP/1.0" 304 0
+[14/Sep/2021 11:43:17] "GET /static/admin/js/admin/RelatedObjectLookups.js HTTP/1.0" 304 0
+[14/Sep/2021 11:43:17] "GET /static/admin/js/urlify.js HTTP/1.0" 304 0
+[14/Sep/2021 11:43:17] "GET /static/admin/js/prepopulate.js HTTP/1.0" 304 0
+[14/Sep/2021 11:43:17] "GET /static/admin/js/vendor/xregexp/xregexp.js HTTP/1.0" 304 0
+[14/Sep/2021 11:43:17] "GET /static/admin/js/nav_sidebar.js HTTP/1.0" 304 0
+[14/Sep/2021 11:43:17] "GET /static/admin/img/tooltag-add.svg HTTP/1.0" 304 0
+[14/Sep/2021 11:43:17] "GET /static/admin/img/icon-addlink.svg HTTP/1.0" 304 0
+[14/Sep/2021 11:43:17] "GET /static/admin/fonts/Roboto-Regular-webfont.woff HTTP/1.0" 304 0
+[14/Sep/2021 11:43:17] "GET /static/admin/fonts/Roboto-Light-webfont.woff HTTP/1.0" 304 0
+[14/Sep/2021 11:43:17] "GET /static/admin/fonts/Roboto-Bold-webfont.woff HTTP/1.0" 304 0
+Invalid HTTP_HOST header: '2600932673'. You may need to add '2600932673' to ALLOWED_HOSTS.
+Bad Request: /console/login/LoginForm.jsp
+[14/Sep/2021 11:45:58] "GET /console/login/LoginForm.jsp HTTP/1.1" 400 65206
+[14/Sep/2021 14:24:24] "GET /static/Feedback.css HTTP/1.0" 404 1901
+[14/Sep/2021 14:24:24] "GET /static/style.css HTTP/1.0" 304 0
+[14/Sep/2021 14:24:24] "GET /static/bundle.bundle.js HTTP/1.0" 304 0
+[14/Sep/2021 14:24:24] "GET /static/app/img/menu.png HTTP/1.0" 304 0
+[14/Sep/2021 14:24:24] "GET /static/Feedback.js HTTP/1.0" 304 0
+[14/Sep/2021 14:24:24] "GET /static/app/img/close-menu.png HTTP/1.0" 304 0
+[14/Sep/2021 14:24:24] "GET /static/app/img/logo@2x.png HTTP/1.0" 304 0
+[14/Sep/2021 14:24:24] "GET /static/app/img/mobile-logo.png HTTP/1.0" 304 0
+[14/Sep/2021 14:24:24] "GET /static/app/img/login-icon.png HTTP/1.0" 304 0
+[14/Sep/2021 14:24:24] "GET /static/app/img/phone.png HTTP/1.0" 304 0
+[14/Sep/2021 14:24:24] "GET /static/app/img/calendar.png HTTP/1.0" 304 0
+[14/Sep/2021 14:24:24] "GET /static/app/img/scrolldown.png HTTP/1.0" 304 0
+[14/Sep/2021 14:24:24] "GET /static/app/img/delivery.png HTTP/1.0" 304 0
+[14/Sep/2021 14:24:24] "GET /static/app/img/slide1.jpg HTTP/1.0" 304 0
+[14/Sep/2021 14:24:24] "GET /static/app/img/feedback-icon.png HTTP/1.0" 304 0
+[14/Sep/2021 14:24:24] "GET /static/app/img/insta.png HTTP/1.0" 304 0
+[14/Sep/2021 14:24:24] "GET /static/app/img/yandex.png HTTP/1.0" 304 0
+[14/Sep/2021 14:24:24] "GET /static/app/img/arrow-right.png HTTP/1.0" 304 0
+[14/Sep/2021 14:24:24] "GET /static/Feedback.css HTTP/1.0" 404 1901
+[14/Sep/2021 14:24:24] "GET /static/app/fonts/bebasneuebold.woff2 HTTP/1.0" 304 0
+[14/Sep/2021 14:24:24] "GET /static/app/fonts/bebasneueregular.woff2 HTTP/1.0" 304 0
+[14/Sep/2021 14:24:24] "GET /static/app/fonts/MullerLight.woff2 HTTP/1.0" 304 0
+[14/Sep/2021 14:24:24] "GET /static/app/fonts/MullerRegular.woff2 HTTP/1.0" 304 0
+[14/Sep/2021 14:24:24] "GET /static/app/img/main.jpg HTTP/1.0" 304 0
+[14/Sep/2021 14:24:24] "GET /static/app/img/delivery-back.png HTTP/1.0" 304 0
+[14/Sep/2021 14:24:24] "GET /static/app/img/header-back.jpg HTTP/1.0" 304 0
+[14/Sep/2021 14:24:24] "GET /static/app/img/bottom-part.png HTTP/1.0" 304 0
+[14/Sep/2021 14:24:24] "GET /static/app/img/bron-back.png HTTP/1.0" 304 0
+[14/Sep/2021 14:24:24] "GET /static/app/img/footer_logo.png HTTP/1.0" 304 0
+[14/Sep/2021 14:24:24] "GET /static/app/img/web.png HTTP/1.0" 304 0
+[14/Sep/2021 14:24:24] "GET /static/app/img/vk.png HTTP/1.0" 304 0
+[14/Sep/2021 14:24:24] "GET /static/app/img/product1.jpg HTTP/1.0" 304 0
+[14/Sep/2021 14:24:24] "GET /static/app/img/table.jpg HTTP/1.0" 304 0
+[14/Sep/2021 14:24:24] "GET /static/app/img/a-profile-icon.png HTTP/1.0" 304 0
+[14/Sep/2021 14:24:24] "GET /static/app/img/close.png HTTP/1.0" 304 0
+[14/Sep/2021 14:24:24] "GET /static/app/img/locker.png HTTP/1.0" 304 0
+[14/Sep/2021 14:24:24] "GET /static/app/img/map-top.png HTTP/1.0" 304 0
+[14/Sep/2021 14:33:53] code 400, message Bad request syntax ('\x01\x01æ')
+[14/Sep/2021 14:33:53] "æ" 400 -
+[14/Sep/2021 16:06:23] code 400, message Bad request syntax ('\x03\x00\x00\x13\x0eà\x00\x00\x00\x00\x00\x01\x00\x08\x00\x03\x00\x00\x00')
+[14/Sep/2021 16:06:23] "  à          " 400 -
+[14/Sep/2021 20:41:00] "GET / HTTP/1.0" 200 49510
+[14/Sep/2021 20:41:02] code 400, message Bad HTTP/0.9 request type ('l\x00')
+[14/Sep/2021 20:41:02] "l          " 400 -
+[14/Sep/2021 20:41:02,714] - Broken pipe from ('68.183.203.98', 40052)
+
+Not Found: /nice ports,/Trinity.txt.bak
+[14/Sep/2021 20:41:02] "GET /nice%20ports%2C/Tri%6Eity.txt%2ebak HTTP/1.0" 404 3910
+[14/Sep/2021 20:41:03] code 400, message Bad request syntax ('\x05\x04\x00\x01\x02\x80\x05\x01\x00\x03')
+[14/Sep/2021 20:41:03] "  " 400 -
+[14/Sep/2021 20:41:05] code 400, message Bad request syntax ('\x04\x01\x00\x16\x7f\x00\x00\x01root\x00')
+[14/Sep/2021 20:41:05] "   root " 400 -
+[14/Sep/2021 20:41:05,674] - Broken pipe from ('68.183.203.98', 41906)
+
+[14/Sep/2021 20:41:05] code 400, message Bad request syntax ('#ST')
+[14/Sep/2021 20:41:05] "#ST" 400 -
+[14/Sep/2021 20:41:07] code 400, message Bad HTTP/0.9 request type ('\x00')
+[14/Sep/2021 20:41:07] " n    beio" 400 -
+[14/Sep/2021 20:41:07,579] - Broken pipe from ('68.183.203.98', 43442)
+
+[14/Sep/2021 20:41:09] code 400, message Bad request syntax ('\x00\x00\x07\x00\x08\x00\x03\x00\x04\x00\x05\x00\x06')
+[14/Sep/2021 20:41:09] "       " 400 -
+[14/Sep/2021 20:41:09,195] - Broken pipe from ('68.183.203.98', 44852)
+
+[14/Sep/2021 20:41:09] "OPTIONS / HTTP/1.0" 200 49510
+[14/Sep/2021 20:41:09] code 400, message Bad request version ('RTSP/1.0')
+[14/Sep/2021 20:41:09] "OPTIONS / RTSP/1.0" 400 -
+[14/Sep/2021 20:41:11] code 400, message Bad request version ('\x00\x01\x97|\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00')
+[14/Sep/2021 20:41:11] "  (rþ          |                    " 400 -
+[14/Sep/2021 20:41:11,583] - Broken pipe from ('68.183.203.98', 46774)
+
+[14/Sep/2021 20:41:13] code 400, message Bad HTTP/0.9 request type ('\x00')
+[14/Sep/2021 20:41:13] "          versionbind   " 400 -
+[14/Sep/2021 20:41:13,207] - Broken pipe from ('68.183.203.98', 48122)
+
+[14/Sep/2021 20:41:14] code 400, message Bad HTTP/0.9 request type ('\x00')
+[14/Sep/2021 20:41:14] "            " 400 -
+[14/Sep/2021 20:41:14,831] - Broken pipe from ('68.183.203.98', 49368)
+
+[14/Sep/2021 20:41:14] code 400, message Bad request syntax ('HELP')
+[14/Sep/2021 20:41:14] "HELP" 400 -
+[14/Sep/2021 20:41:15] code 400, message Bad request syntax ('\x16\x03\x00\x00S\x01\x00\x00O\x03\x00?G×÷º,îê²`~ó\x00ý\x82{¹Õ\x96Èw\x9bæÄÛ<=Ûoï\x10n\x00\x00(\x00\x16\x00\x13\x00')
+[14/Sep/2021 20:41:15] You're accessing the development server over HTTPS, but it only supports HTTP.
+
+[14/Sep/2021 20:41:15] code 400, message Bad HTTP/0.9 request type ('\x03\x00\x00*%à\x00\x00\x00\x00\x00Cookie:')
+[14/Sep/2021 20:41:15] "  *%à     Cookie: mstshash=beio" 400 -
+[14/Sep/2021 20:41:15] code 400, message Bad request version ('\x00/\x00')
+[14/Sep/2021 20:41:15] You're accessing the development server over HTTPS, but it only supports HTTP.
+
+[14/Sep/2021 20:41:15] code 400, message Bad request syntax ('\x00\x00\x00qj\x81n0\x81k¡\x03\x02\x01\x05¢\x03\x02\x01')
+[14/Sep/2021 20:41:15] "   qjn0k¡¢" 400 -
+[14/Sep/2021 20:41:17] code 400, message Bad request version ('0.12\x00')
+[14/Sep/2021 20:41:17] "   ¤ÿSMBr    @              @     PC NETWORK PROGRAM 1.0 MICROSOFT NETWORKS 1.03 MICROSOFT NETWORKS 3.0 LANMAN1.0 LM1.2X002 Samba NT LANMAN 1.0 NT LM 0.12 " 400 -
+[14/Sep/2021 20:41:17,703] - Broken pipe from ('68.183.203.98', 51468)
+
+[14/Sep/2021 20:41:17] code 400, message Bad request syntax ('\x01default')
+[14/Sep/2021 20:41:17] "default" 400 -
+[14/Sep/2021 20:41:18] code 400, message Bad request syntax ('0\x84\x00\x00\x00-\x02\x01\x07c\x84\x00\x00\x00$\x04\x00')
+[14/Sep/2021 20:41:18] "0   -c   $ " 400 -
+[14/Sep/2021 20:41:19] code 400, message Bad HTTP/0.9 request type ('0')
+[14/Sep/2021 20:41:19] "0`  " 400 -
+[14/Sep/2021 20:41:19,823] - Broken pipe from ('68.183.203.98', 53168)
+
+[14/Sep/2021 20:41:19] code 400, message Bad request version ('SIP/2.0')
+[14/Sep/2021 20:41:19] "OPTIONS sip:nm SIP/2.0" 400 -
+[14/Sep/2021 20:41:21] code 400, message Bad request syntax ('TNMP\x04\x00\x00\x00TNME\x00\x00\x04\x00')
+[14/Sep/2021 20:41:21] "TNMP   TNME   " 400 -
+[14/Sep/2021 20:41:21,726] - Broken pipe from ('68.183.203.98', 54606)
+
+[14/Sep/2021 20:41:23] code 400, message Bad HTTP/0.9 request type ('\x03\x00\x00')
+[14/Sep/2021 20:41:23] "  à     " 400 -
+[14/Sep/2021 20:41:23,338] - Broken pipe from ('68.183.203.98', 55812)
+
+[14/Sep/2021 20:41:24] code 400, message Bad request syntax ('DmdT\x00\x00\x00\x17\x00\x00\x00\x01\x00\x00\x00\x00\x11\x11\x00ÿ\x01ÿ\x13')
+[14/Sep/2021 20:41:24] "DmdT           ÿÿ" 400 -
+[14/Sep/2021 20:41:24,955] - Broken pipe from ('68.183.203.98', 57026)
+
+[14/Sep/2021 20:41:26] code 400, message Bad HTTP/0.9 request type (':\x00\x00\x00/\x00\x00\x00\x02\x00\x00@\x02\x0f\x00\x01\x00=\x05\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00/\x00\x00\x00\x00\x00\x00\x00\x00\x00@')
+[14/Sep/2021 20:41:26] ":   /     @  =            /         @                 " 400 -
+[14/Sep/2021 20:41:26,571] - Broken pipe from ('68.183.203.98', 58208)
+
+[14/Sep/2021 20:41:28] code 400, message Bad request syntax ('JRMI\x00\x02K')
+[14/Sep/2021 20:41:28] "JRMI K" 400 -
+[14/Sep/2021 20:41:29] code 400, message Bad request version ('\x00{\x00\x00\x00\x00\x00A\x00A\x00\x00\x00-\x00\x00A\x00\x00\x00-\x00\x00\x00a\x00\x00-\x00A\x00A\x00\x00A\x00-\x00\x00\x00\x00\x00A\x00\x00A\x00A\x00\x00A\x00A\x00\x00}\x00\x00\x00àmß_')
+[14/Sep/2021 20:41:29] "  ýÎú°    MMS                    ðððð    N S P l a y e r / 9 .  .  . 9 8  ;   {     A A   -  A   -   a  - A A  A -     A  A A  A A  }   àmß_" 400 -
+[14/Sep/2021 20:41:29,843] - Broken pipe from ('68.183.203.98', 60608)
+
+[14/Sep/2021 20:41:31] code 400, message Bad HTTP/0.9 request type ('\x00Z\x00\x00\x01\x00\x00\x00\x016\x01,\x00\x00\x08\x00\x7fÿ\x7f\x08\x00\x00\x00\x01\x00')
+[14/Sep/2021 20:41:31] " Z     6,   ÿ      :               æ           (CONNECT_DATA=(COMMAND=version))" 400 -
+[14/Sep/2021 20:41:31,467] - Broken pipe from ('68.183.203.98', 33672)
+
+[14/Sep/2021 20:41:33] code 400, message Bad request version ('\x03\x00(\x00\x04ÿ\x08\x00\x01U\x00\x00\x00MSSQLServer\x00H\x0f\x00\x00')
+[14/Sep/2021 20:41:33] " 4            ( ÿ U   MSSQLServer H  " 400 -
+[14/Sep/2021 20:41:33,091] - Broken pipe from ('68.183.203.98', 34866)
+
+[14/Sep/2021 20:41:34] code 400, message Bad request syntax ('\x00\x03\x00\x01\x00\x00\x00\x00\x00\x00\x00\x02\x00\x00\x00\x00\x0f\x00')
+[14/Sep/2021 20:41:34] "              " 400 -
+[14/Sep/2021 20:41:34,716] - Broken pipe from ('68.183.203.98', 36032)
+
+[14/Sep/2021 20:41:36] code 400, message Bad request syntax ('GIOP\x01\x00\x01\x00$\x00\x00\x00\x00\x00\x00\x00\x01\x00\x00\x00\x01\x00\x00\x00\x06\x00\x00\x00abcdef\x00\x00\x04\x00\x00\x00get\x00\x00\x00\x00\x00')
+[14/Sep/2021 20:41:36] "GIOP  $                abcdef     get     " 400 -
+[14/Sep/2021 20:41:36,331] - Broken pipe from ('68.183.203.98', 37212)
+
+[14/Sep/2021 20:41:37] code 400, message Bad request syntax ('\x00\x9c\x00\x01\x1a+<M\x00\x01\x00\x00\x01\x00\x00\x00\x00\x00\x00\x01\x00\x00\x00\x01ÿÿ\x00\x01none\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00beio\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00')
+[14/Sep/2021 20:41:37] "  +<M            ÿÿ none                                                            beio                                                            " 400 -
+[14/Sep/2021 20:41:37,943] - Broken pipe from ('68.183.203.98', 38372)
+
+[14/Sep/2021 20:41:39] code 400, message Bad request syntax ('\x00\x00\x00\x01\x00\x00\x00\x01\x00\x00\x00\x04\x00\x00\x00\x08\x00\x00\x00\x01\x00\x00\x00\x00')
+[14/Sep/2021 20:41:39] "                   " 400 -
+[14/Sep/2021 20:41:39,555] - Broken pipe from ('68.183.203.98', 39560)
+
+[14/Sep/2021 20:41:41] code 400, message Bad request syntax ('\x03\x81\x00\x00\x00\x00\x00_@\x00\x017\x00\x00\x00\x00\x00\x00\x00\x01\x00\x01\x00\x00\x00\x00\x00\x01\x00\x00\x00\x01\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00InitiatorName=iqn.1991-05.com.microsoft:beio-iscsi-probe\x00SessionType=Discovery\x00AuthMethod=None\x00\x00')
+[14/Sep/2021 20:41:41] "     _@ 7                                InitiatorName=iqn.1991-05.com.microsoft:beio-iscsi-probe SessionType=Discovery AuthMethod=None  " 400 -
+[14/Sep/2021 20:41:41,167] - Broken pipe from ('68.183.203.98', 40748)
+
+[14/Sep/2021 20:41:42] code 400, message Bad request version ('CharruaVista')
+[14/Sep/2021 20:41:42] "    Í   ANY-SCP         FINDSCU                                           1.2.840.10008.3.1.1.1   .   0  1.2.840.10008.1.1@  1.2.840.10008.1.2P  :Q    @ R  1.2.826.0.1.3680043.2.1396.999U  CharruaVista" 400 -
+[14/Sep/2021 20:41:42,795] - Broken pipe from ('68.183.203.98', 41954)
+
+[14/Sep/2021 20:41:42] code 400, message Bad HTTP/0.9 request type ("\x03\x00\x00,'à\x00\x00\x00\x00\x00Cookie:")
+[14/Sep/2021 20:41:42] "  ,'à     Cookie: mstshash=Administrator" 400 -
+[14/Sep/2021 20:41:44] code 400, message Bad request syntax ('\x00\x00\x00\x00\x00')
+[14/Sep/2021 20:41:44] "     " 400 -
+[14/Sep/2021 20:41:44,670] - Broken pipe from ('68.183.203.98', 43242)
+
+[14/Sep/2021 20:41:44] code 400, message Bad request syntax ('\x01I20100')
+[14/Sep/2021 20:41:44] "I20100" 400 -
+[15/Sep/2021 00:05:57] "GET / HTTP/1.1" 200 49510
+[15/Sep/2021 00:32:07] "GET / HTTP/1.1" 200 49510
+[15/Sep/2021 02:15:06] "GET / HTTP/1.0" 200 49510
+[15/Sep/2021 02:57:05] code 400, message Bad request version ('À\x14À')
+[15/Sep/2021 02:57:05] You're accessing the development server over HTTPS, but it only supports HTTP.
+
+/home/respublicarunner/restaurant/django/restaurant/views.py changed, reloading.
+Watching for file changes with StatReloader
+Performing system checks...
+
+System check identified no issues (0 silenced).
+September 15, 2021 - 09:34:12
+Django version 3.2.7, using settings 'restaurant.settings'
+Starting development server at http://0.0.0.0:8000/
+Quit the server with CONTROL-C.
+[15/Sep/2021 09:34:22] "GET / HTTP/1.0" 200 49510
+[15/Sep/2021 09:34:22] "GET /static/style.css HTTP/1.0" 200 302624
+[15/Sep/2021 09:34:22] "GET /static/app/img/menu.png HTTP/1.0" 200 342
+[15/Sep/2021 09:34:22] "GET /static/Feedback.js HTTP/1.0" 200 32555
+[15/Sep/2021 09:34:22] "GET /static/Feedback.css HTTP/1.0" 404 1901
+[15/Sep/2021 09:34:22] "GET /static/app/img/logo@2x.png HTTP/1.0" 200 8919
+[15/Sep/2021 09:34:22] "GET /static/app/img/close-menu.png HTTP/1.0" 200 507
+[15/Sep/2021 09:34:22] "GET /static/bundle.bundle.js HTTP/1.0" 200 750903
+[15/Sep/2021 09:34:22] "GET /static/app/img/mobile-logo.png HTTP/1.0" 200 6707
+[15/Sep/2021 09:34:22] "GET /static/app/img/phone.png HTTP/1.0" 200 679
+[15/Sep/2021 09:34:22] "GET /static/app/img/login-icon.png HTTP/1.0" 200 760
+[15/Sep/2021 09:34:22] "GET /static/app/img/calendar.png HTTP/1.0" 200 1841
+[15/Sep/2021 09:34:22] "GET /static/app/img/delivery.png HTTP/1.0" 200 1120
+[15/Sep/2021 09:34:22] "GET /static/app/img/scrolldown.png HTTP/1.0" 200 19337
+[15/Sep/2021 09:34:22] "GET /static/app/img/slide1.jpg HTTP/1.0" 200 2162268
+[15/Sep/2021 09:34:23] "GET /static/app/img/feedback-icon.png HTTP/1.0" 200 730
+[15/Sep/2021 09:34:23] "GET /static/app/img/arrow-right.png HTTP/1.0" 200 224
+[15/Sep/2021 09:34:23] "GET /static/Feedback.css HTTP/1.0" 404 1901
+[15/Sep/2021 09:34:23] "GET /static/app/img/yandex.png HTTP/1.0" 200 4556
+[15/Sep/2021 09:34:23] "GET /static/app/img/bottom-part.png HTTP/1.0" 200 444051
+[15/Sep/2021 09:34:23] "GET /static/app/fonts/bebasneuebold.woff2 HTTP/1.0" 200 9660
+[15/Sep/2021 09:34:23] "GET /static/app/fonts/bebasneueregular.woff2 HTTP/1.0" 200 9724
+[15/Sep/2021 09:34:23] "GET /static/app/fonts/MullerRegular.woff2 HTTP/1.0" 200 24764
+[15/Sep/2021 09:34:23] "GET /static/app/fonts/MullerLight.woff2 HTTP/1.0" 200 25404
+[15/Sep/2021 09:34:23] "GET /static/app/img/map-top.png HTTP/1.0" 200 383587
+[15/Sep/2021 09:34:23] "GET /static/app/img/bron-back.png HTTP/1.0" 200 47776
+[15/Sep/2021 09:34:23] "GET /static/app/img/delivery-back.png HTTP/1.0" 200 80980
+[15/Sep/2021 09:34:23] "GET /static/app/img/main.jpg HTTP/1.0" 200 802021
+[15/Sep/2021 09:34:23] "GET /static/app/img/header-back.jpg HTTP/1.0" 200 103814
+[15/Sep/2021 09:34:23] "GET /static/app/img/underlogo.png HTTP/1.0" 200 43917
+[15/Sep/2021 09:34:23] "GET /static/app/img/footer_logo.png HTTP/1.0" 200 6198
+[15/Sep/2021 09:34:23] "GET /static/app/img/insta.png HTTP/1.0" 200 2043
+[15/Sep/2021 09:34:23] "GET /static/app/img/web.png HTTP/1.0" 200 2185
+[15/Sep/2021 09:34:23] "GET /static/app/img/vk.png HTTP/1.0" 200 1214
+[15/Sep/2021 09:34:23] "GET /static/app/img/product1.jpg HTTP/1.0" 200 180742
+[15/Sep/2021 09:34:24] "GET /static/app/img/table.jpg HTTP/1.0" 200 172695
+[15/Sep/2021 09:34:24] "GET /static/app/img/a-profile-icon.png HTTP/1.0" 200 1310
+[15/Sep/2021 09:34:24] "GET /static/app/img/close.png HTTP/1.0" 200 338
+[15/Sep/2021 09:34:24] "GET /static/app/img/locker.png HTTP/1.0" 200 685
+[15/Sep/2021 09:34:24] "GET /static/favicon.png HTTP/1.0" 200 8919
+[15/Sep/2021 09:34:26] "GET /menu HTTP/1.0" 200 265513
+[15/Sep/2021 09:34:27] "GET /static/app/img/download-menu.png HTTP/1.0" 200 1193
+[15/Sep/2021 09:34:27] "GET /media/images/product.jpg HTTP/1.0" 200 193880
+[15/Sep/2021 09:34:27] "GET /static/app/img/rightside.png HTTP/1.0" 200 221631
+[15/Sep/2021 09:34:27] "GET /static/app/img/leftside.png HTTP/1.0" 200 452765
+[15/Sep/2021 09:34:27] "GET /menu HTTP/1.0" 200 265513
+[15/Sep/2021 09:34:27] "GET /media/images/product.jpg HTTP/1.0" 200 193880
+[15/Sep/2021 09:34:27] "GET /static/app/img/leftside.png HTTP/1.0" 200 452765
+[15/Sep/2021 09:34:27] "GET /static/app/img/rightside.png HTTP/1.0" 200 221631
+[15/Sep/2021 09:34:27] "GET /static/Feedback.css HTTP/1.0" 404 1901
+[15/Sep/2021 09:34:40] "GET /menu HTTP/1.0" 200 265513
+[15/Sep/2021 09:34:46] "GET /menu HTTP/1.0" 200 265513
+[15/Sep/2021 09:34:47] "GET /static/Feedback.css HTTP/1.0" 404 1901
+[15/Sep/2021 09:34:47] "GET /static/favicon.png HTTP/1.0" 200 8919
+[15/Sep/2021 09:36:14] "GET /reservation HTTP/1.0" 200 56353
+[15/Sep/2021 09:36:14] "GET /static/Reservation.css HTTP/1.0" 200 6576
+[15/Sep/2021 09:36:14] "GET /static/Reservation.js HTTP/1.0" 200 64503
+[15/Sep/2021 09:36:14] "GET /static/Feedback.css HTTP/1.0" 404 1901
+[15/Sep/2021 09:36:14] "GET /static/Feedback.css HTTP/1.0" 404 1901
+[15/Sep/2021 09:36:15] "GET /delivery HTTP/1.0" 200 167330
+[15/Sep/2021 09:36:15] "GET /static/app/img/x.png HTTP/1.0" 200 378
+[15/Sep/2021 09:36:15] "GET /static/app/img/cart.png HTTP/1.0" 200 13719
+[15/Sep/2021 09:36:15] "GET /static/app/img/bubble.png HTTP/1.0" 200 9509
+[15/Sep/2021 09:36:15] "GET /static/Delivery.css HTTP/1.0" 404 1901
+[15/Sep/2021 09:36:15] "GET /static/app/fonts/MullerBold.woff2 HTTP/1.0" 200 25360
+[15/Sep/2021 09:36:15] "GET /static/Delivery.js HTTP/1.0" 200 6904
+[15/Sep/2021 09:36:15] "GET /static/Feedback.css HTTP/1.0" 404 1901
+[15/Sep/2021 10:02:21] "GET /menu HTTP/1.0" 200 265513
+[15/Sep/2021 10:02:22] "GET /static/style.css HTTP/1.0" 200 302624
+[15/Sep/2021 10:02:22] "GET /static/Feedback.js HTTP/1.0" 200 32555
+[15/Sep/2021 10:02:22] "GET /static/Feedback.css HTTP/1.0" 404 1901
+[15/Sep/2021 10:02:22] "GET /static/bundle.bundle.js HTTP/1.0" 200 750903
+[15/Sep/2021 10:02:22] "GET /static/app/img/product1.jpg HTTP/1.0" 200 180742
+[15/Sep/2021 10:02:22] "GET /static/app/img/vk.png HTTP/1.0" 200 1214
+[15/Sep/2021 10:02:22] "GET /static/app/img/a-profile-icon.png HTTP/1.0" 200 1310
+[15/Sep/2021 10:02:22] "GET /static/app/img/table.jpg HTTP/1.0" 200 172695
+[15/Sep/2021 10:02:22] "GET /static/app/img/close.png HTTP/1.0" 200 338
+[15/Sep/2021 10:02:22] "GET /static/Feedback.css HTTP/1.0" 404 1901
+[15/Sep/2021 10:02:22] "GET /static/app/fonts/MullerLight.woff2 HTTP/1.0" 200 25404
+[15/Sep/2021 10:02:22] "GET /static/app/fonts/bebasneuebold.woff2 HTTP/1.0" 200 9660
+[15/Sep/2021 10:02:22] "GET /static/app/fonts/MullerRegular.woff2 HTTP/1.0" 200 24764
+[15/Sep/2021 10:02:22] "GET /static/app/fonts/bebasneueregular.woff2 HTTP/1.0" 200 9724
+[15/Sep/2021 10:02:22] "GET /static/app/img/header-back.jpg HTTP/1.0" 200 103814
+[15/Sep/2021 10:02:22] "GET /static/app/img/underlogo.png HTTP/1.0" 200 43917
+[15/Sep/2021 10:02:22] "GET /static/app/img/leftside.png HTTP/1.0" 200 452765
+[15/Sep/2021 10:02:22] "GET /static/app/img/rightside.png HTTP/1.0" 200 221631
+[15/Sep/2021 10:02:22] "GET /static/app/img/feedback-icon.png HTTP/1.0" 200 730
+[15/Sep/2021 10:02:22] "GET /media/images/product.jpg HTTP/1.0" 200 193880
+[15/Sep/2021 10:02:22] "GET /static/app/img/arrow-right.png HTTP/1.0" 200 224
+[15/Sep/2021 10:02:22] "GET /static/app/img/yandex.png HTTP/1.0" 200 4556
+[15/Sep/2021 10:02:22] "GET /static/app/img/footer_logo.png HTTP/1.0" 200 6198
+[15/Sep/2021 10:02:22] "GET /static/app/img/insta.png HTTP/1.0" 200 2043
+[15/Sep/2021 10:02:22] "GET /static/app/img/web.png HTTP/1.0" 200 2185
+[15/Sep/2021 10:02:22] "GET /static/app/img/logo@2x.png HTTP/1.0" 200 8919
+[15/Sep/2021 10:02:22] "GET /static/app/img/login-icon.png HTTP/1.0" 200 760
+[15/Sep/2021 10:02:22] "GET /static/app/img/phone.png HTTP/1.0" 200 679
+[15/Sep/2021 10:02:22] "GET /static/app/img/download-menu.png HTTP/1.0" 200 1193
+[15/Sep/2021 10:02:22] "GET /static/app/img/map-top.png HTTP/1.0" 200 383587
+[15/Sep/2021 10:02:22] "GET /static/app/img/locker.png HTTP/1.0" 200 685
+[15/Sep/2021 10:02:22] "GET /static/app/img/mobile-logo.png HTTP/1.0" 200 6707
+[15/Sep/2021 10:02:22] "GET /static/app/img/close-menu.png HTTP/1.0" 200 507
+[15/Sep/2021 10:02:22] "GET /static/app/img/menu.png HTTP/1.0" 200 342
+[15/Sep/2021 10:02:23] "GET /static/favicon.png HTTP/1.0" 200 8919
+[15/Sep/2021 10:02:28] "GET /delivery HTTP/1.0" 200 167330
+[15/Sep/2021 10:02:28] "GET /static/app/img/x.png HTTP/1.0" 200 378
+[15/Sep/2021 10:02:28] "GET /static/app/img/cart.png HTTP/1.0" 200 13719
+[15/Sep/2021 10:02:28] "GET /static/Delivery.css HTTP/1.0" 404 1901
+[15/Sep/2021 10:02:28] "GET /static/Feedback.css HTTP/1.0" 404 1901
+[15/Sep/2021 10:02:28] "GET /static/Delivery.js HTTP/1.0" 200 6904
+[15/Sep/2021 10:02:28] "GET /static/app/img/bubble.png HTTP/1.0" 200 9509
+[15/Sep/2021 10:02:28] "GET /static/app/fonts/MullerBold.woff2 HTTP/1.0" 200 25360
+[15/Sep/2021 10:02:28] "GET /static/Feedback.css HTTP/1.0" 404 1901
+[15/Sep/2021 10:02:28] "GET /static/favicon.png HTTP/1.0" 200 8919
+[15/Sep/2021 10:40:09] "GET / HTTP/1.1" 200 49510
+[15/Sep/2021 11:57:02] "GET /delivery HTTP/1.0" 200 167330
+[15/Sep/2021 11:57:02] "GET /static/style.css HTTP/1.0" 200 302624
+[15/Sep/2021 11:57:02] "GET /static/app/img/menu.png HTTP/1.0" 304 0
+[15/Sep/2021 11:57:02] "GET /static/app/img/logo@2x.png HTTP/1.0" 304 0
+[15/Sep/2021 11:57:02] "GET /static/app/img/mobile-logo.png HTTP/1.0" 304 0
+[15/Sep/2021 11:57:02] "GET /static/app/img/close-menu.png HTTP/1.0" 304 0
+[15/Sep/2021 11:57:02] "GET /static/app/img/phone.png HTTP/1.0" 304 0
+[15/Sep/2021 11:57:02] "GET /static/Delivery.css HTTP/1.0" 404 1901
+[15/Sep/2021 11:57:02] "GET /static/Delivery.js HTTP/1.0" 200 6904
+[15/Sep/2021 11:57:02] "GET /static/Feedback.js HTTP/1.0" 304 0
+[15/Sep/2021 11:57:02] "GET /static/bundle.bundle.js HTTP/1.0" 304 0
+[15/Sep/2021 11:57:02] "GET /static/Feedback.css HTTP/1.0" 404 1901
+[15/Sep/2021 11:57:02] "GET /static/app/img/login-icon.png HTTP/1.0" 304 0
+[15/Sep/2021 11:57:02] "GET /static/app/img/x.png HTTP/1.0" 304 0
+[15/Sep/2021 11:57:02] "GET /static/app/img/cart.png HTTP/1.0" 200 13719
+[15/Sep/2021 11:57:02] "GET /static/app/img/feedback-icon.png HTTP/1.0" 304 0
+[15/Sep/2021 11:57:02] "GET /media/images/product.jpg HTTP/1.0" 200 193880
+[15/Sep/2021 11:57:03] "GET /static/app/img/arrow-right.png HTTP/1.0" 304 0
+[15/Sep/2021 11:57:03] "GET /static/app/img/yandex.png HTTP/1.0" 304 0
+[15/Sep/2021 11:57:03] "GET /static/app/img/footer_logo.png HTTP/1.0" 304 0
+[15/Sep/2021 11:57:03] "GET /static/app/img/insta.png HTTP/1.0" 304 0
+[15/Sep/2021 11:57:03] "GET /static/app/img/web.png HTTP/1.0" 304 0
+[15/Sep/2021 11:57:03] "GET /static/app/img/product1.jpg HTTP/1.0" 304 0
+[15/Sep/2021 11:57:03] "GET /static/app/img/vk.png HTTP/1.0" 304 0
+[15/Sep/2021 11:57:03] "GET /static/app/img/table.jpg HTTP/1.0" 304 0
+[15/Sep/2021 11:57:03] "GET /static/app/img/a-profile-icon.png HTTP/1.0" 304 0
+[15/Sep/2021 11:57:03] "GET /static/app/img/close.png HTTP/1.0" 304 0
+[15/Sep/2021 11:57:03] "GET /static/app/img/locker.png HTTP/1.0" 304 0
+[15/Sep/2021 11:57:03] "GET /static/Delivery.css HTTP/1.0" 404 1901
+[15/Sep/2021 11:57:03] "GET /static/app/img/header-back.jpg HTTP/1.0" 304 0
+[15/Sep/2021 11:57:03] "GET /static/app/img/underlogo.png HTTP/1.0" 304 0
+[15/Sep/2021 11:57:03] "GET /static/app/fonts/bebasneuebold.woff2 HTTP/1.0" 304 0
+[15/Sep/2021 11:57:03] "GET /static/app/fonts/MullerRegular.woff2 HTTP/1.0" 304 0
+[15/Sep/2021 11:57:03] "GET /static/app/fonts/bebasneueregular.woff2 HTTP/1.0" 304 0
+[15/Sep/2021 11:57:03] "GET /static/app/fonts/MullerBold.woff2 HTTP/1.0" 304 0
+[15/Sep/2021 11:57:03] "GET /static/app/img/bubble.png HTTP/1.0" 200 9509
+[15/Sep/2021 11:57:03] "GET /static/app/img/leftside.png HTTP/1.0" 200 452765
+[15/Sep/2021 11:57:03] "GET /static/Feedback.css HTTP/1.0" 404 1901
+[15/Sep/2021 11:57:03] "GET /static/app/img/map-top.png HTTP/1.0" 304 0
+[15/Sep/2021 11:57:03] "GET /static/app/fonts/MullerLight.woff2 HTTP/1.0" 304 0
+[15/Sep/2021 11:57:15] "GET /reservation HTTP/1.0" 200 56353
+[15/Sep/2021 11:57:15] "GET /static/Reservation.css HTTP/1.0" 200 6576
+[15/Sep/2021 11:57:15] "GET /static/Reservation.js HTTP/1.0" 200 64503
+[15/Sep/2021 11:57:15] "GET /static/Feedback.css HTTP/1.0" 404 1901
+[15/Sep/2021 11:57:15] "GET /static/Feedback.css HTTP/1.0" 404 1901
+[15/Sep/2021 11:57:15] "GET /media/tables/%D0%9F%D0%BE%D0%BA%D1%80%D1%8B%D1%88%D0%BA%D0%B8%D0%BD%D0%B0.svg HTTP/1.0" 200 59550

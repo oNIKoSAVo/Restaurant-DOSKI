@@ -136,6 +136,49 @@
     .forEach((elem) =>
       elem.addEventListener("click", (e) => handleClickOnPlus(e))
     );
+
+  document.addEventListener("DOMContentLoaded", () => {
+    document.querySelector(".checkout-final").addEventListener("click", async () => {
+      const fio = document.querySelector(
+        "#checkoutform input[name='name']"
+      ).value;
+      const address = document.querySelector(
+        "#checkoutform input[name='addres']"
+      ).value;
+      const phone = document.querySelector(
+        "#checkoutform input[name='phone']"
+      ).value;
+      const comment = document.querySelector(
+        "#checkoutform input[name='comment']"
+      ).value;
+      const paymentType = document.querySelector(
+        "#checkoutform select[name='paymentType']"
+      ).value;
+
+      const payload = {
+        fio,
+        address,
+        phone,
+        comment,
+        paymentType,
+        menue: cart,
+      };
+
+      const response = await fetch('/create_order', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(payload)
+      });
+
+      const result = await response.json();
+      if(result.payment_url){
+        window.location.href = result.payment_url;
+      }
+    });
+  });
+
   function handleClickOnMinus(e) {
     e.stopPropagation();
 

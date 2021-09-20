@@ -7,6 +7,7 @@ name = "pypi"
 django = "*"
 django-svelte = "*"
 pillow = "*"
+requests = "*"
 
 [dev-packages]
 

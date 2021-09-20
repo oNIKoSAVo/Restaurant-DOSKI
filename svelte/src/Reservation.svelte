@@ -6,8 +6,10 @@
   import jquery from "jquery";
 
   export let restaraunts;
+  export let reservation;
 
-  let restaraunt = "";
+  
+  let restaraunt = reservation.restaraunt_id ? parseInt(reservation.restaraunt_id) : "";
   let date = "";
   let start = "";
   let end = "";
@@ -51,6 +53,10 @@
   //     e.target.value = stateValue;
   //   }
   // }
+
+  document.addEventListener("DOMContentLoaded", () => {
+    appendSchemes([{ url: restaraunts[0]?.schemes[0]?.url }]);
+  })
 
   function slicePeopleForTable(id) {
     let peopleQuantity = "";
@@ -183,6 +189,7 @@
     </div>
     <div class="col-sm-6 svelte-1lorc63">
       <Datepicker
+        selected={(reservation.date ? new Date(reservation.date.replace(/(\d{2})-(\d{2})-(\d{4})/,'$3-$2-$1')) : new Date())}
         format={"#{d}/#{m}/#{Y}"}
         {daysOfWeek}
         {monthsOfYear}

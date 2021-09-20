@@ -1,6 +1,12 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.db.models import Q
+from functools import reduce
 
+class PaymentTypes(models.IntegerChoices):
+    ONLINE = 0, 'Онлайн оплата'
+    CARD = 1, 'Картой'
+    CASH = 2, 'Наличными'
 
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
@@ -10,7 +16,7 @@ class Profile(models.Model):
         max_length=128, blank=True, null=True, default=None)
     last_name = models.CharField(
         max_length=128, blank=True, null=True, default=None)
-    birthday = models.DateField(auto_now=False, auto_now_add=False)
+    birthday = models.DateField(auto_now=False, auto_now_add=False, blank=True, null=True, default=None)
 
     phone = models.CharField(max_length=16, blank=True,
                              null=True, default=None)
@@ -22,8 +28,8 @@ class Profile(models.Model):
     class Meta:
         verbose_name = 'профиль'
         verbose_name_plural = 'профили'
-        app_label = 'auth'
-        db_table = 'restaurant_profile'
+        # app_label = 'auth'
+        # db_table = 'restaurant_profile'
         
 
 
@@ -54,6 +60,25 @@ class Category(models.Model):
     def __str__(self):
         return "%s" % (self.name)
 
+    @staticmethod
+    def get_without(categories_skip = []):
+        if(len(categories_skip) == 0):
+            return Category.objects.all()
+        not_display_categories_ids = []
+        not_display_categories = Category.objects\
+            .filter(
+                reduce(lambda x, y: x | y, [Q(name=item) for item in categories_skip]))
+
+        not_display_categories_ids = [
+            category.id for category in not_display_categories]
+
+        for category_id in not_display_categories_ids:
+            child = Category.objects.filter(parent=category_id)
+            for c in child:
+                not_display_categories_ids.append(c.id)
+
+        return Category.objects.exclude(id__in=not_display_categories_ids)
+
     class Meta:
         verbose_name = 'категория'
         verbose_name_plural = 'категории'
@@ -80,7 +105,11 @@ class Order(models.Model):
                               on_delete=models.CASCADE, blank=False, null=False)
     restaraunt = models.ForeignKey(Restaraunt, verbose_name='Ресторан', related_name='orders', on_delete=models.DO_NOTHING,  blank=False, null=False)
     price = models.FloatField('Сумма заказа', blank=False, null=False, default=0)
-
+    comment = models.TextField('Комментарий к заказу', max_length=128, blank=True, null=True)
+    address = models.TextField('Адресс', max_length=300, blank=True, null=True)
+    payment = models.IntegerField(
+        'Тип оплаты', choices=PaymentTypes.choices, default=PaymentTypes.ONLINE)
+    paid = models.BooleanField("Оплачено", blank=False, null=False, default=False)
     created_at = models.DateTimeField('Время создания', auto_now_add=True)
     updated_at = models.DateTimeField('Время изменения', auto_now=True)
 
@@ -152,6 +181,7 @@ class Event(models.Model):
     description = models.TextField('Описание', max_length=128, blank=True, null=True)
     image = models.ImageField('Изображение', upload_to='images/', blank=True, null=True)
     date = models.DateTimeField('Дата', blank=False, null=False)
+    restaraunt = models.ForeignKey(Restaraunt, verbose_name='Ресторан', on_delete=models.DO_NOTHING, blank=True, null=True)
 
     class Meta:
         verbose_name = 'событие'

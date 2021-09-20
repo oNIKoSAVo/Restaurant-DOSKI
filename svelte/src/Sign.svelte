@@ -35,14 +35,17 @@
   }
 
   document.addEventListener("DOMContentLoaded", () => {
-    document.querySelectorAll(".sign").forEach((e) =>
-      e.addEventListener("click", () => {
-        ui.showMainModal = true;
-        document
-          .querySelectorAll(".modal")
-          .forEach((elem) => (elem.style.display = ""));
-      })
-    );
+    const signBtns = document.querySelectorAll(".sign");
+    if (signBtns.length > 0) {
+      signBtns.forEach((e) =>
+        e.addEventListener("click", () => {
+          ui.showMainModal = true;
+          document
+            .querySelectorAll(".modal")
+            .forEach((elem) => (elem.style.display = ""));
+        })
+      );
+    }
 
     ModalHiddenEventListener(
       document.querySelector("#signinup"),

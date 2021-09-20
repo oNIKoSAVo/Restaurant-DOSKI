@@ -8,11 +8,12 @@
   export let restaraunts;
   export let reservation;
 
-  
-  let restaraunt = reservation.restaraunt_id ? parseInt(reservation.restaraunt_id) : "";
+  let restaraunt = reservation.restaraunt_id
+    ? parseInt(reservation.restaraunt_id)
+    : "";
   let date = "";
-  let start = "";
-  let end = "";
+  let start = "00:00";
+  let end = "00:00";
   let persons = "";
   let table = "";
   let name = "";
@@ -56,7 +57,7 @@
 
   document.addEventListener("DOMContentLoaded", () => {
     appendSchemes([{ url: restaraunts[0]?.schemes[0]?.url }]);
-  })
+  });
 
   function slicePeopleForTable(id) {
     let peopleQuantity = "";
@@ -189,7 +190,11 @@
     </div>
     <div class="col-sm-6 svelte-1lorc63">
       <Datepicker
-        selected={(reservation.date ? new Date(reservation.date.replace(/(\d{2})-(\d{2})-(\d{4})/,'$3-$2-$1')) : new Date())}
+        selected={reservation.date
+          ? new Date(
+              reservation.date.replace(/(\d{2})-(\d{2})-(\d{4})/, "$3-$2-$1")
+            )
+          : new Date()}
         format={"#{d}/#{m}/#{Y}"}
         {daysOfWeek}
         {monthsOfYear}
@@ -201,11 +206,30 @@
         placeholder="От"
         value={start}
         on:input={(e) => {
-          if (isNumeric(e.target.value) || e.target.value === "") {
-            start = e.target.value;
-          } else {
+          if (!e.target.value.includes(":") || e.target.value.length > 5) {
+            start = `00:00`;
             e.target.value = start;
+            return;
           }
+
+          const [hours, minutes] = e.target.value.split(":");
+          if (hours.trim() !== "") {
+            if (!isNumeric(hours) || +hours > 23) {
+              start = `00:${start.slice(2)}`;
+              e.target.value = start;
+              return;
+            }
+          }
+
+          if (minutes.trim() !== "") {
+            if (!isNumeric(minutes) || +minutes > 59) {
+              start = `${start.slice(0, 2)}:00`;
+              e.target.value = start;
+              return;
+            }
+          }
+
+          start = e.target.value;
         }}
       />
     </div>
@@ -214,11 +238,30 @@
         placeholder="До"
         value={end}
         on:input={(e) => {
-          if (isNumeric(e.target.value) || e.target.value === "") {
-            end = e.target.value;
-          } else {
+          if (!e.target.value.includes(":") || e.target.value.length > 5) {
+            end = `00:00`;
             e.target.value = end;
+            return;
           }
+
+          const [hours, minutes] = e.target.value.split(":");
+          if (hours.trim() !== "") {
+            if (!isNumeric(hours) || +hours > 23) {
+              end = `00:${end.slice(2)}`;
+              e.target.value = end;
+              return;
+            }
+          }
+
+          if (minutes.trim() !== "") {
+            if (!isNumeric(minutes) || +minutes > 59) {
+              end = `${end.slice(0, 2)}:00`;
+              e.target.value = end;
+              return;
+            }
+          }
+
+          end = e.target.value;
         }}
       />
     </div>

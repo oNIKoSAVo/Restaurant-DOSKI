@@ -29,9 +29,9 @@
     e.preventDefault();
     const response = await signUp({ phone });
     console.log(response);
-    if (response.success) {
-      code = response.password.split("");
-    }
+    // if (response.success) {
+    //   code = response.password.split("");
+    // }
   }
 
   document.addEventListener("DOMContentLoaded", () => {

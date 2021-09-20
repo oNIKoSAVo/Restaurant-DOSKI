@@ -1,7 +1,8 @@
+from restaurant.lib.sms import Sms
 from django.db.models.aggregates import Sum
-import requests
 from restaurant.lib.payment import Payment
 import sys
+import re
 import json
 import random
 from datetime import datetime
@@ -20,29 +21,33 @@ def index(request):
 
 @require_http_methods(["POST"])
 def signup(request):
-    phone = request.POST.get('phone') #TODO NEED VALIDATE PHONE NUMBER
-
-    user = User.objects.filter(username=phone)
+    phone = request.POST.get('phone')
+    cleanphone = re.sub('\W+','', phone)
+    user = User.objects.filter(username=cleanphone)
     if(user.exists()):
         return JsonResponse({"error": "Такой номер уже зарегестрирован"})
     else:
         password = ''.join(
             random.choice('1234567890') for _ in range(4))
 
-        user = User.objects.create_user(username=phone, password=password)
+        user = User.objects.create_user(username=cleanphone, password=password)
         profile = Profile.objects.create(
-            user=user, phone=phone)
+            user=user, phone=cleanphone)
+
+        Sms().send(cleanphone, password)
         
         if(user and profile):
-            return JsonResponse({"success": "Успешно зарегестрирован", "password": password})
+            return JsonResponse({"success": "Успешно зарегестрирован"})
 
     return JsonResponse({"error": "Ошибка..."})
 
 @require_http_methods(["POST"])
 def signin(request):
-    phone = request.POST.get('phone') #TODO NEED VALIDATE PHONE NUMBER
+    phone = request.POST.get('phone')
     password = request.POST.get('password')
-    user = authenticate(request, username=phone, password=password)
+
+    cleanphone = re.sub('\W+','', phone)
+    user = authenticate(request, username=cleanphone, password=password)
     if user is not None:
         login(request, user)
         return JsonResponse({"success": "Прошел"})
@@ -55,7 +60,7 @@ def personal(request):
         return redirect('/#signin')
 
     user = request.user
-    reservations = Reservation.objects.filter(phone=request.user.profile.phone)
+    reservations = user.reservations.all()
     results = []
     for order in user.orders.all():
         results.append({
@@ -164,7 +169,22 @@ def reservation(request):
             reservations = Reservation.objects.filter(end__gte=date_start)
             return JsonResponse({"tables": [reserv.table for reserv in reservations]})
         else:
+            cleanphone = re.sub('\W+','', request.POST.get('phone'))
+            profile = Profile.objects.filter(phone=cleanphone)
+            if(not profile.exists()):
+                password=''.join(
+                    random.choice('1234567890') for _ in range(4))
+                user = User.objects.create_user(username=cleanphone, password=password)
+                profile = Profile.objects.create(
+                    user=user, first_name=request.POST.get('name'), phone=cleanphone)
+
+                Sms().send(cleanphone, password)
+            else:
+                user = profile.first().user
+
+
             reservation = Reservation.objects.create(
+                user = user,
                 restaraunt=Restaraunt.objects.get(
                     pk=request.POST.get('restaraunt')),
                 start=date_start,
@@ -261,10 +281,13 @@ def create_order(request):
     comment = data["comment"]
     payment_type = data["paymentType"]
 
-    profile = Profile.objects.filter(phone=phone)
+    
+    cleanphone = re.sub('\W+','', phone)
+    profile = Profile.objects.filter(phone=cleanphone)
     if(not profile.exists()):
-        user = User.objects.create_user(username=phone, password=''.join(
-            random.choice('1234567890') for _ in range(4)))
+        password=''.join(
+            random.choice('1234567890') for _ in range(4))
+        user = User.objects.create_user(username=cleanphone, password=password)
         if(len(fio.split(" ")) >= 3):
             first_name = fio.split(" ")[1]
             second_name = fio.split(" ")[2]
@@ -275,7 +298,9 @@ def create_order(request):
             last_name = fio
 
         profile = Profile.objects.create(
-            user=user, first_name=first_name, second_name=second_name, last_name=last_name, phone=phone)
+            user=user, first_name=first_name, second_name=second_name, last_name=last_name, phone=cleanphone)
+
+        Sms().send(cleanphone, password)
     else:
         user = profile.first().user
 

@@ -208,7 +208,7 @@
           class="phone-input"
           type="tel"
           name="phone"
-          bind:value={phone}
+          on:change={(e) => (phone = e.target.value)}
           placeholder="Ваш телефон"
         />
         <div class="text-center">

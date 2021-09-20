@@ -5,4 +5,5 @@ node_modules
 static/*
 *.zip
 *.7z
+.DS_Store
 *.lock

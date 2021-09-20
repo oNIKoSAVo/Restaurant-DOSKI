@@ -1,5 +1,5 @@
 <script>
-  import { ModalHiddenEventListener } from './utils'
+  import { ModalHiddenEventListener } from "./utils";
   import { signIn, signUp } from "./api";
 
   let phone = "",
@@ -35,23 +35,38 @@
   }
 
   document.addEventListener("DOMContentLoaded", () => {
-    document.querySelector(".sign").addEventListener("click", () => {
-      ui.showMainModal = true;
-      document.querySelectorAll('.modal').forEach(elem => elem.style.display = "")
-    });
+    document.querySelectorAll(".sign").forEach((e) =>
+      e.addEventListener("click", () => {
+        ui.showMainModal = true;
+        document
+          .querySelectorAll(".modal")
+          .forEach((elem) => (elem.style.display = ""));
+      })
+    );
 
-    ModalHiddenEventListener(document.querySelector('#signinup'), (e) => {
-      ui.showMainModal = false;
-    }, document);
+    ModalHiddenEventListener(
+      document.querySelector("#signinup"),
+      (e) => {
+        ui.showMainModal = false;
+      },
+      document
+    );
 
-    ModalHiddenEventListener(document.querySelector('#login'), () => {
-      ui.showSignInModal = false;
-    }, document);
+    ModalHiddenEventListener(
+      document.querySelector("#login"),
+      () => {
+        ui.showSignInModal = false;
+      },
+      document
+    );
 
-    ModalHiddenEventListener(document.querySelector('#register'), () => {
-      ui.showSignUpModal = false;
-    }, document);
-
+    ModalHiddenEventListener(
+      document.querySelector("#register"),
+      () => {
+        ui.showSignUpModal = false;
+      },
+      document
+    );
 
     // document.querySelector('#signinup').addEventListener("hidden.bs.modal", () => {
     //   alert("AA")

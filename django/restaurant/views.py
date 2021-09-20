@@ -92,6 +92,8 @@ def menu(request):
         "Доставка"
     ])
 
+    categories = categories.annotate(menue_count=Count('menues__id')).filter(menue_count__gt=0)
+
     return render(request, 'menu.py.html', {'menues': Menue.objects.all(), 'categories': categories})
 
 
@@ -142,6 +144,8 @@ def delivery(request):
         "Яндекс Доставка",
         "Доставка"
     ])
+
+    categories = categories.annotate(menue_count=Count('menues__id')).filter(menue_count__gt=0)
 
     return render(request, 'delivery.py.html', {'categories': categories})
 

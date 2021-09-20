@@ -1,6 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
-from django.db.models import Q
+from django.db.models import Q, Count
 from functools import reduce
 
 class PaymentTypes(models.IntegerChoices):
@@ -67,7 +67,7 @@ class Category(models.Model):
         not_display_categories_ids = []
         not_display_categories = Category.objects\
             .filter(
-                reduce(lambda x, y: x | y, [Q(name=item) for item in categories_skip]))
+                reduce(lambda x, y: x | y, [Q(name=item) for item in categories_skip]))\
 
         not_display_categories_ids = [
             category.id for category in not_display_categories]
@@ -75,7 +75,7 @@ class Category(models.Model):
         for category_id in not_display_categories_ids:
             child = Category.objects.filter(parent=category_id)
             for c in child:
-                not_display_categories_ids.append(c.id)
+                    not_display_categories_ids.append(c.id)
 
         return Category.objects.exclude(id__in=not_display_categories_ids)
 

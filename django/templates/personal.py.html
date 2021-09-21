@@ -110,9 +110,8 @@
               <tr>
                 <th>Фио</th>
                 <td>
-                  {{ request.user.profile.last_name }} {{
-                  request.user.profile.first_name }} {{
-                  request.user.profile.second_name }}
+                  
+                  {{ request.user.profile.last_name | default_if_none:"-" }} {{ request.user.profile.first_name | default_if_none:"-" }} {{ request.user.profile.second_name | default_if_none:"-" }}
                 </td>
               </tr>
               <tr>
@@ -123,10 +122,10 @@
                 <th>Дата рождения:</th>
                 <td>{{ request.user.profile.birthday|date:'d.m.Y' }}</td>
               </tr>
-              <tr>
+              <!-- <tr>
                 <th>Email:</th>
                 <td>konstantin@mail.ru</td>
-              </tr>
+              </tr> -->
             </table>
           </div>
           <div class="col-12 mt-3 d-sm-none d-block">
@@ -180,9 +179,7 @@
           <div class="col-12">
             <div class="order-history">
               <div class="order-time">
-                <img src="/static/app/img/order-time.png" width="17" />{{
-                result.order.created_at|date:'d.m.Y' }} в {{
-                result.order.created_at|date:'H:i' }}
+                <img src="/static/app/img/order-time.png" width="17" />{{ result.order.created_at|date:'d.m.Y' }} в {{ result.order.created_at|date:'H:i' }}
               </div>
 
               <div class="order-items">

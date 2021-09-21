@@ -52,7 +52,6 @@
     "sass-loader": "^10",
     "style-loader": "^1.0.0",
     "svelte": "^3.0.0",
-    "svelte-calendar": "^2.0.4",
     "uglifyjs-webpack-plugin": "^2.2.0",
     "webp-loader": "^0.6.0",
     "webpack": "^4.41.0",
@@ -63,6 +62,7 @@
   "dependencies": {
     "bootstrap": "^4.4.1",
     "cross-env": "^7.0.2",
+    "dayjs": "^1.10.7",
     "google-maps": "^4.3.3",
     "html-webpack-externals-plugin": "^3.8.0",
     "inputmask": "^5.0.5",
@@ -76,6 +76,7 @@
     "particles.js": "^2.0.0",
     "qs": "^6.10.1",
     "sirv-cli": "^1.0.0",
+    "svelte-calendar": "^3.1.4",
     "swiper": "^6.7.5",
     "validator": "^13.6.0"
   }

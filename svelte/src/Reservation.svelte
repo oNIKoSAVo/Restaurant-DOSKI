@@ -1,9 +1,14 @@
 <script>
-  import Datepicker from "svelte-calendar";
+  import { Datepicker, Swappable } from "svelte-calendar";
   import { reservationRequest } from "./api";
   import isNumeric from "validator/es/lib/isNumeric";
   import isAlpha from "validator/es/lib/isAlpha";
   import jquery from "jquery";
+  import "dayjs/locale/ru.js";
+  import dayjs from "dayjs";
+  let locale = "ru";
+
+  $: dayjs.locale(locale);
 
   export let restaraunts;
   export let reservation;
@@ -11,7 +16,7 @@
   let restaraunt = reservation.restaraunt_id
     ? parseInt(reservation.restaraunt_id)
     : "";
-  let date = "";
+  let store;
   let start = "00:00";
   let end = "00:00";
   let persons = "";
@@ -188,18 +193,46 @@
         {/each}
       </select>
     </div>
-    <div class="col-sm-6 svelte-1lorc63">
+    <div class="col-sm-6">
       <Datepicker
-        selected={reservation.date
-          ? new Date(
-              reservation.date.replace(/(\d{2})-(\d{2})-(\d{4})/, "$3-$2-$1")
-            )
-          : new Date()}
-        format={"#{d}/#{m}/#{Y}"}
-        {daysOfWeek}
-        {monthsOfYear}
-        bind:formattedSelected={date}
-      />
+        on:mouseover={() => {
+          document.body.classList.add("locked");
+        }}
+        bind:store
+        let:key
+        let:send
+        let:receive
+        theme={{
+          calendar: {
+            width: "500px",
+          },
+        }}
+      >
+        <button
+          id="chooseDate"
+          in:receive|local={{ key }}
+          out:send|local={{ key }}
+          on:click={() => {
+            document.body.classList.add("locked");
+            document.onclick = (e) => {
+              if (
+                e.target.closest(".sc-popover") &&
+                !(e.target?.hash === "#pickday")
+              )
+                return;
+              document.body.classList.remove("locked");
+
+              document.onclick = null;
+            };
+          }}
+        >
+          {#if $store?.hasChosen}
+            {dayjs($store.selected).format("ddd MMM D, YYYY")}
+          {:else}
+            Выберите дату
+          {/if}
+        </button>
+      </Datepicker>
     </div>
     <div class="col-md-3 col-6">
       <input
@@ -344,5 +377,16 @@
 <style>
   .svelte-1lorc63 {
     width: 200px;
+  }
+
+  button {
+    background: white;
+    border: 1px solid #e8e8e8;
+    color: #444;
+    padding: 18px 30px;
+    font-size: 1.2em;
+    border-radius: 6px;
+    cursor: pointer;
+    font-family: "Muller", sans-serif;
   }
 </style>

@@ -1,5 +1,5 @@
 <script>
-  import Datepicker from "svelte-calendar";
+  import { Datepicker } from "svelte-calendar";
   import { careerRequest } from "./api";
   let showModal = false;
   let showFormModal = true;

@@ -2204,7 +2204,7 @@ textarea {
     height: 100%;
     left: 0;
     top: 100px;
-    background: url("/static/app/img/leftside.png") no-repeat left top / cover;
+    background: url(/static/app/img/leftside.png) repeat-y left top/100%;
     width: 20%;
   }
   &:after {
@@ -2213,7 +2213,7 @@ textarea {
     right: 0;
     height: 100%;
     top: 100px;
-    background: url("/static/app/img/rightside.png") no-repeat right top / cover;
+    background: url(/static/app/img/rightside.png) repeat-y right top/100%;
     width: 20%;
   }
 }

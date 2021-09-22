@@ -54,11 +54,6 @@ $(".call,.open-modal").on("click", function (e) {
   }).show();
 });
 
-function openJobModal(e) {
-  e.preventDefault();
-  openModal("#jobmodal");
-}
-
 // $("#jobmodal-btn").on("click", openJobModal);
 // $(".clickme").on("click", openJobModal);
 $(".login.sign.gradient1").on("click", function (e) {
@@ -448,8 +443,19 @@ $(function () {
   $(".only-menu .dish-item").on("click", function () {
     openModal("#item");
   });
-  $(".delivery-section .dish-item").on("click", function () {
+  $(".delivery-section .dish-item").on("click", function (e) {
+    const modal = document.getElementById("item-buy");
+    const dishItem = e.target.closest(".dish-item");
     openModal("#item-buy");
+    modal.dataset.id = dishItem.id;
+    modal.querySelector(".dish-img").src =
+      dishItem.querySelector(".dish-img").src;
+    modal.querySelector(".dish-details_price").textContent =
+      dishItem.querySelector(".dish-details_price").textContent;
+    modal.querySelector(".modal-title").textContent =
+      dishItem.querySelector(".dish-title").textContent;
+    modal.querySelector(".item-quantity").textContent =
+      dishItem.querySelector(".item-quantity").textContent;
   });
   $(".delete-account").on("click", function (e) {
     e.preventDefault();

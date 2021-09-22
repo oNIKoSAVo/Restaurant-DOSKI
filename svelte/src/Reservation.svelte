@@ -79,7 +79,7 @@
     openModal("#askpreorder");
     const response = await reservationRequest({
       restaraunt,
-      date,
+      store,
       start,
       end,
       persons,
@@ -205,6 +205,9 @@
         theme={{
           calendar: {
             width: "500px",
+            font: {
+              large: "20em",
+            },
           },
         }}
       >

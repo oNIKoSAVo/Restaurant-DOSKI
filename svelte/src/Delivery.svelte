@@ -231,6 +231,9 @@
       cart = cart.map((ci) => {
         if (ci.name === modalName) {
           console.log(ci);
+          if (ci.quantity === 0) {
+            return ci;
+          }
           ci.quantity -= 1;
           const quantityEl = document
             .getElementById(ci.id)
@@ -239,7 +242,6 @@
         }
         return ci;
       });
-
       renderCartItems();
     };
   });

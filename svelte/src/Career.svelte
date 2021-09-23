@@ -1,6 +1,7 @@
 <script>
   import { Datepicker } from "svelte-calendar";
   import { careerRequest } from "./api";
+  import CustomDatepicker from "./CustomDatepicker.svelte";
   let showModal = false;
   let showFormModal = true;
   let showModalSuccess = false;
@@ -14,6 +15,8 @@
   let b_day = "";
   let citizenship = "";
   let about = "";
+
+  let store;
 
   $: console.log(showModalSuccess);
   $: console.log(showFormModal);
@@ -164,16 +167,11 @@
         </div>
         <div class="tab row">
           <div class="tab-title col-12">Пара слов о себе</div>
-          <div class="col-12">
-            <div class="col-sm-6 svelte-1lorc63">
-              <Datepicker
-                format={"#{d}/#{m}/#{Y}"}
-                {daysOfWeek}
-                {monthsOfYear}
-                bind:formattedSelected={b_day}
-              />
-            </div>
+          <!--          <div class="col-12">-->
+          <div class="col-6" style="position: relative">
+            <CustomDatepicker {store} options={{ classList: "mb-3 w-100" }} />
           </div>
+          <!--          </div>-->
           <div class="col-12">
             <select name="citizen" bind:value={citizenship}>
               <option value="">Выбери гражданство</option>

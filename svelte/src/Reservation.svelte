@@ -6,9 +6,7 @@
   import jquery from "jquery";
   import "dayjs/locale/ru.js";
   import dayjs from "dayjs";
-  let locale = "ru";
-
-  $: dayjs.locale(locale);
+  import CustomDatepicker from "./CustomDatepicker.svelte";
 
   export let restaraunts;
   export let reservation;
@@ -16,7 +14,6 @@
   let restaraunt = reservation.restaraunt_id
     ? parseInt(reservation.restaraunt_id)
     : "";
-  let store;
   let start = "00:00";
   let end = "00:00";
   let persons = "";
@@ -24,6 +21,8 @@
   let name = "";
   let phone = "";
   let description = "";
+
+  let store;
 
   let responseIdReservation = "";
 
@@ -59,7 +58,6 @@
   //     e.target.value = stateValue;
   //   }
   // }
-
   document.addEventListener("DOMContentLoaded", () => {
     appendSchemes([{ url: restaraunts[0]?.schemes[0]?.url }]);
   });
@@ -194,48 +192,7 @@
       </select>
     </div>
     <div class="col-sm-6">
-      <Datepicker
-        on:mouseover={() => {
-          document.body.classList.add("locked");
-        }}
-        bind:store
-        let:key
-        let:send
-        let:receive
-        theme={{
-          calendar: {
-            width: "500px",
-            font: {
-              large: "20em",
-            },
-          },
-        }}
-      >
-        <button
-          id="chooseDate"
-          in:receive|local={{ key }}
-          out:send|local={{ key }}
-          on:click={() => {
-            document.body.classList.add("locked");
-            document.onclick = (e) => {
-              if (
-                e.target.closest(".sc-popover") &&
-                !(e.target?.hash === "#pickday")
-              )
-                return;
-              document.body.classList.remove("locked");
-
-              document.onclick = null;
-            };
-          }}
-        >
-          {#if $store?.hasChosen}
-            {dayjs($store.selected).format("ddd MMM D, YYYY")}
-          {:else}
-            Выберите дату
-          {/if}
-        </button>
-      </Datepicker>
+      <CustomDatepicker {store} />
     </div>
     <div class="col-md-3 col-6">
       <input
@@ -380,16 +337,5 @@
 <style>
   .svelte-1lorc63 {
     width: 200px;
-  }
-
-  button {
-    background: white;
-    border: 1px solid #e8e8e8;
-    color: #444;
-    padding: 18px 30px;
-    font-size: 1.2em;
-    border-radius: 6px;
-    cursor: pointer;
-    font-family: "Muller", sans-serif;
   }
 </style>

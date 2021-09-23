@@ -471,10 +471,17 @@ $(function () {
     modal.dataset.id = dishItem.id;
     modal.querySelector(".dish-img").src =
       dishItem.querySelector(".dish-img").src;
+    modal.querySelector(".dish-description").textContent =
+      dishItem.querySelector(".dish-description").textContent;
     modal.querySelector(".dish-details_price").textContent =
       dishItem.querySelector(".dish-details_price").textContent;
     modal.querySelector(".modal-title").textContent =
       dishItem.querySelector(".dish-title").textContent;
+    if (!dishItem.querySelector(".item-quantity")) {
+      if (modal.querySelector(".calculations"))
+        modal.querySelector(".calculations").outerHTML = "";
+      return;
+    }
     modal.querySelector(".item-quantity").textContent =
       dishItem.querySelector(".item-quantity").textContent;
   });

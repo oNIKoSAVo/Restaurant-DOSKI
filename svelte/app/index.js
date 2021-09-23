@@ -464,7 +464,7 @@ $(function () {
   $(".only-menu .dish-item").on("click", function () {
     openModal("#item");
   });
-  $(".delivery-section .dish-item").on("click", function (e) {
+  $(".dish-item").on("click", function (e) {
     const modal = document.getElementById("item-buy");
     const dishItem = e.target.closest(".dish-item");
     openModal("#item-buy");

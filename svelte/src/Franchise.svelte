@@ -1,9 +1,12 @@
 <script>
   import { franchiseRequest } from "./api";
+  import isAlpha from "validator/es/lib/isAlpha";
+  import isMobilePhone from "validator/es/lib/isMobilePhone";
   let name = "";
   let phone = "";
   let showModal = false;
   let isSent = false;
+  let isError = false;
 
   function validate() {
     console.log("I'm the validate() function");
@@ -11,12 +14,19 @@
 
   async function handleSubmit(e) {
     e.preventDefault();
+
+    if (!isMobilePhone(phone)) {
+      isError = true;
+      showModal = true;
+      return;
+    }
     if (!isSent) {
       const response = await franchiseRequest({ name, phone });
       console.log(response);
       if (response.status === "success") {
         showModal = true;
         isSent = true;
+        isError = false;
       }
     } else {
       showModal = true;
@@ -33,7 +43,15 @@
         required
         placeholder="Введите ваше ФИО"
         name="name"
-        bind:value={name}
+        value={name}
+        on:input={(e) => {
+          if (
+            isAlpha(e.target.value, "ru-RU", { ignore: "s" }) ||
+            e.target.value === ""
+          )
+            name = e.target.value;
+          else e.target.value = name;
+        }}
       />
     </div>
   </div>
@@ -75,7 +93,9 @@
         <span aria-hidden="true">&times;</span>
       </button>
       <div class="modal-header mt-3">
-        <div class="modal-title">Ваша заявка успешно отправлена</div>
+        <div class="modal-title">
+          {isError ? "Неверный номер" : "Ваша заявка успешно отправлена"}
+        </div>
       </div>
     </div>
   </div>

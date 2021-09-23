@@ -2,6 +2,7 @@
   import { Datepicker } from "svelte-calendar";
   import { careerRequest } from "./api";
   import CustomDatepicker from "./CustomDatepicker.svelte";
+  import isAlpha from "validator/es/lib/isAlpha";
   let showModal = false;
   let showFormModal = true;
   let showModalSuccess = false;
@@ -17,7 +18,6 @@
   let about = "";
 
   let store;
-
   $: console.log(showModalSuccess);
   $: console.log(showFormModal);
   $: console.log(showModal);
@@ -123,13 +123,52 @@
         <div class="tab row">
           <div class="tab-title col-12">КАК ТЕБЯ ЗОВУТ?</div>
           <div class="col-sm-4">
-            <input placeholder="Имя" bind:value={first_name} />
+            <input
+              placeholder="Имя"
+              value={first_name}
+              on:input={(e) => {
+                if (
+                  isAlpha(e.target.value, "ru-RU", { ignore: "s" }) ||
+                  e.target.value === ""
+                ) {
+                  first_name = e.target.value;
+                } else {
+                  e.target.value = first_name;
+                }
+              }}
+            />
           </div>
           <div class="col-sm-4">
-            <input placeholder="Фамилия" bind:value={last_name} />
+            <input
+              placeholder="Фамилия"
+              value={last_name}
+              on:input={(e) => {
+                if (
+                  isAlpha(e.target.value, "ru-RU", { ignore: "s" }) ||
+                  e.target.value === ""
+                ) {
+                  last_name = e.target.value;
+                } else {
+                  e.target.value = last_name;
+                }
+              }}
+            />
           </div>
           <div class="col-sm-4">
-            <input placeholder="Отчество" bind:value={middle_name} />
+            <input
+              placeholder="Отчество"
+              value={middle_name}
+              on:input={(e) => {
+                if (
+                  isAlpha(e.target.value, "ru-RU", { ignore: "s" }) ||
+                  e.target.value === ""
+                ) {
+                  middle_name = e.target.value;
+                } else {
+                  e.target.value = middle_name;
+                }
+              }}
+            />
           </div>
           <div class="col-12">
             <input
@@ -144,7 +183,7 @@
             >
           </div>
         </div>
-        <div class="tab row">
+        <div class="tab row" id="whereWantToWork">
           <div class="tab-title col-12">ГДЕ ХОЧЕШЬ РАБОТАТЬ</div>
           <div class="col-12">
             <select name="job" bind:value={position}>

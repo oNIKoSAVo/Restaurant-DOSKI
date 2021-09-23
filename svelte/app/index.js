@@ -411,7 +411,28 @@ $(function () {
     nextStage($(this).parents(".stage"));
   });
   $("#nextBtn").on("click", function (e) {
-    if (e.target.textContent === "Отправить") return;
+    const regForm = document?.getElementById("regForm");
+    const whereWantToWork = document?.getElementById("whereWantToWork");
+    let selectsValues = [];
+    const workSelects = [
+      ...document.querySelectorAll("#whereWantToWork select"),
+    ];
+    console.log({ workSelects });
+
+    if (workSelects.length > 0) {
+      workSelects.forEach((select) => {
+        selectsValues.push(...select.selectedOptions);
+      });
+      selectsValues = selectsValues.map((val) =>
+        val.textContent.startsWith("Выбери")
+      );
+      console.log({ selectsValues });
+    }
+    if (
+      e.target.textContent === "Отправить" ||
+      !regForm?.querySelector("#rules").checked
+    )
+      return;
     nextPrev(1);
   });
   $("#prevBtn").on("click", function () {

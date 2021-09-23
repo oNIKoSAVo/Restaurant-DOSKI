@@ -322,6 +322,7 @@ function nextStage(th) {
     $(th).next().show();
   }
 }
+
 $(function () {
   // const picker = datepicker(".datepicker", {
   //   customDays: ["Пн", "Вт", "Ср", "Чт", "Пт", "Сб", "Вс"],
@@ -590,6 +591,10 @@ $(function () {
       $("body").css("overflow", "auto");
       $("html").scrollTop(saveTop);
     }
+  });
+
+  $("#paymentRules").on("click", function (e) {
+    openModal("#paymentRulesModal");
   });
 
   $(window).on("scroll", function () {

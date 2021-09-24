@@ -7,7 +7,6 @@
   export let options;
 
   let locale = "ru";
-
   $: dayjs.locale(locale);
 </script>
 

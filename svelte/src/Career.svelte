@@ -3,6 +3,7 @@
   import { careerRequest } from "./api";
   import CustomDatepicker from "./CustomDatepicker.svelte";
   import isAlpha from "validator/es/lib/isAlpha";
+  import dayjs from "dayjs";
   let showModal = false;
   let showFormModal = true;
   let showModalSuccess = false;
@@ -50,7 +51,8 @@
   }
   async function handleSubmit(e) {
     e.preventDefault();
-    b_day = b_day.split(".").reverse().join("-");
+    const formatted = dayjs(store.getState().selected).format("DD/MM/YYYY");
+    b_day = formatted.split(".").reverse().join("-");
     const response = await careerRequest({
       first_name,
       middle_name,
@@ -207,8 +209,15 @@
         <div class="tab row">
           <div class="tab-title col-12">Пара слов о себе</div>
           <!--          <div class="col-12">-->
-          <div class="col-6" style="position: relative">
-            <CustomDatepicker {store} options={{ classList: "mb-3 w-100" }} />
+          <div
+            class="col-6"
+            style="position: relative"
+            on:click={() => console.log(store.getState().selected)}
+          >
+            <CustomDatepicker
+              bind:store
+              options={{ classList: "mb-3 w-100" }}
+            />
           </div>
           <!--          </div>-->
           <div class="col-12">

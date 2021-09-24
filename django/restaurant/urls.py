@@ -37,7 +37,10 @@ urlpatterns = [
     path('contacts', views.contacts, name='contacts'),
     path('signin', views.signin, name='signin'),
     path('signup', views.signup, name='signup'),
-    path('personal', views.personal, name='personal'),    
+    path('personal', views.personal, name='personal'),
+
+    path('payment_success', views.payment_success, name='payment_success'),
+    path('payment_fail', views.payment_fail, name='payment_fail') 
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

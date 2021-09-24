@@ -334,3 +334,12 @@ def create_order(request):
         return JsonResponse({"payment_url": payment["payment_url"]})
     else:
         return JsonResponse({"error": "can't create payment link"})
+
+
+def payment_success(request):
+    print(request)
+    return JsonResponse({"ok": ".........."})
+
+def payment_fail(request):
+    print(request)
+    return JsonResponse({"ok": ".........."})

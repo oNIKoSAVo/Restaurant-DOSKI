@@ -102,7 +102,7 @@ class Menue(models.Model):
 
 class Order(models.Model):
     user = models.ForeignKey(User, related_name='orders',
-                              on_delete=models.CASCADE, blank=False, null=False)
+                              on_delete=models.DO_NOTHING, blank=False, null=False)
     restaraunt = models.ForeignKey(Restaraunt, verbose_name='Ресторан', related_name='orders', on_delete=models.DO_NOTHING,  blank=False, null=False)
     price = models.FloatField('Сумма заказа', blank=False, null=False, default=0)
     comment = models.TextField('Комментарий к заказу', max_length=128, blank=True, null=True)

@@ -299,8 +299,11 @@ def create_order(request):
 
         profile = Profile.objects.create(
             user=user, first_name=first_name, second_name=second_name, last_name=last_name, phone=cleanphone)
-
-        Sms().send(cleanphone, password)
+        
+        try:
+            Sms().send(cleanphone, password)
+        except Exception as ex:
+            print(ex)
     else:
         user = profile.first().user
 

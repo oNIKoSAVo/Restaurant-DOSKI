@@ -132,6 +132,8 @@ class Feedback(models.Model):
     name = models.CharField('Имя', max_length=128, blank=False, null=False)
     phone = models.CharField('Телефон', max_length=128, blank=False, null=False)
     description = models.TextField('Отзыв', max_length=128, blank=False, null=False)
+    created_at = models.DateTimeField('Время создания', auto_now_add=True, null=True)
+    updated_at = models.DateTimeField('Время изменения', auto_now=True, null=True)
 
     class Meta:
         verbose_name = 'отзыв'
@@ -140,6 +142,8 @@ class Feedback(models.Model):
 class Franchising(models.Model):
     name = models.CharField('Имя', max_length=128, blank=False, null=False)
     phone = models.CharField('Телефон', max_length=128, blank=False, null=False)
+    created_at = models.DateTimeField('Время создания', auto_now_add=True, null=True)
+    updated_at = models.DateTimeField('Время изменения', auto_now=True, null=True)
 
     class Meta:
         verbose_name = 'франшиза'

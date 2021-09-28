@@ -1,3 +1,4 @@
+from django.contrib.auth import models
 from django.utils.safestring import mark_safe
 from django.contrib import admin
 from .models import Category, Feedback, Franchising, MenuInOrder, Menue, Order, Profile, Reservation, Restaraunt, Сareer, RestarauntSchema, Event
@@ -29,7 +30,7 @@ class MenuInOrderInLine(admin.TabularInline):
     verbose_name_plural = "Меню"
 
 class OrderAdmin(admin.ModelAdmin):
-    list_display = ['id', 'user', 'restaraunt', 'price', 'created_at',]
+    list_display = ['id', 'user', 'restaraunt', 'price', 'address', 'created_at',]
     list_filter =['restaraunt', 'price',  'created_at',]
     inlines = [MenuInOrderInLine]
 
@@ -37,15 +38,27 @@ class OrderAdmin(admin.ModelAdmin):
 class ReservationAdmin(admin.ModelAdmin):
     list_display = ['id', 'restaraunt', 'persons', 'table', 'start', 'end', 'name', 'phone']
 
+class СareerAdmin(admin.ModelAdmin):
+    list_display = ['first_name', 'middle_name', 'last_name', 'position']
+
+class FeedbackAdmin(admin.ModelAdmin):
+    list_display = ['name', 'description', 'created_at']
+
+class EventAdmin(admin.ModelAdmin):
+    list_display = ['name', 'restaraunt', 'date']
+
+class FranchisingAdmin(admin.ModelAdmin):
+    list_display = ['name', 'phone', 'created_at']
+
 admin.site.register(Order, OrderAdmin)
 
 admin.site.register(Profile)
 admin.site.register(Category)
 
-admin.site.register(Feedback)
-admin.site.register(Franchising)
-admin.site.register(Сareer)
+admin.site.register(Feedback, FeedbackAdmin)
+admin.site.register(Franchising, FranchisingAdmin)
+admin.site.register(Сareer, СareerAdmin)
 admin.site.register(Reservation, ReservationAdmin)
 
-admin.site.register(Event)
+admin.site.register(Event, EventAdmin)
 

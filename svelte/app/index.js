@@ -395,6 +395,10 @@ $(function () {
     nextStage($(this).parents(".stage"));
   });
   $(".checkout-btn").on("click", function () {
+    const cartSummaryEl = document.querySelector(".cart-summary");
+    if (cartSummaryEl) {
+      if (+cartSummaryEl.textContent.slice(0, -2) < 500) return;
+    }
     const cartInDom = document.querySelector(".cart-full.pb-sm-4.mb-4");
     if (cartInDom.children.length === 0) return;
     nextStage($(this).parents(".stage"));

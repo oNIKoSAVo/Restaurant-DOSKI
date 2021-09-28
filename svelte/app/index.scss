@@ -125,6 +125,9 @@ body {
     background: #d57e29;
     position: absolute;
     bottom: -45px;
+    @media (max-width: 575px) {
+      bottom: -3px;
+    }
     left: 0;
   }
 }
@@ -2077,6 +2080,21 @@ textarea {
   svg {
     width: 630px;
     cursor: pointer;
+    @media (max-width: 1200px) {
+      width: 500px;
+    }
+    @media (max-width: 992px) {
+      width: 400px;
+    }
+    @media (max-width: 730px) {
+      width: 350px;
+    }
+    @media (max-width: 650px) {
+      width: 300px;
+    }
+    @media (max-width: 575px) {
+      width: 100%;
+    }
   }
   .modal-table {
     max-width: 100%;

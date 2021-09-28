@@ -202,7 +202,12 @@
           <div class="col-12">
             <select name="bar" bind:value={bar}>
               <option value="">Выбери бар</option>
-              <option value="Гоголя">Гоголя</option>
+              <option value="Ленина 6">Ленина 6</option>
+              <option value="Покрышкина 6">Покрышкина 6</option>
+              <option value="Бориса Богаткова 201/1"
+                >Бориса Богаткова 201/1</option
+              >
+              <option value="Дуси Ковальчук 179/2">Дуси Ковальчук 179/2</option>
             </select>
           </div>
         </div>

@@ -110,8 +110,9 @@
               <tr>
                 <th>Фио</th>
                 <td>
-                  
-                  {{ request.user.profile.last_name | default_if_none:"-" }} {{ request.user.profile.first_name | default_if_none:"-" }} {{ request.user.profile.second_name | default_if_none:"-" }}
+                  {{ request.user.profile.last_name | default_if_none:"-" }} {{
+                  request.user.profile.first_name | default_if_none:"-" }} {{
+                  request.user.profile.second_name | default_if_none:"-" }}
                 </td>
               </tr>
               <tr>
@@ -179,7 +180,9 @@
           <div class="col-12">
             <div class="order-history">
               <div class="order-time">
-                <img src="/static/app/img/order-time.png" width="17" />{{ result.order.created_at|date:'d.m.Y' }} в {{ result.order.created_at|date:'H:i' }}
+                <img src="/static/app/img/order-time.png" width="17" />{{
+                result.order.created_at|date:'d.m.Y' }} в {{
+                result.order.created_at|date:'H:i' }}
               </div>
 
               <div class="order-items">
@@ -206,9 +209,30 @@
         <div class="section-title">Изменение данных</div>
         <form class="edit-personal" action="">
           <div class="row">
-            <div class="col-md-4"><label>ФИО</label></div>
+            <div class="col-md-4"><label>Фамилия</label></div>
             <div class="col-md-8">
-              <input placeholder="Каменев Валетин Павлович" />
+              <input
+                placeholder="Каменев"
+                value="{{ user.profile.last_name }}"
+              />
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-4"><label>Имя</label></div>
+            <div class="col-md-8">
+              <input
+                placeholder="Валетин"
+                value="{{ user.profile.first_name }}"
+              />
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-4"><label>Отчество</label></div>
+            <div class="col-md-8">
+              <input
+                placeholder="Павлович"
+                value="{{ user.profile.second_name }}"
+              />
             </div>
           </div>
           <div class="row">

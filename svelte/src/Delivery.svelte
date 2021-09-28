@@ -21,6 +21,15 @@
     //   ).innerHTML = `<h1>Пусто</h1>`;
     //   return;
     // }
+    [...document.querySelectorAll("#cart .stage")].map((s, i) => {
+      if (i === 0) {
+        s.style = "display: block;";
+      } else {
+        s.style = "display: none;";
+      }
+      return s;
+    });
+
     const cartHtml = cart
       .map((cartItem) => {
         return `<div class="cart-item" data-id="${cart.id}">

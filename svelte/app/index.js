@@ -387,14 +387,38 @@ $(function () {
       $("#forgot-password input[name='code4']").val().toString();
     console.log(code);
   });
-  $(".checkout-final").on("click", function () {
+  function setErrorShadow(el) {
+    el.classList.add("error-shadow");
+    setTimeout(() => {
+      el.classList.remove("error-shadow");
+    }, 3000);
+  }
+  $(".checkout-final").on("click", function (e) {
+    const currentStage = e.target.closest(".stage");
+    if (currentStage) {
+      const nameInputEl = currentStage.querySelector('input[name="name"]');
+      const addressInputEl = currentStage.querySelector('input[name="addres"]');
+      const phoneInputEl = currentStage.querySelector('input[name="phone"]');
+      if (
+        nameInputEl.value.trim() === "" ||
+        addressInputEl.value.trim() === "" ||
+        phoneInputEl.value.trim() === ""
+      ) {
+        if (nameInputEl.value.trim() === "") setErrorShadow(nameInputEl);
+        if (addressInputEl.value.trim() === "") setErrorShadow(addressInputEl);
+        if (phoneInputEl.value.trim() === "") setErrorShadow(phoneInputEl);
+
+        return;
+      }
+    }
+
     // обработка заказа
     const checkoutData = $("#checkoutform").serializeArray();
 
     // Успешный исход
     nextStage($(this).parents(".stage"));
   });
-  $(".checkout-btn").on("click", function () {
+  $(".checkout-btn").on("click", function (e) {
     const cartSummaryEl = document.querySelector(".cart-summary");
     if (cartSummaryEl) {
       if (+cartSummaryEl.textContent.slice(0, -2) < 500) return;

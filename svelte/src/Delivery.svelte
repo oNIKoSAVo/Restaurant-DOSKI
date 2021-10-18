@@ -148,22 +148,22 @@
     document
       .querySelector(".checkout-final")
       .addEventListener("click", async () => {
-        const fio = document.querySelector(
-          "#checkoutform input[name='name']"
-        ).value;
-        const address = document.querySelector(
-          "#checkoutform input[name='addres']"
-        ).value;
-        const phone = document.querySelector(
-          "#checkoutform input[name='phone']"
-        ).value;
-        const comment = document.querySelector(
-          "#checkoutform input[name='comment']"
-        ).value;
-        const paymentType = document.querySelector(
-          "#checkoutform select[name='paymentType']"
-        ).value;
-
+        const fio = document
+          .querySelector("#checkoutform input[name='name']")
+          .value.trim();
+        const address = document
+          .querySelector("#checkoutform input[name='addres']")
+          .value.trim();
+        const phone = document
+          .querySelector("#checkoutform input[name='phone']")
+          .value.trim();
+        const comment = document
+          .querySelector("#checkoutform input[name='comment']")
+          .value.trim();
+        const paymentType = document
+          .querySelector("#checkoutform select[name='paymentType']")
+          .value.trim();
+        if (!fio || !address || !phone) return;
         const payload = {
           fio,
           address,

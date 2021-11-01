@@ -340,9 +340,11 @@ def create_order(request):
 
 
 def payment_success(request):
-    print(request)
+    print(dict(request.POST.items()))
+    print(dict(request.GET.items()))
     return JsonResponse({"ok": ".........."})
 
 def payment_fail(request):
-    print(request)
-    return JsonResponse({"ok": ".........."})
+    print(dict(request.POST.items()))
+    print(dict(request.GET.items()))
+    return JsonResponse({"fail": ".........."})

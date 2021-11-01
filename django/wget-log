@@ -1,0 +1,5 @@
+--2021-09-24 16:00:54--  https://mcommunicator.ru/M2M/m2m_api.asmx/SendMessage?msid=79833127695
+Resolving mcommunicator.ru (mcommunicator.ru)... 89.249.26.165
+Connecting to mcommunicator.ru (mcommunicator.ru)|89.249.26.165|:443... connected.
+OpenSSL: error:141A318A:SSL routines:tls_process_ske_dhe:dh key too small
+Unable to establish SSL connection.

@@ -36,6 +36,8 @@ class Profile(models.Model):
 class Restaraunt(models.Model):
     address = models.CharField('Адрес', max_length=128, blank=False, null=False)
     phone = models.CharField('Телефон', max_length=128, blank=False, null=False)
+    company = models.CharField('Компания', max_length=228, blank=True, null=True)
+    r_keeper = models.CharField('RKeeper', max_length=228, blank=True, null=True)
 
     def __str__(self):
         return self.address + " " + self.phone

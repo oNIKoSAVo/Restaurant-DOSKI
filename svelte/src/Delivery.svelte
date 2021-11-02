@@ -51,15 +51,6 @@
       cartHtml = "<h1>Корзина пуста</h1>";
     }
 
-    document.addEventListener("DOMContentLoaded", function () {
-      console.log("gi");
-      renderCartItems();
-      document
-        .querySelectorAll(".cart-full")
-        .forEach((el) => (el.innerHTML = cartHtml));
-      console.log(document.querySelectorAll(".cart-full"));
-    });
-
     document
       .querySelectorAll(".cart-full")
       .forEach((el) => (el.innerHTML = cartHtml));

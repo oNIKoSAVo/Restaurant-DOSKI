@@ -14,13 +14,10 @@
   // $: document.querySelector(".cart-summary").textContent = price;
 
   function renderCartItems() {
-    console.log(cart.length);
-    // if (cart.length === 0) {
-    //   document.querySelector(
-    //     ".cart-full.pb-sm-4.mb-4"
-    //   ).innerHTML = `<h1>Пусто</h1>`;
-    //   return;
-    // }
+    cleanCart();
+
+    console.log("length", cart.length);
+
     [...document.querySelectorAll("#cart .stage")].map((s, i) => {
       if (i === 0) {
         s.style = "display: block;";
@@ -29,10 +26,12 @@
       }
       return s;
     });
-
-    const cartHtml = cart
-      .map((cartItem) => {
-        return `<div class="cart-item" data-id="${cart.id}">
+    let cartHtml;
+    console.log(cart.length > 0);
+    if (cart.length > 0) {
+      cartHtml = cart
+        .map((cartItem) => {
+          return `<div class="cart-item" data-id="${cart.id}">
               <div class="cart-item_imgwrapper">
                   <img class="cart-item_img" src='${cartItem.img}'/>
               </div>
@@ -46,12 +45,16 @@
               </div>
               <div class="cart-item_price text-right">${cartItem.price}.-</div>
           </div>`;
-      })
-      .join("");
+        })
+        .join("");
+    } else {
+      cartHtml = "<h1>Корзина пуста</h1>";
+    }
 
     document
       .querySelectorAll(".cart-full")
       .forEach((el) => (el.innerHTML = cartHtml));
+    console.log(document.querySelectorAll(".cart-full"));
 
     [
       ...document.querySelectorAll(
@@ -91,6 +94,7 @@
             const cartName = cartItem.querySelector(
               ".cart-item > .cart-item_title"
             ).textContent;
+            const lastCart = [...cart];
             cart = cart.map((ci) => {
               if (ci.name === cartName && ci.quantity !== 0) {
                 ci.quantity -= 1;
@@ -103,6 +107,8 @@
 
               return ci;
             });
+            cleanCart();
+            if (lastCart.length !== cart.length) renderCartItems();
           })
       );
     // setPrice();
@@ -290,6 +296,10 @@
     // setPrice();
     renderCartItems();
     // document.querySelector('.cart-full.pb-sm-4.mb-4').innerHTML=
+  }
+
+  function cleanCart() {
+    cart = cart.filter((el) => el.quantity !== 0);
   }
 
   function handleClickOnPlus(e) {

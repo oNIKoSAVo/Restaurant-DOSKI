@@ -363,11 +363,16 @@ def create_order(request):
 
 
 def payment_success(request):
-    print(dict(request.POST.items()))
-    print(dict(request.GET.items()))
+    data = json.loads(request.body)
+    print(data)
+    if(data["notification_type"] == "pay"):
+        if(data["status"] == "successful"):
+            order = Order.objects.get(id=data["order"]["id"])
+            order.paid = True
+            order.save()
     return JsonResponse({"ok": ".........."})
 
 def payment_fail(request):
-    print(dict(request.POST.items()))
-    print(dict(request.GET.items()))
+    data = json.loads(request.body)
+    print(data)
     return JsonResponse({"fail": ".........."})

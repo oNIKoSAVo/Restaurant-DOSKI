@@ -1,4 +1,6 @@
+import traceback
 from restaurant.lib.sms import Sms
+from restaurant.lib.distance import Distance
 from django.db.models.aggregates import Sum
 from restaurant.lib.payment import Payment
 import sys
@@ -324,7 +326,28 @@ def create_order(request):
         for q in range(quantity):
             total_price += menue_item.price
             menues.append(menue_item)
-    order = Order.objects.create(user=user, restaraunt_id=1, price=total_price,
+    
+    # 
+    min_distance = {
+        "restaraunt_id": 1
+    }
+    try:
+        distance = Distance()
+        for restaraunt in Restaraunt.objects.all():
+            print(address)
+            print(restaraunt.address)
+            calculate = distance.calculate(
+                address1=restaraunt.address, address2=address)
+            if('distance' not in min_distance or calculate.kilometers < min_distance['distance']):
+                min_distance['distance'] = calculate.kilometers
+                min_distance['address'] = restaraunt.address
+                min_distance['restaraunt_id'] = restaraunt.id
+
+        print(min_distance)
+    except Exception:
+        print(traceback.format_exc())
+    # 
+    order = Order.objects.create(user=user, restaraunt_id=min_distance['restaraunt_id'], price=total_price,
                                  payment=payment_type, comment=comment, address=address)
 
     for m in menues:
@@ -340,9 +363,11 @@ def create_order(request):
 
 
 def payment_success(request):
-    print(request)
+    print(dict(request.POST.items()))
+    print(dict(request.GET.items()))
     return JsonResponse({"ok": ".........."})
 
 def payment_fail(request):
-    print(request)
-    return JsonResponse({"ok": ".........."})
+    print(dict(request.POST.items()))
+    print(dict(request.GET.items()))
+    return JsonResponse({"fail": ".........."})

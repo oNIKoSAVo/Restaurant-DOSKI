@@ -11,6 +11,7 @@ import "lazysizes/plugins/parent-fit/ls.parent-fit";
 import "./plugin/grt-youtube-popup";
 // import datepicker from "js-datepicker";
 import { Loader } from "google-maps";
+import { correctPhoneWithMask } from "../src/helpers/correctPhoneWithMask";
 const options = {
   /* todo */
 };
@@ -446,7 +447,15 @@ $(function () {
   });
   $("#nextBtn").on("click", function (e) {
     const regForm = document?.getElementById("regForm");
-    const whereWantToWork = document?.getElementById("whereWantToWork");
+    // const whereWantToWork = document?.getElementById("whereWantToWork");
+    const jobModal = e.target.closest("#jobmodal");
+    const isJobModal = !!jobModal;
+    if (isJobModal) {
+      if (!correctPhoneWithMask(jobModal.querySelector(".phone-input").value)) {
+        setErrorShadow(jobModal.querySelector(".phone-input"));
+        return;
+      }
+    }
     let selectsValues = [];
     const workSelects = [
       ...document.querySelectorAll("#whereWantToWork select"),

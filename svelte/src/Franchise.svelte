@@ -2,6 +2,8 @@
   import { franchiseRequest } from "./api";
   import isAlpha from "validator/es/lib/isAlpha";
   import isMobilePhone from "validator/es/lib/isMobilePhone";
+  import Inputmask from "inputmask";
+  import { correctPhoneWithMask } from "./helpers/correctPhoneWithMask";
   let name = "";
   let phone = "";
   let showModal = false;
@@ -15,7 +17,7 @@
   async function handleSubmit(e) {
     e.preventDefault();
 
-    if (!isMobilePhone(phone)) {
+    if (/*!isMobilePhone*/ !correctPhoneWithMask(phone)) {
       isError = true;
       showModal = true;
       return;
@@ -32,6 +34,17 @@
       showModal = true;
     }
   }
+  document.addEventListener("DOMContentLoaded", function (event) {
+    const selector = [
+      ...document.querySelectorAll(".phone-input"),
+      ...document.querySelectorAll("input[name=phone]"),
+    ];
+    const im = new Inputmask("+7(999)-999-99-99");
+    selector.forEach((node) => {
+      im.mask(node);
+    });
+    console.log({ selector });
+  });
 </script>
 
 <form on:submit={handleSubmit} preventDefault={validate}>

@@ -346,14 +346,15 @@ def create_order(request):
         print(min_distance)
     except Exception:
         print(traceback.format_exc())
-    # 
-    order = Order.objects.create(user=user, restaraunt_id=min_distance['restaraunt_id'], price=total_price,
+    #
+    restaraunt = Restaraunt.objects.get(pk=min_distance['restaraunt_id'])
+    order = Order.objects.create(user=user, restaraunt=restaraunt, price=total_price,
                                  payment=payment_type, comment=comment, address=address)
 
     for m in menues:
         MenuInOrder.objects.create(menue=m, order=order)
 
-    payment = Payment().create_payment(order=order, receipt=receipt)  # payment_url
+    payment = Payment().create_payment(order=order, receipt=receipt, key=restaraunt.payment_token, terminal=restaraunt.payment_terminal_id)  # payment_url
     # payment = Payment().create_terminal(order=order) # link
     print(payment)
     if("payment_url" in payment):

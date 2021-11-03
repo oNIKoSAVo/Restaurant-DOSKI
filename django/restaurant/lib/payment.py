@@ -1,12 +1,11 @@
 import requests
 
-
 class Payment:
 
-    def create_terminal(self, order):
+    def create_terminal(self, order, key):
         response = requests.post("https://api.invoice.su/api/v2/CreateTerminal",
                                  headers={
-                                     "Authorization": "Basic Nzk1MjkwNTY3MDY6ZDVkOThiYzI0YWZjMmM1OTNkOGEzMjMzOGJhZmI3ZmY=",
+                                     "Authorization": f"Basic {key}",
                                      "Content-Type": "application/json"
                                  },
                                  json={
@@ -19,10 +18,10 @@ class Payment:
 
         return response.json()
 
-    def create_payment(self, order, receipt):
+    def create_payment(self, order, receipt, key, terminal):
         response = requests.post("https://api.invoice.su/api/v2/CreatePayment",
                                  headers={
-                                     "Authorization": "Basic Nzk1MjkwNTY3MDY6ZDVkOThiYzI0YWZjMmM1OTNkOGEzMjMzOGJhZmI3ZmY=",
+                                     "Authorization": f"Basic {key}",
                                      "Content-Type": "application/json"
                                  },
                                  json={
@@ -33,7 +32,7 @@ class Payment:
                                          "id": order.id
                                      },
                                      "settings": {
-                                         "terminal_id": "9a73af7faff347bf8844c66d8333ae84",
+                                         "terminal_id": terminal,
                                          "payment_method": "card",
                                          "success_url": "https://example.com/success",
                                          "fail_url": "https://example.com/error"

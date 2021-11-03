@@ -38,6 +38,8 @@ class Restaraunt(models.Model):
     phone = models.CharField('Телефон', max_length=128, blank=False, null=False)
     company = models.CharField('Компания', max_length=228, blank=True, null=True)
     r_keeper = models.CharField('RKeeper', max_length=228, blank=True, null=True)
+    payment_token = models.CharField('Token for Payment', max_length=228, blank=True, null=True)
+    payment_terminal_id = models.CharField('Terminal id for Payment', max_length=228, blank=True, null=True)
 
     def __str__(self):
         return self.address + " " + self.phone

@@ -402,11 +402,16 @@ $(function () {
       if (
         nameInputEl.value.trim() === "" ||
         addressInputEl.value.trim() === "" ||
-        phoneInputEl.value.trim() === ""
+        phoneInputEl.value.trim() === "" ||
+        phoneInputEl.value.trim().includes("_")
       ) {
         if (nameInputEl.value.trim() === "") setErrorShadow(nameInputEl);
         if (addressInputEl.value.trim() === "") setErrorShadow(addressInputEl);
-        if (phoneInputEl.value.trim() === "") setErrorShadow(phoneInputEl);
+        if (
+          phoneInputEl.value.trim() === "" ||
+          phoneInputEl.value.trim().includes("_")
+        )
+          setErrorShadow(phoneInputEl);
 
         return;
       }
@@ -537,7 +542,10 @@ $(function () {
   //     loader.load().then(function (google) {
   //         initMap();
   // });
-  var selector = document.querySelectorAll(".phone-input");
+  var selector = [
+    ...document.querySelectorAll(".phone-input"),
+    ...document.querySelectorAll("input[name=phone]"),
+  ];
   var im = new Inputmask("+7(999)-999-99-99");
   selector.forEach((node) => {
     im.mask(node);

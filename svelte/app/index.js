@@ -402,11 +402,16 @@ $(function () {
       if (
         nameInputEl.value.trim() === "" ||
         addressInputEl.value.trim() === "" ||
-        phoneInputEl.value.trim() === ""
+        phoneInputEl.value.trim() === "" ||
+        phoneInputEl.value.trim().includes("_")
       ) {
         if (nameInputEl.value.trim() === "") setErrorShadow(nameInputEl);
         if (addressInputEl.value.trim() === "") setErrorShadow(addressInputEl);
-        if (phoneInputEl.value.trim() === "") setErrorShadow(phoneInputEl);
+        if (
+          phoneInputEl.value.trim() === "" ||
+          phoneInputEl.value.trim().includes("_")
+        )
+          setErrorShadow(phoneInputEl);
 
         return;
       }

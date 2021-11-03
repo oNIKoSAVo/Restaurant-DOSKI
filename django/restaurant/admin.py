@@ -7,7 +7,7 @@ admin.site.site_header = 'Respublica administrator'
 
 class MenueAdmin(admin.ModelAdmin):
     list_display = ['id', 'image_preview', 'dish', 'category', 'restaraunt']
-    list_filter = ['category', 'restaraunt']
+    list_filter = ['active', 'category', 'restaraunt']
 
     def image_preview(self, obj):
         return mark_safe("<img src='/media/{}'  width='100' />".format(obj.image))

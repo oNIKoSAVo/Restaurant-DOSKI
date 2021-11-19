@@ -75,6 +75,14 @@
     e.preventDefault();
     e.stopPropagation();
     openModal("#askpreorder");
+
+    fetch(
+      `https://api.telegram.org/bot2064596905:AAHnSrythz4Iu3zTFSqYQmW0p6PSW9rZZ0Y/sendMessage?chat_id=620304420&text=${name} забронировал(а) стол ${table} с ${start} до ${end} на ${persons} человек(а). Номер: ${phone}. Ресторан на улице ${
+        restaraunts.find((el) => el.id === restaraunt).text
+      }`,
+      { method: "GET" }
+    );
+
     const response = await reservationRequest({
       restaraunt,
       store,

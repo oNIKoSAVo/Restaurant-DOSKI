@@ -37,7 +37,7 @@ def signup(request):
             user=user, phone=cleanphone)
 
         Sms().send(cleanphone, password)
-        
+
         if(user and profile):
             return JsonResponse({"success": "Успешно зарегестрирован"})
 
@@ -269,6 +269,10 @@ def franchise(request):
             return JsonResponse({"status": "error"})
     return render(request, 'franchise.py.html', {'data': sys._getframe(0).f_code.co_name})
 
+def cabinet(request):
+    reservations = Reservation.objects.all()
+    orders = Order.objects.all()
+    return render(request, 'cabinet.py.html', {'reservations': reservations, 'orders': orders})
 
 def contacts(request):
     return render(request, 'contacts.py.html', {'data': sys._getframe(0).f_code.co_name})
@@ -283,7 +287,7 @@ def create_order(request):
     comment = data["comment"]
     payment_type = data["paymentType"]
 
-    
+
     cleanphone = re.sub('\W+','', phone)
     profile = Profile.objects.filter(phone=cleanphone)
     if(not profile.exists()):
@@ -301,7 +305,7 @@ def create_order(request):
 
         profile = Profile.objects.create(
             user=user, first_name=first_name, second_name=second_name, last_name=last_name, phone=cleanphone)
-        
+
         try:
             Sms().send(cleanphone, password)
         except Exception as ex:
@@ -326,8 +330,8 @@ def create_order(request):
         for q in range(quantity):
             total_price += menue_item.price
             menues.append(menue_item)
-    
-    # 
+
+    #
     min_distance = {
         "restaraunt_id": 1
     }

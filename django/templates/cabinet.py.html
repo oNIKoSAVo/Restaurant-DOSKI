@@ -1,0 +1,12 @@
+<h1>Личный кабинет</h1>
+{% for order in orders%}
+<div>
+  {{order.restaraunt}} {{order.price}} {{order.comment}} {{order.address}}
+  {{order.payment}} {{order.paid}} {{order.created_at}} {{order.updated_at}}
+</div>
+{% endfor %} {% for reservation in reservations%}
+<div>
+  {{reservation.persons}} {{reservation.table}} {{reservation.name}}
+  {{reservation.phone}} {{reservation.description}}
+</div>
+{% endfor %}

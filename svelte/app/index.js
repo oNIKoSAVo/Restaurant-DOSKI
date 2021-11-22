@@ -12,6 +12,7 @@ import "./plugin/grt-youtube-popup";
 // import datepicker from "js-datepicker";
 import { Loader } from "google-maps";
 import { correctPhoneWithMask } from "../src/helpers/correctPhoneWithMask";
+import { sendTelegramMessage } from "../src/helpers/sendTelegramMessage";
 const options = {
   /* todo */
 };
@@ -396,10 +397,10 @@ $(function () {
   }
   $(".checkout-final").on("click", function (e) {
     const currentStage = e.target.closest(".stage");
+    const nameInputEl = currentStage.querySelector('input[name="name"]');
+    const addressInputEl = currentStage.querySelector('input[name="addres"]');
+    const phoneInputEl = currentStage.querySelector('input[name="phone"]');
     if (currentStage) {
-      const nameInputEl = currentStage.querySelector('input[name="name"]');
-      const addressInputEl = currentStage.querySelector('input[name="addres"]');
-      const phoneInputEl = currentStage.querySelector('input[name="phone"]');
       if (
         nameInputEl.value.trim() === "" ||
         addressInputEl.value.trim() === "" ||
@@ -422,6 +423,22 @@ $(function () {
     const checkoutData = $("#checkoutform").serializeArray();
 
     // Успешный исход
+
+    const cartItemsTitlesWithQuantity = [
+      ...document.querySelector(".cart-full").querySelectorAll(".cart-item"),
+    ].map(
+      (el) =>
+        `${el.querySelector(".cart-item_title").textContent} * ${
+          el.querySelector(".item-quantity").textContent
+        }`
+    );
+    sendTelegramMessage(
+      `${nameInputEl.value.trim()} заказал доставку на адрес "${addressInputEl.value.trim()}". Блюда: ${cartItemsTitlesWithQuantity.join(
+        ", "
+      )}. Номер: ${phoneInputEl.value.trim()}. Цена заказа: ${
+        document.querySelector(".cart-summary").textContent
+      }.`
+    );
     nextStage($(this).parents(".stage"));
   });
   $(".checkout-btn").on("click", function (e) {

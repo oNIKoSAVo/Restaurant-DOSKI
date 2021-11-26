@@ -658,6 +658,9 @@ $(function () {
   $("#paymentRules").on("click", function (e) {
     openModal("#paymentRulesModal");
   });
+  $("#visit_rules").on("click", function (e) {
+    openModal("#visitRulesModal");
+  });
 
   $(window).on("scroll", function () {
     if ($("html").scrollTop() > $(".navbar").height())

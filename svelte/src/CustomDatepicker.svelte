@@ -29,6 +29,7 @@
 >
   <button
     id="chooseDate"
+    type="button"
     class={options?.classList || ""}
     in:receive|local={{ key }}
     out:send|local={{ key }}

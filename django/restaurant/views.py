@@ -234,7 +234,8 @@ def feedback(request):
 
 
 def events(request):
-    return render(request, 'events.py.html', {'events': Event.objects.all()})
+    events = Event.objects.filter(date__gte=datetime.now())
+    return render(request, 'events.py.html', {'events': events})
 
 
 def career(request):

@@ -8,6 +8,7 @@
   import dayjs from "dayjs";
   import CustomDatepicker from "./CustomDatepicker.svelte";
   import { sendTelegramMessage } from "./helpers/sendTelegramMessage";
+  import { correctTimeWithMask } from "./helpers/correctTimeWithMask";
 
   export let restaraunts;
   export let reservation;
@@ -15,8 +16,8 @@
   let restaraunt = reservation.restaraunt_id
     ? parseInt(reservation.restaraunt_id)
     : "";
-  let start = "00:00";
-  let end = "00:00";
+  let time = "";
+  // let end = "00:00";
   let persons = "";
   let table = "";
   let name = "";
@@ -24,8 +25,10 @@
   let description = "";
 
   let store;
-
+  let errors = {};
   let responseIdReservation = "";
+
+  let showIncorrectPhoneModal = false;
 
   export const daysOfWeek = [
     ["Воскресенье", "Вс"],
@@ -63,6 +66,12 @@
     appendSchemes([{ url: restaraunts[0]?.schemes[0]?.url }]);
   });
 
+  document.addEventListener("DOMContentLoaded", () => {
+    const im = new Inputmask("99:99");
+    const datepicker = im.mask(document.querySelector(".datepicker"));
+    appendSchemes([{ url: restaraunts[0]?.schemes[0]?.url }]);
+  });
+
   function slicePeopleForTable(id) {
     let peopleQuantity = "";
     for (let i = 0; i < id.length; i++) {
@@ -73,21 +82,44 @@
   }
 
   async function handleSubmit(e) {
-    e.preventDefault();
+    // e.preventDefault();
     e.stopPropagation();
+    if (
+      !time ||
+      // !end ||
+      !store.getState().hasChosen ||
+      !table ||
+      !persons ||
+      !name ||
+      !phone ||
+      !restaraunt
+    ) {
+      console.log({ time, table, persons, name, phone, restaraunt });
+      errors.time = !time;
+      errors.date = !store.getState().hasChosen;
+      errors.table = !table;
+      errors.persons = !persons;
+      errors.name = !name;
+      errors.phone = !phone;
+      errors.restaraunt = !restaraunt;
+      setTimeout(() => {
+        errors = {};
+      }, 3000);
+      return;
+    }
+
     openModal("#askpreorder");
 
     sendTelegramMessage(
-      `${name} забронировал(а) стол ${table} с ${start} до ${end} на ${persons} человек(а). Номер: ${phone}. Ресторан на улице ${
-        restaraunts.find((el) => el.id === restaraunt).text
-      }`
+      `${name} забронировал(а) стол ${table} в ${time} на ${persons} человек(а). Номер: ${phone}. Ресторан на улице`
+      /*${restaraunts.find((el) => el.id === restaraunt).text}*/
     );
 
     const response = await reservationRequest({
       restaraunt,
       store,
-      start,
-      end,
+      time,
+      // end,
       persons,
       table,
       name,
@@ -160,6 +192,19 @@
 </script>
 
 <div
+  class="modal modal-wrapper fade {showIncorrectPhoneModal ? 'show' : ''}"
+  id="correct_time"
+  tabindex="-1"
+  role="dialog"
+>
+  <div class="modal-dialog limited" style="max-width: 506px">
+    <div class="modal-content">
+      <h1>Доступное время бронирования с 12.00 до 20.00</h1>
+    </div>
+  </div>
+</div>
+
+<div
   class="modal modal-wrapper fade {responseIdReservation != '' ? 'show' : ''}"
   id="reserved"
   tabindex="-1"
@@ -187,11 +232,15 @@
   </div>
 </div>
 
-<form id="reserve-form">
+<form id="reserve-form" on:submit={handleSubmit}>
   <div class="row">
     <div class="col-12 d-none d-sm-block">
       <!-- svelte-ignore a11y-no-onchange -->
-      <select bind:value={restaraunt} on:change={handleOnChangeRestaraunt}>
+      <select
+        bind:value={restaraunt}
+        on:change={handleOnChangeRestaraunt}
+        class={errors.restaraunt ? "error-shadow" : ""}
+      >
         {#each restaraunts as address}
           <option value={address.id}>
             {address.text}
@@ -200,69 +249,26 @@
       </select>
     </div>
     <div class="col-sm-6">
-      <CustomDatepicker {store} />
-    </div>
-    <div class="col-md-3 col-6">
-      <input
-        placeholder="От"
-        value={start}
-        on:input={(e) => {
-          if (!e.target.value.includes(":") || e.target.value.length > 5) {
-            start = `00:00`;
-            e.target.value = start;
-            return;
-          }
-
-          const [hours, minutes] = e.target.value.split(":");
-          if (hours.trim() !== "") {
-            if (!isNumeric(hours) || +hours > 23) {
-              start = `00:${start.slice(2)}`;
-              e.target.value = start;
-              return;
-            }
-          }
-
-          if (minutes.trim() !== "") {
-            if (!isNumeric(minutes) || +minutes > 59) {
-              start = `${start.slice(0, 2)}:00`;
-              e.target.value = start;
-              return;
-            }
-          }
-
-          start = e.target.value;
-        }}
+      <CustomDatepicker
+        bind:store
+        options={{ classList: errors.date ? "error-shadow" : "" }}
       />
     </div>
     <div class="col-md-3 col-6">
       <input
-        placeholder="До"
-        value={end}
-        on:input={(e) => {
-          if (!e.target.value.includes(":") || e.target.value.length > 5) {
-            end = `00:00`;
-            e.target.value = end;
-            return;
+        placeholder="Время"
+        value={time}
+        class="datepicker {errors.time ? 'error-shadow' : ''}"
+        on:change={(e) => {
+          if (!correctTimeWithMask(e.target.value)) {
+            e.target.value = "";
+            showIncorrectPhoneModal = true;
+            setTimeout(() => {
+              showIncorrectPhoneModal = false;
+            }, 3000);
+          } else {
+            time = e.target.value;
           }
-
-          const [hours, minutes] = e.target.value.split(":");
-          if (hours.trim() !== "") {
-            if (!isNumeric(hours) || +hours > 23) {
-              end = `00:${end.slice(2)}`;
-              e.target.value = end;
-              return;
-            }
-          }
-
-          if (minutes.trim() !== "") {
-            if (!isNumeric(minutes) || +minutes > 59) {
-              end = `${end.slice(0, 2)}:00`;
-              e.target.value = end;
-              return;
-            }
-          }
-
-          end = e.target.value;
         }}
       />
     </div>
@@ -271,6 +277,7 @@
         name="persons"
         bind:value={persons}
         placeholder="Количество человек"
+        class={errors.persons ? "error-shadow" : ""}
       >
         <option value="1">1</option>
         <option value="2">2</option>
@@ -284,6 +291,7 @@
       <input
         name="name"
         placeholder="Ваше имя"
+        class={errors.name ? "error-shadow" : ""}
         value={name}
         on:input={(e) => {
           if (isAlpha(e.target.value, "ru-RU") || e.target.value === "") {
@@ -299,14 +307,9 @@
         type="text"
         name="table"
         placeholder="Стол"
+        class={errors.table ? "error-shadow" : ""}
         value={table}
-        on:input={(e) => {
-          if (isNumeric(e.target.value) || e.target.value === "") {
-            table = e.target.value;
-          } else {
-            e.target.value = table;
-          }
-        }}
+        disabled
         on:change={(e) => {
           let paths = [...document.querySelectorAll("path")].filter((path) => {
             if (!isNaN(path.id)) return path;
@@ -316,7 +319,7 @@
         }}
       /><br /><br />
       <input
-        class="phone-input"
+        class="phone-input {errors.phone ? 'error-shadow' : ''}"
         name="phone"
         on:change={(e) => (phone = e.target.value)}
         placeholder="Номер телефона для связи"
@@ -331,8 +334,9 @@
       />
     </div>
     <div class="col-12 rules">
-      <input id="rules" type="checkbox" /> <label for="rules" /><a href="#"
-        >C правилами посещения</a
+      <input type="checkbox" id="rules" /> <label for="rules" /><a
+        id="visit_rules"
+        href="#">C правилами посещения</a
       >&nbsp;ознакомлен
     </div>
 

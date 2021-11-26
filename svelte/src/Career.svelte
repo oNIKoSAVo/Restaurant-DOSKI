@@ -81,6 +81,18 @@
   document.querySelector(".clickme").addEventListener("click", (e) => {
     showModal = true;
   });
+  document.addEventListener("DOMContentLoaded", () => {
+    document
+      .getElementById("consent_processing_data_modal")
+      .addEventListener("click", (e) => {
+        e.stopPropagation();
+        showModal = false;
+      });
+    // console.log({ el: document.querySelector("[for=rules]") });
+    // document.querySelector("[for=rules]").addEventListener("click", (e) => {
+    //   e.stopPropagation();
+    // });
+  });
 </script>
 
 <div
@@ -181,7 +193,8 @@
           </div>
           <div class="col-12 rules">
             <input id="rules" type="checkbox" /> <label for="rules" /><a
-              href="#">Согласие на обработку персональных данных</a
+              href="#consent_processing_data_modal"
+              data-modal>Согласие на обработку персональных данных</a
             >
           </div>
         </div>

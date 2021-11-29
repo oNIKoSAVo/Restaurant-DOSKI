@@ -896,42 +896,41 @@ a.download {
       display: table-cell;
     }
   }
-  .cart-sum * {
-    padding: 20px 0 10px 0;
-  }
-  .cart-summary_title,
-  .cart-summary_amount {
-    font-family: Bebas Neue;
-    font-style: normal;
-    font-weight: bold;
-    font-size: 35px;
-    line-height: 27px;
-    /* identical to box height, or 77% */
-    color: #000000;
-  }
-  .cart-summary_amount {
-    color: #d57e29;
-  }
-  .cart-item_price {
-    font-weight: bold;
-    color: black;
-    font-size: 20px;
-    line-height: 27px;
-  }
-  p,
-  .cart-item_title {
-    font-weight: 300;
-    font-family: Muller;
-    font-style: normal;
-
-    font-size: 16px;
-    line-height: 27px;
-    /* identical to box height, or 169% */
-
-    color: #000000;
-  }
 }
+.cart-sum * {
+  padding: 20px 0 10px 0;
+}
+.cart-summary_title,
+.cart-summary_amount {
+  font-family: Bebas Neue;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 35px;
+  line-height: 27px;
+  /* identical to box height, or 77% */
+  color: #000000;
+}
+.cart-summary_amount {
+  color: #d57e29;
+}
+.cart-item_price {
+  font-weight: bold;
+  color: black;
+  font-size: 20px;
+  line-height: 27px;
+}
+p,
+.cart-item_title {
+  font-weight: 300;
+  font-family: Muller;
+  font-style: normal;
 
+  font-size: 16px;
+  line-height: 27px;
+  /* identical to box height, or 169% */
+
+  color: #000000;
+}
 #preorder {
   .preorder-buttons a.submit,
   .preorder-buttons a.download {
@@ -4837,24 +4836,24 @@ section.light {
     margin-right: 30px;
   }
   .cart-full {
-    .cart-summary_title {
-      flex: 1 0 0;
+  }
+  .cart-summary_title {
+    flex: 1 0 0;
+  }
+  .cart-item {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    & > * {
+      display: block;
+      padding: 3px 0;
     }
-    .cart-item {
-      display: flex;
-      align-items: center;
-      flex-wrap: wrap;
-      & > * {
-        display: block;
-        padding: 3px 0;
-      }
-    }
-    .calculation-wrap {
-      flex: 1 0 0;
-    }
-    .cart-item_title {
-      width: 70%;
-    }
+  }
+  .calculation-wrap {
+    flex: 1 0 0;
+  }
+  .cart-item_title {
+    width: 70%;
   }
   .recommendations {
     flex-wrap: nowrap;

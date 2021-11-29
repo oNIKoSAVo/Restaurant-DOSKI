@@ -29,6 +29,7 @@
     let cartHtml;
     console.log(cart.length > 0);
     if (cart.length > 0) {
+      document.querySelector(".cart-sum").classList.remove("d-none");
       cartHtml = cart
         .map((cartItem) => {
           return `<div class="cart-item" data-id="${cart.id}">
@@ -47,8 +48,18 @@
           </div>`;
         })
         .join("");
+      console.log("price>0", price > 0);
+      const cartSumContainer = document.querySelector(".cart-sum");
+      const cartSum = document.querySelector(".cart-summary_amount.text-right");
+      // if (cart. > 0) {
+      //   console.log(cartSumContainer);
+      //   cartSumContainer.classList.remove("d-none");
+      // } else {
+      //   cartSumContainer.classList.add("d-none");
+      // }
     } else {
       cartHtml = "<h1>Корзина пуста</h1>";
+      document.querySelector(".cart-sum").classList.add("d-none");
     }
 
     document
@@ -127,7 +138,9 @@
 
   function setPrice() {
     try {
-      document.querySelector(".cart-summary").textContent = price + ".-";
+      document.querySelector(".cart-summary").textContent =
+        document.querySelector(".cart-summary_amount").textContent =
+          price + ".-";
     } catch (err) {
       // console.log("start", priceWithQuantity);
       setTimeout(() => {

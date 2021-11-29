@@ -110,9 +110,9 @@
               <tr>
                 <th>Фио</th>
                 <td>
-                  {{ request.user.profile.last_name | default_if_none:"-" }} {{
-                  request.user.profile.first_name | default_if_none:"-" }} {{
-                  request.user.profile.second_name | default_if_none:"-" }}
+                  {{ request.user.profile.last_name | default_if_none:"-" }}
+                  {{ request.user.profile.first_name | default_if_none:"-" }}
+                  {{ request.user.profile.second_name | default_if_none:"-" }}
                 </td>
               </tr>
               <tr>

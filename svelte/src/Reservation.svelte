@@ -107,8 +107,10 @@
       }, 3000);
       return;
     }
-
-    openModal("#askpreorder");
+    const orderCode = document.querySelector('#reserved .modal-subtitle')
+    orderCode.textContent = '282313'
+    openModal('#reserved')
+    // openModal("#askpreorder");
 
     sendTelegramMessage(
       `${name} забронировал(а) стол ${table} в ${time} на ${persons} человек(а). Номер: ${phone}. Ресторан на улице`
@@ -234,7 +236,7 @@
 
 <form id="reserve-form" on:submit={handleSubmit}>
   <div class="row">
-    <div class="col-12 d-none d-sm-block">
+    <div class="col-12 d-sm-block">
       <!-- svelte-ignore a11y-no-onchange -->
       <select
         bind:value={restaraunt}
@@ -248,13 +250,13 @@
         {/each}
       </select>
     </div>
-    <div class="col-sm-6">
+    <div class="col-6">
       <CustomDatepicker
         bind:store
         options={{ classList: errors.date ? "error-shadow" : "" }}
       />
     </div>
-    <div class="col-md-3 col-6">
+    <div class="col-6">
       <input
         placeholder="Время"
         value={time}

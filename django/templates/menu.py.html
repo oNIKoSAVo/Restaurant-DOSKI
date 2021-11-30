@@ -8,7 +8,7 @@
             <a class="dropdown-toggle" href="javascript:void(0)">Закуски</a>
             <ul class="dropdown-menu">
               {% for category in categories %}
-                <li><a class="but" href="#category_{{ category.id }}">{{ category.name }}</a></li>
+                <li><a class="but" data-category href="#category_{{ category.id }}">{{ category.name }}</a></li>
               {% endfor %}
             </ul>
           </div>
@@ -31,7 +31,7 @@
         <div class="col-2 d-none d-md-block">
           <div class="tab-cont">
             {% for category in categories %}
-              <a class="but" href="#category_{{ category.id }}">{{ category.name }}</a>
+              <a class="but" data-category href="#category_{{ category.id }}">{{ category.name }}</a>
               <!-- <a class="but" href="#reserve">Салаты</a>
               <a class="but" href="#orders">Роллы</a>
               <a class="but" href="#edit">Пицца</a> -->

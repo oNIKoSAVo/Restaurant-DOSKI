@@ -326,6 +326,7 @@ function nextStage(th) {
 }
 
 $(function () {
+
   // const picker = datepicker(".datepicker", {
   //   customDays: ["Пн", "Вт", "Ср", "Чт", "Пт", "Сб", "Вс"],
   //   formatter: (input, date, instance) => {
@@ -695,5 +696,13 @@ $(function () {
     $(".tab-content").hide();
     $(id).show();
   });
+
+  const foodCategories = document.querySelectorAll('[data-category]')
+  console.log({foodCategories})
+  foodCategories.forEach(category => {
+    category.onclick = () => {
+      document.querySelector('.breadcrumbs a:last-child').textContent = category.textContent
+    }
+  })
 });
 //

@@ -14,7 +14,7 @@
           <ul class="dropdown-menu">
             {% for category in categories %}
             <li>
-              <a class="but" href="#category_{{ category.id }}"
+              <a class="but" data-category href="#category_{{ category.id }}"
                 >{{ category.name }}</a
               >
             </li>
@@ -23,7 +23,7 @@
         </div>
         <div class="breadcrumbs">
           <a href="/">Главная страница</a>/<a href="#">Доставка</a>/<a href="#"
-            >Закуски</a
+            ></a
           >
         </div>
       </div>
@@ -40,7 +40,7 @@
         </div>
         <div class="tab-cont">
           {% for category in categories %}
-          <a class="but" href="#category_{{ category.id }}"
+          <a class="but" data-category href="#category_{{ category.id }}"
             >{{ category.name }}</a
           >
           {% endfor %}

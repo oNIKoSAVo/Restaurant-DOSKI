@@ -62,9 +62,9 @@
   //     e.target.value = stateValue;
   //   }
   // }
-  document.addEventListener("DOMContentLoaded", () => {
-    appendSchemes([{ url: restaraunts[0]?.schemes[0]?.url }]);
-  });
+  // document.addEventListener("DOMContentLoaded", () => {
+  //   appendSchemes([{ url: restaraunts[0]?.schemes[0]?.url }]);
+  // });
 
   document.addEventListener("DOMContentLoaded", () => {
     const im = new Inputmask("99:99");

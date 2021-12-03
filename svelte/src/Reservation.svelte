@@ -9,6 +9,7 @@
   import CustomDatepicker from "./CustomDatepicker.svelte";
   import { sendTelegramMessage } from "./helpers/sendTelegramMessage";
   import { correctTimeWithMask } from "./helpers/correctTimeWithMask";
+  import {captchaProtect} from "./helpers/grecaptcha";
 
   export let restaraunts;
   export let reservation;
@@ -107,30 +108,33 @@
       }, 3000);
       return;
     }
-    const orderCode = document.querySelector('#reserved .modal-subtitle')
-    orderCode.textContent = '282313'
-    openModal('#reserved')
-    // openModal("#askpreorder");
+    captchaProtect(async () => {
+      const orderCode = document.querySelector('#reserved .modal-subtitle')
+      orderCode.textContent = '282313'
+      openModal('#reserved')
+      // openModal("#askpreorder");
 
-    sendTelegramMessage(
-      `${name} забронировал(а) стол ${table} в ${time} на ${persons} человек(а). Номер: ${phone}. Ресторан на улице`
-      /*${restaraunts.find((el) => el.id === restaraunt).text}*/
-    );
+      sendTelegramMessage(
+              `${name} забронировал(а) стол ${table} в ${time} на ${persons} человек(а). Номер: ${phone}. Ресторан на улице`
+              /*${restaraunts.find((el) => el.id === restaraunt).text}*/
+      );
 
-    const response = await reservationRequest({
-      restaraunt,
-      store,
-      time,
-      // end,
-      persons,
-      table,
-      name,
-      phone,
-      description,
-    });
-    if (response.id) {
-      responseIdReservation = response.id;
-    }
+      const response = await reservationRequest({
+        restaraunt,
+        store,
+        time,
+        // end,
+        persons,
+        table,
+        name,
+        phone,
+        description,
+      });
+      if (response.id) {
+        responseIdReservation = response.id;
+      }
+    })
+
   }
 
   function handleOnChangeRestaraunt(e) {

@@ -7,6 +7,7 @@ import sys
 import re
 import json
 import random
+import requests
 from datetime import datetime
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login
@@ -55,6 +56,35 @@ def signin(request):
         return JsonResponse({"success": "Прошел"})
     else:
         return JsonResponse({"error": "НЕПРЕЛ"})
+
+@require_http_methods(["POST"])
+def recovery(request):
+    phone = request.POST.get('phone')
+    password = ''.join(
+        random.choice('1234567890') for _ in range(4))
+
+    cleanphone = re.sub('\W+', '', phone)
+
+    try:
+        user = User.objects.get(username=cleanphone)
+        user.set_password(password)
+        user.save()
+
+        Sms().send(cleanphone, password)
+
+        return JsonResponse({"success": "Прошел"})
+    except User.DoesNotExist:
+        return JsonResponse({"error": "НЕПРЕЛ"})
+
+
+@require_http_methods(["POST"])
+def captcha(request):
+        token = request.POST.get('token')
+        print(token)
+        response = requests.post('https://www.google.com/recaptcha/api/siteverify', headers={'Content-type': 'application/x-www-form-urlencoded'}, data={"secret": "6Ldt-3IdAAAAAIz1DsZ4sBrShbpa5gGA7QcN-3zy", "response": token})
+        response_json = json.loads(response.text)
+        print(response_json)
+        return JsonResponse({"success": response_json['success']})
 
 
 def personal(request):

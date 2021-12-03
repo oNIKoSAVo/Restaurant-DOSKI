@@ -4,6 +4,7 @@
   import CustomDatepicker from "./CustomDatepicker.svelte";
   import isAlpha from "validator/es/lib/isAlpha";
   import dayjs from "dayjs";
+  import {captchaProtect} from "./helpers/grecaptcha";
   let showModal = false;
   let showFormModal = true;
   let showModalSuccess = false;
@@ -17,6 +18,7 @@
   let b_day = "";
   let citizenship = "";
   let about = "";
+  let datepickerError = false
 
   let store;
   $: console.log(showModalSuccess);
@@ -51,26 +53,34 @@
   }
   async function handleSubmit(e) {
     e.preventDefault();
-    const formatted = dayjs(store.getState().selected).format("DD/MM/YYYY");
-    b_day = formatted.split(".").reverse().join("-");
-    const response = await careerRequest({
-      first_name,
-      middle_name,
-      last_name,
-      phone,
-      position,
-      city,
-      bar,
-      b_day,
-      citizenship,
-      about,
-    });
-    console.log(response.status, response.status == "success");
-    if (response.status == "success") {
-      showFormModal = false;
-      showModalSuccess = true;
-      showModal = true;
+    if(!store.getState().hasChosen) {
+      datepickerError = true
+      setTimeout(() => {datepickerError=false}, 3000)
+      return
     }
+
+    captchaProtect(async () => {
+      const formatted = dayjs(store.getState().selected).format("DD/MM/YYYY");
+      b_day = formatted.split(".").reverse().join("-");
+      const response = await careerRequest({
+        first_name,
+        middle_name,
+        last_name,
+        phone,
+        position,
+        bar,
+        b_day,
+        citizenship,
+        about,
+      });
+      console.log(response.status, response.status == "success");
+      if (response.status == "success") {
+        showFormModal = false;
+        showModalSuccess = true;
+        showModal = true;
+      }
+    })
+
   }
   function handleNextClick(e) {
     if (e.target.innerHTML == "Отправить") handleSubmit(e);
@@ -234,7 +244,8 @@
           >
             <CustomDatepicker
               bind:store
-              options={{ classList: "mb-3 w-100" }}
+              options={{ classList: `mb-3 w-100 ${datepickerError ? 'error-shadow' : ''}` }}
+              unselectedText="Дата рождения"
             />
           </div>
           <!--          </div>-->

@@ -10,9 +10,12 @@ import Inputmask from "inputmask";
 import "lazysizes/plugins/parent-fit/ls.parent-fit";
 import "./plugin/grt-youtube-popup";
 // import datepicker from "js-datepicker";
+import "regenerator-runtime/runtime.js";
+
 import { Loader } from "google-maps";
 import { correctPhoneWithMask } from "../src/helpers/correctPhoneWithMask";
 import { sendTelegramMessage } from "../src/helpers/sendTelegramMessage";
+import {captchaProtect} from "../src/helpers/grecaptcha";
 const options = {
   /* todo */
 };
@@ -419,28 +422,31 @@ $(function () {
         return;
       }
     }
+    captchaProtect(() => {
+      // обработка заказа
+      const checkoutData = $("#checkoutform").serializeArray();
 
-    // обработка заказа
-    const checkoutData = $("#checkoutform").serializeArray();
+      // Успешный исход
 
-    // Успешный исход
+      const cartItemsTitlesWithQuantity = [
+        ...document.querySelector(".cart-full").querySelectorAll(".cart-item"),
+      ].map(
+          (el) =>
+              `${el.querySelector(".cart-item_title").textContent} * ${
+                  el.querySelector(".item-quantity").textContent
+              }`
+      );
+      sendTelegramMessage(
+          `${nameInputEl.value.trim()} заказал доставку на адрес "${addressInputEl.value.trim()}". Блюда: ${cartItemsTitlesWithQuantity.join(
+              ", "
+          )}. Номер: ${phoneInputEl.value.trim()}. Цена заказа: ${
+              document.querySelector(".cart-summary").textContent
+          }.`
+      );
+      nextStage($(this).parents(".stage"));
+    })
 
-    const cartItemsTitlesWithQuantity = [
-      ...document.querySelector(".cart-full").querySelectorAll(".cart-item"),
-    ].map(
-      (el) =>
-        `${el.querySelector(".cart-item_title").textContent} * ${
-          el.querySelector(".item-quantity").textContent
-        }`
-    );
-    sendTelegramMessage(
-      `${nameInputEl.value.trim()} заказал доставку на адрес "${addressInputEl.value.trim()}". Блюда: ${cartItemsTitlesWithQuantity.join(
-        ", "
-      )}. Номер: ${phoneInputEl.value.trim()}. Цена заказа: ${
-        document.querySelector(".cart-summary").textContent
-      }.`
-    );
-    nextStage($(this).parents(".stage"));
+
   });
   $(".checkout-btn").on("click", function (e) {
     const cartSummaryEl = document.querySelector(".cart-summary");

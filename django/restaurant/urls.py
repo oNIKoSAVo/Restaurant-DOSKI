@@ -26,6 +26,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.index, name='index'),
     path('menu', views.menu, name='menu'),
+    path('captcha', views.captcha, name='captcha'),
     path('delivery', views.delivery, name='delivery'),
     path('preorder', views.preorder, name='preorder'),
     path('create_order', views.create_order, name='create_order'),
@@ -39,7 +40,7 @@ urlpatterns = [
     path('signup', views.signup, name='signup'),
     path('personal', views.personal, name='personal'),
     path('cabinet', views.cabinet, name='cabinet'),
-
+    path('recovery', views.recovery, name='recovery'),
     path('payment_success', views.payment_success, name='payment_success'),
     path('payment_fail', views.payment_fail, name='payment_fail')
 ]

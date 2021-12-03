@@ -1,17 +1,27 @@
 <script>
-  import { ModalHiddenEventListener } from "./utils";
-  import { signIn, signUp } from "./api";
+  import {ModalHiddenEventListener} from "./utils";
+  import {request, signIn, signUp} from "./api";
+  import {correctPhoneWithMask} from "./helpers/correctPhoneWithMask";
+  import {captchaProtect} from "./helpers/grecaptcha";
 
   let phone = "",
-    password = "";
-
+          password = "", recoverPhone = '';
+  let isRegisteredNumber = false
   let code = ["", "", "", ""];
 
   let ui = {
     showMainModal: false,
     showSignInModal: false,
     showSignUpModal: false,
+    showRecoveryModal: false
   };
+
+  let errors = {
+    recoverError: false,
+    signInPhoneError: false,
+    signInPasswordError: false,
+    signInError: false
+  }
 
   function validate() {
     console.log("I'm the validate() function");
@@ -19,56 +29,138 @@
 
   async function handleSignInSubmit(e) {
     e.preventDefault();
-    const response = await signIn({ phone, password });
+    if(!correctPhoneWithMask(phone) || !password.trim()) {
+      if(!correctPhoneWithMask(phone)){
+        errors.signInPhoneError = true
+        setTimeout(() => {
+          errors.signInPhoneError = false
+        }, 3000)
+      }
+      if(!password.trim()){
+        errors.signInPasswordError = true
+        setTimeout(() => {
+          errors.signInPasswordError = false
+        }, 3000)
+      }
+      return
+    }
+    // grecaptcha.ready(function () {
+    //     grecaptcha.execute(recaptchaKey, {action: 'submit'}).then(async function(token) {
+    //         const captchaResponse = await request('POST', '/captcha', {token})
+    //         console.log({captchaResponse})
+    //         if(!captchaResponse.success) {
+    //             return
+    //         }
+    //         const signInResponse = await signIn({phone, password});
+    //         if (signInResponse.success) {
+    //             window.location.href = "/personal";
+    //         } else {
+    //             errors.signInError = true
+    //             setTimeout(() => {errors.signInError = false}, 3000)
+    //         }
+    //     });
+    // });
+    captchaProtect(async () => {
+      const signInResponse = await signIn({phone, password});
+      if (signInResponse.success) {
+        window.location.href = "/personal";
+      } else {
+        errors.signInError = true
+        setTimeout(() => {errors.signInError = false}, 3000)
+      }
+    })
+
+  }
+
+  function handleRecoverSubmit(e) {
+    e.preventDefault()
+    ui.showMainModal = false
+    ui.showSignInModal = false
+    ui.showSignUpModal = false
+    ui.showMainModal = false
+    hideModals();
+    ui.showRecoveryModal = true
+    showModal('forgot-password')
+  }
+
+  function handleGetCode(e) {
+    e.preventDefault()
+    if (!correctPhoneWithMask(recoverPhone)) return
+    captchaProtect(() => {
+      document.querySelector('.send-reset').click()
+      request('POST', '/recovery', {phone: recoverPhone})
+    })
+
+  }
+
+
+  async function handleSubmitRecover(e) {
+    e.preventDefault()
+    const password = code.join('')
+    if (password.length !== 4) return
+    const response = await request('POST', '/signin', {phone: recoverPhone, password})
     if (response.success) {
-      window.location.href = "/personal";
+      ui.showRecoveryModal = false
+      location.href = '/personal'
+    } else {
+      errors.recoverError = true
+      setTimeout(() => {
+        errors.recoverError = false
+      }, 3000)
     }
   }
 
   async function handleSignUpSubmit(e) {
     e.preventDefault();
-    const response = await signUp({ phone });
-    console.log(response);
-    // if (response.success) {
-    //   code = response.password.split("");
-    // }
+    captchaProtect(async () => {
+      const response = await signUp({phone});
+      console.log(response);
+      if (response.success) {
+        // console.log('gi')
+        // code = response.password.split("");
+        document.querySelector('.send-register').click()
+      } else {
+        isRegisteredNumber = true
+      }
+    })
+
   }
 
   document.addEventListener("DOMContentLoaded", () => {
     const signBtns = document.querySelectorAll(".sign");
     if (signBtns.length > 0) {
       signBtns.forEach((e) =>
-        e.addEventListener("click", () => {
-          ui.showMainModal = true;
-          document
-            .querySelectorAll(".modal")
-            .forEach((elem) => (elem.style.display = ""));
-        })
+              e.addEventListener("click", () => {
+                ui.showMainModal = true;
+                document
+                        .querySelectorAll(".modal")
+                        .forEach((elem) => (elem.style.display = ""));
+              })
       );
     }
 
     ModalHiddenEventListener(
-      document.querySelector("#signinup"),
-      (e) => {
-        ui.showMainModal = false;
-      },
-      document
+            document.querySelector("#signinup"),
+            (e) => {
+              ui.showMainModal = false;
+            },
+            document
     );
 
     ModalHiddenEventListener(
-      document.querySelector("#login"),
-      () => {
-        ui.showSignInModal = false;
-      },
-      document
+            document.querySelector("#login"),
+            () => {
+              ui.showSignInModal = false;
+            },
+            document
     );
 
     ModalHiddenEventListener(
-      document.querySelector("#register"),
-      () => {
-        ui.showSignUpModal = false;
-      },
-      document
+            document.querySelector("#register"),
+            () => {
+              ui.showSignUpModal = false;
+            },
+            document
     );
 
     // document.querySelector('#signinup').addEventListener("hidden.bs.modal", () => {
@@ -84,6 +176,19 @@
     //   ui.showSignUpModal = false;
     // })
   });
+
+  function hideModals() {
+    [...document.getElementById("sign-target").children].forEach((el) => {
+      el.style.display = "none";
+      el.classList.remove("show");
+    });
+  }
+
+  function showModal(id) {
+    const modal = document.getElementById(id)
+    modal.style.display = "";
+    modal.classList.add("show");
+  }
 </script>
 
 <!-- MAIN MODAL -->
@@ -122,8 +227,11 @@
         <a
           class="download active d-block text-center"
           on:click={() => {
-            ui.showMainModal = !ui.showMainModal;
-            ui.showSignUpModal = !ui.showSignUpModal;
+            ui.showMainModal = false;
+            ui.showSignUpModal = true;
+            hideModals();
+            showModal("register");
+                          isRegisteredNumber = false
           }}>Зарегистрироваться</a
         >
       </div>
@@ -154,14 +262,17 @@
       </button>
       <div class="modal-header"><div class="modal-title">Вход</div></div>
       <form on:submit={handleSignInSubmit} preventDefault={validate}>
+        {#if errors.signInError}
+          <h3 class="text-center" style="color: red;">Неверные данные</h3>
+        {/if}
         <input
-          class="login-input"
+          class="login-input {errors.signInPhoneError && 'error-shadow'}"
           name="phone"
           bind:value={phone}
           placeholder="Телефон"
         />
         <input
-          class="password-input"
+          class="password-input {errors.signInPasswordError && 'error-shadow'}"
           type="password"
           name="password"
           bind:value={password}
@@ -178,8 +289,95 @@
   </div>
 </div>
 
-<!-- REGISTRATION MODAL -->
+<!-- Forgot password MODAL -->
+<div
+        class="modal-wrapper modal fade {ui.showRecoveryModal ? 'show' : ''}"
+        id="forgot-password"
+        tabindex="-1"
+        role="dialog"
+>
+  <div class="modal-dialog" style="max-width: 492px">
+    <div class="modal-content cart-top">
+      <div class="modal-header">
+        <button
+                class="close"
+                type="button"
+                data-dismiss="modal"
+                aria-label="Close"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <div class="modal-title">Забыли пароль?</div>
+      </div>
+      <div class="stages">
+        <form class="stage" action="">
+          <div class="modal-description">Введите Ваш номер телефона</div>
+          <input
+                  class="phone-input"
+                  name="phone"
+                  placeholder="Ваш телефон"
+                  bind:value={recoverPhone}
+          />
+          <div class="text-center">
+            <a class="send-reset d-none" href="#"></a>
+            <a class="submit" href="#" on:click={handleGetCode}>Получить код</a>
+          </div>
+        </form>
+        <form class="stage" action="">
+          {#if errors.recoverError}
+            <h3 class="text-center" style="color: red;">Неправильный код</h3>
+          {/if}
+          <div class="modal-description">Введите код из СМС</div>
+          <div class="d-flex justify-content-between code-inputs">
+            <input
+                    class="code-input"
+                    type="number"
+                    name="code1"
+                    max="9"
+                    min="0"
+                    step="1"
+                    bind:value={code[0]}
 
+            />
+            <input
+                    class="code-input"
+                    type="number"
+                    name="code2"
+                    max="9"
+                    min="0"
+                    step="1"
+                    bind:value={code[1]}
+
+            />
+            <input
+                    class="code-input"
+                    type="number"
+                    name="code3"
+                    max="9"
+                    min="0"
+                    step="1"
+                    bind:value={code[2]}
+            />
+            <input
+                    class="code-input"
+                    type="number"
+                    name="code4"
+                    max="9"
+                    min="0"
+                    step="1"
+                    bind:value={code[3]}
+            />
+          </div>
+          <div class="text-center">
+            <a class="submit reset-password" on:click={handleSubmitRecover} href="#">Зарегистрироваться</a>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- REGISTRATION MODAL -->
 <div
   class="modal-wrapper modal fade {ui.showSignUpModal ? 'show' : ''}"
   id="register"
@@ -202,22 +400,28 @@
       <div class="modal-title">Регистрация</div>
     </div>
     <div class="stages">
-      <form class="stage" action="">
-        <div class="modal-description">Введите Ваш номер телефона</div>
-        <input
-          class="phone-input"
-          type="tel"
-          name="phone"
-          on:change={(e) => (phone = e.target.value)}
-          placeholder="Ваш телефон"
-        />
-        <div class="text-center">
-          <a class="submit send-register" on:click={handleSignUpSubmit} href="#"
+      {#if !isRegisteredNumber}
+        <form class="stage" action="">
+          <div class="modal-description">Введите Ваш номер телефона</div>
+          <input
+                  class="phone-input"
+                  type="tel"
+                  name="phone"
+                  on:change={(e) => (phone = e.target.value)}
+                  placeholder="Ваш телефон"
+          />
+          <div class="text-center">
+            <a class="send-register d-none" href="#"></a>
+            <a class="submit" on:click={handleSignUpSubmit} href="#"
             >Получить код</a
-          >
+            >
+          </div>
+        </form>
+      {:else}
+        <div class="text-center">
+          <h3>Этот номер зарегистрирован!</h3>
         </div>
-      </form>
-
+      {/if}
       <form class="stage" action="">
         <div class="modal-description">Введите код из СМС</div>
         <div class="d-flex justify-content-between code-inputs">

@@ -1,7 +1,7 @@
 import { getCSRFtoken } from "./utils";
 import qs from "qs";
 
-async function request(method, path, data) {
+export async function request(method, path, data) {
   return await fetch(path, {
     method: method,
     headers: {

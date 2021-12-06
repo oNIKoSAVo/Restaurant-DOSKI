@@ -71,9 +71,7 @@
     const im = new Inputmask("99:99");
     const datepicker = im.mask(document.querySelector(".datepicker"));
     console.log({restaraunts})
-    const schemes = []
-    restaraunts[0].schemes.forEach(s => schemes.push(s))
-    appendSchemes(schemes);
+    appendSchemes(restaraunts[0].schemes);
   });
 
   function slicePeopleForTable(id) {
@@ -148,9 +146,8 @@
     console.log(findRestaraunt);
     // appendSchemes(findRestaraunt.schemes);
     console.log({ findRestaraunt });
-    const schemes = []
-    findRestaraunt.schemes.forEach(s => schemes.push(s))
-    appendSchemes(schemes);
+
+    appendSchemes(findRestaraunt.schemes);
   }
 
   function openModal(id) {

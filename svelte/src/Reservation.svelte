@@ -70,7 +70,10 @@
   document.addEventListener("DOMContentLoaded", () => {
     const im = new Inputmask("99:99");
     const datepicker = im.mask(document.querySelector(".datepicker"));
-    appendSchemes([{ url: restaraunts[0]?.schemes[0]?.url }]);
+    console.log({restaraunts})
+    const schemes = []
+    restaraunts[0].schemes.forEach(s => schemes.push(s))
+    appendSchemes(schemes);
   });
 
   function slicePeopleForTable(id) {
@@ -145,7 +148,9 @@
     console.log(findRestaraunt);
     // appendSchemes(findRestaraunt.schemes);
     console.log({ findRestaraunt });
-    appendSchemes([{ url: findRestaraunt.schemes[0]?.url }]);
+    const schemes = []
+    findRestaraunt.schemes.forEach(s => schemes.push(s))
+    appendSchemes(schemes);
   }
 
   function openModal(id) {

@@ -219,8 +219,9 @@
         <a
           class="mt-0 mb-3 submit d-block text-center"
           on:click={() => {
-            ui.showMainModal = !ui.showMainModal;
-            ui.showSignInModal = !ui.showSignInModal;
+            ui.showMainModal = false;
+            ui.showSignInModal = true;
+            showModal('login')
           }}>Войти</a
         >
         <!-- svelte-ignore a11y-missing-attribute -->

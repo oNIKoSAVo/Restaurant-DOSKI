@@ -175,22 +175,51 @@
             if (!isNaN(path.id)) return path;
           });
 
+          const chooseTableBtn = document.querySelector('.select-table.close-modal')
+
           paths.forEach((path) =>
             path.addEventListener("click", function (e) {
               e.stopPropagation();
-              paths.forEach((r) => (r.style.fill = "green"));
               openModal("#table-modal");
+              const peopleQuantity = slicePeopleForTable(
+                      this.nextElementSibling.id
+              );
               document.getElementById(
-                "table-modal-people-quantity"
-              ).textContent = slicePeopleForTable(this.nextElementSibling.id);
-              console.log({
-                sliced: slicePeopleForTable(this.nextElementSibling.id),
-              });
-              console.log({ el: this });
+                      "table-modal-people-quantity"
+              ).textContent = peopleQuantity;
+              document
+                      .getElementById("table-modal")
+                      .querySelector(
+                              ".modal-description"
+                      ).textContent = `Столик с видом на город для компании до ${peopleQuantity} человек`;
               document.getElementById("table-modal-number").textContent =
-                this.id;
-              table = this.id;
-              this.style.fill = "#7f7f7f";
+                      this.id;
+              chooseTableBtn.onclick = () => {
+
+                paths.forEach((r) => (r.style.fill = "green"));
+
+
+                console.log({
+                  sliced: slicePeopleForTable(this.nextElementSibling.id),
+                });
+
+
+                table = this.id;
+                this.style.fill = "#7f7f7f";
+                chooseTableBtn.onclick = null
+              }
+              // paths.forEach((r) => (r.style.fill = "green"));
+              // document.getElementById(
+              //   "table-modal-people-quantity"
+              // ).textContent = slicePeopleForTable(this.nextElementSibling.id);
+              // console.log({
+              //   sliced: slicePeopleForTable(this.nextElementSibling.id),
+              // });
+              // console.log({ el: this });
+              // document.getElementById("table-modal-number").textContent =
+              //   this.id;
+              // table = this.id;
+              // this.style.fill = "#7f7f7f";
             })
           );
         })

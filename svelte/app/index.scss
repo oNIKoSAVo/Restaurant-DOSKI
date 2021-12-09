@@ -1734,7 +1734,8 @@ form .submit {
   position: relative;
   z-index: -0;
   height: 90vh;
-  max-height: 953px;
+  min-height: 953px;
+  //max-height: 1200px;
   &:hover {
     .event-content {
       display: none;

@@ -94,7 +94,8 @@
       !persons ||
       !name ||
       !phone ||
-      !restaraunt
+      !restaraunt ||
+            !document.getElementById('rules').checked
     ) {
       console.log({ time, table, persons, name, phone, restaraunt });
       errors.time = !time;

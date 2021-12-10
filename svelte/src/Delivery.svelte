@@ -157,7 +157,8 @@
       });
       document.querySelector(".gram b").textContent = `${Math.round(
         grams / peopleQuantity
-      )}гр`;
+          //гр
+      )}`;
     } catch (err) {
         console.log('catch')
         // console.log("start", price);
@@ -173,7 +174,8 @@
         if (document.querySelector(".gram b")) {
           document.querySelector(".gram b").textContent = `${Math.round(
             grams / peopleQuantity
-          )}гр`;
+              //гр
+          )}`;
         }
 
       }, 0);

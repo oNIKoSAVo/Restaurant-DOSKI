@@ -1737,9 +1737,9 @@ form .submit {
   min-height: 953px;
   //max-height: 1200px;
   &:hover {
-    .event-content {
-      display: none;
-    }
+    //.event-content {
+    //  display: none;
+    //}
     .event-column:hover,
     .event-colum *:hover {
       .event-content {

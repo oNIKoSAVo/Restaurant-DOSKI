@@ -5,12 +5,15 @@
     (acc, cartItem) => acc + cartItem.price * cartItem.quantity,
     0
   );
-  $: setPrice(price);
-  let amount = 1;
-  $: priceWithQuantity = price * amount;
-  $: console.log(priceWithQuantity);
+  $: grams = cart.reduce(
+    (acc, cartItem) => acc + cartItem.grams * cartItem.quantity,
+    0
+  );
+  $: setPrice(price, grams, peopleQuantity);
+  let peopleQuantity = 1;
   $: console.log({ cart });
   window.renderCartItems = renderCartItems;
+
   // $: document.querySelector(".cart-summary").textContent = price;
 
   function renderCartItems() {
@@ -44,7 +47,7 @@
                       <div class="plus-btn">+</div>
                   </div>
               </div>
-              <div class="cart-item_price text-right">${cartItem.price}.-</div>
+              <div class="cart-item_price text-right">${cartItem.price}₽</div>
           </div>`;
         })
         .join("");
@@ -135,19 +138,44 @@
       );
     } catch (err) {}
   }
-
+//TODO refactoring
   function setPrice() {
+    const deliveryTitlePrice = document.querySelector(".delivery-title b");
+      const cartSummaryPrice = document.querySelector(
+          "#preorder .cart-summary_amount.text-right"
+      );
     try {
       document.querySelector(".cart-summary").textContent =
         document.querySelector(".cart-summary_amount").textContent =
-          price + ".-";
+          price + "₽";
+
+      if (!deliveryTitlePrice || !cartSummaryPrice) return;
+      deliveryTitlePrice.textContent = cartSummaryPrice.textContent =
+        price + "₽";
+      console.log({
+        cs: document.querySelector(".cart-summary_amount.text-right"),
+      });
+      document.querySelector(".gram b").textContent = `${Math.round(
+        grams / peopleQuantity
+      )}гр`;
     } catch (err) {
-      // console.log("start", priceWithQuantity);
+        console.log('catch')
+        // console.log("start", price);
       setTimeout(() => {
-        document.querySelector(".delivery-title b").textContent =
-          priceWithQuantity + ".-";
-        document.querySelector(".cart-summary_amount.text-right").textContent =
-          priceWithQuantity + ".-";
+        if (deliveryTitlePrice) {
+          deliveryTitlePrice.textContent = price + "₽";
+        }
+        if (document.querySelector(".cart-summary_amount.text-right") && cartSummaryPrice) {
+          document.querySelector(
+            ".cart-summary_amount.text-right"
+          ).textContent = cartSummaryPrice.textContent=price + "₽";
+        }
+        if (document.querySelector(".gram b")) {
+          document.querySelector(".gram b").textContent = `${Math.round(
+            grams / peopleQuantity
+          )}гр`;
+        }
+
       }, 0);
     }
   }
@@ -241,6 +269,10 @@
             quantity: 1,
             img: modal.querySelector(".dish-img").getAttribute("src"),
             id: modal.dataset.id,
+            grams: +modal
+              .querySelector(".dish-details_sizes")
+              .textContent.split(" ")[0]
+              .slice(0, -2),
           },
         ];
         modalQuantityEl.textContent = document
@@ -282,11 +314,10 @@
     const productCard = e.target.parentNode.parentNode.parentNode;
 
     if (productCard.id === "order-data") {
-      if (parseInt(quantity) === 1 || amount === 1) return;
-
+      if (parseInt(quantity) === 1 || peopleQuantity === 1) return;
       const quantityEl = parentNode.querySelector(".item-quantity");
-      amount -= 1;
-      quantityEl.innerText = amount;
+      peopleQuantity -= 1;
+      quantityEl.innerText = peopleQuantity;
       // setPrice();
       return;
     }
@@ -305,6 +336,13 @@
     parentNode.querySelector(".item-quantity").innerText =
       parseInt(quantity) - 1;
     const menuItemPrice = getPrice(parentNode);
+    if (productCard.id === "order-data") {
+      const quantityEl = parentNode.querySelector(".item-quantity");
+      peopleQuantity += 1;
+      quantityEl.innerText = peopleQuantity;
+      // setPrice();
+      return;
+    }
     if (menuItemPrice) price -= menuItemPrice;
     // setPrice();
     renderCartItems();
@@ -323,8 +361,8 @@
     const menuItemPrice = getPrice(parentNode);
     if (productCard.id === "order-data") {
       const quantityEl = parentNode.querySelector(".item-quantity");
-      amount += 1;
-      quantityEl.innerText = amount;
+      peopleQuantity += 1;
+      quantityEl.innerText = peopleQuantity;
       // setPrice();
       return;
     }
@@ -347,6 +385,9 @@
           quantity: 1,
           img: productCard.querySelector(".dish-img").getAttribute("src"),
           id: productCard.id,
+          grams: +productCard
+            .querySelector(".dish-details_sizes")
+            .textContent.slice(0, -2),
         },
       ];
     }

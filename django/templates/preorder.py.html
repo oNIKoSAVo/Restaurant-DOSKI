@@ -57,12 +57,12 @@
             </div>
           </div>
           <div class="col-md-4 px-0 px-1">
-            <div class="delivery-title">Сумма блюд:<b>0.-</b></div>
-            <div class="delivery-conditions mb-3">
-              Добавленное количество гр на человека (еда): <b>250гр</b>
+            <div class="delivery-title">Сумма блюд:<b>0₽</b></div>
+            <div class="delivery-conditions mb-3 gram">
+              Добавленное количество гр на человека (еда): <b>0гр</b>
             </div>
-            <div class="delivery-conditions">
-              Добавленное количество мл на человека (напитки):<b>500мл</b>
+            <div class="delivery-conditions milliliter">
+              Добавленное количество мл на человека (напитки):<b>0мл</b>
             </div>
           </div>
           <div class="col-md-4 px-0 px-1 mt-3 mt-sm-0 mb-2 mb-sm-0">
@@ -92,8 +92,8 @@
             <div class="dish-title">{{ menue.dish }}</div>
             <div class="dish-description">{{ menue.description }}</div>
             <div class="dish-details">
-              <div class="dish-details_sizes">{{ menue.weight }}</div>
-              <div class="dish-details_price">{{ menue.price }}.-</div>
+              <div class="dish-details_sizes">{{ menue.weight }}гр</div>
+              <div class="dish-details_price">{{ menue.price }}₽</div>
               <div class="calculations" data-menue-id="{{ menue.id }}">
                 <div class="minus-btn">-</div>
                 <div class="item-quantity">0</div>

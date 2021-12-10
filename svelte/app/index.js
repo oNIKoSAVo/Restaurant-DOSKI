@@ -531,26 +531,34 @@ $(function () {
   $(".only-menu .dish-item").on("click", function () {
     openModal("#item");
   });
-  $(".dish-item").on("click", function (e) {
-    const modal = document.getElementById("item-buy");
-    const dishItem = e.target.closest(".dish-item");
-    openModal("#item-buy");
+  function setModalData(modal, dishItem){
     modal.dataset.id = dishItem.id;
     modal.querySelector(".dish-img").src =
-      dishItem.querySelector(".dish-img").src;
+        dishItem.querySelector(".dish-img").src;
     modal.querySelector(".dish-description").textContent =
-      dishItem.querySelector(".dish-description").textContent;
+        dishItem.querySelector(".dish-description").textContent;
     modal.querySelector(".dish-details_price").textContent =
-      dishItem.querySelector(".dish-details_price").textContent;
+        dishItem.querySelector(".dish-details_price").textContent;
     modal.querySelector(".modal-title").textContent =
-      dishItem.querySelector(".dish-title").textContent;
+        dishItem.querySelector(".dish-title").textContent;
+
+    modal.querySelector(".dish-details_sizes").textContent =
+        dishItem.querySelector(".dish-details_sizes").textContent + ' /';
     if (!dishItem.querySelector(".item-quantity")) {
       if (modal.querySelector(".calculations"))
         modal.querySelector(".calculations").outerHTML = "";
       return;
     }
     modal.querySelector(".item-quantity").textContent =
-      dishItem.querySelector(".item-quantity").textContent;
+        dishItem.querySelector(".item-quantity").textContent;
+  }
+
+  $(".dish-item").on("click", function (e) {
+    const modal = document.getElementById("item-buy");
+    const dishItem = e.target.closest(".dish-item");
+    setModalData(modal, dishItem)
+    openModal("#item-buy");
+
   });
   $(".delete-account").on("click", function (e) {
     e.preventDefault();

@@ -16,5 +16,5 @@
       <div class="plus-btn">+</div>
     </div>
   </div>
-  <div class="cart-item_price text-right">{price}.-</div>
+  <div class="cart-item_price text-right">{price}₽</div>
 </div>

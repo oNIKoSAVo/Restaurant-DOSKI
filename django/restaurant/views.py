@@ -128,10 +128,10 @@ def menu(request):
         "Яндекс Доставка",
         "Доставка"
     ])
-
+    restaraunt = Restaraunt.objects.first()
     categories = categories.annotate(menue_count=Count('menues__id')).filter(menue_count__gt=0)
 
-    return render(request, 'menu.py.html', {'menues': Menue.objects.all(), 'categories': categories})
+    return render(request, 'menu.py.html', {'menues': Menue.objects.all(), 'menue_file': restaraunt.menue_file.url if restaraunt.menue_file else "#", 'categories': categories})
 
 
 def delivery(request):

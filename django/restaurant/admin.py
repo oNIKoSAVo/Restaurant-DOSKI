@@ -1,7 +1,7 @@
 from django.contrib.auth import models
 from django.utils.safestring import mark_safe
 from django.contrib import admin
-from .models import Category, Feedback, Franchising, MenuInOrder, Menue, Order, Profile, Reservation, Restaraunt, Сareer, RestarauntSchema, Event
+from .models import Category, Feedback, Franchising, MenuInOrder, Menue, Order, Profile, Reservation, Restaraunt, Сareer, RestarauntSchema, Event, Setting
 
 admin.site.site_header = 'Respublica administrator'
 
@@ -61,4 +61,5 @@ admin.site.register(Сareer, СareerAdmin)
 admin.site.register(Reservation, ReservationAdmin)
 
 admin.site.register(Event, EventAdmin)
+admin.site.register(Setting)
 

@@ -30,7 +30,7 @@ class Profile(models.Model):
         verbose_name_plural = 'профили'
         # app_label = 'auth'
         # db_table = 'restaurant_profile'
-        
+
 
 
 class Restaraunt(models.Model):
@@ -40,6 +40,7 @@ class Restaraunt(models.Model):
     r_keeper = models.CharField('RKeeper', max_length=228, blank=True, null=True)
     payment_token = models.CharField('Token for Payment', max_length=228, blank=True, null=True)
     payment_terminal_id = models.CharField('Terminal id for Payment', max_length=228, blank=True, null=True)
+    menue_file = models.FileField('PDF Меню', upload_to='images/', blank=True, null=True)
 
     def __str__(self):
         return self.address + " " + self.phone
@@ -131,7 +132,7 @@ class MenuInOrder(models.Model):
 
     def __str__(self) -> str:
         return "%s" % self.menue
-    
+
 
 class Feedback(models.Model):
     name = models.CharField('Имя', max_length=128, blank=False, null=False)
@@ -197,3 +198,12 @@ class Event(models.Model):
     class Meta:
         verbose_name = 'событие'
         verbose_name_plural = 'Событие'
+
+
+class Setting(models.Model):
+    oferta_file = models.FileField('Оферта', upload_to='images/', blank=True, null=True)
+    privacy_file = models.FileField('Согласие на обработку персональных данных', upload_to='images/', blank=True, null=True)
+
+    class Meta:
+        verbose_name = 'настройки'
+        verbose_name_plural = 'настройки'

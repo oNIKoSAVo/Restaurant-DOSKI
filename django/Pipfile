@@ -4,12 +4,12 @@ verify_ssl = true
 name = "pypi"
 
 [packages]
-django = "*"
+django = "3.2.9"
 django-svelte = "*"
 pillow = "*"
 requests = "*"
-geopy = "*"
-dadata = "*"
+xlsxwriter = "*"
+python-dotenv = "*"
 
 [dev-packages]
 

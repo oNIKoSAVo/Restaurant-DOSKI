@@ -4,6 +4,7 @@
   import CustomDatepicker from "./CustomDatepicker.svelte";
   import isAlpha from "validator/es/lib/isAlpha";
   import dayjs from "dayjs";
+  // import { cities } from "../config";
   import {captchaProtect} from "./helpers/grecaptcha";
   let showModal = false;
   let showFormModal = true;
@@ -13,18 +14,20 @@
   let last_name = "";
   let phone = "";
   let position = "";
-  let city = "";
+  let cityId = localStorage.getItem('chosenCityId');
   let bar = "";
   let b_day = "";
   let citizenship = "";
   let about = "";
   let datepickerError = false
-
   let store;
   $: console.log(showModalSuccess);
   $: console.log(showFormModal);
   $: console.log(showModal);
-
+  let cities = []
+  window.addEventListener('currentCityChange', e => {
+    cities = window.cities
+  })
   export const daysOfWeek = [
     ["Воскресенье", "Вс"],
     ["Monday", "Пн"],
@@ -68,6 +71,7 @@
         last_name,
         phone,
         position,
+        city: cityId,
         bar,
         b_day,
         citizenship,
@@ -88,34 +92,20 @@
   document.querySelector("#jobmodal-btn").addEventListener("click", (e) => {
     showModal = true;
   });
-  document.querySelector(".clickme").addEventListener("click", (e) => {
-    showModal = true;
-  });
-  document.addEventListener("DOMContentLoaded", () => {
-    document
-      .getElementById("consent_processing_data_modal")
-      .addEventListener("click", (e) => {
-        e.stopPropagation();
-        showModal = false;
-      });
-    // console.log({ el: document.querySelector("[for=rules]") });
-    // document.querySelector("[for=rules]").addEventListener("click", (e) => {
-    //   e.stopPropagation();
-    // });
-  });
+
 </script>
 
 <div
-  class="modal-wrapper modal fade {showModal &&
+        class="modal-wrapper modal fade {showModal &&
   showFormModal &&
   !showModalSuccess
     ? 'show'
     : ''}"
-  id="jobmodal"
-  tabindex="-1"
-  role="dialog"
-  style={showModal ? "display: block" : ""}
-  on:click|stopPropagation={(e) => {
+        id="jobmodal"
+        tabindex="-1"
+        role="dialog"
+        style={showModal ? "display: block" : ""}
+        on:click|stopPropagation={(e) => {
     if (e.target.classList.contains("modal-wrapper")) {
       showModal = false;
     }
@@ -124,18 +114,18 @@
   <div class="modal-dialog" style="max-width: 747px">
     <div class="modal-content">
       <button
-        class="close"
-        type="button"
-        data-dismiss="modal"
-        aria-label="Close"
-        on:click={() => (showModal = false)}
+              class="close"
+              type="button"
+              data-dismiss="modal"
+              aria-label="Close"
+              on:click={() => (showModal = false)}
       >
         <span aria-hidden="true">&times;</span>
       </button>
       <div class="d-flex justify-content-between align-items-center">
         <span class="step">Шаг 1</span><span class="step">Шаг 2</span><span
-          class="step">Шаг 3</span
-        >
+              class="step">Шаг 3</span
+      >
       </div>
       <div class="modal-header pb-4 pt-0 success">
         <div class="modal-title text-left">Заявка успешно отправлена</div>
@@ -148,9 +138,10 @@
           <div class="tab-title col-12">КАК ТЕБЯ ЗОВУТ?</div>
           <div class="col-sm-4">
             <input
-              placeholder="Имя"
-              value={first_name}
-              on:input={(e) => {
+                    placeholder="Имя"
+                    value={first_name}
+                    class="first_name"
+                    on:input={(e) => {
                 if (
                   isAlpha(e.target.value, "ru-RU", { ignore: "s" }) ||
                   e.target.value === ""
@@ -164,9 +155,10 @@
           </div>
           <div class="col-sm-4">
             <input
-              placeholder="Фамилия"
-              value={last_name}
-              on:input={(e) => {
+                    placeholder="Фамилия"
+                    value={last_name}
+                    class="last_name"
+                    on:input={(e) => {
                 if (
                   isAlpha(e.target.value, "ru-RU", { ignore: "s" }) ||
                   e.target.value === ""
@@ -180,9 +172,10 @@
           </div>
           <div class="col-sm-4">
             <input
-              placeholder="Отчество"
-              value={middle_name}
-              on:input={(e) => {
+                    placeholder="Отчество"
+                    value={middle_name}
+                    class="middle_name"
+                    on:input={(e) => {
                 if (
                   isAlpha(e.target.value, "ru-RU", { ignore: "s" }) ||
                   e.target.value === ""
@@ -196,16 +189,16 @@
           </div>
           <div class="col-12">
             <input
-              class="phone-input"
-              placeholder="Телефон"
-              bind:value={phone}
+                    class="phone-input"
+                    placeholder="Телефон"
+                    bind:value={phone}
             />
           </div>
           <div class="col-12 rules">
             <input id="rules" type="checkbox" /> <label for="rules" /><a
-              href="#consent_processing_data_modal"
-              data-modal>Согласие на обработку персональных данных</a
-            >
+                  href="#consent_processing_data_modal"
+                  data-modal>Согласие на обработку персональных данных</a
+          >
           </div>
         </div>
         <div class="tab row" id="whereWantToWork">
@@ -213,24 +206,25 @@
           <div class="col-12">
             <select name="job" bind:value={position}>
               <option value="">Выбери должность</option>
+              <option value="Бармен">Бармен</option>
               <option value="Повар">Повар</option>
+              <option value="Повар (оплачиваемые командировки по РФ)"
+              >Повар (оплачиваемые командировки по РФ)</option
+              > <option value="Менеджер смены">Менеджер смены</option>
+              <option value="Сотрудник охраны">Сотрудник охраны</option>
+              <option value="Хостес ">Хостес </option>
+              <option value="Администратор">Администратор</option>
+              <option value="Официант">Официант</option>
+              <option value="Бэк-вокалист">Бэк-вокалист</option>
             </select>
           </div>
           <div class="col-12">
-            <select name="city" bind:value={city}>
+            <select name="city" bind:value={cityId}>
               <option value="">Выбери город</option>
-              <option value="Новосибирск">Новосибирск</option>
-            </select>
-          </div>
-          <div class="col-12">
-            <select name="bar" bind:value={bar}>
-              <option value="">Выбери бар</option>
-              <option value="Ленина 6">Ленина 6</option>
-              <option value="Покрышкина 6">Покрышкина 6</option>
-              <option value="Бориса Богаткова 201/1"
-                >Бориса Богаткова 201/1</option
-              >
-              <option value="Дуси Ковальчук 179/2">Дуси Ковальчук 179/2</option>
+              {#each cities as city}
+                {(city.id === localStorage.getItem('chosenCityId'))}
+                <option value="{city.id}" >{city.name}</option>
+              {/each}
             </select>
           </div>
         </div>
@@ -238,14 +232,15 @@
           <div class="tab-title col-12">Пара слов о себе</div>
           <!--          <div class="col-12">-->
           <div
-            class="col-6"
-            style="position: relative"
-            on:click={() => console.log(store.getState().selected)}
+                  class="col-6"
+                  style="position: relative"
+                  on:click={() => console.log(store.getState().selected)}
           >
             <CustomDatepicker
-              bind:store
-              options={{ classList: `mb-3 w-100 ${datepickerError ? 'error-shadow' : ''}` }}
-              unselectedText="Дата рождения"
+                    bind:store
+                    options={{ classList: `mb-3 w-100 ${datepickerError ? 'error-shadow' : ''}`, color: "#000" }}
+                    theme={{ width: "300px" }}
+                    unselectedText="Дата рождения"
             />
           </div>
           <!--          </div>-->
@@ -256,11 +251,11 @@
             </select>
           </div>
           <div class="col-12">
-            <textarea placeholder="Расскажи о себе" bind:value={about} />
+            <textarea placeholder="Расскажи о себе" bind:value={about} style="padding-left: 5px;"/>
           </div>
         </div>
         <div
-          class="
+                class="
           text-center
           d-flex
           justify-content-between
@@ -268,12 +263,12 @@
         "
         >
           <a class="download mr-2 active" id="prevBtn" href="#">Назад</a>
-          <a
-            class="submit ml-2"
-            id="nextBtn"
-            on:click={handleNextClick}
-            href="#">Далее</a
-          ><a class="submit success close-modal" href="#">ОК</a>
+          <div class="d-flex justify-content-end w-100"><a
+                  class="submit ml-2"
+                  id="nextBtn"
+                  on:click={handleNextClick}
+                  href="#">Далее</a
+          ><a class="submit success close-modal" href="#">ОК</a></div>
         </div>
       </form>
     </div>
@@ -281,14 +276,14 @@
 </div>
 
 <div
-  class="modal modal-wrapper fade {showModal &&
+        class="modal modal-wrapper fade {showModal &&
   showModalSuccess &&
   !showFormModal
     ? 'show'
     : ''}"
-  tabindex="-1"
-  role="dialog"
-  on:click|stopPropagation={(e) => {
+        tabindex="-1"
+        role="dialog"
+        on:click|stopPropagation={(e) => {
     if (e.target.classList.contains("modal-wrapper")) {
       showModal = false;
     }
@@ -297,11 +292,11 @@
   <div class="modal-dialog" style="max-width: 484px">
     <div class="modal-content">
       <button
-        class="close"
-        type="button"
-        data-dismiss="modal"
-        aria-label="Close"
-        on:click={() => (showModal = false)}
+              class="close"
+              type="button"
+              data-dismiss="modal"
+              aria-label="Close"
+              on:click={() => (showModal = false)}
       >
         <span aria-hidden="true">&times;</span>
       </button>
@@ -313,9 +308,9 @@
       <p class="modal-description">С тобой свяжутся в ближайшее время</p>
       <div class="pb-3 text-center">
         <a
-          class="submit close-modal"
-          href="#"
-          on:click={() => (showModal = false)}>Ок</a
+                class="submit close-modal"
+                href="#"
+                on:click={() => (showModal = false)}>Ок</a
         >
       </div>
     </div>

@@ -1,41 +1,66 @@
 <script>
-  let cart = [];
+    import {cloneDeep, isEqual} from "lodash-es";
+    import {correctPhoneWithMask} from "./helpers/correctPhoneWithMask";
+    // import $ from "jquery";
+    import {sendTelegramMessage} from "./helpers/sendTelegramMessage";
+    import {setErrorShadow} from "./helpers/setErrors";
 
-  $: price = cart.reduce(
-    (acc, cartItem) => acc + cartItem.price * cartItem.quantity,
-    0
-  );
-  $: grams = cart.reduce(
-    (acc, cartItem) => acc + cartItem.grams * cartItem.quantity,
-    0
-  );
-  $: setPrice(price, grams, peopleQuantity);
-  let peopleQuantity = 1;
-  $: console.log({ cart });
-  window.renderCartItems = renderCartItems;
+    let cart = [];
+    $: price = cart.reduce(
+        (acc, cartItem) => acc + cartItem.price * cartItem.quantity,
+        0
+    );
+    $: grams = cart.filter(cartItem => cartItem.grams).reduce(
+        (acc, cartItem) => acc + cartItem.grams * cartItem.quantity,
+        0
+    );
+    $: milliliters = cart.filter(cartItem => cartItem.milliliters).reduce(
+        (acc, cartItem) => acc + cartItem.milliliters * cartItem.quantity,
+        0
+    );
+    $: setPrice(price, grams, milliliters);
+    let peopleQuantity = 1;
+    // $: priceWithQuantity = price * peopleQuantity;
+    // $: console.log(priceWithQuantity);
+    $: console.log({cart});
+    window.renderCartItems = renderCartItems;
 
-  // $: document.querySelector(".cart-summary").textContent = price;
+    // $: document.querySelector(".cart-summary").textContent = price;
 
-  function renderCartItems() {
-    cleanCart();
+    function isDrink(gramsStr) {
+        return gramsStr.slice(-2) !== 'гр';
+    }
 
-    console.log("length", cart.length);
+    function getWeight(gramsStr) {
+        console.log({gramsStr: gramsStr.slice(0, -2)})
+        const gramsArr = gramsStr.slice(0, -2).split('/')
+        return gramsArr.reduce((acc, grams) => acc += +grams, 0)
+    }
 
-    [...document.querySelectorAll("#cart .stage")].map((s, i) => {
-      if (i === 0) {
-        s.style = "display: block;";
-      } else {
-        s.style = "display: none;";
-      }
-      return s;
-    });
-    let cartHtml;
-    console.log(cart.length > 0);
-    if (cart.length > 0) {
-      document.querySelector(".cart-sum").classList.remove("d-none");
-      cartHtml = cart
-        .map((cartItem) => {
-          return `<div class="cart-item" data-id="${cart.id}">
+    function renderCartItems() {
+        cleanCart();
+        console.log(cart.length);
+        // if (cart.length === 0) {
+        //   document.querySelector(
+        //     ".cart-full.pb-sm-4.mb-4"
+        //   ).innerHTML = `<h1>Пусто</h1>`;
+        //   return;
+        // }
+        [...document.querySelectorAll("#cart .stage")].map((s, i) => {
+            if (i === 0) {
+                s.style = "display: block;";
+            } else {
+                s.style = "display: none;";
+            }
+            return s;
+        });
+
+        let cartHtml;
+        console.log(cart.length > 0);
+        if (cart.length > 0) {
+            cartHtml = cart
+                .map((cartItem) => {
+                    return `<div class="cart-item" data-id="${cart.id}">
               <div class="cart-item_imgwrapper">
                   <img class="cart-item_img" src='${cartItem.img}'/>
               </div>
@@ -49,357 +74,402 @@
               </div>
               <div class="cart-item_price text-right">${cartItem.price}₽</div>
           </div>`;
-        })
-        .join("");
-      console.log("price>0", price > 0);
-      const cartSumContainer = document.querySelector(".cart-sum");
-      const cartSum = document.querySelector(".cart-summary_amount.text-right");
-      // if (cart. > 0) {
-      //   console.log(cartSumContainer);
-      //   cartSumContainer.classList.remove("d-none");
-      // } else {
-      //   cartSumContainer.classList.add("d-none");
-      // }
-    } else {
-      cartHtml = "<h1>Корзина пуста</h1>";
-      document.querySelector(".cart-sum").classList.add("d-none");
+                })
+                .join("");
+        } else {
+            cartHtml = "<h1>Корзина пуста</h1>";
+        }
+
+        document
+            .querySelectorAll(".cart-full")
+            .forEach((el) => (el.innerHTML = cartHtml));
+
+        [
+            ...document.querySelectorAll(
+                ".cart-item > .calculation-wrap>.calculations >.plus-btn"
+            ),
+        ].forEach(
+            (el) =>
+                (el.onclick = (e) => {
+                    const cartItem = e.target.closest(".cart-item");
+                    const cartName = cartItem.querySelector(
+                        ".cart-item > .cart-item_title"
+                    ).textContent;
+                    const cartQuantityEl = cartItem.querySelector(".item-quantity");
+                    cart = cart.map((ci) => {
+                        if (ci.name === cartName) {
+                            ci.quantity += 1;
+                            const quantityEl = document
+                                .getElementById(ci.id)
+                                .querySelector(".item-quantity");
+                            quantityEl.textContent = cartQuantityEl.textContent = ci.quantity;
+                        }
+                        return ci;
+                    });
+                })
+        );
+
+        document
+            .querySelectorAll(
+                ".cart-item > .calculation-wrap>.calculations >.minus-btn"
+            )
+            .forEach(
+                (el) =>
+                    (el.onclick = (e) => {
+                        const cartItem = e.target.parentNode.parentNode.parentNode;
+                        const quantityElInCart = cartItem.querySelector(".item-quantity");
+                        // quantityEl.textContent = Number(quantityEl.textContent) - 1;
+                        const cartName = cartItem.querySelector(
+                            ".cart-item > .cart-item_title"
+                        ).textContent;
+                        const lastCart = [...cart];
+                        cart = cart.map((ci) => {
+                            if (ci.name === cartName && ci.quantity !== 0) {
+                                ci.quantity -= 1;
+                                const quantityEl = document
+                                    .getElementById(ci.id)
+                                    .querySelector(".item-quantity");
+                                quantityEl.textContent = ci.quantity;
+                                quantityElInCart.textContent = ci.quantity;
+                            }
+
+                            return ci;
+                        });
+                        cleanCart();
+                        if (lastCart.length !== cart.length) renderCartItems();
+                    })
+            );
+        // setPrice();
+    }
+
+    function cleanCart() {
+        cart = cart.filter((el) => el.quantity !== 0);
+    }
+
+    function getPrice(parentNode) {
+        try {
+            return Number(
+                parentNode.parentNode
+                    .querySelector(".dish-details_price")
+                    ?.textContent.slice(0, -1)
+                // .replace(",", ".")
+            );
+        } catch (err) {
+        }
+    }
+
+    function setPrice() {
+        try {
+            // document.querySelector(".cart-summary").textContent =
+            //   document.querySelector(".cart-summary_amount.text-right").textContent =
+            //     price + ".-";
+            //   console.log({cs: document.querySelector(".cart-summary_amount.text-right")})
+            setTimeout(() => {
+                const totalPrice = document.querySelectorAll(".cart-summary")
+                const cartSummaryPrice = document.querySelectorAll(".cart-summary_amount")
+                if (!totalPrice || !cartSummaryPrice) return
+                [...totalPrice, ...cartSummaryPrice].forEach(el => el.textContent = price + "₽")
+                // totalPrice.textContent = cartSummaryPrice.textContent = price + "₽";
+                console.log({cs: document.querySelector(".cart-summary_amount.text-right")})
+                if (document.querySelector('.gram b') && document.querySelector('.milliliter b')) {
+                    document.querySelector('.gram b').textContent = `${Math.round(grams / peopleQuantity)}гр`
+                    document.querySelector('.milliliter b').textContent = `${Math.round(milliliters / peopleQuantity)}мл`
+                }
+            }, 0);
+        } catch (err) {
+            console.error(err)
+        }
     }
 
     document
-      .querySelectorAll(".cart-full")
-      .forEach((el) => (el.innerHTML = cartHtml));
-    console.log(document.querySelectorAll(".cart-full"));
+        .querySelectorAll(".minus-btn")
+        .forEach((elem) =>
+            elem.addEventListener("click", (e) => handleClickOnMinus(e))
+        );
+    document
+        .querySelectorAll(".plus-btn")
+        .forEach((elem) =>
+            elem.addEventListener("click", (e) => handleClickOnPlus(e))
+        );
+    let lastCartSent = cloneDeep(cart)
+    let lastPreorderDownloadHref = ``
 
-    [
-      ...document.querySelectorAll(
-        ".cart-item > .calculation-wrap>.calculations >.plus-btn"
-      ),
-    ].forEach(
-      (el) =>
-        (el.onclick = (e) => {
-          const cartItem = e.target.closest(".cart-item");
-          const cartName = cartItem.querySelector(
-            ".cart-item > .cart-item_title"
-          ).textContent;
-          const cartQuantityEl = cartItem.querySelector(".item-quantity");
-          cart = cart.map((ci) => {
-            if (ci.name === cartName) {
-              ci.quantity += 1;
-              const quantityEl = document
-                .getElementById(ci.id)
-                .querySelector(".item-quantity");
-              quantityEl.textContent = cartQuantityEl.textContent = ci.quantity;
+    async function downloadPreorder() {
+        const preorderResponse = await fetch('/preorder', {
+            body: JSON.stringify({
+                menue: cart,
+                restaraunt: 1,
+                comment: 'Предзаказ',
+                reservation: ''
+            }), headers: {'Content-Type': 'application/json'}, method: 'POST'
+        })
+        const preorderResponseJson = await preorderResponse.json()
+        // const downloadResponse = await fetch(`/download_preorder?id=${preorderResponseJson.id}`)
+        lastPreorderDownloadHref = `/download_preorder?id=${preorderResponseJson.id}`
+        window.location.href = lastPreorderDownloadHref
+    }
+
+    document.addEventListener("DOMContentLoaded", () => {
+        const [downloadBtn, printBtn, shareBtn] = [...document.querySelector('.preorder-buttons').children]
+        downloadBtn.addEventListener('click', () => {
+            if (cart.length === 0 || isEqual(cart, lastCartSent)) {
+                window.location.href = lastPreorderDownloadHref
+                return
             }
-            return ci;
-          });
+            lastCartSent = cloneDeep(cart)
+            downloadPreorder()
         })
-    );
+        document
+            .querySelector(".checkout-final-fake")
+            .addEventListener("click", async (e) => {
+                console.log('was here')
+                const currentStage = e.target.closest(".stage");
+                const nameInputEl = currentStage.querySelector('input[name="name"]');
+                const addressInputEl = currentStage.querySelector('input[name="addres"]');
+                const phoneInputEl = currentStage.querySelector('input[name="phone"]');
+                const fio = document
+                    .querySelector("#checkoutform input[name='name']")
+                    .value.trim();
+                const address = document
+                    .querySelector("#checkoutform input[name='addres']")
+                    .value.trim();
+                const phone = document
+                    .querySelector("#checkoutform input[name='phone']")
+                    .value.trim();
+                const comment = document
+                    .querySelector("#checkoutform input[name='comment']")
+                    .value.trim();
+                const paymentTypeSelectEl = document
+                    .querySelector("#checkoutform select[name='paymentType']")
+                let paymentType = paymentTypeSelectEl.value.trim();
 
-    document
-      .querySelectorAll(
-        ".cart-item > .calculation-wrap>.calculations >.minus-btn"
-      )
-      .forEach(
-        (el) =>
-          (el.onclick = (e) => {
-            const cartItem = e.target.parentNode.parentNode.parentNode;
-            const quantityElInCart = cartItem.querySelector(".item-quantity");
-            // quantityEl.textContent = Number(quantityEl.textContent) - 1;
-            const cartName = cartItem.querySelector(
-              ".cart-item > .cart-item_title"
-            ).textContent;
-            const lastCart = [...cart];
-            cart = cart.map((ci) => {
-              if (ci.name === cartName && ci.quantity !== 0) {
-                ci.quantity -= 1;
-                const quantityEl = document
-                  .getElementById(ci.id)
-                  .querySelector(".item-quantity");
-                quantityEl.textContent = ci.quantity;
-                quantityElInCart.textContent = ci.quantity;
-              }
+                if (currentStage) {
+                    if (
+                        fio === "" ||
+                        address === "" ||
+                        phone === "" ||
+                        paymentType === '' ||
+                        !correctPhoneWithMask(phone)
+                    ) {
+                        if (fio === "") setErrorShadow(nameInputEl);
+                        if (address === "") setErrorShadow(addressInputEl);
+                        if (paymentType === "") setErrorShadow(paymentTypeSelectEl);
+                        if (
+                            !correctPhoneWithMask(phone)
+                        )
+                            setErrorShadow(phoneInputEl);
+                        return;
+                    }
+                }
+                if(paymentType === 'Банковская карта'){
+                    paymentType = 1
+                }
+                else if (paymentType === 'Онлайн оплата'){
+                    paymentType = 0
+                }
+                else if(paymentType==='Наличные'){
+                    paymentType = 2
+                }
+                // обработка заказа
+                // const checkoutData = $("#checkoutform").serializeArray();
 
-              return ci;
+                // Успешный исход
+
+                if (!fio || !address || !correctPhoneWithMask(phone)) return;
+                const payload = {
+                    fio,
+                    address,
+                    phone,
+                    comment,
+                    paymentType,
+                    menue: cart,
+                };
+
+                const response = await fetch("/create_order", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify(payload),
+                });
+
+                const result = await response.json();
+                if (result.payment_url) {
+                    const cartItemsTitlesWithQuantity = [
+                        ...document.querySelector(".cart-full").querySelectorAll(".cart-item"),
+                    ].map(
+                        (el) =>
+                            `${el.querySelector(".cart-item_title").textContent} * ${
+                                el.querySelector(".item-quantity").textContent
+                            }`
+                    );
+                    sendTelegramMessage(
+                        `${fio} заказал доставку на адрес "${address}". Блюда: ${cartItemsTitlesWithQuantity.join(
+                            ", "
+                        )}. Номер: ${phone}. Цена заказа: ${
+                            document.querySelector(".cart-summary").textContent
+                        }.`
+                    );
+                    document.querySelector('.checkout-final').click()
+                    window.location.href = result.payment_url;
+                }
             });
-            cleanCart();
-            if (lastCart.length !== cart.length) renderCartItems();
-          })
-      );
-    // setPrice();
-  }
+        //modal btns
+        document.querySelector("#item-buy .plus-btn").onclick = (e) => {
+            const modal = document.querySelector("#item-buy");
+            const modalName = modal.querySelector(".modal-title").textContent;
+            const modalQuantityEl = modal.querySelector(".item-quantity");
 
-  function getPrice(parentNode) {
-    try {
-      return Number(
-        parentNode.parentNode
-          .querySelector(".dish-details_price")
-          ?.textContent.slice(0, -2)
-          .replace(",", ".")
-      );
-    } catch (err) {}
-  }
-//TODO refactoring
-  function setPrice() {
-    const deliveryTitlePrice = document.querySelector(".delivery-title b");
-      const cartSummaryPrice = document.querySelector(
-          "#preorder .cart-summary_amount.text-right"
-      );
-    try {
-      document.querySelector(".cart-summary").textContent =
-        document.querySelector(".cart-summary_amount").textContent =
-          price + "₽";
+            const productIndex = cart.findIndex((el) => {
+                return el.name === modalName;
+            });
 
-      if (!deliveryTitlePrice || !cartSummaryPrice) return;
-      deliveryTitlePrice.textContent = cartSummaryPrice.textContent =
-        price + "₽";
-      console.log({
-        cs: document.querySelector(".cart-summary_amount.text-right"),
-      });
-      document.querySelector(".gram b").textContent = `${Math.round(
-        grams / peopleQuantity
-          //гр
-      )}`;
-    } catch (err) {
-        console.log('catch')
-        // console.log("start", price);
-      setTimeout(() => {
-        if (deliveryTitlePrice) {
-          deliveryTitlePrice.textContent = price + "₽";
-        }
-        if (document.querySelector(".cart-summary_amount.text-right") && cartSummaryPrice) {
-          document.querySelector(
-            ".cart-summary_amount.text-right"
-          ).textContent = cartSummaryPrice.textContent=price + "₽";
-        }
-        if (document.querySelector(".gram b")) {
-          document.querySelector(".gram b").textContent = `${Math.round(
-            grams / peopleQuantity
-              //гр
-          )}`;
-        }
+            if (productIndex !== -1) {
+                cart = cart.map((ci) => {
+                    if (ci.name === modalName) {
+                        console.log(ci);
+                        ci.quantity += 1;
+                        const quantityEl = document
+                            .getElementById(ci.id)
+                            .querySelector(".item-quantity");
+                        quantityEl.textContent = modalQuantityEl.textContent = ci.quantity;
+                    }
+                    return ci;
+                });
+            } else {
+                const gramsStr = modal.querySelector('.dish-details_sizes').textContent
+                cart = [
+                    ...cart,
+                    {
+                        price: Number(
+                            modal
+                                .querySelector(".dish-details_price")
+                                ?.textContent.slice(0, -1)
+                                .replace(",", ".")
+                        ),
+                        name: modalName,
+                        quantity: 1,
+                        img: modal.querySelector(".dish-img").getAttribute("src"),
+                        id: modal.dataset.id,
+                        [isDrink(gramsStr) ? 'milliliters' : 'grams']: getWeight(gramsStr)
+                    },
+                ];
+                modalQuantityEl.textContent = document
+                    .getElementById(modal.dataset.id)
+                    .querySelector(".item-quantity").textContent = 1;
+            }
 
-      }, 0);
-    }
-  }
-
-  document
-    .querySelectorAll(".minus-btn")
-    .forEach((elem) =>
-      elem.addEventListener("click", (e) => handleClickOnMinus(e))
-    );
-  document
-    .querySelectorAll(".plus-btn")
-    .forEach((elem) =>
-      elem.addEventListener("click", (e) => handleClickOnPlus(e))
-    );
-
-  document.addEventListener("DOMContentLoaded", () => {
-    document
-      .querySelector(".checkout-final")
-      .addEventListener("click", async () => {
-        const fio = document
-          .querySelector("#checkoutform input[name='name']")
-          .value.trim();
-        const address = document
-          .querySelector("#checkoutform input[name='addres']")
-          .value.trim();
-        const phone = document
-          .querySelector("#checkoutform input[name='phone']")
-          .value.trim();
-        const comment = document
-          .querySelector("#checkoutform input[name='comment']")
-          .value.trim();
-        const paymentType = document
-          .querySelector("#checkoutform select[name='paymentType']")
-          .value.trim();
-        if (!fio || !address || !phone) return;
-        const payload = {
-          fio,
-          address,
-          phone,
-          comment,
-          paymentType,
-          menue: cart,
+            renderCartItems();
         };
 
-        const response = await fetch("/create_order", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(payload),
+        document.querySelector("#item-buy .minus-btn").onclick = (e) => {
+            const modal = document.querySelector("#item-buy");
+            const modalName = modal.querySelector(".modal-title").textContent;
+            const modalQuantityEl = modal.querySelector(".item-quantity");
+
+            cart = cart.map((ci) => {
+                if (ci.name === modalName) {
+                    console.log(ci);
+                    if (ci.quantity === 0) {
+                        return ci;
+                    }
+                    ci.quantity -= 1;
+                    const quantityEl = document
+                        .getElementById(ci.id)
+                        .querySelector(".item-quantity");
+                    quantityEl.textContent = modalQuantityEl.textContent = ci.quantity;
+                }
+                return ci;
+            });
+            renderCartItems();
+        };
+    });
+
+    function handleClickOnMinus(e) {
+        e.stopPropagation();
+
+        const parentNode = e.target.parentNode;
+        const quantity = parentNode.querySelector(".item-quantity").innerText;
+        const productCard = e.target.closest('.dish-item');
+        console.log({productCard})
+        if (!productCard) {
+            if (parseInt(quantity) === 1 || peopleQuantity === 1) return;
+
+            const quantityEl = parentNode.querySelector(".item-quantity");
+            peopleQuantity -= 1;
+            quantityEl.innerText = peopleQuantity;
+            setPrice();
+            return;
+        }
+
+        if (parseInt(quantity) === 0) return;
+
+        const productIndex = cart.findIndex((el) => {
+            console.log({productCard})
+            return el.name === productCard.querySelector(".dish-title").textContent;
         });
 
-        const result = await response.json();
-        if (result.payment_url) {
-          window.location.href = result.payment_url;
-        }
-      });
-    //modal btns
-    document.querySelector("#item-buy .plus-btn").onclick = (e) => {
-      const modal = document.querySelector("#item-buy");
-      const modalName = modal.querySelector(".modal-title").textContent;
-      const modalQuantityEl = modal.querySelector(".item-quantity");
-
-      const productIndex = cart.findIndex((el) => {
-        return el.name === modalName;
-      });
-
-      if (productIndex !== -1) {
-        cart = cart.map((ci) => {
-          if (ci.name === modalName) {
-            console.log(ci);
-            ci.quantity += 1;
-            const quantityEl = document
-              .getElementById(ci.id)
-              .querySelector(".item-quantity");
-            quantityEl.textContent = modalQuantityEl.textContent = ci.quantity;
-          }
-          return ci;
+        cart = cart.map((el, i) => {
+            if (i === productIndex) el.quantity -= 1;
+            return el;
         });
-      } else {
-        cart = [
-          ...cart,
-          {
-            price: Number(
-              modal
-                .querySelector(".dish-details_price")
-                ?.textContent.slice(0, -2)
-                .replace(",", ".")
-            ),
-            name: modalName,
-            quantity: 1,
-            img: modal.querySelector(".dish-img").getAttribute("src"),
-            id: modal.dataset.id,
-            grams: +modal
-              .querySelector(".dish-details_sizes")
-              .textContent.split(" ")[0]
-              .slice(0, -2),
-          },
-        ];
-        modalQuantityEl.textContent = document
-          .getElementById(modal.dataset.id)
-          .querySelector(".item-quantity").textContent = 1;
-      }
 
-      renderCartItems();
-    };
+        parentNode.querySelector(".item-quantity").innerText =
+            parseInt(quantity) - 1;
+        const menuItemPrice = getPrice(parentNode);
+        if (menuItemPrice) price -= menuItemPrice;
+        // setPrice();
+        renderCartItems();
+        // document.querySelector('.cart-full.pb-sm-4.mb-4').innerHTML=
+    }
 
-    document.querySelector("#item-buy .minus-btn").onclick = (e) => {
-      const modal = document.querySelector("#item-buy");
-      const modalName = modal.querySelector(".modal-title").textContent;
-      const modalQuantityEl = modal.querySelector(".item-quantity");
+    function handleClickOnPlus(e) {
+        e.stopPropagation();
+        const parentNode = e.target.parentNode;
+        const productCard = e.target.closest('.dish-item');
 
-      cart = cart.map((ci) => {
-        if (ci.name === modalName) {
-          console.log(ci);
-          if (ci.quantity === 0) {
-            return ci;
-          }
-          ci.quantity -= 1;
-          const quantityEl = document
-            .getElementById(ci.id)
-            .querySelector(".item-quantity");
-          quantityEl.textContent = modalQuantityEl.textContent = ci.quantity;
+        console.log({productCard})
+
+        const menuItemPrice = getPrice(parentNode);
+        if (!productCard) {
+            const quantityEl = parentNode.querySelector(".item-quantity");
+            peopleQuantity += 1;
+            quantityEl.innerText = peopleQuantity;
+            setPrice();
+            return;
         }
-        return ci;
-      });
-      renderCartItems();
-    };
-  });
 
-  function handleClickOnMinus(e) {
-    e.stopPropagation();
+        const productIndex = cart.findIndex((el) => {
+            return el.name === productCard.querySelector(".dish-title").textContent;
+        });
 
-    const parentNode = e.target.parentNode;
-    const quantity = parentNode.querySelector(".item-quantity").innerText;
-    const productCard = e.target.parentNode.parentNode.parentNode;
+        if (productIndex !== -1) {
+            cart = cart.map((el, i) => {
+                if (i === productIndex) el.quantity += 1;
+                return el;
+            });
+        } else {
+            const gramsStr = productCard.querySelector('.dish-details_sizes').textContent
+            cart = [
+                ...cart,
+                {
+                    price: menuItemPrice,
+                    name: productCard.querySelector(".dish-title").textContent,
+                    quantity: 1,
+                    img: productCard.querySelector(".dish-img").getAttribute("src"),
+                    id: productCard.id,
+                    [isDrink(gramsStr) ? 'milliliters' : 'grams']: getWeight(gramsStr)
 
-    if (productCard.id === "order-data") {
-      if (parseInt(quantity) === 1 || peopleQuantity === 1) return;
-      const quantityEl = parentNode.querySelector(".item-quantity");
-      peopleQuantity -= 1;
-      quantityEl.innerText = peopleQuantity;
-      // setPrice();
-      return;
+                },
+            ];
+        }
+
+        price += menuItemPrice;
+
+        // let quantity = parentNode.querySelector(".item-quantity").innerText;
+        // setPrice();
+        parentNode.querySelector(".item-quantity").innerText =
+            cart[productIndex]?.quantity || cart[cart.length - 1].quantity;
+        renderCartItems();
     }
-
-    if (parseInt(quantity) === 0) return;
-
-    const productIndex = cart.findIndex((el) => {
-      return el.name === productCard.querySelector(".dish-title").textContent;
-    });
-
-    cart = cart.map((el, i) => {
-      if (i === productIndex) el.quantity -= 1;
-      return el;
-    });
-
-    parentNode.querySelector(".item-quantity").innerText =
-      parseInt(quantity) - 1;
-    const menuItemPrice = getPrice(parentNode);
-    if (productCard.id === "order-data") {
-      const quantityEl = parentNode.querySelector(".item-quantity");
-      peopleQuantity += 1;
-      quantityEl.innerText = peopleQuantity;
-      // setPrice();
-      return;
-    }
-    if (menuItemPrice) price -= menuItemPrice;
-    // setPrice();
-    renderCartItems();
-    // document.querySelector('.cart-full.pb-sm-4.mb-4').innerHTML=
-  }
-
-  function cleanCart() {
-    cart = cart.filter((el) => el.quantity !== 0);
-  }
-
-  function handleClickOnPlus(e) {
-    e.stopPropagation();
-    const parentNode = e.target.parentNode;
-    const productCard = e.target.parentNode.parentNode.parentNode;
-
-    const menuItemPrice = getPrice(parentNode);
-    if (productCard.id === "order-data") {
-      const quantityEl = parentNode.querySelector(".item-quantity");
-      peopleQuantity += 1;
-      quantityEl.innerText = peopleQuantity;
-      // setPrice();
-      return;
-    }
-
-    const productIndex = cart.findIndex((el) => {
-      return el.name === productCard.querySelector(".dish-title").textContent;
-    });
-
-    if (productIndex !== -1) {
-      cart = cart.map((el, i) => {
-        if (i === productIndex) el.quantity += 1;
-        return el;
-      });
-    } else {
-      cart = [
-        ...cart,
-        {
-          price: menuItemPrice,
-          name: productCard.querySelector(".dish-title").textContent,
-          quantity: 1,
-          img: productCard.querySelector(".dish-img").getAttribute("src"),
-          id: productCard.id,
-          grams: +productCard
-            .querySelector(".dish-details_sizes")
-            .textContent.slice(0, -2),
-        },
-      ];
-    }
-
-    price += menuItemPrice;
-
-    // let quantity = parentNode.querySelector(".item-quantity").innerText;
-    // setPrice();
-    parentNode.querySelector(".item-quantity").innerText =
-      cart[productIndex]?.quantity || cart[cart.length - 1].quantity;
-    renderCartItems();
-  }
 </script>

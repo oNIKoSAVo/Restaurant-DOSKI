@@ -4,6 +4,7 @@ import "lazysizes";
 import Modal from "modal-vanilla";
 import Parallax from "parallax-js";
 import SwiperCore, { Navigation, Pagination, Swiper } from "swiper/core";
+import Selectise from 'selectise'
 // import Swiper styles
 import "swiper/swiper-bundle.css";
 import Inputmask from "inputmask";
@@ -16,13 +17,219 @@ import { Loader } from "google-maps";
 import { correctPhoneWithMask } from "../src/helpers/correctPhoneWithMask";
 import { sendTelegramMessage } from "../src/helpers/sendTelegramMessage";
 import {captchaProtect} from "../src/helpers/grecaptcha";
+import {phoneToNumbers} from "../src/helpers/phoneToNumbers";
 const options = {
   /* todo */
 };
 
 const loader = new Loader("AIzaSyCMyW6HJLx8TXMlSemVjqMQkhb7-Bz8tGI", options);
 SwiperCore.use([Navigation, Pagination]);
+async function getCity(lat, lng) {
+  let cityStr = ''
+  await loader.load()
+  let latlng = new google.maps.LatLng(lat, lng);
+  const geocoder= new google.maps.Geocoder();
+  await geocoder.geocode({'latLng': latlng}, function(results, status) {
+    if (status == google.maps.GeocoderStatus.OK) {
+      console.log(results)
+      if (results[1]) {
+        for (let i=0; i<results[0].address_components.length; i++) {
+          for (let b=0;b<results[0].address_components[i].types.length;b++) {
+            if (results[0].address_components[i].types[b] == "locality") {
+              const city = results[0].address_components[i];
+              cityStr = city.long_name
+              break;
+            }
+          }
+        }
+        // console.log({city})
+      } /*else {
+        alert("No results found");
+      }*/
+    } /*else {
+      alert("Geocoder failed due to: " + status);
+    }*/
+  });
+  console.log({cityStr})
+  return cityStr
+}
 
+// const loader = new Loader("AIzaSyCMyW6HJLx8TXMlSemVjqMQkhb7-Bz8tGI", options);
+
+// Swiper.use([Navigation, EffectCoverflow]);
+
+// key=AIzaSyCMyW6HJLx8TXMlSemVjqMQkhb7-Bz8tGI
+// global.jQuery = global.$ = $;
+// let saveTop = 0;
+
+// const addresses_header = document.getElementById("addresses_header");
+const phoneHeaderLink = document.getElementById("phone_header");
+const mobileHeaderPhoneLink = document.getElementById("mobile_header_phone");
+let chosenCityNameInLocalStorage = localStorage.getItem("chosenCityName");
+let cityHeader = document.getElementById("city_header");
+const taxiLink = document.getElementById('orderTaxi')
+const instagramLink = document.getElementById('inst')
+const vkLink = document.getElementById('vk')
+const yandexEdaLink = document.getElementById('yandex_eda_link')
+console.log({phoneHeaderLink, mobileHeaderPhoneLink})
+let isCityInitialization = true
+
+async function initCity(){
+  function setCurrentCity(currentCity){
+    window.currentCity = currentCity
+    const cityChangedEvent = new Event('currentCityChange')
+    window.dispatchEvent(cityChangedEvent)
+    if(!isCityInitialization){
+      window.location.href = `/set_city_id?id=${currentCity.id}`
+    }
+    isCityInitialization = false
+    // fetch(`/set_city_id?id=${currentCity.id}`).then(() => document.location.reload())
+  }
+
+  function setCurrentCityData(currentCity){
+    // addresses_header.innerHTML =  currentCity.addresses.map(r => r.address).join(',<br>')
+    // console.log({addresses: currentCity.addresses.map(c => c.address).join(',<br>')})
+    // cityHeader.value = currentCity.name;
+    // console.log({cityHeader})
+    // const cityOptions = cityHeader.querySelector('.selectise-options');
+    // const chosenCity = [...cityOptions.children].find(el => el.dataset.value === currentCity.name)
+    // const cityOptionsWithoutChosenCity = [...cityOptions.children].filter(el => el.dataset.value !== currentCity.name)
+    // console.log({chosenCity})
+    // const sortedCityOptions = [chosenCity, ...cityOptionsWithoutChosenCity];
+    // cityOptions.innerHTML = ''
+    // cityOptions.append(...sortedCityOptions)
+    document.querySelector('.selectise-trigger').textContent = currentCity.name
+    if(currentCity.phone) {
+      phoneHeaderLink.href = mobileHeaderPhoneLink.href =
+          "tel:" + phoneToNumbers(currentCity.phone);
+      phoneHeaderLink.querySelector(
+          "span"
+      ).textContent = currentCity.phone;
+    }
+    if(currentCity.instagram) instagramLink.href = currentCity.instagram
+    if(currentCity.vk) vkLink.href = currentCity.vk
+    console.log({currentCity})
+    //Только первый адрес сейчас обрабатывается
+    if(currentCity.addresses && currentCity.addresses[0]?.coordinates) {
+      const [lat, lng] = currentCity.addresses[0].coordinates.split(',').map(el => el.trim())
+      taxiLink.href = `https://3.redirect.appmetrica.yandex.com/route?end-lat=${lat}&end-lon=${lng}&appmetrica_tracking_id=1178268795219780156`
+      initMap(+lat, +lng)
+    }
+
+    if(currentCity.addresses.find(r => r.yandex_eda)){
+      yandexEdaLink.target = '_blank'
+      yandexEdaLink.href = currentCity.addresses.find(r => r.yandex_eda).yandex_eda
+    } else {
+      yandexEdaLink.target = '_self'
+      yandexEdaLink.href = '#'
+    }
+
+  }
+
+  function renderCity(){
+
+    const cityInLocalStorage = window.cities.find(
+        (city) => city.name === chosenCityNameInLocalStorage
+    );
+    if (cityInLocalStorage) {
+      setCurrentCity(cityInLocalStorage)
+      setCurrentCityData(cityInLocalStorage)
+
+    }
+
+  }
+  if(!chosenCityNameInLocalStorage){
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(async(position) => {
+        const lat = position.coords.latitude;
+        const lng = position.coords.longitude;
+        const userCity = await getCity(lat, lng)
+        console.log({userCity})
+        let currentCity;
+        if(!userCity) currentCity = cities[0]
+        else currentCity = cities.find((city) => city.name.includes(userCity) || userCity.includes(city.name)) || cities[0];
+
+        setCurrentCity(currentCity)
+        console.log({currentCity})
+        // if(!currentCity) return
+        chosenCityNameInLocalStorage = currentCity.name
+        localStorage.setItem("chosenCityName", currentCity.name);
+        console.log('first')
+        renderCity()
+      }, (error) => {console.log(error);
+        if(!localStorage.getItem('chosenCityName')) {
+          setCurrentCity(cities[0]);
+          setCurrentCityData(cities[0])
+          localStorage.setItem("chosenCityName", cities[0].name);
+        }})
+    }
+  }
+  // console.log('second')
+  if(chosenCityNameInLocalStorage){
+    renderCity()
+  }
+
+  cityHeader.addEventListener("change", (e) => {
+    console.log('city changed!!')
+    if (e.target.value === "") {
+      localStorage.removeItem("chosenCityName");
+      // addresses_header.innerHTML = "";
+      phoneHeaderLink.href =  mobileHeaderPhoneLink.href = "tel:88004440155";
+      phoneHeaderLink.querySelector(
+          "span"
+      ).textContent = "8 (800) 444-01-55";
+      return;
+    }
+    const currentCity = cities.find((el) => el.name === e.target.value);
+    setCurrentCity(currentCity)
+    setCurrentCityData(currentCity)
+    // const currentCityAddresses = currentCity.addresses.map(r => r.address);
+
+    localStorage.setItem("chosenCityName", currentCity.name);
+    // addresses_header.innerHTML = currentCityAddresses.join("<br>");
+    //
+    // if(currentCity.phone){
+    //   phoneHeaderLink.href = phoneFooterLink.href = mobileHeaderPhoneLink.href =
+    //       "tel:" + phoneToNumbers(currentCity.phone);
+    //   phoneFooterLink.textContent = phoneHeaderLink.querySelector(
+    //       "span"
+    //   ).textContent = currentCity.phone;
+    // }
+    // instagramLink.href = currentCity.instagram
+    // vkLink.href = currentCity.vk
+    //
+    // taxiLink.href=`https://3.redirect.appmetrica.yandex.com/route?end-lat=${currentCity.lat}&end-lon=${currentCity.lng}&appmetrica_tracking_id=1178268795219780156`
+
+  });
+}
+//TODO update city logic
+window.restaraunts = []
+fetch('/restaraunts', {method: 'GET'}).then((data) => data.json()).then(body => {
+  window.restaraunts = body
+  window.cities = []
+  window.restaraunts.forEach(r => {
+    console.log({r})
+    if(!cities.find(el => el.name === r.city.name)) {
+      cities.push({id: r.city.id,name: r.city.name, instagram: r.city.instagram, vk: r.city.vk, phone: r.city.phone, addresses: window.restaraunts.filter((rest) => rest.city.name === r.city.name)})
+    }
+  })
+  window.cities = cities
+  for (const city of cities) {
+    const cityOption = document.createElement('option')
+    cityOption.value=cityOption.textContent = city.name
+    cityOption.classList.add('option', 'selectise-option')
+    cityHeader.append(cityOption)
+  }
+  const selectiseCityHeader = new Selectise(cityHeader, {onSelect(e) {
+      const event = new Event('change')
+      // event.target = {}
+      console.log({e, event})
+      cityHeader.value = e.selectionValue
+      cityHeader.dispatchEvent(event)
+    }})
+  cityHeader = document.getElementById('city_header')
+  initCity()
+})
 // key=AIzaSyCMyW6HJLx8TXMlSemVjqMQkhb7-Bz8tGI
 global.jQuery = global.$ = $;
 let saveTop = 0;
@@ -128,11 +335,13 @@ function showTab(n) {
   fixStepIndicator(n);
 }
 
-function nextPrev(n) {
+function nextPrev(n, shouldValidate = true) {
   // This function will figure out which tab to display
   var x = document.getElementsByClassName("tab");
   // Exit the function if any field in the current tab is invalid:
-  if (n == 1 && !validateForm()) return false;
+  if(shouldValidate) {
+    if (n == 1 && !validateForm()) return false;
+  }
   // Hide the current tab:
   x[currentTab].style.display = "none";
   // Increase or decrease the current tab by 1:
@@ -450,8 +659,10 @@ $(function () {
   });
   $(".checkout-btn").on("click", function (e) {
     const cartSummaryEl = document.querySelector(".cart-summary");
+    console.log({cartSummaryEl})
+
     if (cartSummaryEl) {
-      if (+cartSummaryEl.textContent.slice(0, -2) < 500) return;
+      if (+cartSummaryEl.textContent.slice(0, -1) < 500) return;
     }
     const cartInDom = document.querySelector(".cart-full.pb-sm-4.mb-4");
     if (cartInDom.children.length === 0) return;
@@ -469,14 +680,47 @@ $(function () {
     // Успешный исход
     nextStage($(this).parents(".stage"));
   });
+  let jobFormLevel = 0
+
   $("#nextBtn").on("click", function (e) {
+    e.preventDefault()
+    console.log({jobFormLevel})
     const regForm = document?.getElementById("regForm");
     // const whereWantToWork = document?.getElementById("whereWantToWork");
     const jobModal = e.target.closest("#jobmodal");
     const isJobModal = !!jobModal;
-    if (isJobModal) {
-      if (!correctPhoneWithMask(jobModal.querySelector(".phone-input").value)) {
-        setErrorShadow(jobModal.querySelector(".phone-input"));
+    if(jobFormLevel === 0) {
+      if (isJobModal) {
+        const phoneInput = jobModal.querySelector(".phone-input")
+        const firstName = jobModal.querySelector(".first_name")
+        const lastName = jobModal.querySelector(".last_name")
+        const middleName = jobModal.querySelector(".middle_name")
+        if (!correctPhoneWithMask(phoneInput.value) || !firstName.value.trim() || !lastName.value.trim()) {
+          if (!firstName.value.trim()) {
+            setErrorShadow(firstName);
+
+          }
+          if (!lastName.value.trim()) {
+            setErrorShadow(lastName);
+
+          }
+          // if (!middleName.value.trim()) {
+          //   setErrorShadow(middleName);
+          // }
+          if (!correctPhoneWithMask(phoneInput.value)) {
+            setErrorShadow(phoneInput);
+          }
+          return;
+        }
+
+
+        if (
+            e.target.textContent === "Отправить" ||
+            !regForm?.querySelector("#rules").checked
+        )
+          return;
+        jobFormLevel = 1
+        nextPrev(1, false);
         return;
       }
     }
@@ -491,18 +735,33 @@ $(function () {
         selectsValues.push(...select.selectedOptions);
       });
       selectsValues = selectsValues.map((val) =>
-        val.textContent.startsWith("Выбери")
+          val.textContent.startsWith("Выбери")
       );
       console.log({ selectsValues });
     }
+    console.log('level', jobFormLevel===1)
+    if(jobFormLevel===1) {
+      const jobSelect =  jobModal.querySelector('[name=job]')
+      const citySelect =  jobModal.querySelector('[name=city]')
+      if(!jobSelect.value || !citySelect.value) return
+      jobFormLevel = 2
+      // console.log({jobFormLevel})
+
+      nextPrev(1, false);
+      return;
+    }
+    // if(jobFormLevel === 2) {
+    //   console.log('test')
+    // }
     if (
-      e.target.textContent === "Отправить" ||
-      !regForm?.querySelector("#rules").checked
+        e.target.textContent === "Отправить" ||
+        !regForm?.querySelector("#rules").checked
     )
       return;
-    nextPrev(1);
+    nextPrev(1, false);
   });
   $("#prevBtn").on("click", function () {
+    jobFormLevel--
     nextPrev(-1);
   });
   $(".reserve").on("click", function (e) {

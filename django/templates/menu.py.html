@@ -39,23 +39,22 @@
           </div>
         </div>
         <div class="col-lg-10 col-md-9 col-12">
-
           {% for category in categories %}
-            <div class="tab-content row" id="category_{{ category.id }}">
-              <div class="subcategory-title col-12">{{ category.name }}</div>
-              {% for menue in category.menues.all %}
-                <div class="dish-item col-sm-3" id="{{ menue.id }}">
-                  <img class="dish-img" src="{{ menue.image.url }}" />
-                  <div class="dish-title">{{ menue.dish }}</div>
-                  <div class="dish-description">
-                    {{ menue.description }}
-                  </div>
-                  <div class="dish-details">
-                    <div class="dish-details_sizes">{{ menue.weight }}</div>
-                    <div class="dish-details_price">{{ menue.price }}₽</div>
-                  </div>
+          <div class="tab-content row col-12" id="category_{{ category.id }}">
+            <!--          <div class="subcategory-title col-12">{{ category.name }}</div>-->
+            {% for menue_in_restaraunt in category.menues_in_rastaraunt %}
+            <div class="col-lg-4 col-sm-6">
+              <div class="dish-item" id="{{ menue_in_restaraunt.menue.id }}">
+                <img class="dish-img" src="{{ menue_in_restaraunt.menue.image.url }}"/>
+                <div class="dish-title">{{ menue_in_restaraunt.menue.dish }}</div>
+                <div class="dish-description">{{ menue_in_restaraunt.menue.description }}</div>
+                <div class="dish-details">
+                  <div class="dish-details_sizes">{% if menue_in_restaraunt.menue.weight %}{{ menue_in_restaraunt.menue.weight }}{% if menue_in_restaraunt.menue.is_drink %}мл{% else %}гр{% endif %}{% endif %}</div>
+                  <div class="dish-details_price">{{ menue_in_restaraunt.price }}₽</div>
                 </div>
-              {% endfor %}
+              </div>
+            </div>
+            {% endfor %}
             </div>
           {% endfor %}
 

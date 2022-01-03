@@ -88,35 +88,41 @@
 /></noscript>
 <header>
     <div class="navbar box-shadow">
-        <div class="container d-flex justify-content-between">
-            <div
-                    class="
+            <div class="col-1 d-lg-block d-none position-absolute">
+                <select class="select mt-1 mb-0 " name="city" id="city_header">
+                    <option value="" class="option">Выбери город</option>
+                </select>
+            </div>
+            <div class="container align-self-center d-flex justify-content-between">
+
+                <div
+                        class="
             col-4 col-md-4 col-lg-5
             align-items-center
             justify-content-around
             px-0
             d-sm-flex d-none
           "
-            >
-                <a class="menu-item" href="{% url 'menu' %}">Меню</a
-                ><a class="menu-item" href="{% url 'delivery' %}">Доставка</a
-            ><a class="menu-item" href="{% url 'reservation' %}">Бронирование</a
-            ><a class="menu-item" href="{% url 'events' %}">События</a
-            ><a class="menu-item" href="{% url 'career' %}">Карьера</a>
-            </div>
-            <div class="col-2 d-sm-none d-block navbar-toggler">
-                <img
-                        class="notactive mr-sm-2"
-                        src="/static/app/img/menu.png"
+                >
+                    <a class="menu-item" href="{% url 'menu' %}">Меню</a
+                    ><a class="menu-item" href="{% url 'delivery' %}">Доставка</a
+                ><a class="menu-item" href="{% url 'reservation' %}">Бронирование</a
+                ><a class="menu-item" href="{% url 'events' %}">События</a
+                ><a class="menu-item" href="{% url 'career' %}">Карьера</a>
+                </div>
+                <div class="col-2 d-sm-none d-block navbar-toggler">
+                    <img
+                            class="notactive mr-sm-2"
+                            src="/static/app/img/menu.png"
+                            height="33"
+                    /><img
+                        class="active mr-sm-2"
+                        src="/static/app/img/close-menu.png"
                         height="33"
-                /><img
-                    class="active mr-sm-2"
-                    src="/static/app/img/close-menu.png"
-                    height="33"
-            />
-            </div>
-            <div
-                    class="
+                />
+                </div>
+                <div
+                        class="
             col-2
             underlogo
             d-sm-flex
@@ -127,61 +133,62 @@
             col-lg-2
             d-none
           "
-            >
-                <a class="d-flex align-items-center" href="{% url 'index' %}"
-                ><img src="/static/app/img/logo@2x.png" alt="RESPUBLICA" width="83"
-                /></a>
-            </div>
-            <div class="col-8 d-sm-none d-block text-center">
-                <a href="{% url 'index' %}"
-                ><img
-                        src="/static/app/img/mobile-logo.png"
-                        alt="RESPUBLICA"
-                        height="21"
-                /></a>
-            </div>
-            <div class="col-2 d-sm-none d-block">
-                <a class="phone" href="tel:+7(383)227-90-50"
                 >
-                    <img class="mr-sm-2" src="/static/app/img/phone.png" height="24"/></a>
-            </div>
-            <div
-                    class="
+                    <a class="d-flex align-items-center" href="{% url 'index' %}"
+                    ><img src="/static/app/img/logo@2x.png" alt="RESPUBLICA" width="83"
+                    /></a>
+                </div>
+                <div class="col-8 d-sm-none d-block text-center">
+                    <a href="{% url 'index' %}"
+                    ><img
+                            src="/static/app/img/mobile-logo.png"
+                            alt="RESPUBLICA"
+                            height="21"
+                    /></a>
+                </div>
+                <div class="col-2 d-sm-none d-block">
+                    <a id="mobile_header_phone" class="phone" href="tel:+7(383)227-90-50"
+                    >
+                        <img class="mr-sm-2" src="/static/app/img/phone.png" height="24"/></a>
+                </div>
+                <div
+                        class="
             col-4 col-md-4 col-lg-5
             d-none d-sm-flex
             align-items-center
             justify-content-around
             px-0
           "
-            >
-                <a class="menu-item" href="{% url 'franchise' %}">Франчайзи</a
-                ><a class="menu-item" href="{% url 'contacts' %}">Контакты</a>
+                >
+                    <a class="menu-item" href="{% url 'franchise' %}">Франчайзи</a
+                    ><a class="menu-item" href="{% url 'contacts' %}">Контакты</a>
 
-                {% if user.is_authenticated %}
-                <a class="login gradient1" href="/personal"
-                ><img
-                        class="mr-sm-2"
-                        src="/static/app/img/login-icon.png"
-                        width="19"
-                /><span class="d-none d-sm-inline"> {% if user.profie.firstname %} {{ user.profie.firstname }} {% else %} кабинет {% endif %}</span>
-                    {% else %}
-                    <a class="login sign gradient1"
+                    {% if user.is_authenticated %}
+                    <a class="login gradient1" href="/personal"
                     ><img
                             class="mr-sm-2"
                             src="/static/app/img/login-icon.png"
                             width="19"
-                    /><span class="d-none d-sm-inline">Войти</span>
-                        {% endif %}
+                    /><span class="d-none d-sm-inline"> {% if user.profie.firstname %} {{ user.profie.firstname }} {% else %} кабинет {% endif %}</span>
+                        {% else %}
+                        <a class="login sign gradient1"
+                        ><img
+                                class="mr-sm-2"
+                                src="/static/app/img/login-icon.png"
+                                width="19"
+                        /><span class="d-none d-sm-inline">Войти</span>
+                            {% endif %}
 
-                    </a><a class="phone gradient1" href="tel:+73832279050"
-                    ><img
-                            class="mr-sm-2"
-                            src="/static/app/img/phone.png"
-                            width="16"
-                    /><span class="d-none d-sm-inline">227-90-50</span></a
-                    >
+                        </a><a class="phone gradient1" href="tel:+73832279050" id="phone_header"
+                        ><img
+                                class="mr-sm-2"
+                                src="/static/app/img/phone.png"
+                                width="16"
+                        /><span class="d-none d-sm-inline" >227-90-50</span></a
+                        >
+                </div>
             </div>
-        </div>
+
     </div>
 </header>
 
@@ -221,8 +228,8 @@
                             src="/static/app/img/arrow-right.png"
                             width="24"
                     /></a>
-                        <div class="text-sm-right text-center mt-sm-2 mt-4">
-                            <img src="/static/app/img/yandex.png" height="22"/>
+                        <div class="text-center mt-sm-2 mt-4">
+                            <a id="yandex_eda_link" target="_blank"><img src="static/app/img/yandex.png" height="56"/></a>
                         </div>
                     </div>
                 </div>
@@ -753,11 +760,11 @@
                         <div class="dish-details_price">168₽</div>
                     </div>
                 </div>
-                <div class="text-left mt-3">
-                    <a class="submit addcart" href="#advices" data-modal
-                    >Добавить в корзину</a
-                    >
-                </div>
+<!--                <div class="text-left mt-3">-->
+<!--                    <a class="submit addcart" href="#advices" data-modal-->
+<!--                    >Добавить в корзину</a-->
+<!--                    >-->
+<!--                </div>-->
             </div>
         </div>
     </div>
@@ -1015,7 +1022,8 @@
                             </div>
                         </form>
                         <div class="text-center">
-                            <a class="submit checkout-final" href="#">Оформить заказ</a>
+                            <a class="submit checkout-final-fake" href="#">Оформить заказ</a>
+                            <a class="d-none checkout-final" href="#"></a>
                         </div>
                     </div>
                     <div class="stage">

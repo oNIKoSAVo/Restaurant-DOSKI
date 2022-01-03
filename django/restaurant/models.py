@@ -20,6 +20,8 @@ class Profile(models.Model):
 
     phone = models.CharField(max_length=16, blank=True,
                              null=True, default=None)
+    email = models.CharField(
+        max_length=128, blank=True, null=True, default=None)
     registration_ip = models.GenericIPAddressField(default='192.168.0.1')
 
     def __str__(self):
@@ -31,15 +33,34 @@ class Profile(models.Model):
         # app_label = 'auth'
         # db_table = 'restaurant_profile'
 
+class City(models.Model):
+    name = models.CharField('Название города', max_length=128, blank=True, null=True)
+    phone = models.CharField('Номер телефона', max_length=20, blank=True, null=True)
+    instagram = models.CharField('Ссылка на instagram', max_length=128, blank=True, null=True)
+    vk = models.CharField('Ссылка на ВК', max_length=128, blank=True, null=True)
+#     restaraunts = models.ManyToManyField('self', blank=True, related_name='Restaraunt', )
 
+    def __str__(self):
+       return self.name
+
+    class Meta:
+            verbose_name = 'город'
+            verbose_name_plural = 'города'
 
 class Restaraunt(models.Model):
     address = models.CharField('Адрес', max_length=128, blank=False, null=False)
     phone = models.CharField('Телефон', max_length=128, blank=False, null=False)
-    company = models.CharField('Компания', max_length=228, blank=True, null=True)
-    r_keeper = models.CharField('RKeeper', max_length=228, blank=True, null=True)
-    payment_token = models.CharField('Token for Payment', max_length=228, blank=True, null=True)
-    payment_terminal_id = models.CharField('Terminal id for Payment', max_length=228, blank=True, null=True)
+    r_keeper = models.CharField('R keeper login', max_length=255, blank=False, null=False, default="")
+    r_keeper_ip = models.CharField('R keeper IP', max_length=255, blank=False, null=False, default="")
+    r_keeper_pass = models.CharField('R keeper password', max_length=255, blank=False, null=False, default="")
+    ident = models.CharField('Ident', max_length=255, blank=False, null=False, default="")
+    active_ident = models.CharField('ActiveIdent', max_length=255, blank=False, null=False, default="")
+    price_ident = models.CharField('PriceIdent', max_length=255, blank=False, null=False, default="")
+    start_available_ident = models.CharField('StartAvailableIdent', max_length=255, blank=False, null=False, default="")
+    end_available_ident = models.CharField('EndAvailableIdent', max_length=255, blank=False, null=False, default="")
+    coordinates=models.CharField('Координаты', max_length=255, blank=True, null=True)
+    city = models.ForeignKey(City, verbose_name='город', related_name='restaraunts', on_delete=models.DO_NOTHING, blank=True, null=True)
+    yandex_eda = models.CharField('Ссылка на яндекс еду', max_length=128, blank=True, null=True)
     menue_file = models.FileField('PDF Меню', upload_to='images/', blank=True, null=True)
 
     def __str__(self):
@@ -91,13 +112,11 @@ class Category(models.Model):
 class Menue(models.Model):
     dish = models.CharField('Блюдо', max_length=128, blank=False, null=False)
     category = models.ForeignKey(Category, verbose_name='Категория', related_name='menues', on_delete=models.DO_NOTHING)
-    restaraunt = models.ForeignKey(Restaraunt, verbose_name='Ресторан', related_name='menues', on_delete=models.DO_NOTHING)
     description = models.TextField('Описание', max_length=600, blank=False, null=False, default="")
-    price = models.FloatField('Цена', blank=False, null=False, default=0)
     weight = models.CharField('Вес', max_length=128, blank=False, null=False, default="")
     image = models.ImageField('Изображение', upload_to='images/', blank=True, null=True, default="images/product.jpg")
     ident = models.IntegerField('Ident RKeeper',  blank=True, null=True)
-    active = models.BooleanField('Активный', blank=True, null=True, default=True)
+    is_drink = models.BooleanField('Это напиток?',  blank=True, null=True)
 
     def __str__(self):
         return self.category.name + " | " + self.dish
@@ -105,6 +124,13 @@ class Menue(models.Model):
     class Meta:
         verbose_name = 'меню'
         verbose_name_plural = 'меню'
+
+class MenueInRestaraunt(models.Model):
+    menue =  models.ForeignKey(Menue, verbose_name='Меню', related_name='in_restaraunt', on_delete=models.DO_NOTHING)
+    restaraunt = models.ForeignKey(Restaraunt, verbose_name='Ресторан', related_name='in_menue', on_delete=models.DO_NOTHING)
+    price = models.FloatField('Цена', blank=False, null=False, default=0)
+    start_time = models.TimeField('Время доступности ОТ', blank=True, null=True)
+    end_time = models.TimeField('Время доступности ДО', blank=True, null=True)
 
 class Order(models.Model):
     user = models.ForeignKey(User, related_name='orders',
@@ -132,6 +158,7 @@ class MenuInOrder(models.Model):
 
     def __str__(self) -> str:
         return "%s" % self.menue
+
 
 
 class Feedback(models.Model):
@@ -194,10 +221,42 @@ class Event(models.Model):
     image = models.ImageField('Изображение', upload_to='images/', blank=True, null=True)
     date = models.DateTimeField('Дата', blank=False, null=False)
     restaraunt = models.ForeignKey(Restaraunt, verbose_name='Ресторан', on_delete=models.DO_NOTHING, blank=True, null=True)
+    city = models.ForeignKey(City, verbose_name='Город', on_delete=models.DO_NOTHING, blank=True, null=True)
 
     class Meta:
         verbose_name = 'событие'
         verbose_name_plural = 'Событие'
+
+class Promotion(models.Model):
+    name = models.CharField('Название', max_length=128, blank=True, null=True)
+    description = models.TextField('Описание', max_length=128, blank=True, null=True)
+    image = models.ImageField('Изображение', upload_to='images/', blank=True, null=True)
+
+    class Meta:
+        verbose_name = 'акции и новости'
+        verbose_name_plural = 'акции и новости'
+
+class PreOrder(models.Model):
+    restaraunt = models.ForeignKey(Restaraunt, verbose_name='Ресторан', related_name='preorders', on_delete=models.DO_NOTHING,  blank=False, null=False)
+    reservation = models.ForeignKey(Reservation, verbose_name='Резерв', related_name='reservation', on_delete=models.CASCADE,  blank=True, null=True)
+    price = models.FloatField('Сумма предзаказа', blank=False, null=False, default=0)
+    comment = models.TextField('Комментарий к предзаказу', max_length=128, blank=True, null=True)
+    created_at = models.DateTimeField('Время создания', auto_now_add=True)
+    updated_at = models.DateTimeField('Время изменения', auto_now=True)
+
+    def __str__(self):
+        return "Заказ #%s" % self.id
+
+    class Meta:
+        verbose_name = 'предзаказ'
+        verbose_name_plural = 'Предзаказы'
+
+class MenuInPreOrder(models.Model):
+    menue = models.ForeignKey(Menue, verbose_name='Меню', on_delete=models.DO_NOTHING, blank=False, null=False)
+    preorder = models.ForeignKey(PreOrder, verbose_name='Предзаказ', related_name='menues', on_delete=models.CASCADE, blank=False, null=False)
+
+    def __str__(self) -> str:
+        return "%s" % self.menue
 
 
 class Setting(models.Model):
@@ -207,3 +266,12 @@ class Setting(models.Model):
     class Meta:
         verbose_name = 'настройки'
         verbose_name_plural = 'настройки'
+
+class PhotoTable(models.Model):
+    table = models.ImageField('фото стола', upload_to='images/', blank=False, null=False)
+    table_number = models.IntegerField('Номер стола',  blank=False, null=False)
+    restaraunt = models.ForeignKey(Restaraunt, verbose_name='Ресторан', on_delete=models.DO_NOTHING, blank=False, null=False)
+
+    class Meta:
+        verbose_name = 'Фото стола'
+        verbose_name_plural = 'Фото столов'

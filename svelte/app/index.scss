@@ -1,5 +1,6 @@
 @import "~bootstrap/scss/bootstrap";
 @import "~js-datepicker/src/datepicker";
+@import '~selectise/src/scss/selectise-base';
 @font-face {
   font-family: "Bebas Neue";
   src: local("Bebas Neue Thin"), local("BebasNeue-Thin"),
@@ -114,7 +115,7 @@ body {
   color: white;
   text-decoration: none;
   font-weight: bold;
-  font-size: 23px;
+  font-size: 21px;
   position: relative;
   line-height: 23px;
   &:hover:after {
@@ -1290,7 +1291,53 @@ a.alternative {
   left: 0;
   width: 100%;
   position: sticky;
+  .select {
+    letter-spacing: .7px;
+    width: 100%;
+    max-width: 270px;
+    border: 1px solid white;
+    border-radius: 25px;
+    color: white;
+    appearance: none;
+    background: url(/static/app/img/arrow-down.png) no-repeat 95% center / 14px;
+    padding: 15px 15px;
+    font-size: 17px;
+  }
+  #mobile_header_city {
+    border-bottom: none;
+    padding: 0;
+    margin: 0;
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    vertical-align: middle;
+    .selectise-trigger {
+      font-size: 0;
+    }
+    .selectise-options {
+      width: 140px;
+      right: 0;
+      left: auto;
+    }
+    .selectise-options .option:first-child {
+      display: none;
+    }
+  }
+  #city_header {
+    border: 1px solid white;
+    border-radius: 25px;
+    color: white;
+    appearance: none;
+    background: url(/static/app/img/arrow-down.png) no-repeat 90% center / 14px;
+    padding: 15px 25px 15px 15px;
+  }
 }
+#mobile_header_city .selectise-trigger:after {
+  width: 20px;
+  height: 26px;
+  background: url(/static/app/img/point.png) no-repeat 90% center / contain;
+}
+
 .box-title {
   font-size: 23px;
   position: relative;
@@ -5961,4 +6008,37 @@ section.light {
 
 .error-shadow {
   box-shadow: 0px 0px 8px 3px rgba(186, 19, 12, 0.2);
+}
+
+.selectise.selectise-open > .selectise-options {
+  width: 100%;
+  top: 50px;
+  left: 0;
+}
+
+header .selectise > .selectise-trigger::after{
+  border-width:0;
+}
+.selectise > .selectise-trigger::after{
+  border-color: white transparent transparent transparent;
+}
+.selectise > .selectise-options{
+  border-radius: 8px;
+  backdrop-filter: blur(4px);
+  background: rgba(255,255,255,0.7);
+  overflow: hidden;
+}
+.selectise-option{
+  color: black;
+  &:hover{
+    background: #d57e29;
+    //font-weight: bold;
+  }
+}
+.selectise.selectise-open {
+  z-index: 150;
+}
+
+.selectise.selectise-open > .selectise-options {
+  z-index: 150;
 }

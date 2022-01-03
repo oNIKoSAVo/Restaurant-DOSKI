@@ -13,6 +13,10 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 from pathlib import Path
 import os
 
+from dotenv import load_dotenv
+load_dotenv()
+print("ENV:" + os.getenv("ENV"))
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -26,7 +30,7 @@ SECRET_KEY = 'django-insecure-0o(twcpw(n(mi^!h9dpq6)q@w-#s!dv2(s_8_@m_xeud$^o2_7
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['157.90.231.91', '127.0.0.1', '192.168.0.110', 'localhost', 'respublica.pesya.ru', 'beta.respublica.bar', '65.21.7.155']
+ALLOWED_HOSTS = ['157.90.231.91','192.168.0.110', '127.0.0.1', 'localhost', 'respublica.pesya.ru', 'beta.bardoski.ru', '65.21.7.155']
 
 
 # Application definition
@@ -78,12 +82,24 @@ WSGI_APPLICATION = 'restaurant.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+if os.getenv("ENV") == "production":
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql_psycopg2',
+            'NAME': 'bardoski',
+            'USER': 'postgres',
+            'PASSWORD': 'password123321Q',
+            'HOST': 'localhost',
+            'PORT': '',
+        }
     }
-}
+if os.getenv("ENV") == "development":
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': BASE_DIR / 'db.sqlite3',
+        }
+    }
 
 
 # Password validation

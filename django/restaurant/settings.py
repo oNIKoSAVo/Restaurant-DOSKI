@@ -86,7 +86,7 @@ if os.getenv("ENV") == "production":
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.postgresql_psycopg2',
-            'NAME': 'bardoski',
+            'NAME': 'barrespublica',
             'USER': 'postgres',
             'PASSWORD': 'password123321Q',
             'HOST': 'localhost',

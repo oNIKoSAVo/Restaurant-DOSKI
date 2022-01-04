@@ -23,9 +23,12 @@ jobs:
         python-version: ${{ matrix.python-version }}
     - name: Install Dependencies
       run: |
+        cd django/
+        pipenv shell
         pipenv install
     - name: Run Migrations
       run: |
         cd django/
+        pipenv shell
         python manage.py makemigrations
         python manage.py migrate

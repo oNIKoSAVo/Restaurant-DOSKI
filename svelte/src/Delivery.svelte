@@ -72,7 +72,7 @@
                       <div class="plus-btn">+</div>
                   </div>
               </div>
-              <div class="cart-item_price text-right">${cartItem.price}₽</div>
+              <div class="cart-item_price text-right">${cartItem.price}Р</div>
           </div>`;
                 })
                 .join("");
@@ -168,8 +168,8 @@
                 const totalPrice = document.querySelectorAll(".cart-summary")
                 const cartSummaryPrice = document.querySelectorAll(".cart-summary_amount")
                 if (!totalPrice || !cartSummaryPrice) return
-                [...totalPrice, ...cartSummaryPrice].forEach(el => el.textContent = price + "₽")
-                // totalPrice.textContent = cartSummaryPrice.textContent = price + "₽";
+                [...totalPrice, ...cartSummaryPrice].forEach(el => el.textContent = price + "Р")
+                // totalPrice.textContent = cartSummaryPrice.textContent = price + "Р";
                 console.log({cs: document.querySelector(".cart-summary_amount.text-right")})
                 if (document.querySelector('.gram b') && document.querySelector('.milliliter b')) {
                     document.querySelector('.gram b').textContent = `${Math.round(grams / peopleQuantity)}гр`

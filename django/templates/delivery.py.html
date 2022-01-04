@@ -58,7 +58,7 @@
               class="cart d-none d-sm-flex"
               href="#cart"
               data-modal
-              ><div class="cart-summary">0₽</div>
+              ><div class="cart-summary">0Р</div>
               <img src="/static/app/img/cart.png" width="69"
             /></a>
           </div>
@@ -86,7 +86,7 @@
               <div class="dish-description">{{ mmenue_in_restaraunt.menue.description }}</div>
               <div class="dish-details">
                 <div class="dish-details_sizes"  {% if menue_in_restaraunt.menue.is_drink %} data-isdrink="true" {% endif %}>{% if menue_in_restaraunt.menue.weight %}{{ menue_in_restaraunt.menue.weight }}{% if menue_in_restaraunt.menue.is_drink %}мл{% else %}гр{% endif %}{% endif %}</div>
-                <div class="dish-details_price">{{ menue_in_restaraunt.price }}₽</div>
+                <div class="dish-details_price">{{ menue_in_restaraunt.price }}Р</div>
                 <div class="calculations" data-menue-id="{{ menue.id }}">
                   <div class="minus-btn">-</div>
                   <div class="item-quantity">0</div>

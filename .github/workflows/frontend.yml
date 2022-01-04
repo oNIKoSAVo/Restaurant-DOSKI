@@ -24,8 +24,6 @@ jobs:
 
     - name: Build
       run: |
-        cd ..
-        ls
         cd svelte/
         yarn
         yarn build

@@ -1780,15 +1780,18 @@ form .submit {
 #events {
   position: relative;
   z-index: -0;
-  height: 90vh;
-  min-height: 953px;
+  //@media (min-width: 768px) {
+  height: 70vh;
+  //}
+  //height: 200vh;
+  //min-height: 1200px;
   //max-height: 1200px;
   &:hover {
-    //.event-content {
-    //  display: none;
-    //}
+    .event-content {
+      display: none;
+    }
     .event-column:hover,
-    .event-colum *:hover {
+    .event-column *:hover {
       .event-content {
         display: block;
       }
@@ -1847,7 +1850,7 @@ form .submit {
   }
   //submit display none
   .submit {
-    //display: none;
+    display: none;
   }
   .event-time {
     font-family: Bebas Neue;
@@ -1881,9 +1884,9 @@ form .submit {
     z-index: 0;
     background: rgb(0, 0, 0);
     background: linear-gradient(
-      0deg,
-      rgba(0, 0, 0, 1) 10%,
-      rgba(255, 255, 255, 0) 100%
+                    0deg,
+                    rgba(0, 0, 0, 1) 10%,
+                    rgba(255, 255, 255, 0) 100%
     );
     width: 100%;
     position: absolute;
@@ -2185,8 +2188,9 @@ textarea {
 }
 .dish-item {
   cursor: pointer;
-  padding-bottom: 35px;
-
+  margin-bottom: 25px;
+  display: flex;
+  flex-direction: column;
   img {
     max-width: 100%;
     border-radius: 8px;
@@ -2213,8 +2217,10 @@ textarea {
   }
   .dish-details {
     display: flex;
-    margin-top: 20px;
-    position: absolute;
+    align-self: flex-end;
+    margin-right: auto;
+    margin-top: 10px;
+    //position: absolute;
     bottom: 0;
     left: 15px;
     align-items: center;
@@ -5222,7 +5228,7 @@ section.light {
     bottom: 60px;
   }
   #events {
-    height: 100vh;
+    //height: 100vh;
   }
   .col-container {
     flex-direction: column;
@@ -5232,14 +5238,15 @@ section.light {
     padding: 0 20px;
   }
   .menu-section .dish-item {
-    padding-bottom: 65px;
+    padding-bottom: 15px;
     margin-bottom: 30px;
     padding-left: 0;
     padding-right: 0;
     box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1), 0px 3px 15px rgba(0, 0, 0, 0.05);
     border-radius: 10px;
     .dish-details {
-      bottom: 15px;
+      padding: 0 15px;
+      //bottom: 15px;
     }
   }
   .delivery-section .dish-item {
@@ -6041,4 +6048,8 @@ header .selectise > .selectise-trigger::after{
 
 .selectise.selectise-open > .selectise-options {
   z-index: 150;
+}
+
+#yandex_eda_link img{
+  object-fit: contain;
 }

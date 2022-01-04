@@ -62,7 +62,7 @@ async function getCity(lat, lng) {
 // global.jQuery = global.$ = $;
 // let saveTop = 0;
 
-// const addresses_header = document.getElementById("addresses_header");
+const addressesFooter = document.querySelector(".bars");
 const phoneHeaderLink = document.getElementById("phone_header");
 const mobileHeaderPhoneLink = document.getElementById("mobile_header_phone");
 let chosenCityNameInLocalStorage = localStorage.getItem("chosenCityName");
@@ -87,7 +87,9 @@ async function initCity(){
   }
 
   function setCurrentCityData(currentCity){
-    // addresses_header.innerHTML =  currentCity.addresses.map(r => r.address).join(',<br>')
+    addressesFooter.innerHTML = currentCity.addresses
+      .map((r) => `<li>${r.address}</li>`)
+      .join(",<br>");
     // console.log({addresses: currentCity.addresses.map(c => c.address).join(',<br>')})
     // cityHeader.value = currentCity.name;
     // console.log({cityHeader})
@@ -173,7 +175,7 @@ async function initCity(){
     console.log('city changed!!')
     if (e.target.value === "") {
       localStorage.removeItem("chosenCityName");
-      // addresses_header.innerHTML = "";
+      addressesFooter.innerHTML = "";
       phoneHeaderLink.href =  mobileHeaderPhoneLink.href = "tel:88004440155";
       phoneHeaderLink.querySelector(
           "span"

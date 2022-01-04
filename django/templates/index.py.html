@@ -26,15 +26,11 @@
         <div class="swiper-wrap">
           <div class="swiper-container">
             <div class="swiper-wrapper">
+              {% for promo in promotions %}
               <div class="swiper-slide">
-                <img src="/static/app/img/slide1.jpg" />
+                <img src="{{ promo.image.url }}" />
               </div>
-              <div class="swiper-slide">
-                <img src="/static/app/img/slide1.jpg" />
-              </div>
-              <div class="swiper-slide">
-                <img src="/static/app/img/slide1.jpg" />
-              </div>
+              {% endfor %}
             </div>
           </div>
           <div class="swiper-button-prev"></div>

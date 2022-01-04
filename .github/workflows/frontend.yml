@@ -11,7 +11,7 @@ jobs:
     strategy:
       matrix:
         node-version: [14.x]
-
+    
     steps:
     - uses: actions/checkout@v2
 
@@ -36,7 +36,7 @@ jobs:
       with:
         source: "."
         target: "/home/respublicarunner/restaurant"
-
+        
     - name: Executing remote command
       uses: appleboy/ssh-action@master
       with:

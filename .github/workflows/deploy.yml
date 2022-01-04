@@ -11,7 +11,7 @@ jobs:
     strategy:
       matrix:
         node-version: [14.x]
-    
+
     steps:
     - uses: actions/checkout@v2
 
@@ -36,17 +36,4 @@ jobs:
       with:
         source: "."
         target: "/home/respublicarunner/restaurant"
-        
-    - name: Executing remote command
-      uses: appleboy/ssh-action@master
-      with:
-        host: ${{ secrets.HOST }}
-        USERNAME: ${{ secrets.USERNAME }}
-        PORT: ${{ secrets.PORT }}
-        KEY: ${{ secrets.SSHKEY }}
-        script: |
-          cd restaurant/django
-          pipenv shell
-          pipenv install
-          python manage.py makemigrations
-          python manage.py migrate
+

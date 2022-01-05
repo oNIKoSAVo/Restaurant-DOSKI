@@ -45,4 +45,8 @@ jobs:
         PORT: ${{ secrets.PORT }}
         KEY: ${{ secrets.SSHKEY }}
         script: |
-          cd restaurant/django && pipenv shell && pipenv install && python manage.py migrate
+          cd restaurant/django
+          pipenv lock --pre --clear
+          pipenv install
+          pipenv run python manage.py migrate
+          nohup pipenv run python manage.py runserver > nohup.out 2> nohup.err < /dev/null &

@@ -8,3 +8,4 @@ static/*
 .DS_Store
 *.lock
 .env
+.venv

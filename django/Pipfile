@@ -12,6 +12,7 @@ geopy = "*"
 dadata = "*"
 python-dotenv = "*"
 xlsxwriter = "*"
+gunicorn = "*"
 
 [dev-packages]
 

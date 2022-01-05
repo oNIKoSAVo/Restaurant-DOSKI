@@ -26,9 +26,9 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.index, name='index'),
     path('menu', views.menu, name='menu'),
-    path('captcha', views.captcha, name='captcha'),
     path('delivery', views.delivery, name='delivery'),
     path('preorder', views.preorder, name='preorder'),
+    path('download_preorder', views.download_preorder, name='download_preorder'),
     path('create_order', views.create_order, name='create_order'),
     path('reservation', views.reservation, name='reservation'),
     path('feedback', views.feedback, name='feedback'),
@@ -38,9 +38,14 @@ urlpatterns = [
     path('contacts', views.contacts, name='contacts'),
     path('signin', views.signin, name='signin'),
     path('signup', views.signup, name='signup'),
+    path('recovery', views.recovery, name='recovery'),
     path('personal', views.personal, name='personal'),
     path('cabinet', views.cabinet, name='cabinet'),
-    path('recovery', views.recovery, name='recovery'),
+    path('restaraunts', views.restaraunts, name='restaraunts'),
+    path('captcha', views.captcha, name='captcha'),
+
+    path('set_city_id', views.set_city_id, name='set_city_id'),
+
     path('payment_success', views.payment_success, name='payment_success'),
     path('payment_fail', views.payment_fail, name='payment_fail')
 ]

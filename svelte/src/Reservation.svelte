@@ -1,35 +1,46 @@
 <script>
-  import { Datepicker, Swappable } from "svelte-calendar";
-  import { reservationRequest } from "./api";
+  import {Datepicker, Swappable} from "svelte-calendar";
+  import {request, reservationRequest} from "./api";
   import isNumeric from "validator/es/lib/isNumeric";
   import isAlpha from "validator/es/lib/isAlpha";
   import jquery from "jquery";
   import "dayjs/locale/ru.js";
   import dayjs from "dayjs";
   import CustomDatepicker from "./CustomDatepicker.svelte";
-  import { sendTelegramMessage } from "./helpers/sendTelegramMessage";
-  import { correctTimeWithMask } from "./helpers/correctTimeWithMask";
+  import Inputmask from "inputmask";
+  import {correctTimeWithMask} from "./helpers/correctTimeWithMask";
+  import {sendTelegramMessage} from "./helpers/sendTelegramMessage";
   import {captchaProtect} from "./helpers/grecaptcha";
+  import {correctPhoneWithMask} from "./helpers/correctPhoneWithMask";
+  import {setErrorShadow} from "./helpers/setErrors";
 
   export let restaraunts;
   export let reservation;
+  reservation.restaraunt_id = 1;
 
-  let restaraunt = reservation.restaraunt_id
-    ? parseInt(reservation.restaraunt_id)
-    : "";
+  function setCurrentCity(currentCity){
+    window.currentCity = currentCity
+    // const cityChangedEvent = new Event('currentCityChange')
+    // window.dispatchEvent(cityChangedEvent)
+
+    window.location.href = `/set_city_id?id=${currentCity.id}`
+
+    // fetch(`/set_city_id?id=${currentCity.id}`).then(() => document.location.reload())
+  }
+
+  // console.log({ restaraunt });
   let time = "";
-  // let end = "00:00";
   let persons = "";
   let table = "";
   let name = "";
   let phone = "";
   let description = "";
-
+  let cityId = localStorage.getItem('chosenCityId')
   let store;
-  let errors = {};
-  let responseIdReservation = "";
 
-  let showIncorrectPhoneModal = false;
+  let showIncorrectPhoneModal = false
+
+  let responseIdReservation = "";
 
   export const daysOfWeek = [
     ["Воскресенье", "Вс"],
@@ -56,6 +67,63 @@
     ["Декабрь", "Декабрь"],
   ];
 
+  // const currentCity =
+  let restaurantsFromAdmin = []
+  fetch('/restaraunts', {method: 'GET'}).then((data) => data.json()).then(body => {
+    restaurantsFromAdmin = body
+    console.log({body})
+  })
+  let currentCityRestaurants = []
+  let restaraunt = ''
+  $: console.log({restaraunt})
+  const urlSearchParams = new URL (window.location.href).searchParams
+  restaraunt = +urlSearchParams.get('restaurant')
+  let selectedDate;
+
+  if(urlSearchParams.get('date')){
+    const [day, month, year] = urlSearchParams.get('date').split('-')
+    console.log({year})
+    selectedDate = new Date(+year, +month - 1, +day)
+    console.log({restaraunt, selectedDate})
+  }
+  if(urlSearchParams.get('time')){
+    const urlTime = urlSearchParams.get('time')
+    if(correctTimeWithMask(urlTime)){
+      time = urlTime
+    }
+  }
+
+$:    console.log({currentCityRestaurants})
+
+  window.addEventListener('currentCityChange', e => {
+    currentCityRestaurants = restaurantsFromAdmin?.filter((el) => el?.city?.name === window.currentCity.name)
+    if(urlSearchParams.get('restaurant')){
+      const foundRestaurantInCurrentCity = currentCityRestaurants.find(r => r.id === +urlSearchParams.get('restaurant'))
+      if(!foundRestaurantInCurrentCity) {
+        const foundRestaurantInAllCities = window.restaraunts.find(r => r.id === +urlSearchParams.get('restaurant'))
+        if(!foundRestaurantInAllCities){
+          restaraunt = currentCityRestaurants[0]?.id
+        }
+        else {
+          console.log({city: foundRestaurantInAllCities.city})
+          setCurrentCity(foundRestaurantInAllCities.city)
+          localStorage.setItem("chosenCityName", foundRestaurantInAllCities.city.name);
+        }
+      }
+      else restaraunt = +urlSearchParams.get('restaurant')
+    }
+    else restaraunt = currentCityRestaurants[0]?.id
+    const schemes = []
+    restaurantsFromAdmin.find(r => r.id === restaraunt)?.schemes.forEach(s => schemes.push(s))
+    appendSchemes(schemes);
+  })
+
+
+  $: if (currentCityRestaurants.length === 0) {
+    restaraunt = currentCityRestaurants[0]?.id
+  }
+  $: console.log({table})
+  // restaraunt = currentCityRestaurants[0]?.address;
   // function validate(e, validateFn, stateValue) {
   //   if (validateFn(e.target.value) || e.target.value === "") {
   //     stateValue = e.target.value;
@@ -63,15 +131,10 @@
   //     e.target.value = stateValue;
   //   }
   // }
-  // document.addEventListener("DOMContentLoaded", () => {
-  //   appendSchemes([{ url: restaraunts[0]?.schemes[0]?.url }]);
-  // });
-
   document.addEventListener("DOMContentLoaded", () => {
     const im = new Inputmask("99:99");
-    const datepicker = im.mask(document.querySelector(".datepicker"));
-    console.log({restaraunts})
-    appendSchemes(restaraunts[0].schemes);
+    const datepicker = im.mask(document.querySelector("input.timepicker"));
+    // appendSchemes([{url: restaraunts[0]?.schemes[0]?.url}]);
   });
 
   function slicePeopleForTable(id) {
@@ -83,71 +146,84 @@
     return peopleQuantity;
   }
 
+  console.log(restaraunts);
   async function handleSubmit(e) {
-    // e.preventDefault();
+    e.preventDefault();
     e.stopPropagation();
-    if (
-      !time ||
-      // !end ||
-      !store.getState().hasChosen ||
-      !table ||
-      !persons ||
-      !name ||
-      !phone ||
-      !restaraunt ||
-            !document.getElementById('rules').checked
-    ) {
-      console.log({ time, table, persons, name, phone, restaraunt });
-      errors.time = !time;
-      errors.date = !store.getState().hasChosen;
-      errors.table = !table;
-      errors.persons = !persons;
-      errors.name = !name;
-      errors.phone = !phone;
-      errors.restaraunt = !restaraunt;
-      setTimeout(() => {
-        errors = {};
-      }, 3000);
-      return;
+    console.log({
+      restaraunt,
+      date: dayjs(store.getState().selected).format('DD/MM/YYYY'),
+      time,
+      end: time,
+      persons,
+      table,
+      name,
+      phone,
+      description,
+      agreed: document.getElementById('rules').checked
+    })
+    // if(lastTableModalTimeout) return
+    if (!correctTimeWithMask(time) || !table || !persons || !name || !correctPhoneWithMask(phone) || !restaraunt || !store.getState().hasChosen || !document.getElementById('rules').checked) {
+      if(!table) {
+        setErrorShadow(document.querySelector('input[name=table]'))
+      }
+      if(!correctTimeWithMask(time)){
+        setErrorShadow(document.querySelector('input.timepicker'))
+      }
+      if(!persons){
+        setErrorShadow(document.querySelector('select[name=persons]'))
+      }
+      if(!name){
+        setErrorShadow(document.querySelector('input[name=name]'))
+      }
+      if(!correctPhoneWithMask(phone)){
+        setErrorShadow(document.querySelector('input[name=phone]'))
+      }
+
+      if(!store.getState().hasChosen) {
+        setErrorShadow(document.getElementById('chooseDate'))
+      }
+
+      // if(!!document.getElementById('rules').checked){
+      //     setErrorShadow(document.querySelector('.reserve-form .rules'))
+      // }
+      return
     }
     captchaProtect(async () => {
-      const orderCode = document.querySelector('#reserved .modal-subtitle')
-      orderCode.textContent = '282313'
-      openModal('#reserved')
-      // openModal("#askpreorder");
+      openModal("#askpreorder");
 
-      sendTelegramMessage(
-              `${name} забронировал(а) стол ${table} в ${time} на ${persons} человек(а). Номер: ${phone}. Ресторан на улице`
-              /*${restaraunts.find((el) => el.id === restaraunt).text}*/
-      );
+      sendTelegramMessage(`${name} забронировал(а) стол ${table} в ${time} на ${persons} человек(а). Номер: ${phone}. Ресторан на улице ${
+              restaraunts.find((el) => el.id === restaraunt).text
+      }`)
 
       const response = await reservationRequest({
         restaraunt,
-        store,
+        date: dayjs(store.getState().selected).format('DD/MM/YYYY'),
         time,
-        // end,
+        end: time,
         persons,
         table,
         name,
         phone,
         description,
       });
+
       if (response.id) {
         responseIdReservation = response.id;
       }
     })
 
+    //todo check response
   }
 
   function handleOnChangeRestaraunt(e) {
     // openModal("#peoplenumber");
-
-    console.log(restaraunts);
-    const findRestaraunt = restaraunts.find((elem) => elem.id == restaraunt);
+    console.log("was here");
+    console.log({restaraunts}, {restaraunt});
+    const findRestaraunt = restaurantsFromAdmin.find((elem) => elem.id == restaraunt);
     console.log(findRestaraunt);
     // appendSchemes(findRestaraunt.schemes);
-    console.log({ findRestaraunt });
-
+    console.log({findRestaraunt});
     appendSchemes(findRestaraunt.schemes);
   }
 
@@ -163,70 +239,61 @@
   }
 
   function appendSchemes(schemes) {
+    // if (!document.getElementById("table")) return;
     document.getElementById("table").innerHTML = "";
     schemes.forEach((schema) => {
       let el = document.createElement("svg");
       fetch(schema.url)
-        .then((r) => r.text())
-        .then((text) => {
-          el.innerHTML = text;
-          el.class = "svg";
-          document.getElementById("table").appendChild(el);
-          let paths = [...document.querySelectorAll("path")].filter((path) => {
-            if (!isNaN(path.id)) return path;
-          });
-
-          const chooseTableBtn = document.querySelector('.select-table.close-modal')
-
-          paths.forEach((path) =>
-            path.addEventListener("click", function (e) {
-              e.stopPropagation();
-              openModal("#table-modal");
-              const peopleQuantity = slicePeopleForTable(
-                      this.nextElementSibling.id
-              );
-              document.getElementById(
-                      "table-modal-people-quantity"
-              ).textContent = peopleQuantity;
-              document
-                      .getElementById("table-modal")
-                      .querySelector(
-                              ".modal-description"
-                      ).textContent = `Столик с видом на город для компании до ${peopleQuantity} человек`;
-              document.getElementById("table-modal-number").textContent =
-                      this.id;
-              chooseTableBtn.onclick = () => {
-
-                paths.forEach((r) => (r.style.fill = "green"));
-
-
-                console.log({
-                  sliced: slicePeopleForTable(this.nextElementSibling.id),
+              .then((r) => r.text())
+              .then((text) => {
+                el.innerHTML = text;
+                el.class = "svg";
+                document.getElementById("table").appendChild(el);
+                let paths = [...document.querySelectorAll("path")].filter((path) => {
+                  if (!isNaN(path.id)) return path;
                 });
+                const chooseTableBtn = document.querySelector('.select-table.close-modal')
+
+                paths.forEach((path) =>
+                        path.addEventListener("click", function (e) {
+                          e.stopPropagation();
+                          openModal("#table-modal");
+                          const peopleQuantity = slicePeopleForTable(
+                                  this.nextElementSibling.id
+                          );
+                          document.getElementById(
+                                  "table-modal-people-quantity"
+                          ).textContent = peopleQuantity;
+                          document
+                                  .getElementById("table-modal")
+                                  .querySelector(
+                                          ".modal-description"
+                                  ).textContent = `Столик с видом на город для компании до ${peopleQuantity} человек`;
+                          document.getElementById("table-modal-number").textContent =
+                                  this.id;
+                          chooseTableBtn.onclick = () => {
+                            paths.forEach((r) => (r.style.fill = "green"));
+
+                            console.log({
+                              sliced: slicePeopleForTable(this.nextElementSibling.id),
+                            });
 
 
-                table = this.id;
-                this.style.fill = "#7f7f7f";
-                chooseTableBtn.onclick = null
-              }
-              // paths.forEach((r) => (r.style.fill = "green"));
-              // document.getElementById(
-              //   "table-modal-people-quantity"
-              // ).textContent = slicePeopleForTable(this.nextElementSibling.id);
-              // console.log({
-              //   sliced: slicePeopleForTable(this.nextElementSibling.id),
-              // });
-              // console.log({ el: this });
-              // document.getElementById("table-modal-number").textContent =
-              //   this.id;
-              // table = this.id;
-              // this.style.fill = "#7f7f7f";
-            })
-          );
-        })
-        .catch(console.error.bind(console));
+                            table = this.id;
+                            this.style.fill = "#7f7f7f";
+                            chooseTableBtn.onclick = null
+                          }
+                          console.log({el: this});
+
+                        })
+                );
+              })
+              .catch(console.error.bind(console));
     });
   }
+
+
+
 </script>
 
 <div
@@ -277,11 +344,10 @@
       <select
         bind:value={restaraunt}
         on:change={handleOnChangeRestaraunt}
-        class={errors.restaraunt ? "error-shadow" : ""}
       >
-        {#each restaraunts as address}
-          <option value={address.id}>
-            {address.text}
+        {#each currentCityRestaurants as restaurant}
+          <option value={restaurant.id}>
+            {restaurant.address}
           </option>
         {/each}
       </select>
@@ -289,14 +355,13 @@
     <div class="col-6">
       <CustomDatepicker
         bind:store
-        options={{ classList: errors.date ? "error-shadow" : "" }}
       />
     </div>
     <div class="col-6">
       <input
         placeholder="Время"
+        class="timepicker"
         value={time}
-        class="datepicker {errors.time ? 'error-shadow' : ''}"
         on:change={(e) => {
           if (!correctTimeWithMask(e.target.value)) {
             e.target.value = "";
@@ -315,7 +380,6 @@
         name="persons"
         bind:value={persons}
         placeholder="Количество человек"
-        class={errors.persons ? "error-shadow" : ""}
       >
         <option value="1">1</option>
         <option value="2">2</option>
@@ -329,7 +393,6 @@
       <input
         name="name"
         placeholder="Ваше имя"
-        class={errors.name ? "error-shadow" : ""}
         value={name}
         on:input={(e) => {
           if (isAlpha(e.target.value, "ru-RU") || e.target.value === "") {
@@ -345,7 +408,6 @@
         type="text"
         name="table"
         placeholder="Стол"
-        class={errors.table ? "error-shadow" : ""}
         value={table}
         disabled
         on:change={(e) => {
@@ -357,7 +419,7 @@
         }}
       /><br /><br />
       <input
-        class="phone-input {errors.phone ? 'error-shadow' : ''}"
+        class="phone-input "
         name="phone"
         on:change={(e) => (phone = e.target.value)}
         placeholder="Номер телефона для связи"

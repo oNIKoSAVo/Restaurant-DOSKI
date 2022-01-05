@@ -57,7 +57,7 @@
             </div>
           </div>
           <div class="col-md-4 px-0 px-1">
-            <div class="delivery-title">Сумма блюд:<b>0₽</b></div>
+            <div class="delivery-title">Сумма блюд:<b class="cart-summary">0Р</b></div>
             <div class="delivery-conditions mb-3 gram">
               Добавленное количество гр на человека (еда): <b>0гр</b>
             </div>
@@ -85,19 +85,21 @@
 <!--          /></a>-->
         </div>
         {% for category in categories %}
-        <div class="tab-content row" id="category_{{ category.id }}">
-          {% for menue in category.menues.all %}
-          <div class="dish-item col-sm-3" id="{{ menue.id }}">
-            <img class="dish-img" src="{{ menue.image.url }}" />
-            <div class="dish-title">{{ menue.dish }}</div>
-            <div class="dish-description">{{ menue.description }}</div>
-            <div class="dish-details">
-              <div class="dish-details_sizes">{{ menue.weight }}</div>
-              <div class="dish-details_price">{{ menue.price }}₽</div>
-              <div class="calculations" data-menue-id="{{ menue.id }}">
-                <div class="minus-btn">-</div>
-                <div class="item-quantity">0</div>
-                <div class="plus-btn">+</div>
+        <div class="tab-content row col-12" id="category_{{ category.id }}">
+          {% for menue_in_restaraunt in category.menues_in_rastaraunt %}
+          <div class="col-lg-4 col-sm-6">
+            <div class="dish-item" id="{{ menue_in_restaraunt.menue.id }}">
+              <img class="dish-img" src="{{ menue_in_restaraunt.menue.image.url }}"/>
+              <div class="dish-title">{{ menue_in_restaraunt.menue.dish }}</div>
+              <div class="dish-description">{{ menue_in_restaraunt.menue.description }}</div>
+              <div class="dish-details">
+                <div class="dish-details_sizes"  {% if menue_in_restaraunt.menue.is_drink %} data-isdrink="true" {% endif %}>{% if menue_in_restaraunt.menue.weight %}{{ menue_in_restaraunt.menue.weight }}{% if menue_in_restaraunt.menue.is_drink %}мл{% else %}гр{% endif %}{% endif %}</div>
+                <div class="dish-details_price">{{ menue_in_restaraunt.price }}Р</div>
+                <div class="calculations" data-menue-id="{{ menue_in_restaraunt.menue.id }}">
+                  <div class="minus-btn">-</div>
+                  <div class="item-quantity">0</div>
+                  <div class="plus-btn">+</div>
+                </div>
               </div>
             </div>
           </div>

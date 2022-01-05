@@ -139,11 +139,13 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
 STATIC_URL = '/static/'
-
-STATICFILES_DIRS = [
-    BASE_DIR.parent / "svelte" / "public" / "build",
-    BASE_DIR.parent / "django" / "static",
-]
+if os.getenv("ENV") == "production":
+    STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+else:
+    STATICFILES_DIRS = [
+        BASE_DIR.parent / "svelte" / "public" / "build",
+        BASE_DIR.parent / "django" / "static",
+    ]
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'

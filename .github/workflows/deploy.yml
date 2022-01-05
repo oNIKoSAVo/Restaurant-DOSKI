@@ -49,4 +49,4 @@ jobs:
           pipenv lock --pre --clear
           pipenv install
           pipenv run python manage.py migrate
-          nohup pipenv run python manage.py runserver > nohup.out 2> nohup.err < /dev/null &
+          echo "yes" | pipenv run python manage.py collectstatic

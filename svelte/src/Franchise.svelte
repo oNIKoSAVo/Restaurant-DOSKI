@@ -102,6 +102,7 @@
         type="button"
         data-dismiss="modal"
         aria-label="Close"
+        on:click="{() => showModal = false}"
       >
         <span aria-hidden="true">&times;</span>
       </button>

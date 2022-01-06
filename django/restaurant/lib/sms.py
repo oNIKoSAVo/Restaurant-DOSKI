@@ -1,7 +1,7 @@
 import requests
 
 LOGIN = ""
-PASSWD = "724f681c-734f-4810-b128-e11f07f3eb60"
+PASSWD = "49bd8d38-c4df-4e95-ad92-1761876849b7"
 API = "https://mcommunicator.ru/M2M/m2m_api.asmx/SendMessage"
 
 class Sms:
@@ -13,4 +13,4 @@ class Sms:
         except AttributeError:
             # no pyopenssl support used / needed / available
             pass
-        response = requests.get(f"{API}?msid={phone}&message={message}&naming=BARDOSKI&login=&password={PASSWD}", verify=False)
+        response = requests.get(f"{API}?msid={phone}&message={message}&naming=beta.respublica.bar&login=&password={PASSWD}", verify=False)

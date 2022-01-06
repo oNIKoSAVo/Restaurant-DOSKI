@@ -17,7 +17,8 @@
   };
 
   let errors = {
-    recoverError: false,
+    recoveryCodeError: false,
+    recoveryPhoneError: false,
     signInPhoneError: false,
     signInPasswordError: false,
     signInError: false
@@ -86,9 +87,16 @@
   function handleGetCode(e) {
     e.preventDefault()
     if (!correctPhoneWithMask(recoverPhone)) return
-    captchaProtect(() => {
+    captchaProtect(async () => {
+      const response = await request('POST', '/recovery', {phone: recoverPhone})
+      if(response.error){
+        errors.recoveryPhoneError = true
+        setTimeout(() => {
+          errors.recoveryPhoneError = false
+        }, 3000)
+        return
+      }
       document.querySelector('.send-reset').click()
-      request('POST', '/recovery', {phone: recoverPhone})
     })
 
   }
@@ -103,9 +111,9 @@
       ui.showRecoveryModal = false
       location.href = '/personal'
     } else {
-      errors.recoverError = true
+      errors.recoveryCodeError = true
       setTimeout(() => {
-        errors.recoverError = false
+        errors.recoveryCodeError = false
       }, 3000)
     }
   }
@@ -313,6 +321,9 @@
       <div class="stages">
         <form class="stage" action="">
           <div class="modal-description">Введите Ваш номер телефона</div>
+          {#if errors.recoveryPhoneError}
+            <p class="text-center" style="color: red;font-size: 17px; letter-spacing: .7px;">На этот телефон не зарегистрирован аккаунт!</p>
+          {/if}
           <input
                   class="phone-input"
                   name="phone"
@@ -325,7 +336,7 @@
           </div>
         </form>
         <form class="stage" action="">
-          {#if errors.recoverError}
+          {#if errors.recoveryCodeError}
             <h3 class="text-center" style="color: red;">Неправильный код</h3>
           {/if}
           <div class="modal-description">Введите код из СМС</div>
@@ -425,6 +436,9 @@
       {/if}
       <form class="stage" action="">
         <div class="modal-description">Введите код из СМС</div>
+        {#if errors.signInError}
+          <h3 class="text-center" style="color: red;">Неверные данные</h3>
+        {/if}
         <div class="d-flex justify-content-between code-inputs">
           <input
             class="code-input"

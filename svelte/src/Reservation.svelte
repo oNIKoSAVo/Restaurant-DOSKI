@@ -355,6 +355,7 @@ $:    console.log({currentCityRestaurants})
     <div class="col-6">
       <CustomDatepicker
         bind:store
+        selected="{selectedDate}"
       />
     </div>
     <div class="col-6">

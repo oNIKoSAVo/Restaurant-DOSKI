@@ -131,12 +131,17 @@ async function initCity(){
   function renderCity(){
 
     const cityInLocalStorage = window.cities.find(
-        (city) => city.name === chosenCityNameInLocalStorage
+      (city) => city.name === chosenCityNameInLocalStorage
     );
     if (cityInLocalStorage) {
-      setCurrentCity(cityInLocalStorage)
-      setCurrentCityData(cityInLocalStorage)
-
+      setCurrentCity(cityInLocalStorage);
+      setCurrentCityData(cityInLocalStorage);
+    } else {
+      if(window.cities.length > 0) {
+        localStorage.setItem("chosenCityName", window.cities[0].name);
+        setCurrentCity(window.cities[0]);
+        setCurrentCityData(window.cities[0]);
+      }
     }
 
   }

@@ -801,7 +801,7 @@ a.download {
   box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.25);
   border-radius: 22px;
   align-items: center;
-  position: absolute;
+  //position: absolute;
   bottom: 5px;
   .item-quantity {
     margin: 0 7px;
@@ -2192,6 +2192,7 @@ textarea {
   margin-bottom: 25px;
   display: flex;
   flex-direction: column;
+  position: relative;
   img {
     max-width: 100%;
     border-radius: 8px;
@@ -2290,12 +2291,12 @@ textarea {
   }
 }
 .delivery-section .dish-item .dish-details {
-  padding-bottom: 35px;
+  padding-bottom: 15px;
   bottom: 30px;
 }
-.delivery-section .dish-item {
-  padding-bottom: 115px;
-}
+//.delivery-section .dish-item {
+//  padding-bottom: 115px;
+//}
 .delivery-section .big-offer {
   right: 0;
   position: absolute;
@@ -5250,9 +5251,9 @@ section.light {
       //bottom: 15px;
     }
   }
-  .delivery-section .dish-item {
-    padding-bottom: 100px !important;
-  }
+  //.delivery-section .dish-item {
+  //  padding-bottom: 100px !important;
+  //}
   .menu-section .inner-page {
     padding-top: 0;
   }

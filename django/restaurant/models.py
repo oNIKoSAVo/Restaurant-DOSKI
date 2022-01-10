@@ -270,8 +270,10 @@ class Setting(models.Model):
 class PhotoTable(models.Model):
     table = models.ImageField('фото стола', upload_to='images/', blank=False, null=False)
     table_number = models.IntegerField('Номер стола',  blank=False, null=False)
-    restaraunt = models.ForeignKey(Restaraunt, verbose_name='Ресторан', on_delete=models.DO_NOTHING, blank=False, null=False)
+    restaraunt = models.ForeignKey(Restaraunt, verbose_name='Ресторан', related_name='tables', on_delete=models.DO_NOTHING, blank=False, null=False)
+    description = models.TextField('Описание стола', max_length=128, blank=False, null=False, default="")
 
     class Meta:
         verbose_name = 'Фото стола'
         verbose_name_plural = 'Фото столов'
+

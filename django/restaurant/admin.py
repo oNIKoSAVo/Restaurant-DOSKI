@@ -24,10 +24,13 @@ admin.site.register(Menue, MenueAdmin)
 class RestarauntSchemaAdmin(admin.StackedInline):
     model = RestarauntSchema
 
+class PhotoTablesAdmin(admin.StackedInline):
+    model = PhotoTable
+
 class RestarauntAdmin(admin.ModelAdmin):
     list_display = ['id', 'address', 'phone', 'city']
     exclude = ('actieIdent',)
-    inlines = [RestarauntSchemaAdmin]
+    inlines = [RestarauntSchemaAdmin, PhotoTablesAdmin]
 admin.site.register(Restaraunt, RestarauntAdmin)
 admin.site.register(City)
 
@@ -92,5 +95,4 @@ admin.site.register(Event, EventAdmin)
 admin.site.register(Promotion, PromotionAdmin)
 
 admin.site.register(Setting)
-admin.site.register(PhotoTable)
 

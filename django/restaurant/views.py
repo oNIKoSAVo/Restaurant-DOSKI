@@ -100,7 +100,7 @@ def captcha(request):
     print(token)
     response = requests.post('https://www.google.com/recaptcha/api/siteverify', headers={
         'Content-type': 'application/x-www-form-urlencoded'},
-        data={"secret": "6LfJ-XIdAAAAAJRzPwbNaDr9BIZriAp5OzdI44Qg", "response": token})
+        data={"secret": "6Ldt-3IdAAAAAIz1DsZ4sBrShbpa5gGA7QcN-3zy", "response": token})
     response_json = json.loads(response.text)
     print(response_json)
     return JsonResponse({"success": response_json['success']})

@@ -264,13 +264,19 @@ $:    console.log({currentCityRestaurants})
                           document.getElementById(
                                   "table-modal-people-quantity"
                           ).textContent = peopleQuantity;
+                          const currentRestaurant = restaraunts.find(r => r.id === restaraunt)
+                          const currentTable = currentRestaurant.tables.find(t => t.table === +path.id)
+
+                          console.log({currentTable})
                           document
                                   .getElementById("table-modal")
                                   .querySelector(
                                           ".modal-description"
-                                  ).textContent = `Столик с видом на город для компании до ${peopleQuantity} человек`;
+                                  ).textContent = currentTable?.description || `Столик с видом на город для компании до ${peopleQuantity} человек`;
+                          document.getElementById('table-modal').querySelector('img.modal-table').src = currentTable?.photo || '/static/app/img/table.jpg'
                           document.getElementById("table-modal-number").textContent =
                                   this.id;
+                          console.log({restaraunttt: restaraunts})
                           chooseTableBtn.onclick = () => {
                             paths.forEach((r) => (r.style.fill = "green"));
 

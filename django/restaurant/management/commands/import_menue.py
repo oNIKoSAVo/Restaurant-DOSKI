@@ -15,23 +15,29 @@ class Command(BaseCommand):
 
         xml_interface = "https://195.208.129.244:82/rk7api/v0/xmlinterface.xml"
         request_menu_with_rests = """
-        <RK7Query >
-            <RK7CMD CMD="GetRefData" RefName="ClassificatorGroups" OnlyActive="1" WithChildItems="2" RefItemIdent="9985" MacroPropTags="1" PropMask="RIChildItems.(
-                Ident, 
-                GUIDString, 
-                Name, 
-                CategPath, 
-                propTRADEGROUPS, 
-                CLASSIFICATORGROUPS^10496, 
-                CLASSIFICATORGROUPS^10240, 
-                propPRICETYPES, 
-                SalesTerms_StartSale, 
-                SalesTerms_StopSale, 
-                UseStartSale, 
-                UseStopSale, 
-                genPORTIONWEIGHText, 
-                genPORTIONNAMEext, 
-                CLASSIFICATORGROUPS^10497)"/>
+        <?xml version="1.0" encoding="utf-8"?>
+        <RK7Query>
+        <RK7CMD CMD="GetRefData"
+        RefName="ClassificatorGroups" 
+        OnlyActive="1" 
+        WithChildItems="2" 
+        RefItemIdent="4098"
+        MacroPropTags="1" 
+        PropMask="RIChildItems.(
+             Name, 
+             CategPath,
+             SalesTerms_StartSale, 
+             SalesTerms_StopSale, 
+             UseStartSale, 
+             UseStopSale, 
+             genDISHNAMEext, 
+             genPORTIONWEIGHText, 
+             genPORTIONNAMEext, 
+             Ident,
+             propTRADEGROUPS, 
+             CLASSIFICATORGROUPS^4352, 
+             CLASSIFICATORGROUPS^4608, 
+             propPRICETYPES)"/>
         </RK7Query>"""
         requests.packages.urllib3.disable_warnings()
         requests.packages.urllib3.util.ssl_.DEFAULT_CIPHERS += ':HIGH:!DH:!aNULL'

@@ -3047,7 +3047,18 @@ textarea {
     max-height: 70vh;
   }
 }
-
+@media (max-width:1200px) {
+  .section-title{
+    font-size: 45px;
+    padding: 40px 0 25px 0;
+  }
+  .fixed{
+    margin-top: 60px;
+  }
+  .inner-page {
+    padding-top: 40px;
+    padding-bottom: 140px;}
+}
 @media (min-width: 1024px) {
   .lab-img {
     max-height: 260px;
@@ -4066,7 +4077,23 @@ footer p {
     }
   }
 }
+.navbar-toggler {
+  .notactive {
+    display: block;
+  }
 
+  .active {
+    display: none;
+  }
+
+  &.activated .notactive {
+    display: none;
+  }
+
+  &.activated .active {
+    display: block;
+  }
+}
 #faq {
   margin-bottom: 95px;
 
@@ -4184,7 +4211,7 @@ footer {
   }
 
   /* БЕСПЛАТНО ПО РОССИИ */
-
+  
   .email {
     text-decoration: none;
     font-weight: bold;
@@ -4817,7 +4844,7 @@ a.success {
   .navbar {
     padding-bottom: 4px;
   }
-
+  
   #university .sign {
     max-width: 125%;
     margin-left: -12.5%;
@@ -6254,23 +6281,7 @@ section.light {
 
     text-align: center;
   }
-  .navbar-toggler {
-    .notactive {
-      display: block;
-    }
-
-    .active {
-      display: none;
-    }
-
-    &.activated .notactive {
-      display: none;
-    }
-
-    &.activated .active {
-      display: block;
-    }
-  }
+  
 
   .activated #menu .menu-container {
     flex-direction: column;

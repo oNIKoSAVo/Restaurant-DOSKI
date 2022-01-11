@@ -323,7 +323,8 @@ def reservation(request):
         'text': restaraunt.address,
         'tables': [{
             'photo': photo_table.table.url,
-            'description': photo_table.description
+            'description': photo_table.description,
+            'table': photo_table.table_number
         } for photo_table in restaraunt.tables.all()],
         'schemes': [{
             'id': schema.id,

@@ -266,7 +266,7 @@ $:    console.log({currentCityRestaurants})
                           ).textContent = peopleQuantity;
                           const currentRestaurant = restaraunts.find(r => r.id === restaraunt)
                           const currentTable = currentRestaurant.tables.find(t => t.table === +path.id)
-
+                          persons = peopleQuantity
                           console.log({currentTable})
                           document
                                   .getElementById("table-modal")

@@ -1,6 +1,9 @@
 from django.contrib.auth import models
 from django.utils.safestring import mark_safe
 from django.contrib import admin
+from django.conf.urls import url
+from django.http import HttpResponseRedirect
+from django.core.management import call_command
 from .models import Category, Feedback, Franchising, MenuInOrder, Menue, MenueInRestaraunt, Order, PhotoTable, Profile, Promotion, Reservation, Restaraunt, Setting, Сareer, RestarauntSchema, Event, City, MenuInPreOrder, PreOrder
 
 admin.site.site_header = 'Bardoski administrator'
@@ -11,6 +14,8 @@ class MenueInRestarauntInLine(admin.TabularInline):
     verbose_name_plural = "Меню"
 
 class MenueAdmin(admin.ModelAdmin):
+    change_list_template = "admin/change_list_object_tools_with_addition_buttons.html"
+    
     list_display = ['id', 'image_preview', 'dish', 'category']
     list_filter = ['category',]
     inlines = [MenueInRestarauntInLine]
@@ -19,6 +24,17 @@ class MenueAdmin(admin.ModelAdmin):
         return mark_safe("<img src='/media/{}'  width='100' />".format(obj.image))
     image_preview.short_description = 'Изображение'
     image_preview.allow_tags = True
+
+    def get_urls(self):
+        urls = super(MenueAdmin, self).get_urls()
+        custom_urls = [
+            url('^run_import/$', self.run_import, name='run_import'),]
+        return custom_urls + urls
+
+    def run_import(self, request):
+        data = call_command('import_menue')
+        self.message_user(request, "Запущен импорт")
+        return HttpResponseRedirect("../")
 admin.site.register(Menue, MenueAdmin)
 
 class RestarauntSchemaAdmin(admin.StackedInline):

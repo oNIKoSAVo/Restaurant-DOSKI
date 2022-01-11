@@ -6,7 +6,7 @@ from django.http import HttpResponseRedirect
 from django.core.management import call_command
 from .models import Category, Feedback, Franchising, MenuInOrder, Menue, MenueInRestaraunt, Order, PhotoTable, Profile, Promotion, Reservation, Restaraunt, Setting, Сareer, RestarauntSchema, Event, City, MenuInPreOrder, PreOrder
 
-admin.site.site_header = 'Bardoski administrator'
+admin.site.site_header = 'Respublica administrator'
 
 class MenueInRestarauntInLine(admin.TabularInline):
     model = MenueInRestaraunt

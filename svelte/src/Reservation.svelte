@@ -358,13 +358,13 @@ $:    console.log({currentCityRestaurants})
         {/each}
       </select>
     </div>
-    <div class="col-6">
+    <div class="col-5">
       <CustomDatepicker
         bind:store
         selected="{selectedDate}"
       />
     </div>
-    <div class="col-6">
+    <div class="col-7">
       <input
         placeholder="Время"
         class="timepicker"
@@ -382,7 +382,7 @@ $:    console.log({currentCityRestaurants})
         }}
       />
     </div>
-    <div class="col-md-6">
+    <!-- <div class="col-md-6">
       <select
         name="persons"
         bind:value={persons}
@@ -395,7 +395,7 @@ $:    console.log({currentCityRestaurants})
         <option value="5">5</option>
         <option value="6">6</option>
       </select>
-    </div>
+    </div> -->
     <div class="col-sm-6">
       <input
         name="name"
@@ -410,7 +410,7 @@ $:    console.log({currentCityRestaurants})
         }}
       />
     </div>
-    <div class="col-12">
+    <div class="col-sm-6">
       <input
         type="text"
         name="table"
@@ -424,9 +424,10 @@ $:    console.log({currentCityRestaurants})
           paths.forEach((r) => (r.style.fill = "green"));
           document.getElementById(table).style.fill = "#7f7f7f";
         }}
-      /><br /><br />
+      /></div>
+      <div class="col-sm-12">
       <input
-        class="phone-input "
+        class="phone-input"
         name="phone"
         on:change={(e) => (phone = e.target.value)}
         placeholder="Номер телефона для связи"

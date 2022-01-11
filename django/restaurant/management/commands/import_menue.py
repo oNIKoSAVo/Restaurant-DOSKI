@@ -6,14 +6,14 @@ import xml.etree.ElementTree as ET
 
 import requests
 session = requests.Session()
-session.auth = ("www.bardoski.ru", "24dc9c14c74255560ad7f4e4438523b4")
+session.auth = ("www.respublica.bar", "9km#ffm87")
 
 class Command(BaseCommand):
     help = 'Импорт продукции из XML'
 
     def handle(self, *args, **options):
 
-        xml_interface = "https://188.235.2.92:82/rk7api/v0/xmlinterface.xml"
+        xml_interface = "https://195.208.129.244:82/rk7api/v0/xmlinterface.xml"
         request_menu_with_rests = """
         <RK7Query >
             <RK7CMD CMD="GetRefData" RefName="ClassificatorGroups" OnlyActive="1" WithChildItems="2" RefItemIdent="9985" MacroPropTags="1" PropMask="RIChildItems.(

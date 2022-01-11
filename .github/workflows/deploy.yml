@@ -52,4 +52,5 @@ jobs:
           echo "yes" | pipenv run python manage.py collectstatic
           cd ..
           mv -v svelte/public/build/* django/static
+          sudo supervisorctl restart respublica
           

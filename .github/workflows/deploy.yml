@@ -52,5 +52,5 @@ jobs:
           echo "yes" | pipenv run python manage.py collectstatic
           cd ..
           mv -v svelte/public/build/* django/static
-          sudo -S supervisorctl restart respublica
+          echo '${{ secrets.USERPASS }}' | sudo -S supervisorctl restart respublica
           

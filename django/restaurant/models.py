@@ -131,6 +131,7 @@ class MenueInRestaraunt(models.Model):
     price = models.FloatField('Цена', blank=False, null=False, default=0)
     start_time = models.TimeField('Время доступности ОТ', blank=True, null=True)
     end_time = models.TimeField('Время доступности ДО', blank=True, null=True)
+    stop_list = models.BooleanField('Стоп лист', blank=True, null=True, default=False)
 
 class Order(models.Model):
     user = models.ForeignKey(User, related_name='orders',

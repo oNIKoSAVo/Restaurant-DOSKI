@@ -53,7 +53,7 @@ class Command(BaseCommand):
         for category in Category.objects.all():
             categories[category.name] = category.id
         
-        print(response.content.decode('utf8'))
+        # print(response.content.decode('utf8'))
         root = ET.fromstring(response.content.decode('utf8'))
         # root = tree.getroot()
         for item in root.iter('TRK7MenuItem'):
@@ -106,12 +106,11 @@ class Command(BaseCommand):
 
                     start_time = None
                     end_time = None
-
-                    if(item.get('UseStartSale') == True):
-                        unix_time = item.get('SalesTerms_StartSale') / 1000 - 2209161600
+                    if(item.get('UseStartSale') == "true"):
+                        unix_time = int(item.get('SalesTerms_StartSale')) / 1000 - 2209161600
                         start_time = datetime.datetime.fromtimestamp(unix_time)
-                    if(item.get('UseStopSale') == True):
-                        unix_time = item.get('SalesTerms_StopSale') / 1000 - 2209161600
+                    if(item.get('UseStopSale') == "true"):
+                        unix_time = int(item.get('SalesTerms_StopSale')) / 1000 - 2209161600
                         end_time = datetime.datetime.fromtimestamp(unix_time)
                 
                     try:

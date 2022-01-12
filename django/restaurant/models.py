@@ -53,9 +53,9 @@ class Restaraunt(models.Model):
     r_keeper = models.CharField('R keeper login', max_length=255, blank=False, null=False, default="")
     r_keeper_ip = models.CharField('R keeper IP', max_length=255, blank=False, null=False, default="")
     r_keeper_pass = models.CharField('R keeper password', max_length=255, blank=False, null=False, default="")
-    ident = models.CharField('Ident', max_length=255, blank=False, null=False, default="")
+    ident = models.CharField('Ident', help_text='PropTRADEGROUPS > Property[Ident]', max_length=255, blank=False, null=False, default="")
     active_ident = models.CharField('ActiveIdent', max_length=255, blank=False, null=False, default="") #нигде не используется
-    price_ident = models.CharField('PriceIdent', max_length=255, blank=False, null=False, default="")
+    price_ident = models.CharField('PriceIdent', help_text='PropPRICETYPES > Property[Ident]', max_length=255, blank=False, null=False, default="")
     start_available_ident = models.CharField('StartAvailableIdent', max_length=255, blank=False, null=False, default="")
     end_available_ident = models.CharField('EndAvailableIdent', max_length=255, blank=False, null=False, default="")
     coordinates=models.CharField('Координаты', max_length=255, blank=True, null=True)

@@ -1,3 +1,4 @@
+import datetime
 from django.conf import settings
 from django.core.management.base import BaseCommand, CommandError
 from restaurant.models import Category, Menue, Restaraunt, MenueInRestaraunt
@@ -103,6 +104,16 @@ class Command(BaseCommand):
                     if item.get('genPORTIONNAMEext') == "мл":
                         is_drink = True
 
+                    start_time = None
+                    end_time = None
+
+                    if(item.get('UseStartSale') == True):
+                        unix_time = item.get('SalesTerms_StartSale') / 1000 - 2209161600
+                        start_time = datetime.datetime.fromtimestamp(unix_time)
+                    if(item.get('UseStopSale') == True):
+                        unix_time = item.get('SalesTerms_StopSale') / 1000 - 2209161600
+                        end_time = datetime.datetime.fromtimestamp(unix_time)
+                
                     try:
                         menue = Menue.objects.get(ident=item.get('Ident'))
                     except Menue.DoesNotExist:
@@ -116,13 +127,23 @@ class Command(BaseCommand):
                             price = -1
                         if(menue_in_restaraunt.exists()):
                             print("!")
-                            menue_in_restaraunt.update(price=prices[restaraunt.price_ident])
+                            menue_in_restaraunt.update(
+                                price=prices[restaraunt.price_ident], 
+                                start_time=start_time, 
+                                end_time=end_time
+                            )
                             menue.weight=weight
                             menue.is_drink=is_drink
                             menue.save()
                         else:
                             print("?")
-                            MenueInRestaraunt.objects.create(restaraunt=restaraunt, menue=menue, price=prices[restaraunt.price_ident])
+                            MenueInRestaraunt.objects.create(
+                                restaraunt=restaraunt, 
+                                menue=menue, 
+                                price=prices[restaraunt.price_ident],  
+                                start_time=start_time, 
+                                end_time=end_time
+                            )
                             n += 1
                     except Restaraunt.DoesNotExist:
                         print(property.get('Ident'), "not exist")

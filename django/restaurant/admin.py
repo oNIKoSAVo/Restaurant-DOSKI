@@ -45,7 +45,7 @@ class PhotoTablesAdmin(admin.StackedInline):
 
 class RestarauntAdmin(admin.ModelAdmin):
     list_display = ['id', 'address', 'phone', 'city']
-    exclude = ('actieIdent',)
+    exclude = ('active_ident',)
     inlines = [RestarauntSchemaAdmin, PhotoTablesAdmin]
 admin.site.register(Restaraunt, RestarauntAdmin)
 admin.site.register(City)

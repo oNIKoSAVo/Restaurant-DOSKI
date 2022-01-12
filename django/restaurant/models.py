@@ -54,7 +54,7 @@ class Restaraunt(models.Model):
     r_keeper_ip = models.CharField('R keeper IP', max_length=255, blank=False, null=False, default="")
     r_keeper_pass = models.CharField('R keeper password', max_length=255, blank=False, null=False, default="")
     ident = models.CharField('Ident', max_length=255, blank=False, null=False, default="")
-    active_ident = models.CharField('ActiveIdent', max_length=255, blank=False, null=False, default="")
+    active_ident = models.CharField('ActiveIdent', max_length=255, blank=False, null=False, default="") #нигде не используется
     price_ident = models.CharField('PriceIdent', max_length=255, blank=False, null=False, default="")
     start_available_ident = models.CharField('StartAvailableIdent', max_length=255, blank=False, null=False, default="")
     end_available_ident = models.CharField('EndAvailableIdent', max_length=255, blank=False, null=False, default="")

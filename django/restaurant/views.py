@@ -500,6 +500,14 @@ def franchise(request):
 def contacts(request):
     return render(request, 'contacts.py.html', {'data': sys._getframe(0).f_code.co_name})
 
+def pclogin(request):
+    return render(request, 'pclogin.py.html')
+
+def pcdelivery(request):
+    return render(request, 'pcdelivery.py.html')
+
+def pcbooking(request):
+    return render(request, 'pcbooking.py.html')
 
 def cabinet(request):
     reservations = Reservation.objects.all()

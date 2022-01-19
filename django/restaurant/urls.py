@@ -47,7 +47,11 @@ urlpatterns = [
     path('set_city_id', views.set_city_id, name='set_city_id'),
 
     path('payment_success', views.payment_success, name='payment_success'),
-    path('payment_fail', views.payment_fail, name='payment_fail')
+    path('payment_fail', views.payment_fail, name='payment_fail'),
+
+    path('pclogin', views.pclogin, name='pclogin'),
+    path('pcbooking', views.pcbooking, name='pcbooking'),
+    path('pcdelivery', views.pcdelivery, name='pcdelivery'),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

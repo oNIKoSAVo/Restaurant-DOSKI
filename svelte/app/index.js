@@ -907,9 +907,10 @@ $(function () {
       $(".button-dropdown .dropdown-toggle").removeClass("active");
     }
   });
-  $("a[data-modal]").on("click", function (e) {
+  $("[data-modal]").on("click", function (e) {
+    console.log('clicked')
     e.preventDefault();
-    openModal($(this).attr("href"));
+    openModal($(this).attr("href") || $(this).attr("data-modal"));
   });
   $("#get-policy").on("click", function () {
     openModal(

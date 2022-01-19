@@ -1,0 +1,25 @@
+{% extends 'base.py.html' %} {% load django_svelte %}
+{% block content %}
+<div class="main-slide cabinet">
+    <div class="container">
+
+        <div class="main-links">
+            <div class="left-link"
+            >
+                <a title="Бронирование" href="/pcbooking"><img src="static/app/img/calendar.png" style="width:37px;" class="mr-3" >Бронирование</a>
+                <span class="order-quantity" title="29">
+                29</span>
+
+                <font class="order-desc">Новых заявок</font>
+            </div>
+            <div class="right-link">
+                <a title="Доставки" href="/pcdelivery"><img src="static/app/img/delivery_icon.svg" class="mr-3" >Доставки</a>
+                <span class="order-quantity" title="58">
+                58</span>
+                <font class="order-desc">Новых заявок</font>
+
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}

@@ -1,0 +1,138 @@
+{% extends 'base.py.html' %} {% load django_svelte %}
+{% block content %}
+<div
+        class="modal-wrapper modal fade"
+        id="delivery_order_modal"
+        tabindex="-1"
+        role="dialog"
+>
+    <div class="modal-dialog" style="max-width: 600px">
+        <div class="modal-content cart-top">
+            <div class="modal-header">
+                <button
+                        class="close"
+                        type="button"
+                        data-dismiss="modal"
+                        aria-label="Close"
+                >
+                    <span aria-hidden="true">&times;</span>
+                </button>
+<!--                <div class="modal-title">-->
+<!--                    Заявка на франшизу-->
+<!--                </div>-->
+            </div>
+            <div class="pcdelivery-modal-item d-flex align-items-center"><img src="/static/app/img/a-reserve-icon.png" class="icon" alt="Время"> 23.10.2020 в 15:00</div>
+            <div class="pcdelivery-modal-item"><strong>Адрес доставки:</strong> <span>г. Новосибирск, ул. Ленина, 12, кв. 344, этаж 1, подъезд 1</span></div>
+            <div class="pcdelivery-modal-item"><strong>Оплата:</strong> Картой курьеру</div>
+            <div class="pcdelivery-modal-item mb-0">
+                <div class="cart-item">
+                    <div class="d-flex align-items-center">
+                        <div class="cart-item_imgwrapper">
+                            <img class="cart-item_img" src='/media/images/product.jpg'/>
+                        </div>
+                        <div class="cart-item_title">Название</div>
+                    </div>
+                    <div class="cart-item_price text-right">20₽</div>
+                </div>
+                <div class="cart-item">
+                    <div class="d-flex align-items-center">
+                        <div class="cart-item_imgwrapper">
+                            <img class="cart-item_img" src='/media/images/product.jpg'/>
+                        </div>
+                        <div class="cart-item_title">Название</div>
+                    </div>
+                    <div class="cart-item_price text-right">20₽</div>
+                </div>
+            </div>
+                <div class="cart-sum d-flex justify-content-between align-items-center mt-1 mb-3">
+                    <div class="cart-summary_title">ИТОГО:</div>
+                    <div class="cart-summary_amount text-right">0₽</div>
+                </div>
+            <div class="pcdelivery-modal-item"><strong>Комментарий:</strong> Просьба позвонить за 10 минут до прибытия курьера</div>
+            <div class="d-flex justify-content-between align-items-center mb-2">
+                <a href="#" class="submit">Подтвердить</a>
+                <a href="#" class="download active close-modal">Отменить</a>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="inner-bg">
+    <div class="container inner-page">
+        <div class="row">
+
+            <div class="col-12">
+                <div class="section-title" title="Доставка">Доставка</div>
+                <table class="orders-table">
+                    <tr class="headings-row">
+                        <th>Номер заказа</th>
+                        <th>Дата заказа</th>
+                        <th>Телефон заказчика</th>
+                        <th>Сумма заказа</th>
+                    </tr>
+                    <tr data-modal="#delivery_order_modal" class="order-row">
+                        <td>№23498</td>
+                        <td>23.09.2029</td>
+                        <td>+7 (999) 999-99-99</td>
+                        <td>2 560.-</td>
+                    </tr>
+                    <tr data-modal="#delivery_order_modal" class="order-row">
+                        <td>№23498</td>
+                        <td>23.09.2029</td>
+                        <td>+7 (999) 999-99-99</td>
+                        <td>2 560.-</td>
+                    </tr>
+                    <tr data-modal="#delivery_order_modal" class="order-row">
+                        <td>№23498</td>
+                        <td>23.09.2029</td>
+                        <td>+7 (999) 999-99-99</td>
+                        <td>2 560.-</td>
+                    </tr>
+                    <tr data-modal="#delivery_order_modal" class="order-row">
+                        <td>№23498</td>
+                        <td>23.09.2029</td>
+                        <td>+7 (999) 999-99-99</td>
+                        <td>2 560.-</td>
+                    </tr>
+                    <tr data-modal="#delivery_order_modal" class="order-row">
+                        <td>№23498</td>
+                        <td>23.09.2029</td>
+                        <td>+7 (999) 999-99-99</td>
+                        <td>2 560.-</td>
+                    </tr>
+                    <tr data-modal="#delivery_order_modal" class="order-row">
+                        <td>№23498</td>
+                        <td>23.09.2029</td>
+                        <td>+7 (999) 999-99-99</td>
+                        <td>2 560.-</td>
+                    </tr>
+                    <tr data-modal="#delivery_order_modal" class="order-row">
+                        <td>№23498</td>
+                        <td>23.09.2029</td>
+                        <td>+7 (999) 999-99-99</td>
+                        <td>2 560.-</td>
+                    </tr>
+                    <tr data-modal="#delivery_order_modal" class="order-row">
+                        <td>№23498</td>
+                        <td>23.09.2029</td>
+                        <td>+7 (999) 999-99-99</td>
+                        <td>2 560.-</td>
+                    </tr>
+                    <tr data-modal="#delivery_order_modal" class="order-row">
+                        <td>№23498</td>
+                        <td>23.09.2029</td>
+                        <td>+7 (999) 999-99-99</td>
+                        <td>2 560.-</td>
+                    </tr>
+                    <tr data-modal="#delivery_order_modal" class="order-row">
+                        <td>№23498</td>
+                        <td>23.09.2029</td>
+                        <td>+7 (999) 999-99-99</td>
+                        <td>2 560.-</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}

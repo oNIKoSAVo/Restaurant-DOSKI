@@ -1,0 +1,313 @@
+@import 'variables';
+
+
+#delivery_order_modal {
+  color: #000;
+  //letter-spacing: .5px;
+  font-family: Muller, sans-serif;
+
+  .pcdelivery-modal-item {
+    margin-bottom: 16px;
+    font-size: 18px;
+    font-weight: 400;
+
+    .icon {
+      width: 15px;
+      margin-right: 10px;
+      object-fit: contain;
+    }
+
+    .cart-item {
+      justify-content: space-between;
+      margin-bottom: 5px;
+
+      .cart-item_title {
+        font-size: 16px;
+      }
+
+      .cart-item_price {
+        font-size: 22px;
+      }
+    }
+
+
+  }
+
+  .cart-sum .cart-summary_title, .cart-sum .cart-summary_amount {
+    font-size: 35px;
+  }
+
+}
+
+#reservation_manager_modal {
+  p {
+    font-size: 18px;
+    margin-bottom: 5px;
+    text-align: center;
+    font-family: "Century Gothic", sans-serif;
+  }
+
+  a.edit-booking {
+    text-align: center;
+    text-decoration: none;
+    font-family: Muller, sans-serif;
+    font-weight: 700;
+    letter-spacing: .5px;
+    color: #000;
+    font-size: 18px;
+
+    img {
+      width: 20px;
+    }
+  }
+}
+
+#reservation_edit_modal {
+  .pcbooking-modal-form__el {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    .label-wrapper {
+      flex: 3;
+      font-size: 17.5px;
+      //letter-spacing: .5px;
+      color: #000;
+      font-family: Muller, sans-serif;
+    }
+
+    .input-wrapper {
+      flex: 5;
+    }
+  }
+}
+
+.cabinet-booking {
+  font-family: 'Bebas Neue', sans-serif;
+  letter-spacing: .5px;
+
+  .cabinet-order {
+    padding: 15px;
+    border: 1px solid rgba(0, 0, 0, 0.25);
+    color: #000;
+    border-radius: 25px;
+
+    &:hover {
+      cursor: pointer;
+      border: 1px solid $main-theme-color
+      //background: #FFFFFF;
+      //.cabinet-order_info{
+      //  color: rgba(24, 35, 63, 1);
+      //}
+    }
+
+    .cabinet-order_num {
+      font-style: normal;
+      color: $main-theme-color;
+      font-weight: bold;
+      font-size: 22px;
+      line-height: 27px;
+    }
+
+    .cabinet-order_info {
+      font-size: 16px;
+      font-weight: bold;
+      line-height: 25px;
+      margin: 10px 0 5px 0;
+    }
+  }
+
+  .section-title.small {
+    font-size: 40px;
+  }
+}
+
+.orders-table {
+  width: 100%;
+  border-radius: 25px;
+
+  text-align: center;
+  overflow: auto !important;
+  letter-spacing: .5px;
+
+  td {
+    cursor: pointer;
+
+    font-family: 'Bebas Neue', sans-serif;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 20px;
+    line-height: 25px;
+    /* identical to box height */
+    padding: 15px 0;
+    text-align: center;
+
+    color: #000;
+
+    border: 1px solid rgba(0, 0, 0, 0.25);
+  }
+
+  .headings-row {
+    &:first-child {
+      th:first-child {
+        border-left: none;
+        border-top-left-radius: 25px !important;
+      }
+
+      th:last-child {
+        border-top-right-radius: 25px !important;
+      }
+    }
+  }
+
+  .order-row {
+    border-radius: 25px;
+
+    td {
+      padding: 16px 0;
+    }
+
+    &:hover {
+      border: 2px solid $main-theme-color;
+
+      td {
+        padding: 15px 0;
+      }
+    }
+
+    &:first-child {
+      th:first-child {
+        border-top-left-radius: 25px !important;
+      }
+
+      th:last-child {
+        border-top-right-radius: 25px !important;
+      }
+    }
+
+    &:last-child {
+      overflow: hidden;
+
+      td:first-child {
+        border-bottom-left-radius: 25px !important;
+      }
+
+      td:last-child {
+        border-bottom-right-radius: 25px !important;
+      }
+    }
+  }
+
+  th {
+    //&:not(&:nth-child(1)){
+    border-left: 1px solid rgba(0, 0, 0, 0.25);
+    //}
+    background: #EF7F1A;
+    position: -webkit-sticky; // this is for all Safari (Desktop & iOS), not for Chrome
+    position: sticky;
+    top: 0;
+    z-index: 1; // any positive value, layer order is global
+    font-family: 'Bebas Neue', sans-serif;
+    font-style: normal;
+
+    padding: 15px 0;
+    font-weight: bold;
+    font-size: 20px;
+    line-height: 25px;
+    /* identical to box height */
+
+
+    color: #fff;
+  }
+}
+
+//
+.main-slide {
+  &.cabinet {
+    height: calc(100% - 140px);
+    display: flex;
+    align-items: center;
+    background: url(/static/app/img/pclogin.jpg) no-repeat center center / cover;
+
+    .right-link, .left-link {
+      text-align: center;
+      transform: none;
+      //padding: 0;
+      height: 125px;
+      width: 500px;
+      left: 0;
+    }
+    .left-link a{
+      color: #000;
+    }
+    .order-quantity {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      margin: 60px 0 0;
+      line-height: 77px;
+      font-family: 'Bebas Neue', sans-serif;
+      color: $main-theme-color;
+      font-weight: 700;
+    }
+
+    .order-desc {
+      font-family: 'Bebas Neue', sans-serif;
+      letter-spacing: .5px;
+      font-style: normal;
+      font-weight: bold;
+      display: block;
+      font-size: 18px;
+      margin: 10px 0 0 0;
+      line-height: 27px;
+      /* or 150% */
+
+      text-align: center;
+
+      color: #FFFFFF;
+
+    }
+
+    a {
+      text-align: center;
+    }
+
+    .container {
+      height: auto
+
+    }
+  }
+
+  .order-quantity {
+    font-size: 77px;
+  }
+
+  .main-links, .order-quantity {
+    position: relative;
+    bottom: 0%;
+    left: 0;
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+
+    a {
+
+      color: white;
+
+      position: relative;
+      animation: all 0.5s cubic-bezier(0.075, 0.82, 0.165, 1);
+      font-family: "Bebas Neue", sans-serif;
+      line-height: 45px;
+      display: inline-block;
+      text-align: center;
+      font-size: 40px;
+      text-decoration: none;
+
+      &:hover {
+        text-shadow: none;
+      }
+    }
+
+  }
+}

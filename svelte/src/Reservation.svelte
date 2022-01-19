@@ -361,6 +361,7 @@ $:    console.log({currentCityRestaurants})
     <div class="col-5">
       <CustomDatepicker
         bind:store
+        start="{dayjs()}"
         selected="{selectedDate}"
       />
     </div>

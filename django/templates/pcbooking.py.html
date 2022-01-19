@@ -1,0 +1,169 @@
+{% extends 'base.py.html' %} {% load django_svelte %} {% block content %}
+
+<div
+  class="modal-wrapper modal fade"
+  id="reservation_manager_modal"
+  tabindex="-1"
+  role="dialog"
+>
+  <div class="modal-dialog" style="max-width: 400px">
+    <div class="modal-content cart-top">
+      <div class="modal-header">
+        <button
+          class="close"
+          type="button"
+          data-dismiss="modal"
+          aria-label="Close"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <div class="modal-title mb-2">№8783</div>
+      </div>
+      <p>+7 (999) 999-99-99</p>
+      <p>стол №89</p>
+      <p>Количество гостей: 12</p>
+      <p>Иванов Иван Иванович</p>
+      <p>Дата 21.09.2090</p>
+      <p>Время брони 18:00</p>
+      <div class="text-center mt-3">
+        <a class="edit-booking" data-modal href="#reservation_edit_modal"
+          >Редактировать <img src="static/app/img/arrow-right-orange.svg"
+        /></a>
+      </div>
+      <div
+        class="
+          d-flex
+          justify-content-between
+          flex-column
+          align-items-center
+          mb-2
+          mt-2
+        "
+      >
+        <a href="#" class="submit w-100 text-center">Разместить</a>
+        <a href="#" class="download d-block active w-100 text-center close-modal mt-2" >Отменить</a>
+      </div>
+    </div>
+  </div>
+</div>
+<div
+  class="modal-wrapper modal fade"
+  id="reservation_edit_modal"
+  tabindex="-1"
+  role="dialog"
+>
+  <div class="modal-dialog" style="max-width: 600px">
+    <div class="modal-content cart-top">
+      <div class="modal-header">
+        <button
+          class="close"
+          type="button"
+          data-dismiss="modal"
+          aria-label="Close"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <div class="modal-title mb-2">№8783</div>
+      </div>
+      <div class="pcbooking-modal-form__el">
+        <div class="label-wrapper">
+          <label for="pcbooking_phone">Номер телефона</label>
+        </div>
+        <div class="input-wrapper">
+          <input type="text" id="pcbooking_phone" />
+        </div>
+      </div>
+      <div class="pcbooking-modal-form__el">
+        <div class="label-wrapper">
+          <label for="pcbooking_table">Номер стола</label>
+        </div>
+        <div class="input-wrapper">
+          <input type="text" id="pcbooking_table" />
+        </div>
+      </div>
+      <div class="pcbooking-modal-form__el">
+        <div class="label-wrapper">
+          <label for="pcbooking_guests">Количество гостей</label>
+        </div>
+        <div class="input-wrapper">
+          <input type="text" id="pcbooking_guests" />
+        </div>
+      </div>
+      <div class="pcbooking-modal-form__el">
+        <div class="label-wrapper">
+          <label for="pcbooking_fio">ФИО</label>
+        </div>
+        <div class="input-wrapper">
+          <input type="text" id="pcbooking_fio" />
+        </div>
+      </div>
+      <div class="pcbooking-modal-form__el">
+        <div class="label-wrapper">
+          <label for="pcbooking_date">Дата</label>
+        </div>
+        <div class="input-wrapper">
+          <input type="text" id="pcbooking_date" />
+        </div>
+      </div>
+      <div class="pcbooking-modal-form__el">
+        <div class="label-wrapper">
+          <label for="pcbooking_time">Время брони</label>
+        </div>
+        <div class="input-wrapper">
+          <input type="text" id="pcbooking_time" />
+        </div>
+      </div>
+
+      <div class="d-flex justify-content-between align-items-center mb-2 mt-2">
+        <a href="#" class="submit">Сохранить</a>
+        <a href="#" class="download active close-modal">Отменить</a>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="inner-bg cabinet-booking">
+  <div class="container-fluid inner-page">
+    <div class="row">
+      <div class="col-md-2 col-sm-12">
+        <h4 class="section-title small">Новые бронирования</h4>
+
+        <div class="cabinet-order" data-modal="#reservation_manager_modal">
+          <div class="cabinet-order_num">№1031</div>
+          <div class="cabinet-order_info">
+            +7 (999) 999-99-99 <br />
+            стол №89 <br />
+            12 гостей <br />
+            Иванов Иван Иванович <br />
+            Дата 20.09.2019 <br />
+            Время брони 18:00
+          </div>
+        </div>
+      </div>
+      <div class="col-8">
+        <div class="section-title" title="Бронирование">Бронирование</div>
+        <div style="color: white">
+          Сюда выбор даты из кастом компонента svelte
+        </div>
+        <div data-modal="" id="table"></div>
+        <div class="table-labels">
+          <div class="label">
+            <div class="label-box" style="background: rgb(48, 132, 16)"></div>
+            <font class="d-sm-inline d-none">–</font> Свободно
+          </div>
+          <div class="label">
+            <div class="label-box" style="background: rgb(255, 36, 0)"></div>
+            <font class="d-sm-inline d-none">–</font> ЗАБРОНИРОВАНО
+          </div>
+          <div class="label">
+            <div class="label-box" style="background: rgb(127, 127, 127)"></div>
+            <font class="d-sm-inline d-none">–</font> ВЫ ВЫБРАЛИ
+          </div>
+        </div>
+      </div>
+      <div class="col-md-2 col-sm-12">
+        <h4 class="section-title small">Обработанные бронирования</h4>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock content %}

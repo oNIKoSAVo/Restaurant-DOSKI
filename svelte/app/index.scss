@@ -1,7 +1,7 @@
 @import "~bootstrap/scss/bootstrap";
 @import "~js-datepicker/src/datepicker";
 @import '~selectise/src/scss/selectise-base';
-
+@import 'scss/variables';
 @font-face {
   font-family: "Bebas Neue";
   src: local("Bebas Neue Thin"), local("BebasNeue-Thin"),
@@ -2188,60 +2188,64 @@ textarea {
   }
 
   .cart-full {
-    .cart-item {
-      margin-bottom: 25px;
-    }
 
-    .cart-item_img {
-      max-width: 53px;
-      margin-right: 15px;
-      border-radius: 7px;
-    }
-
-    .calculations {
-      position: static;
-    }
-
-    .cart-summary_title {
-      font-size: 30px;
-      font-weight: bold;
-      line-height: 27px;
-      /* identical to box height, or 90% */
-
-      color: #000000;
-    }
-
-    .cart-summary_amount {
-      font-size: 30px;
-      line-height: 27px;
-      font-weight: bold;
-      /* identical to box height, or 90% */
-
-      color: #d57e29;
-    }
-
-    .cart-item_price {
-      font-family: Bebas Neue;
-      font-style: normal;
-      font-weight: bold;
-      font-size: 20px;
-      line-height: 27px;
-      /* identical to box height, or 135% */
-
-      text-align: right;
-
-      color: #000000;
-    }
-
-    .cart-item_title {
-      font-family: Muller;
-      font-style: normal;
-      font-weight: 300;
-      font-size: 14px;
-      line-height: 16px;
-      color: #000000;
-    }
   }
+}
+
+.cart-item {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 25px;
+}
+
+.cart-item_img {
+  max-width: 53px;
+  margin-right: 15px;
+  border-radius: 7px;
+}
+
+.calculations {
+  position: static;
+}
+
+.cart-summary_title {
+  font-size: 30px;
+  font-weight: bold;
+  line-height: 27px;
+  /* identical to box height, or 90% */
+
+  color: #000000;
+}
+
+.cart-summary_amount {
+  font-size: 30px;
+  line-height: 27px;
+  font-weight: bold;
+  /* identical to box height, or 90% */
+
+  color: #d57e29;
+}
+
+.cart-item_price {
+  font-family: Bebas Neue;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 20px;
+  line-height: 27px;
+  /* identical to box height, or 135% */
+
+  text-align: right;
+
+  color: #000000;
+}
+
+.cart-item_title {
+  font-family: Muller;
+  font-style: normal;
+  font-weight: 300;
+  font-size: 14px;
+  line-height: 16px;
+  color: #000000;
 }
 
 #reserved .modal-description {
@@ -4211,7 +4215,7 @@ footer {
   }
 
   /* БЕСПЛАТНО ПО РОССИИ */
-  
+
   .email {
     text-decoration: none;
     font-weight: bold;
@@ -4844,7 +4848,7 @@ a.success {
   .navbar {
     padding-bottom: 4px;
   }
-  
+
   #university .sign {
     max-width: 125%;
     margin-left: -12.5%;
@@ -6281,7 +6285,7 @@ section.light {
 
     text-align: center;
   }
-  
+
 
   .activated #menu .menu-container {
     flex-direction: column;
@@ -6455,3 +6459,5 @@ header .selectise > .selectise-trigger::after {
 #yandex_eda_link img {
   object-fit: contain;
 }
+
+@import "scss/manager";

@@ -3,6 +3,7 @@
   import {request, signIn, signUp} from "./api";
   import {correctPhoneWithMask} from "./helpers/correctPhoneWithMask";
   import {captchaProtect} from "./helpers/grecaptcha";
+  import CodeInput from "./components/CodeInput.svelte";
 
   let phone = "",
           password = "", recoverPhone = '';
@@ -341,44 +342,10 @@
           {/if}
           <div class="modal-description">Введите код из СМС</div>
           <div class="d-flex justify-content-between code-inputs">
-            <input
-                    class="code-input"
-                    type="number"
-                    name="code1"
-                    max="9"
-                    min="0"
-                    step="1"
-                    bind:value={code[0]}
-
-            />
-            <input
-                    class="code-input"
-                    type="number"
-                    name="code2"
-                    max="9"
-                    min="0"
-                    step="1"
-                    bind:value={code[1]}
-
-            />
-            <input
-                    class="code-input"
-                    type="number"
-                    name="code3"
-                    max="9"
-                    min="0"
-                    step="1"
-                    bind:value={code[2]}
-            />
-            <input
-                    class="code-input"
-                    type="number"
-                    name="code4"
-                    max="9"
-                    min="0"
-                    step="1"
-                    bind:value={code[3]}
-            />
+            <CodeInput bind:value="{code[0]}"/>
+            <CodeInput bind:value="{code[1]}"/>
+            <CodeInput bind:value="{code[2]}"/>
+            <CodeInput bind:value="{code[3]}"/>
           </div>
           <div class="text-center">
             <a class="submit reset-password" on:click={handleSubmitRecover} href="#">Зарегистрироваться</a>
@@ -440,42 +407,10 @@
           <h3 class="text-center" style="color: red;">Неверные данные</h3>
         {/if}
         <div class="d-flex justify-content-between code-inputs">
-          <input
-            class="code-input"
-            type="number"
-            name="code1"
-            bind:value={code[0]}
-            max="9"
-            min="0"
-            step="1"
-          />
-          <input
-            class="code-input"
-            type="number"
-            name="code2"
-            bind:value={code[1]}
-            max="9"
-            min="0"
-            step="1"
-          />
-          <input
-            class="code-input"
-            type="number"
-            name="code3"
-            bind:value={code[2]}
-            max="9"
-            min="0"
-            step="1"
-          />
-          <input
-            class="code-input"
-            type="number"
-            name="code4"
-            bind:value={code[3]}
-            max="9"
-            min="0"
-            step="1"
-          />
+          <CodeInput bind:value="{code[0]}"/>
+          <CodeInput bind:value="{code[1]}"/>
+          <CodeInput bind:value="{code[2]}"/>
+          <CodeInput bind:value="{code[3]}"/>
         </div>
         <div class="text-center">
           <!-- svelte-ignore a11y-missing-attribute -->

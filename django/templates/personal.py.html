@@ -213,7 +213,7 @@
             <div class="col-md-8">
               <input
                 placeholder="Каменев"
-                value="{{ user.profile.last_name }}"
+                value="{% if user.profile.last_name %}{{ user.profile.last_name }}{% endif %}"
               />
             </div>
           </div>
@@ -222,7 +222,7 @@
             <div class="col-md-8">
               <input
                 placeholder="Валетин"
-                value="{{ user.profile.first_name }}"
+                value="{% if user.profile.first_name %}{{ user.profile.first_name }}{% endif %}"
               />
             </div>
           </div>
@@ -231,7 +231,7 @@
             <div class="col-md-8">
               <input
                 placeholder="Павлович"
-                value="{{ user.profile.second_name }}"
+                value="{% if user.profile.second_name %}{{ user.profile.second_name }}{% endif %}"
               />
             </div>
           </div>
@@ -242,13 +242,14 @@
                 class="phone-input"
                 type="tel"
                 placeholder="+7 (999) 999-99-99"
+                value="{% if user.profile.phone %}{{ user.profile.phone|slice:'1:' }}{% endif %}"
               />
             </div>
           </div>
           <div class="row">
             <div class="col-md-4"><label>Дата рождения</label></div>
             <div class="col-md-8">
-              <input class="datepicker" type="date" placeholder="22.12.1980" />
+              <input class="datepicker" type="date" placeholder="22.12.1980" value="{{ request.user.profile.birthday|date:'Y-m-d' }}" />
             </div>
           </div>
           <div class="row">
@@ -258,12 +259,13 @@
                 class="phone-input"
                 type="email"
                 placeholder="mail@mail.ru"
+                value="{% if user.profile.email %}{{ user.profile.email }}{% endif %}"
               />
             </div>
           </div>
           <div class="row">
             <div class="col-12 mt-md-4">
-              <a class="submit" href="#">Сохранить</a>
+              <a class="submit" id="update-personal" href="#">Сохранить</a>
             </div>
           </div>
         </form>

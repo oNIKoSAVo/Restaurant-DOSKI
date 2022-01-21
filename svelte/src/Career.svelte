@@ -118,7 +118,7 @@
               type="button"
               data-dismiss="modal"
               aria-label="Close"
-              on:click={() => (showModal = false)}
+              on:click={() => (showModal = showFormModal = false)}
       >
         <span aria-hidden="true">&times;</span>
       </button>
@@ -197,7 +197,7 @@
           <div class="col-12 rules">
             <input id="rules" type="checkbox" /> <label for="rules" /><a
                   href="#consent_processing_data_modal"
-                  data-modal>Согласие на обработку персональных данных</a
+                  data-modal on:click={() => showModal = false}>Согласие на обработку персональных данных</a
           >
           </div>
         </div>

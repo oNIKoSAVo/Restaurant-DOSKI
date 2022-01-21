@@ -29,6 +29,9 @@
 </head>
 <body>
 <script>
+    window.user = {
+        name: '{{request.user.profile.first_name}}'
+    }
     !(function (e, t, n, c, o, a, f) {
         e.fbq ||
         ((o = e.fbq =
@@ -223,7 +226,7 @@
                         >Оставить отзыв<img
                                 src="/static/app/img/feedback-icon.png"
                                 width="24"/></a
-                        ><a class="mt-3 alternative" href="#"
+                        ><a class="mt-3 alternative" id="orderTaxi" href="#"
                     >Вызвать такси<img
                             src="/static/app/img/arrow-right.png"
                             width="24"
@@ -234,7 +237,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-sm-4 col-lg-6 pl-sm-2 pt-2 pt-sm-0">
+            <div id="map-canvas" class="col-sm-4 col-lg-6 pl-sm-2 pt-2 pt-sm-0">
                 <iframe
                         src="https://www.google.com/maps/embed?pb=!1m16!1m12!1m3!1d18293.325820378202!2d82.9231845436431!3d55.031550407857374!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!2m1!1zcmVzcHVibGljYSDQsdCw0YA!5e0!3m2!1sru!2sru!4v1626850287804!5m2!1sru!2sru"
                         style="border: 0"
@@ -1060,8 +1063,8 @@
                     <div class="modal-title">Хотите сделать предзаказ?</div>
                 </div>
                 <div class="pb-3 text-center">
-                    <a class="mt-0 mb-3 mr-3 submit" href="/preorder">Да</a
-                    ><a class="download active ml-3 close-modal" href="#">Нет</a>
+                    <a class="mt-0 mb-3 mr-md-3 submit" href="/preorder">Да</a
+                    ><a class="download active mr- close-modal" href="#">Нет</a>
                 </div>
             </div>
         </div>

@@ -32,7 +32,7 @@
   let time = "";
   let persons = "";
   let table = "";
-  let name = "";
+  let name = window.user.name || "";
   let phone = "";
   let description = "";
   let cityId = localStorage.getItem('chosenCityId')
@@ -112,7 +112,10 @@ $:    console.log({currentCityRestaurants})
       }
       else restaraunt = +urlSearchParams.get('restaurant')
     }
-    else restaraunt = currentCityRestaurants[0]?.id
+    // else restaraunt = currentCityRestaurants[0]?.id
+    if(!restaraunt){
+      restaraunt = ''
+    }
     const schemes = []
     restaurantsFromAdmin.find(r => r.id === restaraunt)?.schemes.forEach(s => schemes.push(s))
     appendSchemes(schemes);
@@ -351,6 +354,7 @@ $:    console.log({currentCityRestaurants})
         bind:value={restaraunt}
         on:change={handleOnChangeRestaraunt}
       >
+        <option value="">Выберите ресторан</option>
         {#each currentCityRestaurants as restaurant}
           <option value={restaurant.id}>
             {restaurant.address}
@@ -366,11 +370,7 @@ $:    console.log({currentCityRestaurants})
       />
     </div>
     <div class="col-7">
-      <input
-        placeholder="Время"
-        class="timepicker"
-        value={time}
-        on:change={(e) => {
+      <select  on:change={(e) => {
           if (!correctTimeWithMask(e.target.value)) {
             e.target.value = "";
             showIncorrectPhoneModal = true;
@@ -380,8 +380,31 @@ $:    console.log({currentCityRestaurants})
           } else {
             time = e.target.value;
           }
-        }}
-      />
+        }}>
+        <option value="12:00" selected>12:00</option>
+        <option value="12:30" >12:30</option>
+        <option value="13:00" >13:00</option>
+        <option value="13:30" >13:30</option>
+        <option value="14:00" >14:00</option>
+        <option value="14:30" >14:30</option>
+        <option value="15:00" >15:00</option>
+        <option value="15:30" >15:30</option>
+        <option value="16:00" >16:00</option>
+        <option value="16:30" >16:30</option>
+        <option value="17:00" >17:00</option>
+        <option value="17:30" >17:30</option>
+        <option value="18:00" >18:00</option>
+        <option value="18:30" >18:30</option>
+        <option value="19:00" >19:00</option>
+        <option value="19:30" >19:30</option>
+        <option value="20:00" >20:00</option>
+      </select>
+<!--      <input-->
+<!--        placeholder="Время"-->
+<!--        class="timepicker"-->
+
+
+<!--      />-->
     </div>
     <!-- <div class="col-md-6">
       <select

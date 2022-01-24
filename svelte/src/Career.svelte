@@ -4,7 +4,6 @@
   import CustomDatepicker from "./CustomDatepicker.svelte";
   import isAlpha from "validator/es/lib/isAlpha";
   import dayjs from "dayjs";
-  // import { cities } from "../config";
   import {captchaProtect} from "./helpers/grecaptcha";
   let showModal = false;
   let showFormModal = true;

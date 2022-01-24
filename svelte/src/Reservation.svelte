@@ -136,7 +136,7 @@ $:    console.log({currentCityRestaurants})
   // }
   document.addEventListener("DOMContentLoaded", () => {
     const im = new Inputmask("99:99");
-    const datepicker = im.mask(document.querySelector("input.timepicker"));
+    // const datepicker = im.mask(document.querySelector("select.timepicker"));
     // appendSchemes([{url: restaraunts[0]?.schemes[0]?.url}]);
   });
 
@@ -171,11 +171,11 @@ $:    console.log({currentCityRestaurants})
         setErrorShadow(document.querySelector('input[name=table]'))
       }
       if(!correctTimeWithMask(time)){
-        setErrorShadow(document.querySelector('input.timepicker'))
+        setErrorShadow(document.querySelector('select.timepicker'))
       }
-      if(!persons){
-        setErrorShadow(document.querySelector('select[name=persons]'))
-      }
+      // if(!persons){
+      //   setErrorShadow(document.querySelector('select[name=persons]'))
+      // }
       if(!name){
         setErrorShadow(document.querySelector('input[name=name]'))
       }
@@ -187,9 +187,10 @@ $:    console.log({currentCityRestaurants})
         setErrorShadow(document.getElementById('chooseDate'))
       }
 
-      // if(!!document.getElementById('rules').checked){
-      //     setErrorShadow(document.querySelector('.reserve-form .rules'))
-      // }
+      // console.log(document.querySelector('#reserve-form .rules'))
+      if(!document.getElementById('rules').checked){
+          setErrorShadow(document.querySelector('#reserve-form .rules'))
+      }
       return
     }
     captchaProtect(async () => {
@@ -370,7 +371,7 @@ $:    console.log({currentCityRestaurants})
       />
     </div>
     <div class="col-7">
-      <select  on:change={(e) => {
+      <select class="timepicker" on:change={(e) => {
           if (!correctTimeWithMask(e.target.value)) {
             e.target.value = "";
             showIncorrectPhoneModal = true;

@@ -86,6 +86,7 @@
   }
 
   function handleGetCode(e) {
+console.log({recoverPhone})
     e.preventDefault()
     if (!correctPhoneWithMask(recoverPhone)) return
     captchaProtect(async () => {
@@ -279,6 +280,7 @@
           class="login-input {errors.signInPhoneError && 'error-shadow'}"
           name="phone"
           bind:value={phone}
+          on:change={e => phone = e.target.value}
           placeholder="Телефон"
         />
         <input
@@ -330,6 +332,7 @@
                   name="phone"
                   placeholder="Ваш телефон"
                   bind:value={recoverPhone}
+                  on:change={e => recoverPhone = e.target.value}
           />
           <div class="text-center">
             <a class="send-reset d-none" href="#"></a>

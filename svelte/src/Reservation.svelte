@@ -29,7 +29,7 @@
   }
 
   // console.log({ restaraunt });
-  let time = "";
+  let time = "12:00";
   let persons = "";
   let table = "";
   let name = window.user.name || "";
@@ -381,7 +381,7 @@ $:    console.log({currentCityRestaurants})
             time = e.target.value;
           }
         }}>
-        <option value="12:00" selected>12:00</option>
+        <option value="12:00">12:00</option>
         <option value="12:30" >12:30</option>
         <option value="13:00" >13:00</option>
         <option value="13:30" >13:30</option>

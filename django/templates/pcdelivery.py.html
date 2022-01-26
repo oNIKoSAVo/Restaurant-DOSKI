@@ -25,7 +25,7 @@
             <div class="pcdelivery-modal-item d-flex align-items-center">
                 <img src="/static/app/img/a-reserve-icon.png" class="icon" alt="Время">{{ order.created_at|date:'d.m.y' }} в {{ order.created_at|date:'H:i' }}</div>
             <div class="pcdelivery-modal-item"><strong>Адрес доставки:</strong> <span>{{ order.address }}</span></div>
-            <div class="pcdelivery-modal-item"><strong>Оплата:</strong> {{ order.payment }}</div>
+            <div class="pcdelivery-modal-item"><strong>Оплата:</strong> {{ order.get_payment_display }}</div>
             <div class="pcdelivery-modal-item mb-0">
                 {% for menue_in_order in order.menues.all %}
                     <div class="cart-item">

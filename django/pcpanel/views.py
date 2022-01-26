@@ -23,6 +23,9 @@ class OnlyStuffUserAccessMixin(AccessMixin):
 class LoginView(OnlyStuffUserAccessMixin, View):
 
     def get(self, request):
+        today_start = datetime.now().replace(hour=0, minute=0, second=0)
+        today_end = datetime.now().replace(hour=23, minute=59, second=59)
+
         if(request.user.is_superuser):
             queryset_reservations = Reservation.objects.filter()
             queryset_order = Order.objects.filter()
@@ -33,9 +36,9 @@ class LoginView(OnlyStuffUserAccessMixin, View):
                 restaraunt__city__groups__in=request.user.groups.all())
 
         count_new_reservations = queryset_reservations.filter(
-            status=ReservationStatusType.WAIT).count()
+            status=ReservationStatusType.WAIT).filter(start__lte=today_end, start__gte=today_start).count()
         count_new_orders = queryset_order.filter(
-            status=OrderStatusType.WAIT).count()
+            status=OrderStatusType.WAIT).filter(created_at__lte=today_end, created_at__gte=today_start).count()
 
         return render(request, 'pclogin.py.html', {'count_new_reservations': count_new_reservations, 'count_new_orders': count_new_orders})
 

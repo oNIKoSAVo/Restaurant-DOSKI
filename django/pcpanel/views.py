@@ -20,7 +20,7 @@ class OnlyStuffUserAccessMixin(AccessMixin):
         return super().dispatch(request, *args, **kwargs)
 
 
-class LoginView(View):
+class LoginView(OnlyStuffUserAccessMixin, View):
 
     def get(self, request):
         if(request.user.is_superuser):

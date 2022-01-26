@@ -1,7 +1,10 @@
+from django.contrib.auth.models import Group, Permission
 from django.db import models
 from django.contrib.auth.models import User
 from django.db.models import Q, Count
 from functools import reduce
+
+from restaurant.lib.sms import Sms
 
 class PaymentTypes(models.IntegerChoices):
     ONLINE = 0, 'Онлайн оплата'
@@ -38,6 +41,7 @@ class City(models.Model):
     phone = models.CharField('Номер телефона', max_length=20, blank=True, null=True)
     instagram = models.CharField('Ссылка на instagram', max_length=128, blank=True, null=True)
     vk = models.CharField('Ссылка на ВК', max_length=128, blank=True, null=True)
+    groups = models.ForeignKey(Group, on_delete=models.CASCADE, blank=True, null=True)
 #     restaraunts = models.ManyToManyField('self', blank=True, related_name='Restaraunt', )
 
     def __str__(self):
@@ -54,7 +58,7 @@ class Restaraunt(models.Model):
     r_keeper_ip = models.CharField('R keeper IP', max_length=255, blank=False, null=False, default="")
     r_keeper_pass = models.CharField('R keeper password', max_length=255, blank=False, null=False, default="")
     ident = models.CharField('Ident', help_text='PropTRADEGROUPS > Property[Ident]', max_length=255, blank=False, null=False, default="")
-    active_ident = models.CharField('ActiveIdent', max_length=255, blank=False, null=False, default="") #нигде не используется
+    active_ident = models.CharField('ActiveIdent', max_length=255, blank=False, null=False, default="")  #нигде не используется
     price_ident = models.CharField('PriceIdent', help_text='PropPRICETYPES > Property[Ident]', max_length=255, blank=False, null=False, default="")
     start_available_ident = models.CharField('StartAvailableIdent', max_length=255, blank=False, null=False, default="")
     end_available_ident = models.CharField('EndAvailableIdent', max_length=255, blank=False, null=False, default="")
@@ -133,6 +137,11 @@ class MenueInRestaraunt(models.Model):
     end_time = models.TimeField('Время доступности ДО', blank=True, null=True)
     stop_list = models.BooleanField('Стоп лист', blank=True, null=True, default=False)
 
+class OrderStatusType(models.IntegerChoices):
+    WAIT = 0, 'В ожидании'
+    APPROVED = 1, 'Подтвержден'
+    REJECT = 2, 'Отклонен'
+
 class Order(models.Model):
     user = models.ForeignKey(User, related_name='orders',
                               on_delete=models.DO_NOTHING, blank=False, null=False)
@@ -143,6 +152,7 @@ class Order(models.Model):
     payment = models.IntegerField(
         'Тип оплаты', choices=PaymentTypes.choices, default=PaymentTypes.ONLINE)
     paid = models.BooleanField("Оплачено", blank=False, null=False, default=False)
+    status = models.IntegerField('Статус', choices=OrderStatusType.choices, null=True, default=OrderStatusType.WAIT)
     created_at = models.DateTimeField('Время создания', auto_now_add=True)
     updated_at = models.DateTimeField('Время изменения', auto_now=True)
 
@@ -199,6 +209,11 @@ class Сareer(models.Model):
         verbose_name = 'карьера'
         verbose_name_plural = 'Карьеры'
 
+class ReservationStatusType(models.IntegerChoices):
+    WAIT = 0, 'В ожидании'
+    APPROVED = 1, 'Подтверждена'
+    REJECT = 2, 'Отклонена'
+
 class Reservation(models.Model):
     user = models.ForeignKey(User, related_name='reservations',
                               on_delete=models.CASCADE, blank=True, null=True)
@@ -210,6 +225,7 @@ class Reservation(models.Model):
     name = models.CharField('Имя', max_length=128, blank=False, null=False)
     phone = models.CharField('Телефон для связи', max_length=128, blank=False, null=False)
     description = models.TextField('Пожелание к брони', max_length=128, blank=False, null=False)
+    status = models.IntegerField('Статус', choices=ReservationStatusType.choices, null=True, default=ReservationStatusType.WAIT)
 
     class Meta:
         verbose_name = 'бронь'
@@ -263,6 +279,10 @@ class MenuInPreOrder(models.Model):
 class Setting(models.Model):
     oferta_file = models.FileField('Оферта', upload_to='images/', blank=True, null=True)
     privacy_file = models.FileField('Согласие на обработку персональных данных', upload_to='images/', blank=True, null=True)
+    main_banner = models.ImageField('Главный баннер на странице', upload_to='images/', blank=True, null=True)
+    allow_period_reservation = models.IntegerField('Доступный период бронирования (+ дней)',  blank=True, null=True)
+    allow_time_reservation_start = models.TimeField('Доступное время бронирование', help_text="С",  blank=True, null=True)
+    allow_time_reservation_end = models.TimeField('Доступное время бронирование', help_text="ДО",  blank=True, null=True)
 
     class Meta:
         verbose_name = 'настройки'
@@ -278,3 +298,10 @@ class PhotoTable(models.Model):
         verbose_name = 'Фото стола'
         verbose_name_plural = 'Фото столов'
 
+from django.db.models.signals import post_save
+from django.dispatch import receiver
+
+@receiver(post_save, sender=Reservation)
+def update_reservation(sender, instance, **kwargs):
+    if(instance.status == ReservationStatusType.REJECT):
+       Sms().send(phone=instance.phone, message="Бронирование отменено.")

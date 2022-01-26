@@ -17,7 +17,7 @@ from django import urls
 from django.conf import settings
 from django.conf.urls import url
 from django.contrib import admin
-from django.urls import path
+from django.urls import include, path
 
 from django.conf.urls.static import static
 import restaurant.views as views
@@ -49,9 +49,10 @@ urlpatterns = [
     path('payment_success', views.payment_success, name='payment_success'),
     path('payment_fail', views.payment_fail, name='payment_fail'),
 
-    path('pclogin', views.pclogin, name='pclogin'),
-    path('pcbooking', views.pcbooking, name='pcbooking'),
-    path('pcdelivery', views.pcdelivery, name='pcdelivery'),
+    path('pcpanel/', include('pcpanel.urls'))
+    # path('pclogin', views.pclogin, name='pclogin'),
+    # path('pcbooking', views.pcbooking, name='pcbooking'),
+    # path('pcdelivery', views.pcdelivery, name='pcdelivery'),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

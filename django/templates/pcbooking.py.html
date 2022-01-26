@@ -1,11 +1,12 @@
 {% extends 'base.py.html' %} {% load django_svelte %} {% block content %}
-
+{% for reservation in reservations %}
 <div
   class="modal-wrapper modal fade"
-  id="reservation_manager_modal"
+  id="reservation_manager_modal_{{ reservation.id }}"
   tabindex="-1"
   role="dialog"
 >
+
   <div class="modal-dialog" style="max-width: 400px">
     <div class="modal-content cart-top">
       <div class="modal-header">
@@ -17,17 +18,17 @@
         >
           <span aria-hidden="true">&times;</span>
         </button>
-        <div class="modal-title mb-2">№8783</div>
+        <div class="modal-title mb-2">№{{ reservation.id }}</div>
       </div>
-      <p>+7 (999) 999-99-99</p>
-      <p>стол №89</p>
-      <p>Количество гостей: 12</p>
-      <p>Иванов Иван Иванович</p>
-      <p>Дата 21.09.2090</p>
-      <p>Время брони 18:00</p>
+      <p>{{ reservation.phone }}</p>
+      <p>стол №{{ reservation.table }}</p>
+      <p>Количество гостей: {{ reservation.persons }}</p>
+      <p>{{ reservation.name }}</p>
+      <p>Дата {{ reservation.start|date:'d.m.y' }}</p>
+      <p>Время брони {{ reservation.start|date:'H:i' }}</p>
       <div class="text-center mt-3">
-        <a class="edit-booking" data-modal href="#reservation_edit_modal"
-          >Редактировать <img src="static/app/img/arrow-right-orange.svg"
+        <a class="edit-booking" data-modal href="#reservation_edit_modal_{{ reservation.id }}"
+          >Редактировать <img src="/static/app/img/arrow-right.png"
         /></a>
       </div>
       <div
@@ -36,19 +37,30 @@
           justify-content-between
           flex-column
           align-items-center
-          mb-2
+          mb-4
           mt-2
         "
       >
-        <a href="#" class="submit w-100 text-center">Разместить</a>
-        <a href="#" class="download d-block active w-100 text-center close-modal mt-2" >Отменить</a>
+      <form action="/pcpanel/booking" method="POST">
+        <input type="hidden" name="id" value="{{ reservation.id }}">
+        <input type="hidden" name="status" value="{{ ReservationStatusType.APPROVED }}" />
+        <a href="#" onclick="submitForm(this); return false;" class="submit w-100 text-center">Разместить</a>
+      </form>
+      <form action="/pcpanel/booking" method="POST">
+        <input type="hidden" name="id" value="{{ reservation.id }}">
+        <input type="hidden" name="status" value="{{ ReservationStatusType.REJECT }}" />
+        <a href="#" onclick="submitForm(this); return false;" class="alternative w-100 text-center close" style="right: 0;">Отменить</a>
+      </form>
       </div>
     </div>
   </div>
 </div>
+{% endfor %}
+
+{% for reservation in reservations %}
 <div
   class="modal-wrapper modal fade"
-  id="reservation_edit_modal"
+  id="reservation_edit_modal_{{ reservation.id }}"
   tabindex="-1"
   role="dialog"
 >
@@ -63,88 +75,114 @@
         >
           <span aria-hidden="true">&times;</span>
         </button>
-        <div class="modal-title mb-2">№8783</div>
+        <div class="modal-title mb-2">№{{reservation.id}}</div>
       </div>
-      <div class="pcbooking-modal-form__el">
-        <div class="label-wrapper">
-          <label for="pcbooking_phone">Номер телефона</label>
+      <form action="" method="POST">
+        <input type="hidden" name="id" value="{{reservation.id}}">
+        <div class="pcbooking-modal-form__el">
+          <div class="label-wrapper">
+            <label for="pcbooking_phone">Номер телефона</label>
+          </div>
+          <div class="input-wrapper">
+            <input type="text" id="pcbooking_phone" name="phone"  value="{{reservation.phone}}"/>
+          </div>
         </div>
-        <div class="input-wrapper">
-          <input type="text" id="pcbooking_phone" />
+        <div class="pcbooking-modal-form__el">
+          <div class="label-wrapper">
+            <label for="pcbooking_table">Номер стола</label>
+          </div>
+          <div class="input-wrapper">
+            <input type="text" id="pcbooking_table" name="table" value="{{reservation.table}}" />
+          </div>
         </div>
-      </div>
-      <div class="pcbooking-modal-form__el">
-        <div class="label-wrapper">
-          <label for="pcbooking_table">Номер стола</label>
+        <div class="pcbooking-modal-form__el">
+          <div class="label-wrapper">
+            <label for="pcbooking_guests">Количество гостей</label>
+          </div>
+          <div class="input-wrapper">
+            <input type="text" id="pcbooking_guests" name="persons" value="{{reservation.persons}}" />
+          </div>
         </div>
-        <div class="input-wrapper">
-          <input type="text" id="pcbooking_table" />
+        <div class="pcbooking-modal-form__el">
+          <div class="label-wrapper">
+            <label for="pcbooking_fio">ФИО</label>
+          </div>
+          <div class="input-wrapper">
+            <input type="text" id="pcbooking_fio" name="name" value="{{reservation.name}}" />
+          </div>
         </div>
-      </div>
-      <div class="pcbooking-modal-form__el">
-        <div class="label-wrapper">
-          <label for="pcbooking_guests">Количество гостей</label>
+        <div class="pcbooking-modal-form__el">
+          <div class="label-wrapper">
+            <label for="pcbooking_date">Дата</label>
+          </div>
+          <div class="input-wrapper">
+            <input type="text" id="pcbooking_date" name="date"  value="{{ reservation.start|date:'d/m/Y' }}"/>
+          </div>
         </div>
-        <div class="input-wrapper">
-          <input type="text" id="pcbooking_guests" />
+        <div class="pcbooking-modal-form__el">
+          <div class="label-wrapper">
+            <label for="pcbooking_time">Время брони</label>
+          </div>
+          <div class="input-wrapper">
+            <input type="text" id="pcbooking_time" name="time" value="{{ reservation.start|date:'H:i' }}" />
+          </div>
         </div>
-      </div>
-      <div class="pcbooking-modal-form__el">
-        <div class="label-wrapper">
-          <label for="pcbooking_fio">ФИО</label>
-        </div>
-        <div class="input-wrapper">
-          <input type="text" id="pcbooking_fio" />
-        </div>
-      </div>
-      <div class="pcbooking-modal-form__el">
-        <div class="label-wrapper">
-          <label for="pcbooking_date">Дата</label>
-        </div>
-        <div class="input-wrapper">
-          <input type="text" id="pcbooking_date" />
-        </div>
-      </div>
-      <div class="pcbooking-modal-form__el">
-        <div class="label-wrapper">
-          <label for="pcbooking_time">Время брони</label>
-        </div>
-        <div class="input-wrapper">
-          <input type="text" id="pcbooking_time" />
-        </div>
-      </div>
 
-      <div class="d-flex justify-content-between align-items-center mb-2 mt-2">
-        <a href="#" class="submit">Сохранить</a>
-        <a href="#" class="download active close-modal">Отменить</a>
-      </div>
+        <div class="d-flex justify-content-between align-items-center mb-4 mt-2">
+          <a href="#" onclick="submitForm(this.parentNode); return false;" class="submit">Сохранить</a>
+          <a href="#" class="alternative close">Отменить</a>
+        </div>
+
+      </form>
     </div>
   </div>
 </div>
+{% endfor %}
+
 <div class="inner-bg cabinet-booking">
   <div class="container-fluid inner-page">
     <div class="row">
       <div class="col-md-2 col-sm-12">
         <h4 class="section-title small">Новые бронирования</h4>
 
-        <div class="cabinet-order" data-modal="#reservation_manager_modal">
-          <div class="cabinet-order_num">№1031</div>
-          <div class="cabinet-order_info">
-            +7 (999) 999-99-99 <br />
-            стол №89 <br />
-            12 гостей <br />
-            Иванов Иван Иванович <br />
-            Дата 20.09.2019 <br />
-            Время брони 18:00
+
+        <form>
+          <select name="filter_restaraunt" onchange="submitForm(this)">
+          <option value="" class="option">Выбери ресторан</option>
+            {% for  filter in filter_restaraunt %}
+              <option value="{{filter.id}}" class="option" {% if filter.id|stringformat:"s"  == request.GET.filter_restaraunt %} selected {% endif %} >{{filter}}</option>
+            {% endfor %}
+        </select>
+      </form>
+
+
+
+        {% for reservation in reservations %}
+          <div class="cabinet-order" data-modal="#reservation_manager_modal_{{ reservation.id }}">
+            <div class="cabinet-order_num">№{{reservation.id}}</div>
+            <div class="cabinet-order_info">
+              {{reservation.phone}} <br />
+              стол №{{reservation.table}} <br />
+              {{reservation.persons}} гостей <br />
+              {{reservation.name}} <br />
+              Дата {{ reservation.start|date:'d.m.y' }}<br />
+              Время брони {{ reservation.start|date:'H:i' }} <br/>
+              {{reservation.restaraunt.address}}
+            </div>
           </div>
-        </div>
+        {% endfor %}
       </div>
       <div class="col-8">
         <div class="section-title" title="Бронирование">Бронирование</div>
         <div style="color: white">
-          Сюда выбор даты из кастом компонента svelte
+          {% display_svelte "ManagerCalendar.svelte" %}
         </div>
-        <div data-modal="" id="table"></div>
+        {% if messages %}
+        {% for message in messages %}
+        <div{% if message.tags %}{% endif %} style="color: white">{{ message }}</div>
+            {% endfor %}
+        {% endif %}
+        <div id="table" class="admin"></div>
         <div class="table-labels">
           <div class="label">
             <div class="label-box" style="background: rgb(48, 132, 16)"></div>
@@ -162,8 +200,29 @@
       </div>
       <div class="col-md-2 col-sm-12">
         <h4 class="section-title small">Обработанные бронирования</h4>
+
+        {% for reservation in reservations_processed %}
+          <div class="cabinet-order" data-modal="#reservation_manager_modal_{{ reservation.id }}">
+            <div class="cabinet-order_num">№{{reservation.id}}</div>
+            <div class="cabinet-order_info">
+              {{reservation.phone}} <br />
+              стол №{{reservation.table}} <br />
+              {{reservation.persons}} гостей <br />
+              {{reservation.name}} <br />
+              Дата {{ reservation.start|date:'d.m.y' }}<br />
+              Время брони {{ reservation.start|date:'H:i' }} <br/>
+              {{reservation.restaraunt.address}}
+            </div>
+          </div>
+        {% endfor %}
       </div>
     </div>
   </div>
 </div>
+
+<script>
+  function submitForm(e){
+    e.parentNode.submit()
+  }
+</script>
 {% endblock content %}

@@ -1,8 +1,9 @@
 {% extends 'base.py.html' %} {% load django_svelte %}
 {% block content %}
+{% for order in orders %}
 <div
         class="modal-wrapper modal fade"
-        id="delivery_order_modal"
+        id="delivery_order_modal_{{ order.id }}"
         tabindex="-1"
         role="dialog"
 >
@@ -21,11 +22,23 @@
 <!--                    Заявка на франшизу-->
 <!--                </div>-->
             </div>
-            <div class="pcdelivery-modal-item d-flex align-items-center"><img src="/static/app/img/a-reserve-icon.png" class="icon" alt="Время"> 23.10.2020 в 15:00</div>
-            <div class="pcdelivery-modal-item"><strong>Адрес доставки:</strong> <span>г. Новосибирск, ул. Ленина, 12, кв. 344, этаж 1, подъезд 1</span></div>
-            <div class="pcdelivery-modal-item"><strong>Оплата:</strong> Картой курьеру</div>
+            <div class="pcdelivery-modal-item d-flex align-items-center">
+                <img src="/static/app/img/a-reserve-icon.png" class="icon" alt="Время">{{ order.created_at|date:'d.m.y' }} в {{ order.created_at|date:'H:i' }}</div>
+            <div class="pcdelivery-modal-item"><strong>Адрес доставки:</strong> <span>{{ order.address }}</span></div>
+            <div class="pcdelivery-modal-item"><strong>Оплата:</strong> {{ order.payment }}</div>
             <div class="pcdelivery-modal-item mb-0">
-                <div class="cart-item">
+                {% for menue_in_order in order.menues.all %}
+                    <div class="cart-item">
+                        <div class="d-flex align-items-center">
+                            <div class="cart-item_imgwrapper">
+                                <img class="cart-item_img" src='/media/images/product.jpg'/>
+                            </div>
+                            <div class="cart-item_title">{{ menue_in_order.menue.dish }}</div>
+                        </div>
+                        <div class="cart-item_price text-right">{{ menue_in_order.menue.in_restaraunt.first.price }}₽</div>
+                    </div>
+                {% endfor %}
+                <!-- <div class="cart-item">
                     <div class="d-flex align-items-center">
                         <div class="cart-item_imgwrapper">
                             <img class="cart-item_img" src='/media/images/product.jpg'/>
@@ -33,106 +46,126 @@
                         <div class="cart-item_title">Название</div>
                     </div>
                     <div class="cart-item_price text-right">20₽</div>
-                </div>
-                <div class="cart-item">
-                    <div class="d-flex align-items-center">
-                        <div class="cart-item_imgwrapper">
-                            <img class="cart-item_img" src='/media/images/product.jpg'/>
-                        </div>
-                        <div class="cart-item_title">Название</div>
-                    </div>
-                    <div class="cart-item_price text-right">20₽</div>
-                </div>
+                </div> -->
             </div>
-                <div class="cart-sum d-flex justify-content-between align-items-center mt-1 mb-3">
+                <div class="cart-sum d-flex justify-content-between align-items-center mb-3">
                     <div class="cart-summary_title">ИТОГО:</div>
-                    <div class="cart-summary_amount text-right">0₽</div>
+                    <div class="cart-price text-right">{{ order.price }}₽</div>
                 </div>
-            <div class="pcdelivery-modal-item"><strong>Комментарий:</strong> Просьба позвонить за 10 минут до прибытия курьера</div>
-            <div class="d-flex justify-content-between align-items-center mb-2">
-                <a href="#" class="submit">Подтвердить</a>
-                <a href="#" class="download active close-modal">Отменить</a>
+            <div class="pcdelivery-modal-item"><strong>Комментарий:</strong> {{ order.comment }}</div>
+            <div class="d-flex justify-content-between align-items-center mb-4">
+
+                <form action="/pcpanel/delivery" method="POST">
+                    <input type="hidden" name="id" value="{{ order.id }}">
+                    <input type="hidden" name="status" value="{{ OrderStatusType.APPROVED }}">
+                    <a href="#" onclick="submitForm(this); return false;"  class="submit">Подтвердить</a>
+                </form>
+                <form action="/pcpanel/delivery" method="POST">
+                    <input type="hidden" name="id" value="{{ order.id }}">
+                    <input type="hidden" name="status" value="{{ OrderStatusType.REJECT }}">
+                    <a href="#" onclick="submitForm(this); return false;"  class="alternative close-modal">Отменить</a>
+                </form>
             </div>
         </div>
     </div>
 </div>
+{% endfor %}
+
 <div class="inner-bg">
     <div class="container inner-page">
         <div class="row">
 
             <div class="col-12">
                 <div class="section-title" title="Доставка">Доставка</div>
+                {% if messages %}
+                    {% for message in messages %}
+                    <div{% if message.tags %}{% endif %} style="color: white">{{ message }}</div>
+                    {% endfor %}
+                {% endif %}
                 <table class="orders-table">
-                    <tr class="headings-row">
+                    <tr>
                         <th>Номер заказа</th>
                         <th>Дата заказа</th>
                         <th>Телефон заказчика</th>
                         <th>Сумма заказа</th>
                     </tr>
-                    <tr data-modal="#delivery_order_modal" class="order-row">
+                    {% for order in orders %}
+                        <tr data-modal="#delivery_order_modal_{{ order.id }}">
+                            <td>№{{order.id}}</td>
+                            <td>{{order.created_at}}</td>
+                            <td>{{order.user}}</td>
+                            <td>{{order.price}}.-</td>
+                        </tr>
+                    {% endfor %}
+                    <!--
+                    <tr data-modal="#delivery_order_modal">
                         <td>№23498</td>
                         <td>23.09.2029</td>
                         <td>+7 (999) 999-99-99</td>
                         <td>2 560.-</td>
                     </tr>
-                    <tr data-modal="#delivery_order_modal" class="order-row">
+                    <tr data-modal="#delivery_order_modal">
                         <td>№23498</td>
                         <td>23.09.2029</td>
                         <td>+7 (999) 999-99-99</td>
                         <td>2 560.-</td>
                     </tr>
-                    <tr data-modal="#delivery_order_modal" class="order-row">
+                    <tr data-modal="#delivery_order_modal">
                         <td>№23498</td>
                         <td>23.09.2029</td>
                         <td>+7 (999) 999-99-99</td>
                         <td>2 560.-</td>
                     </tr>
-                    <tr data-modal="#delivery_order_modal" class="order-row">
+                    <tr data-modal="#delivery_order_modal">
                         <td>№23498</td>
                         <td>23.09.2029</td>
                         <td>+7 (999) 999-99-99</td>
                         <td>2 560.-</td>
                     </tr>
-                    <tr data-modal="#delivery_order_modal" class="order-row">
+                    <tr data-modal="#delivery_order_modal">
                         <td>№23498</td>
                         <td>23.09.2029</td>
                         <td>+7 (999) 999-99-99</td>
                         <td>2 560.-</td>
                     </tr>
-                    <tr data-modal="#delivery_order_modal" class="order-row">
+                    <tr data-modal="#delivery_order_modal">
                         <td>№23498</td>
                         <td>23.09.2029</td>
                         <td>+7 (999) 999-99-99</td>
                         <td>2 560.-</td>
                     </tr>
-                    <tr data-modal="#delivery_order_modal" class="order-row">
+                    <tr data-modal="#delivery_order_modal">
                         <td>№23498</td>
                         <td>23.09.2029</td>
                         <td>+7 (999) 999-99-99</td>
                         <td>2 560.-</td>
                     </tr>
-                    <tr data-modal="#delivery_order_modal" class="order-row">
+                    <tr data-modal="#delivery_order_modal">
                         <td>№23498</td>
                         <td>23.09.2029</td>
                         <td>+7 (999) 999-99-99</td>
                         <td>2 560.-</td>
                     </tr>
-                    <tr data-modal="#delivery_order_modal" class="order-row">
+                    <tr data-modal="#delivery_order_modal">
                         <td>№23498</td>
                         <td>23.09.2029</td>
                         <td>+7 (999) 999-99-99</td>
                         <td>2 560.-</td>
                     </tr>
-                    <tr data-modal="#delivery_order_modal" class="order-row">
+                    <tr data-modal="#delivery_order_modal">
                         <td>№23498</td>
                         <td>23.09.2029</td>
                         <td>+7 (999) 999-99-99</td>
                         <td>2 560.-</td>
-                    </tr>
+                    </tr> -->
                 </table>
             </div>
         </div>
     </div>
 </div>
-
+<script>
+    function submitForm(e){
+      e.parentNode.submit()
+    }
+  </script>
 {% endblock content %}

@@ -83,6 +83,76 @@ const yandexEdaLink = document.getElementById("yandex_eda_link");
 console.log({ phoneHeaderLink, mobileHeaderPhoneLink });
 let isCityInitialization = true;
 
+
+async function getManagerSettings(){
+  const response = await fetch('/manager_settings')
+  window.managerSettings = (await response.json()).settings
+  const managerSettingsGetEvent = new Event('managerSettingsGet')
+  window.dispatchEvent(managerSettingsGetEvent)
+}
+
+getManagerSettings()
+
+async function showTableStatus(restaurantMaps) {
+  const urlSearchParams = new URLSearchParams(window.location.search)
+  const filterDate = urlSearchParams.get('filter_date')
+  const filterRestaurant = urlSearchParams.get('filter_restaraunt')
+  if(!filterDate) return
+  const tableNums = (await request('POST', '/reservation?type=check', {
+    type: 'check',
+    restaraunt: filterRestaurant,
+    date:  filterDate.replace(/-/g, '/'),
+    time: '16:00',
+    phone: '-',
+    persons: 0,
+    table: 0,
+    name: 'test',
+    description: ''
+  })).tables
+  const tableIdsString = tableNums.map(num => `path[id='${num}']`).join(',')
+
+  console.log({tableIdsString})
+  restaurantMaps.forEach(map => [...map.querySelectorAll('path')].filter((path) => {
+    if (!isNaN(path.id)) return path;
+  }).forEach(path => {
+    path.style.fill = '#99CC66'
+    path.classList.remove('reserved')
+  }))
+  if (tableIdsString) {
+    restaurantMaps.forEach(map => {
+      map.querySelectorAll(tableIdsString).forEach(path => {
+        path.style.fill = 'red'
+        path.classList.add('reserved')
+      })
+    })
+  }
+
+}
+
+function appendSchemesAdmin(schemes) {
+  // return
+  // if (!document.getElementById("table")) return;
+  const restaurantMaps = []
+  document.querySelector("#table.admin").innerHTML = "";
+  schemes.forEach((schema) => {
+    let el = document.createElement("svg");
+    fetch(schema.url)
+        .then((r) => r.text())
+        .then((text) => {
+          el.innerHTML = text;
+          el.class = "svg";
+          restaurantMaps.push(el)
+          // document.querySelector("#table.admin").appendChild(el);
+        })
+        .then(() => showTableStatus(restaurantMaps))
+        .then(() => {
+          document.querySelector("#table.admin").append(...restaurantMaps);
+        })
+        .catch(console.error.bind(console));
+  });
+
+}
+
 async function initCity() {
   function setCurrentCity(currentCity) {
     window.currentCity = currentCity;
@@ -92,6 +162,20 @@ async function initCity() {
       window.location.href = `/set_city_id?id=${currentCity.id}`;
     }
     isCityInitialization = false;
+    const adminTableWrapper = document.querySelector('#table.admin')
+    if(adminTableWrapper){
+      const selectAdminRestaraunts = document.querySelector('select[name="filter_restaraunt"]').options
+      const selectedRestarauntId = selectAdminRestaraunts.item(selectAdminRestaraunts.selectedIndex);
+      let restaurantsInCity = null;
+      if(selectedRestarauntId.value)
+        restaurantsInCity = window.restaraunts.filter(r => r.id == selectedRestarauntId.value)
+      else
+        restaurantsInCity = window.restaraunts.filter(r => r.city.name === currentCity.name)
+      if(restaurantsInCity){
+// console.log({restaurantsInCity})
+        appendSchemesAdmin(restaurantsInCity[0].schemes)
+      }
+    }
     // fetch(`/set_city_id?id=${currentCity.id}`).then(() => document.location.reload())
   }
 

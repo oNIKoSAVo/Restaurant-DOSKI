@@ -1,7 +1,6 @@
 @import 'variables';
 
-
-#delivery_order_modal {
+.delivery_order_modal {
   color: #000;
   //letter-spacing: .5px;
   font-family: Muller, sans-serif;
@@ -39,7 +38,7 @@
 
 }
 
-#reservation_manager_modal {
+.reservation_manager_modal {
   p {
     font-size: 18px;
     margin-bottom: 5px;
@@ -62,7 +61,7 @@
   }
 }
 
-#reservation_edit_modal {
+.reservation_edit_modal {
   .pcbooking-modal-form__el {
     display: flex;
     align-items: center;

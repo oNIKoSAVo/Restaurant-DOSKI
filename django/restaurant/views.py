@@ -294,7 +294,7 @@ def reservation(request):
         else:
             setting = Setting.objects.all().last()
             if setting.allow_period_reservation:
-                check_date = datetime.now() + timedelta(days=setting.allow_period_reservation)
+                check_date = datetime.now().replace(hour=23, minute=59, second=59) + timedelta(days=setting.allow_period_reservation)
                 if check_date < date_start:
                     return JsonResponse({"status": "error", "message": f"Период бронирования не может превышать {setting.allow_period_reservation} дней"})
 

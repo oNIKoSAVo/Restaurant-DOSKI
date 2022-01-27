@@ -7,6 +7,8 @@ import re
 import json
 import requests
 import random
+from datetime import datetime
+from datetime import timedelta
 import xlsxwriter
 from datetime import datetime
 from django.contrib.auth.models import User
@@ -17,7 +19,7 @@ from django.db.models import Q, Count
 from django.http import HttpResponse, HttpResponseNotFound
 from django.http.response import JsonResponse
 from restaurant.models import Feedback, Franchising, Promotion, Reservation, Restaraunt, Сareer, Menue, Category, Event, \
-    MenuInOrder, Order, Profile, City, PreOrder, MenuInPreOrder, MenueInRestaraunt, ReservationStatusType
+    MenuInOrder, Order, Profile, City, PreOrder, MenuInPreOrder, MenueInRestaraunt, ReservationStatusType, Setting
 from django.shortcuts import get_object_or_404, render, redirect
 from django.views.decorators.http import require_http_methods
 
@@ -267,6 +269,7 @@ def delivery(request):
 
 
 def reservation(request):
+    #from django.utils import timezone
     if request.method == "POST":
         date = request.POST.get('date')
         time_str_start = request.POST.get('time')
@@ -274,8 +277,13 @@ def reservation(request):
 
         date_start = datetime.strptime(
             date + " " + time_str_start, '%d/%m/%Y %H:%M')
+
+        time_start = datetime.strptime(time_str_start, '%H:%M').time()
         # date_end = datetime.strptime(
         #     date + " " + time_str_end, '%d/%m/%Y %H:%M')
+
+        # date_start = timezone.make_aware(date_start, timezone.get_default_timezone())
+
         if request.POST.get('type') == "check":
             today_start = date_start.replace(hour=0, minute=0, second=0)
             today_end = date_start.replace(hour=23, minute=59, second=59)
@@ -283,6 +291,19 @@ def reservation(request):
                 restaraunt=request.POST.get('restaraunt'), start__lte=today_end, start__gte=today_start).filter(Q(status=ReservationStatusType.APPROVED) | Q(status=ReservationStatusType.WAIT))
             return JsonResponse({"tables": [reserv.table for reserv in reservations]})
         else:
+            setting = Setting.objects.all().last()
+            if setting.allow_period_reservation:
+                check_date = datetime.now() + timedelta(days=setting.allow_period_reservation)
+                if check_date < date_start:
+                    return JsonResponse({"status": "error", "message": f"Период бронирования не может превышать {setting.allow_period_reservation} дней"})
+
+            if setting.allow_time_reservation_start and setting.allow_time_reservation_end:
+                if not setting.allow_time_reservation_start <= time_start <= setting.allow_time_reservation_end:
+                    return JsonResponse({"status": "error", "message": f"Бронирование доступно с {setting.allow_time_reservation_start} по {setting.allow_time_reservation_end}"})
+
+            if date_start < datetime.now():
+                return JsonResponse({"status": "error", "message": "Бронирование за прошедшее время"})
+
             cleanphone = re.sub('\W+', '', request.POST.get('phone'))
             profile = Profile.objects.filter(phone=cleanphone)
             if (not profile.exists()):

@@ -883,7 +883,10 @@ $(function () {
     console.log({ cartSummaryEl });
 
     if (cartSummaryEl) {
-      if (+cartSummaryEl.textContent.slice(0, -1) < 500) return;
+      if (+cartSummaryEl.textContent.slice(0, -1) < 500) {
+        setErrorShadow(document.querySelector('.cart-sum .cart-summary_amount'))
+        return;
+      }
     }
     const cartInDom = document.querySelector(".cart-full.pb-sm-4.mb-4");
     if (cartInDom.children.length === 0) return;

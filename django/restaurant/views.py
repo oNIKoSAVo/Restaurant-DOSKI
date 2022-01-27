@@ -17,7 +17,7 @@ from django.db.models import Q, Count
 from django.http import HttpResponse, HttpResponseNotFound
 from django.http.response import JsonResponse
 from restaurant.models import Feedback, Franchising, Promotion, Reservation, Restaraunt, Сareer, Menue, Category, Event, \
-    MenuInOrder, Order, Profile, City, PreOrder, MenuInPreOrder, MenueInRestaraunt
+    MenuInOrder, Order, Profile, City, PreOrder, MenuInPreOrder, MenueInRestaraunt, ReservationStatusType
 from django.shortcuts import get_object_or_404, render, redirect
 from django.views.decorators.http import require_http_methods
 
@@ -277,8 +277,10 @@ def reservation(request):
         # date_end = datetime.strptime(
         #     date + " " + time_str_end, '%d/%m/%Y %H:%M')
         if request.POST.get('type') == "check":
+            today_start = date_start.replace(hour=0, minute=0, second=0)
+            today_end = date_start.replace(hour=23, minute=59, second=59)
             reservations = Reservation.objects.filter(
-                restaraunt=request.POST.get('restaraunt'), start__gte=date_start)
+                restaraunt=request.POST.get('restaraunt'), start__lte=today_end, start__gte=today_start).filter(Q(status=ReservationStatusType.APPROVED) | Q(status=ReservationStatusType.WAIT))
             return JsonResponse({"tables": [reserv.table for reserv in reservations]})
         else:
             cleanphone = re.sub('\W+', '', request.POST.get('phone'))

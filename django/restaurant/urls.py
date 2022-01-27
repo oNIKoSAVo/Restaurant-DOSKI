@@ -43,7 +43,7 @@ urlpatterns = [
     path('cabinet', views.cabinet, name='cabinet'),
     path('restaraunts', views.restaraunts, name='restaraunts'),
     path('captcha', views.captcha, name='captcha'),
-
+    path('manager_settings', views.manager_settings, name='manager_settings'),
     path('set_city_id', views.set_city_id, name='set_city_id'),
 
     path('payment_success', views.payment_success, name='payment_success'),

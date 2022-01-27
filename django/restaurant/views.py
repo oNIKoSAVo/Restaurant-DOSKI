@@ -708,3 +708,8 @@ def payment_success(request):
 def payment_fail(request):
     print(request)
     return JsonResponse({"ok": ".........."})
+
+def manager_settings(request):
+    setting = Setting.objects.all().last()
+    setting.__dict__.pop('_state')
+    return JsonResponse({"settings": setting.__dict__})

@@ -13,6 +13,7 @@
   import {captchaProtect} from "./helpers/grecaptcha";
   import {correctPhoneWithMask} from "./helpers/correctPhoneWithMask";
   import {setErrorShadow} from "./helpers/setErrors";
+  import {numbersToPhone} from "./helpers/phoneToNumbers";
 
   export let restaraunts;
   export let reservation;
@@ -33,7 +34,7 @@
   let persons = "";
   let table = "";
   let name = window.user.name || "";
-  let phone = "";
+  let phone = numbersToPhone(window.user.phone) || "";
   let description = "";
   let cityId = localStorage.getItem('chosenCityId')
   let store;
@@ -455,6 +456,7 @@ $:    console.log({currentCityRestaurants})
         class="phone-input"
         name="phone"
         on:change={(e) => (phone = e.target.value)}
+        value="{phone}"
         placeholder="Номер телефона для связи"
       />
     </div>

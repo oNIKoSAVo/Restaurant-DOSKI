@@ -13,7 +13,7 @@
   let last_name = "";
   let phone = "";
   let position = "";
-  let cityId = localStorage.getItem('chosenCityId');
+  let cityId = localStorage.getItem('chosenCityId') || '';
   let bar = "";
   let b_day = "";
   let citizenship = "";

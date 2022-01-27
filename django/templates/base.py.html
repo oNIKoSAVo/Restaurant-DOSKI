@@ -30,8 +30,10 @@
 <body>
 <script>
     window.user = {
-        name: '{{request.user.profile.first_name}}'
+        name: '{% if request.user.profile.first_name %}{{request.user.profile.first_name}}{% endif %}',
+        phone: '{% if request.user.profile.phone %}{{request.user.profile.phone}}{% endif %}'
     }
+
     !(function (e, t, n, c, o, a, f) {
         e.fbq ||
         ((o = e.fbq =

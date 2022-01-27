@@ -10,3 +10,7 @@ export function phoneToNumbers(phoneString) {
       .join("")
   );
 }
+
+export function numbersToPhone(phoneNumbers){
+    return phoneNumbers ? `+7(${phoneNumbers.slice(1, 4)})-${phoneNumbers.slice(4, 7)}-${phoneNumbers.slice(7, 9)}-${phoneNumbers.slice(9, 11)}` : null
+}

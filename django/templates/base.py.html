@@ -234,7 +234,7 @@
                             width="24"
                     /></a>
                         <div class="text-center mt-sm-4">
-                            <a id="yandex_eda_link" target="_blank"><img src="static/app/img/yandex.png" height="36"/></a>
+                            <a id="yandex_eda_link" target="_blank"><img src="/static/app/img/yandex.png" height="36"/></a>
                         </div>
                     </div>
                 </div>
@@ -658,7 +658,30 @@
             </div>
         </div>
     </div>
-
+<div
+        class="modal-wrapper modal fade"
+        id="empty-modal"
+        tabindex="-1"
+        role="dialog"
+>
+    <div class="modal-dialog" style="max-width: 900px">
+        <div class="modal-content cart-top">
+            <div class="modal-header">
+                <button
+                        class="close"
+                        type="button"
+                        data-dismiss="modal"
+                        aria-label="Close"
+                >
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <div class="modal-title">
+                </div>
+            </div>
+            <!--        <div class="modal-description text-center mt-4"></div>-->
+        </div>
+    </div>
+</div>
 
 
     {% display_svelte "Feedback.svelte" component_props %}
@@ -1071,6 +1094,18 @@
             </div>
         </div>
     </div>
+<div
+        class="modal modal-wrapper fade"
+        id="table_not_chosen"
+        tabindex="-1"
+        role="dialog"
+>
+    <div class="modal-dialog limited" style="max-width: 506px">
+        <div class="modal-content text-center">
+            <h1>Стол не выбран</h1>
+        </div>
+    </div>
+</div>
     <div
             class="modal modal-wrapper fade"
             id="peoplenumber"

@@ -20,6 +20,7 @@ import { captchaProtect } from "../src/helpers/grecaptcha";
 import { phoneToNumbers } from "../src/helpers/phoneToNumbers";
 import { setErrorInput } from "../src/helpers/setErrors";
 import isEmail from "validator/es/lib/isEmail";
+import {request} from "../src/api";
 
 const options = {
   /* todo */
@@ -115,7 +116,7 @@ async function showTableStatus(restaurantMaps) {
   restaurantMaps.forEach(map => [...map.querySelectorAll('path')].filter((path) => {
     if (!isNaN(path.id)) return path;
   }).forEach(path => {
-    path.style.fill = '#99CC66'
+    path.style.fill = 'green'
     path.classList.remove('reserved')
   }))
   if (tableIdsString) {

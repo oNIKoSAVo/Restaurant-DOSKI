@@ -13,33 +13,106 @@
   import {captchaProtect} from "./helpers/grecaptcha";
   import {correctPhoneWithMask} from "./helpers/correctPhoneWithMask";
   import {setErrorShadow} from "./helpers/setErrors";
+  import isAlphaRuEn from "./helpers/isAlphaRuEn";
+  import {isCurrentTimeBetween} from "./helpers/time";
+  import {cloneDeep, isEqual} from "lodash-es";
+  // const isBetween = require('dayjs/plugin/isBetween')
+  import isBetween from 'dayjs/plugin/isBetween'
+  import {hasUnderscores} from "./helpers/hasUnderscores";
   import {numbersToPhone} from "./helpers/phoneToNumbers";
+
+  dayjs.extend(isBetween)
 
   export let restaraunts;
   export let reservation;
   reservation.restaraunt_id = 1;
+  let reservationPeriodDays = 10
+  let minReservationTime = '12:00';
+  let maxReservationTime = '20:00';
 
-  function setCurrentCity(currentCity){
-    window.currentCity = currentCity
+  function setCurrentCity(currentCity) {
+    window.currentCity = currentCity;
     // const cityChangedEvent = new Event('currentCityChange')
     // window.dispatchEvent(cityChangedEvent)
 
-    window.location.href = `/set_city_id?id=${currentCity.id}`
+    window.location.href = `/set_city_id?id=${currentCity.id}`;
 
     // fetch(`/set_city_id?id=${currentCity.id}`).then(() => document.location.reload())
   }
 
+  window.addEventListener('managerSettingsGet', () => {
+    const {
+      allow_period_reservation,
+      allow_time_reservation_end,
+      allow_time_reservation_start
+    } = window.managerSettings
+    console.log(allow_period_reservation, allow_time_reservation_end, allow_time_reservation_start)
+
+    if (allow_period_reservation) {
+      reservationPeriodDays = +allow_period_reservation
+      store.getState().end = dayjs().add(reservationPeriodDays, 'day').toDate()
+      if (urlSearchParams.get("date")) {
+
+        const [day, month, year] = urlSearchParams.get("date").split("-");
+        const maxDate = dayjs().add(reservationPeriodDays, 'day')
+
+        const urlDate = dayjs(`${year}-${month}-${day}`)
+        if(!urlDate.isValid()) return
+
+        if (urlDate.isBetween(dayjs().subtract(1, 'day'), maxDate, null, '[]')) {
+          store.getState().hasChosen = true
+          selectedDate = urlDate.toDate()
+          store.getState().selected = urlDate.toDate()
+          console.log({store: store.getState()})
+
+        } else {
+          // if date in url params is incorrect
+          store.getState().hasChosen = false
+          store.getState().selected = new Date()
+          selectedDate = null
+          const emptyModalEl = document.getElementById('empty-modal')
+          emptyModalEl.querySelector('.modal-title').textContent = urlDate.isBefore(dayjs().subtract(1, 'day')) ? 'Бронирование на прошедшее время' : 'Бронирование на слишком дальний период'
+          openModal('#empty-modal')
+        }
+      }
+    }
+
+    if (allow_time_reservation_end && allow_time_reservation_start) {
+      minReservationTime = allow_time_reservation_start.slice(0, -3)
+      maxReservationTime = allow_time_reservation_end.slice(0, -3)
+
+      if (urlSearchParams.get("time")) {
+        const urlTime = urlSearchParams.get("time");
+        if (isCurrentTimeBetween(minReservationTime, maxReservationTime, urlTime)) {
+          time = urlTime;
+        } else {
+          const emptyModalEl = document.getElementById('empty-modal')
+
+          if(emptyModalEl.querySelector('.modal-title').textContent.trim()){
+            emptyModalEl.querySelector('.modal-title').textContent += '; Неверное время'
+          } else {
+            emptyModalEl.querySelector('.modal-title').textContent += 'Неверное время'
+            openModal('#empty-modal')
+          }
+
+        }
+      }
+    }
+
+
+    // console.log();
+  })
   // console.log({ restaraunt });
-  let time = "12:00";
+  let time = "";
   let persons = "";
   let table = "";
   let name = window.user.name || "";
   let phone = numbersToPhone(window.user.phone) || "";
   let description = "";
-  let cityId = localStorage.getItem('chosenCityId')
+  let cityId = localStorage.getItem("chosenCityId");
   let store;
-
-  let showIncorrectPhoneModal = false
+  let tableEls = []
+  let showIncorrectPhoneModal = false;
 
   let responseIdReservation = "";
 
@@ -69,75 +142,87 @@
   ];
 
   // const currentCity =
-  let restaurantsFromAdmin = []
-  fetch('/restaraunts', {method: 'GET'}).then((data) => data.json()).then(body => {
-    restaurantsFromAdmin = body
-    console.log({body})
-  })
-  let currentCityRestaurants = []
-  let restaraunt = ''
-  $: console.log({restaraunt})
-  const urlSearchParams = new URL (window.location.href).searchParams
-  restaraunt = +urlSearchParams.get('restaurant')
+  let restaurantsFromAdmin = [];
+  fetch("/restaraunts", {method: "GET"})
+          .then((data) => data.json())
+          .then((body) => {
+            restaurantsFromAdmin = body;
+            console.log({body});
+          });
+  let currentCityRestaurants = [];
+  let restaraunt = "";
+  $: console.log({restaraunt});
+
+
+  const urlSearchParams = new URL(window.location.href).searchParams;
+  restaraunt = +urlSearchParams.get("restaurant");
   let selectedDate;
 
-  if(urlSearchParams.get('date')){
-    const [day, month, year] = urlSearchParams.get('date').split('-')
-    console.log({year})
-    selectedDate = new Date(+year, +month - 1, +day)
-    console.log({restaraunt, selectedDate})
-  }
-  if(urlSearchParams.get('time')){
-    const urlTime = urlSearchParams.get('time')
-    if(correctTimeWithMask(urlTime)){
-      time = urlTime
-    }
-  }
-
-$:    console.log({currentCityRestaurants})
-
-  window.addEventListener('currentCityChange', e => {
-    currentCityRestaurants = restaurantsFromAdmin?.filter((el) => el?.city?.name === window.currentCity.name)
-    if(urlSearchParams.get('restaurant')){
-      const foundRestaurantInCurrentCity = currentCityRestaurants.find(r => r.id === +urlSearchParams.get('restaurant'))
-      if(!foundRestaurantInCurrentCity) {
-        const foundRestaurantInAllCities = window.restaraunts.find(r => r.id === +urlSearchParams.get('restaurant'))
-        if(!foundRestaurantInAllCities){
-          restaraunt = currentCityRestaurants[0]?.id
-        }
-        else {
-          console.log({city: foundRestaurantInAllCities.city})
-          setCurrentCity(foundRestaurantInAllCities.city)
-          localStorage.setItem("chosenCityName", foundRestaurantInAllCities.city.name);
-        }
-      }
-      else restaraunt = +urlSearchParams.get('restaurant')
-    }
-    // else restaraunt = currentCityRestaurants[0]?.id
-    if(!restaraunt){
-      restaraunt = ''
-    }
-    const schemes = []
-    restaurantsFromAdmin.find(r => r.id === restaraunt)?.schemes.forEach(s => schemes.push(s))
-    appendSchemes(schemes);
-  })
-
-
-  $: if (currentCityRestaurants.length === 0) {
-    restaraunt = currentCityRestaurants[0]?.id
-  }
-  $: console.log({table})
-  // restaraunt = currentCityRestaurants[0]?.address;
-  // function validate(e, validateFn, stateValue) {
-  //   if (validateFn(e.target.value) || e.target.value === "") {
-  //     stateValue = e.target.value;
-  //   } else {
-  //     e.target.value = stateValue;
+  // if (urlSearchParams.get("date")) {
+  //   const [day, month, year] = urlSearchParams.get("date").split("-");
+  //   console.log({ year });
+  //
+  //   selectedDate = new Date(+year, +month - 1, +day);
+  //   console.log({ restaraunt, selectedDate });
+  // }
+  // if (urlSearchParams.get("time")) {
+  //   const urlTime = urlSearchParams.get("time");
+  //   if (correctTimeWithMask(urlTime)) {
+  //     time = urlTime;
   //   }
   // }
+
+  window.addEventListener("currentCityChange", (e) => {
+    currentCityRestaurants = restaurantsFromAdmin?.filter(
+            (el) => el?.city?.name === window.currentCity.name
+    );
+    if (urlSearchParams.get("restaurant")) {
+      const foundRestaurantInCurrentCity = currentCityRestaurants.find(
+              (r) => r.id === +urlSearchParams.get("restaurant")
+      );
+      if (!foundRestaurantInCurrentCity) {
+        const foundRestaurantInAllCities = window.restaraunts.find(
+                (r) => r.id === +urlSearchParams.get("restaurant")
+        );
+        if (!foundRestaurantInAllCities) {
+          restaraunt = currentCityRestaurants[0]?.id;
+        } else {
+          console.log({city: foundRestaurantInAllCities.city});
+          setCurrentCity(foundRestaurantInAllCities.city);
+          localStorage.setItem(
+                  "chosenCityName",
+                  foundRestaurantInAllCities.city.name
+          );
+        }
+      } else restaraunt = +urlSearchParams.get("restaurant");
+    } /*else restaraunt = currentCityRestaurants[0]?.id;*/
+    if (!restaraunt) {
+      restaraunt = ''
+    }
+    const schemes = [];
+    restaurantsFromAdmin
+            .find((r) => r.id === restaraunt)
+            ?.schemes.forEach((s) => schemes.push(s));
+    appendSchemes(schemes);
+  });
+
+  $: if (currentCityRestaurants.length === 0) {
+    restaraunt = currentCityRestaurants[0]?.id;
+  }
+
+  $: if (store) store.subscribe((storeInfo) => {
+    if (storeInfo.hasChosen && !storeInfo.open && !storeInfo.enlargeDay && time) {
+      showTableStatus(tableEls)
+    }
+  })
+  $: if (time) {
+    showTableStatus(tableEls)
+  }
+  $: console.log({table});
+
   document.addEventListener("DOMContentLoaded", () => {
     const im = new Inputmask("99:99");
-    // const datepicker = im.mask(document.querySelector("select.timepicker"));
+    const datepicker = im.mask(document.querySelector(".datepicker"));
     // appendSchemes([{url: restaraunts[0]?.schemes[0]?.url}]);
   });
 
@@ -151,12 +236,13 @@ $:    console.log({currentCityRestaurants})
   }
 
   console.log(restaraunts);
+
   async function handleSubmit(e) {
     e.preventDefault();
     e.stopPropagation();
     console.log({
       restaraunt,
-      date: dayjs(store.getState().selected).format('DD/MM/YYYY'),
+      date: dayjs(store.getState().selected).format("DD/MM/YYYY"),
       time,
       end: time,
       persons,
@@ -164,46 +250,85 @@ $:    console.log({currentCityRestaurants})
       name,
       phone,
       description,
-      agreed: document.getElementById('rules').checked
-    })
+      agreed: document.getElementById("rules").checked,
+    });
+
     // if(lastTableModalTimeout) return
-    if (!correctTimeWithMask(time) || !table || !persons || !name || !correctPhoneWithMask(phone) || !restaraunt || !store.getState().hasChosen || !document.getElementById('rules').checked) {
-      if(!table) {
-        setErrorShadow(document.querySelector('input[name=table]'))
+    function setErrorShadowTimed(el) {
+      setErrorShadow(el, 5000, 'error-shadow-aggressive')
+    }
+
+    if (
+            hasUnderscores(time) || !time ||
+            !table ||
+            !persons ||
+            !name ||
+            !correctPhoneWithMask(phone) ||
+            !restaraunt ||
+            !store.getState().hasChosen ||
+            !document.getElementById("rules").checked
+    ) {
+      if (!table) {
+        openModal("#table_not_chosen");
       }
-      if(!correctTimeWithMask(time)){
-        setErrorShadow(document.querySelector('select.timepicker'))
+
+      if (!document.getElementById("rules").checked) {
+        setErrorShadowTimed(document.querySelector(".rules"));
       }
-      // if(!persons){
-      //   setErrorShadow(document.querySelector('select[name=persons]'))
+      if (hasUnderscores(time) || !time) {
+        setErrorShadowTimed(document.querySelector("input.datepicker"));
+      }
+      if (!restaraunt) {
+        setErrorShadowTimed(document.querySelector("select[name=restaurant]"));
+      }
+      // if (!persons) {
+      //   setErrorShadowTimed(document.querySelector("input[name=persons]"));
       // }
-      if(!name){
-        setErrorShadow(document.querySelector('input[name=name]'))
+      if (!name) {
+        setErrorShadowTimed(document.querySelector("input[name=name]"));
       }
-      if(!correctPhoneWithMask(phone)){
-        setErrorShadow(document.querySelector('input[name=phone]'))
-      }
-
-      if(!store.getState().hasChosen) {
-        setErrorShadow(document.getElementById('chooseDate'))
+      if (!correctPhoneWithMask(phone)) {
+        setErrorShadowTimed(document.querySelector("input[name=phone]"));
       }
 
-      // console.log(document.querySelector('#reserve-form .rules'))
-      if(!document.getElementById('rules').checked){
-          setErrorShadow(document.querySelector('#reserve-form .rules'))
+      if (!store.getState().hasChosen) {
+        setErrorShadowTimed(document.getElementById("chooseDate"));
       }
-      return
+      const [maxHours, maxMinutes] = maxReservationTime.split(':')
+      const maxDate = dayjs().add(reservationPeriodDays, 'day').add(+maxHours, 'hours').add(+maxMinutes, 'minutes')
+      const day = store.getState().day
+      const month = store.getState().month
+      const year = store.getState().year
+
+
+      const formDate = dayjs(`${year}-${month + 1}-${day}`)
+      const [hours, minutes] = time.split(':')
+      const formDateWithHours = formDate.add(+hours, 'hour').add(+minutes, 'minutes')
+      const dateNow = dayjs()
+      if (!formDateWithHours.isBetween(dateNow, maxDate, null, '[]')) {
+        console.log({formDate})
+        const emptyModal = document.getElementById('empty-modal')
+        emptyModal.querySelector('.modal-title').textContent = formDateWithHours.isBefore(dateNow) ?'Бронирование на прошедшее время' : 'Бронирование на слишком дальний период'
+        openModal('#empty-modal')
+      }
+
+      // if(!!document.getElementById('rules').checked){
+      //     setErrorShadowTimed(document.querySelector('.reserve-form .rules'))
+      // }
+      return;
     }
     captchaProtect(async () => {
-      openModal("#askpreorder");
 
-      sendTelegramMessage(`${name} забронировал(а) стол ${table} в ${time} на ${persons} человек(а). Номер: ${phone}. Ресторан на улице ${
-              restaraunts.find((el) => el.id === restaraunt).text
-      }`)
+
+      sendTelegramMessage(
+              `${name} забронировал(а) стол ${table} в ${time} на ${persons} человек(а). Номер: ${phone}. Ресторан на улице ${
+                      restaraunts.find((el) => el.id === restaraunt).text
+              }`
+      );
 
       const response = await reservationRequest({
         restaraunt,
-        date: dayjs(store.getState().selected).format('DD/MM/YYYY'),
+        date: dayjs(store.getState().selected).format("DD/MM/YYYY"),
         time,
         end: time,
         persons,
@@ -215,8 +340,13 @@ $:    console.log({currentCityRestaurants})
 
       if (response.id) {
         responseIdReservation = response.id;
+        openModal("#reserved");
+      } else if (response.status==='error' && response.message){
+        const emptyModal = document.getElementById('empty-modal')
+        emptyModal.querySelector('.modal-title').textContent = response.message
+        openModal("#empty-modal");
       }
-    })
+    });
 
     //todo check response
   }
@@ -225,11 +355,13 @@ $:    console.log({currentCityRestaurants})
     // openModal("#peoplenumber");
     console.log("was here");
     console.log({restaraunts}, {restaraunt});
-    const findRestaraunt = restaurantsFromAdmin.find((elem) => elem.id == restaraunt);
-    console.log(findRestaraunt);
-    // appendSchemes(findRestaraunt.schemes);
-    console.log({findRestaraunt});
+    const findRestaraunt = restaurantsFromAdmin.find(
+            (elem) => elem.id == restaraunt
+    );
     appendSchemes(findRestaraunt.schemes);
+    // console.log(findRestaraunt);
+    // appendSchemes(findRestaraunt.schemes);
+    // console.log({ findRestaraunt });
   }
 
   function openModal(id) {
@@ -240,8 +372,46 @@ $:    console.log({currentCityRestaurants})
     jquery("html,body").addClass("locked");
     jquery("body").css("overflow", "hidden");
     // jquery("body").css("top", -saveTop);
+    document.querySelector(id).style.display = "";
     jquery(id).addClass("show").show();
   }
+
+  async function showTableStatus(restaurantMaps) {
+    if (!store?.getState().selected || !restaraunt) {
+      return
+    }
+    const tableNums = (await request('POST', '/reservation?type=check', {
+      type: 'check',
+      restaraunt,
+      date: dayjs(store.getState().selected).format("DD/MM/YYYY"),
+      time,
+      phone: '-',
+      persons: 0,
+      table: 0,
+      name: 'test',
+      description: ''
+    })).tables
+    table = ''
+    const tableIdsString = tableNums.map(num => `path[id='${num}']`).join(',')
+
+    console.log({tableIdsString})
+    restaurantMaps.forEach(map => [...map.querySelectorAll('path')].filter((path) => {
+      if (!isNaN(path.id)) return path;
+    }).forEach(path => {
+      path.style.fill = 'green'
+      path.classList.remove('reserved')
+    }))
+    if (tableIdsString) {
+      restaurantMaps.forEach(map => {
+        map.querySelectorAll(tableIdsString).forEach(path => {
+          path.style.fill = 'red'
+          path.classList.add('reserved')
+        })
+      })
+    }
+
+  }
+
 
   function appendSchemes(schemes) {
     // if (!document.getElementById("table")) return;
@@ -253,15 +423,19 @@ $:    console.log({currentCityRestaurants})
               .then((text) => {
                 el.innerHTML = text;
                 el.class = "svg";
-                document.getElementById("table").appendChild(el);
-                let paths = [...document.querySelectorAll("path")].filter((path) => {
+                tableEls.push(el)
+                let paths = [...el.querySelectorAll("path")].filter((path) => {
                   if (!isNaN(path.id)) return path;
                 });
-                const chooseTableBtn = document.querySelector('.select-table.close-modal')
+                const chooseTableBtn = document.querySelector(
+                        ".select-table.close-modal"
+                );
+
 
                 paths.forEach((path) =>
                         path.addEventListener("click", function (e) {
                           e.stopPropagation();
+                          if (path.classList.contains('reserved')) return
                           openModal("#table-modal");
                           const peopleQuantity = slicePeopleForTable(
                                   this.nextElementSibling.id
@@ -269,40 +443,52 @@ $:    console.log({currentCityRestaurants})
                           document.getElementById(
                                   "table-modal-people-quantity"
                           ).textContent = peopleQuantity;
-                          const currentRestaurant = restaraunts.find(r => r.id === restaraunt)
-                          const currentTable = currentRestaurant.tables.find(t => t.table === +path.id)
-                          persons = peopleQuantity
-                          console.log({currentTable})
+                          const currentRestaurant = restaraunts.find(
+                                  (r) => r.id === restaraunt
+                          );
+                          const currentTable = currentRestaurant?.tables.find(
+                                  (t) => t.table === +path.id
+                          );
+                            persons = peopleQuantity
                           document
                                   .getElementById("table-modal")
-                                  .querySelector(
-                                          ".modal-description"
-                                  ).textContent = currentTable?.description || `Столик с видом на город для компании до ${peopleQuantity} человек`;
-                          document.getElementById('table-modal').querySelector('img.modal-table').src = currentTable?.photo || '/static/app/img/table.jpg'
+                                  .querySelector(".modal-description").textContent =
+                                  currentTable?.description ||
+                                  `Столик с видом на город для компании до ${peopleQuantity} человек`;
+                          document
+                                  .getElementById("table-modal")
+                                  .querySelector("img.modal-table").src =
+                                  currentTable?.photo || "/static/app/img/table.jpg";
                           document.getElementById("table-modal-number").textContent =
                                   this.id;
-                          console.log({restaraunttt: restaraunts})
                           chooseTableBtn.onclick = () => {
-                            paths.forEach((r) => (r.style.fill = "green"));
+                            paths.forEach((p) => {
+                              if (!p.classList.contains('reserved')) p.style.fill = "green"
+                            });
 
                             console.log({
                               sliced: slicePeopleForTable(this.nextElementSibling.id),
                             });
 
-
                             table = this.id;
                             this.style.fill = "#7f7f7f";
-                            chooseTableBtn.onclick = null
-                          }
+                            chooseTableBtn.onclick = null;
+                          };
                           console.log({el: this});
-
                         })
                 );
               })
+              .then(() => {
+                if (time && store.getState().selected) showTableStatus(tableEls)
+              })
+              .then(() => document.getElementById("table").append(...tableEls))
+
               .catch(console.error.bind(console));
     });
-  }
 
+
+    // showTableStatus()
+  }
 
 
 </script>
@@ -315,7 +501,7 @@ $:    console.log({currentCityRestaurants})
 >
   <div class="modal-dialog limited" style="max-width: 506px">
     <div class="modal-content">
-      <h1>Доступное время бронирования с 12.00 до 20.00</h1>
+      <h1>Доступное время бронирования с {minReservationTime} до {maxReservationTime}</h1>
     </div>
   </div>
 </div>
@@ -368,45 +554,62 @@ $:    console.log({currentCityRestaurants})
       <CustomDatepicker
         bind:store
         start="{dayjs()}"
-        selected="{selectedDate}"
+        end="{dayjs().add(reservationPeriodDays, 'day')}"
+        bind:selected="{selectedDate}"
       />
     </div>
     <div class="col-7">
-      <select class="timepicker" on:change={(e) => {
-          if (!correctTimeWithMask(e.target.value)) {
-            e.target.value = "";
-            showIncorrectPhoneModal = true;
-            setTimeout(() => {
-              showIncorrectPhoneModal = false;
-            }, 3000);
-          } else {
-            time = e.target.value;
-          }
-        }}>
-        <option value="12:00">12:00</option>
-        <option value="12:30" >12:30</option>
-        <option value="13:00" >13:00</option>
-        <option value="13:30" >13:30</option>
-        <option value="14:00" >14:00</option>
-        <option value="14:30" >14:30</option>
-        <option value="15:00" >15:00</option>
-        <option value="15:30" >15:30</option>
-        <option value="16:00" >16:00</option>
-        <option value="16:30" >16:30</option>
-        <option value="17:00" >17:00</option>
-        <option value="17:30" >17:30</option>
-        <option value="18:00" >18:00</option>
-        <option value="18:30" >18:30</option>
-        <option value="19:00" >19:00</option>
-        <option value="19:30" >19:30</option>
-        <option value="20:00" >20:00</option>
-      </select>
-<!--      <input-->
-<!--        placeholder="Время"-->
-<!--        class="timepicker"-->
-
-
-<!--      />-->
+<!--      <select class="timepicker" on:change={(e) => {-->
+<!--          if (!correctTimeWithMask(e.target.value)) {-->
+<!--            e.target.value = "";-->
+<!--            showIncorrectPhoneModal = true;-->
+<!--            setTimeout(() => {-->
+<!--              showIncorrectPhoneModal = false;-->
+<!--            }, 3000);-->
+<!--          } else {-->
+<!--            time = e.target.value;-->
+<!--          }-->
+<!--        }}>-->
+<!--        <option value="12:00">12:00</option>-->
+<!--        <option value="12:30" >12:30</option>-->
+<!--        <option value="13:00" >13:00</option>-->
+<!--        <option value="13:30" >13:30</option>-->
+<!--        <option value="14:00" >14:00</option>-->
+<!--        <option value="14:30" >14:30</option>-->
+<!--        <option value="15:00" >15:00</option>-->
+<!--        <option value="15:30" >15:30</option>-->
+<!--        <option value="16:00" >16:00</option>-->
+<!--        <option value="16:30" >16:30</option>-->
+<!--        <option value="17:00" >17:00</option>-->
+<!--        <option value="17:30" >17:30</option>-->
+<!--        <option value="18:00" >18:00</option>-->
+<!--        <option value="18:30" >18:30</option>-->
+<!--        <option value="19:00" >19:00</option>-->
+<!--        <option value="19:30" >19:30</option>-->
+<!--        <option value="20:00" >20:00</option>-->
+<!--      </select>-->
+      <input
+              class="datepicker"
+              type="text"
+              placeholder="Время"
+              on:change={(e) => {
+            if (!isCurrentTimeBetween( minReservationTime, maxReservationTime, e.target.value)) {
+              e.target.value = "";
+              showIncorrectPhoneModal = true;
+              const errorTimeModal = document.getElementById("correct_time");
+              errorTimeModal.style.display = "";
+              setTimeout(() => {
+                errorTimeModal.onclick = () => {
+                  showIncorrectPhoneModal = false;
+                  errorTimeModal.onclick = null;
+                };
+              });
+            } else {
+              time = e.target.value;
+            }
+          }}
+              value="{time}"
+      />
     </div>
     <!-- <div class="col-md-6">
       <select

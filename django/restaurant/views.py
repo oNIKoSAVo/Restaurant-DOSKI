@@ -25,7 +25,8 @@ from django.views.decorators.http import require_http_methods
 
 
 def index(request):
-    return render(request, 'index.py.html', {'promotions': Promotion.objects.all()})
+    setting = Setting.objects.all().last()
+    return render(request, 'index.py.html', {'promotions': Promotion.objects.all(), 'main_banner': setting.main_banner})
 
 
 def set_city_id(request):

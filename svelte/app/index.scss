@@ -2137,6 +2137,10 @@ textarea {
   font-size: 16px;
   line-height: 21px;
   /* or 131% */
+  .phone {
+    font-size: inherit;
+    color: black;
+  }
 
   color: #848484;
 }

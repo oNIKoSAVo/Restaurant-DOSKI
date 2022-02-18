@@ -50,6 +50,8 @@
 
     if (allow_period_reservation) {
       reservationPeriodDays = +allow_period_reservation
+      jquery('#allow-period-reservation').textContent = reservationPeriodDays;
+
       store.getState().end = dayjs().add(reservationPeriodDays, 'day').toDate()
       if (urlSearchParams.get("date")) {
 

@@ -9,3 +9,4 @@ static/*
 *.lock
 .env
 .venv
+media

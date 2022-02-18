@@ -1192,7 +1192,7 @@ $(function () {
     $(".but").removeClass("active");
     $(this).addClass("active");
     $(".dropdown-toggle").html($(this).html());
-    $(".section-title").text($(this).text());
+    // $(".section-title").text($(this).text());
     $(".tab-content").hide();
     $(id).show();
   });

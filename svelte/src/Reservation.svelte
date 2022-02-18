@@ -83,6 +83,26 @@
       minReservationTime = allow_time_reservation_start.slice(0, -3)
       maxReservationTime = allow_time_reservation_end.slice(0, -3)
 
+      let min = parseInt(minReservationTime);
+      let max = parseInt(maxReservationTime);
+      const timeSelectEl = document.getElementById('time-selection-field');
+      let timeOptions = [];
+
+      console.log('VIEW WINDOW SETTINGS', min, max);
+
+      for (let h = min+1; h <= max; h++) {
+          const optionEl = document.createElement("option");
+          optionEl.classList.add('option');
+
+          let hours = (h).toString().padStart(2,0);
+          let timeOption = `${hours}:00`;
+          optionEl.setAttribute('value', timeOption);
+          optionEl.textContent = timeOption;
+          timeOptions.push(optionEl);
+      }
+      
+      timeSelectEl.append(...timeOptions);
+
       if (urlSearchParams.get("time")) {
         const urlTime = urlSearchParams.get("time");
         if (isCurrentTimeBetween(minReservationTime, maxReservationTime, urlTime)) {
@@ -560,58 +580,40 @@
         bind:selected="{selectedDate}"
       />
     </div>
-    <div class="col-7">
-<!--      <select class="timepicker" on:change={(e) => {-->
-<!--          if (!correctTimeWithMask(e.target.value)) {-->
-<!--            e.target.value = "";-->
-<!--            showIncorrectPhoneModal = true;-->
-<!--            setTimeout(() => {-->
-<!--              showIncorrectPhoneModal = false;-->
-<!--            }, 3000);-->
-<!--          } else {-->
-<!--            time = e.target.value;-->
-<!--          }-->
-<!--        }}>-->
-<!--        <option value="12:00">12:00</option>-->
-<!--        <option value="12:30" >12:30</option>-->
-<!--        <option value="13:00" >13:00</option>-->
-<!--        <option value="13:30" >13:30</option>-->
-<!--        <option value="14:00" >14:00</option>-->
-<!--        <option value="14:30" >14:30</option>-->
-<!--        <option value="15:00" >15:00</option>-->
-<!--        <option value="15:30" >15:30</option>-->
-<!--        <option value="16:00" >16:00</option>-->
-<!--        <option value="16:30" >16:30</option>-->
-<!--        <option value="17:00" >17:00</option>-->
-<!--        <option value="17:30" >17:30</option>-->
-<!--        <option value="18:00" >18:00</option>-->
-<!--        <option value="18:30" >18:30</option>-->
-<!--        <option value="19:00" >19:00</option>-->
-<!--        <option value="19:30" >19:30</option>-->
-<!--        <option value="20:00" >20:00</option>-->
-<!--      </select>-->
+    <!-- <div class="col-7">
       <input
-              class="datepicker"
-              type="text"
-              placeholder="Время"
-              on:change={(e) => {
-            if (!isCurrentTimeBetween( minReservationTime, maxReservationTime, e.target.value)) {
-              e.target.value = "";
-              showIncorrectPhoneModal = true;
-              const errorTimeModal = document.getElementById("correct_time");
-              errorTimeModal.style.display = "";
-              setTimeout(() => {
-                errorTimeModal.onclick = () => {
-                  showIncorrectPhoneModal = false;
-                  errorTimeModal.onclick = null;
-                };
-              });
-            } else {
-              time = e.target.value;
-            }
-          }}
-              value="{time}"
+        class="datepicker"
+        type="text"
+        placeholder="Время"
+        on:change={(e) => {
+          if (!isCurrentTimeBetween( minReservationTime, maxReservationTime, e.target.value)) {
+            e.target.value = "";
+            showIncorrectPhoneModal = true;
+            const errorTimeModal = document.getElementById("correct_time");
+            errorTimeModal.style.display = "";
+            setTimeout(() => {
+              errorTimeModal.onclick = () => {
+                showIncorrectPhoneModal = false;
+                errorTimeModal.onclick = null;
+              };
+            });
+          } else {
+            time = e.target.value;
+          }
+        }}
+        value="{time}"
       />
+    </div> -->
+    <div class="col-7 d-sm-block">
+      <select
+              class="select"
+              id="time-selection-field"
+              bind:value={time}
+      >
+          <option value='' class="option">
+              Выберите время
+          </option>
+      </select>
     </div>
     <!-- <div class="col-md-6">
       <select

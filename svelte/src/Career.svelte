@@ -241,12 +241,6 @@
           </div>
           <!--          </div>-->
           <div class="col-12">
-            <select name="citizen" bind:value={citizenship}>
-              <option value="">Выбери гражданство</option>
-              <option value="РФ">РФ</option>
-            </select>
-          </div>
-          <div class="col-12">
             <textarea placeholder="Расскажи о себе" bind:value={about} style="padding-left: 5px;"/>
           </div>
         </div>

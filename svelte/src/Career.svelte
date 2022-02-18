@@ -207,14 +207,11 @@
               <option value="">Выбери должность</option>
               <option value="Бармен">Бармен</option>
               <option value="Повар">Повар</option>
-              <option value="Повар (оплачиваемые командировки по РФ)"
-              >Повар (оплачиваемые командировки по РФ)</option
-              > <option value="Менеджер смены">Менеджер смены</option>
+              <option value="Менеджер смены">Менеджер смены</option>
               <option value="Сотрудник охраны">Сотрудник охраны</option>
               <option value="Хостес ">Хостес </option>
               <option value="Администратор">Администратор</option>
               <option value="Официант">Официант</option>
-              <option value="Бэк-вокалист">Бэк-вокалист</option>
             </select>
           </div>
           <div class="col-12">

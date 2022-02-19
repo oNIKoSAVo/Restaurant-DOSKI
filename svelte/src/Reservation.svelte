@@ -87,7 +87,7 @@
       in the reservation form: */
       // ---------------------------------
       let min = parseInt(minReservationTime);
-      let max = parseInt(maxReservationTime) + 1;
+      let max = parseInt(maxReservationTime);
       const timeSelectEl = document.getElementById('time-selection-field');
       let timeOptions = [];
 

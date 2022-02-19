@@ -1047,11 +1047,25 @@ $(function () {
   $(".delete-account").on("click", function (e) {
     e.preventDefault();
     // Удаление аккаунта
-
-    // Успешный исход
-    $("#deleteaccount .modal-title,#deleteaccount a").hide();
-    $("#deleteaccount .success").show();
+    request('POST', '/deactivate')
+      .then(() => {
+        // Успешный исход
+        $("#deleteaccount .modal-title,#deleteaccount a").hide();
+        $("#deleteaccount .success").show();
+      });
   });
+
+  $(".exit-account").on("click", function (e) {
+    e.preventDefault();
+    request('POST', '/exit')        
+      .then(() => {
+      $("#exitaccount .modal-title,#exitaccount a").hide();
+      $("#exitaccount .success").show();
+      window.location.href = '/';
+    })
+  });
+
+  
   $(".big-offer .close").on("click", function (e) {
     e.preventDefault();
     $(".big-offer").addClass("hide");

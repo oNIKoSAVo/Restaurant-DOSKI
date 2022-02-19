@@ -806,9 +806,11 @@ a.download {
   text-decoration: none;
   font-family: "Muller";
   outline: none;
-
+  text-align: center;
+  margin: 10px 0;
+  max-width: 240px;
   border-radius: 10px;
-  padding: 18px 35px;
+  padding: 18px 16px;
   display: inline-block;
   white-space: nowrap;
 
@@ -2645,12 +2647,12 @@ textarea {
   margin-right: -50px;
 }
 
-.tab-cont + .download {
-  text-align: center;
-  margin: 15px 0;
-  width: 100% !important;
-  max-width: 240px;
-}
+// .tab-cont + .download {
+//   text-align: center;
+//   margin: 15px 0;
+//   width: 100% !important;
+//   max-width: 240px;
+// }
 
 .reserve-data {
   width: 100%;
@@ -5780,9 +5782,9 @@ section.light {
   a.download {
     max-width: 100%;
     font-size: 16px;
-    padding: 15px 30px;
+    padding: 15px 20px;
     text-align: center;
-    margin-top: 0;
+    margin-top: 5px;
     margin-left: auto;
     margin-right: auto;
     display: block;

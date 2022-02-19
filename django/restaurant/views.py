@@ -12,7 +12,7 @@ from datetime import timedelta
 import xlsxwriter
 from datetime import datetime
 from django.contrib.auth.models import User
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
 from .lib.helpers import filter_categories
 
 from django.db.models import Q, Count
@@ -76,6 +76,25 @@ def signin(request):
     else:
         return JsonResponse({"error": "НЕПРЕЛ"})
 
+
+@require_http_methods(["POST"])
+def exit(request):
+    if request.user.is_authenticated:
+        logout(request)
+    return JsonResponse({"success": "You're free now."})
+
+@require_http_methods(["POST"])
+def deactivate(request):
+    if request.user.is_authenticated:
+        user = request.user
+        if not request.user.is_stuff:
+            password = ''.join(
+                random.choice('1234567890') for _ in range(4))
+            user.set_password(password)
+            user.save()
+        logout(request)
+    
+    return redirect('/')
 
 @require_http_methods(["POST"])
 def recovery(request):

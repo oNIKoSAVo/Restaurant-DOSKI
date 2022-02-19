@@ -83,14 +83,17 @@
       minReservationTime = allow_time_reservation_start.slice(0, -3)
       maxReservationTime = allow_time_reservation_end.slice(0, -3)
 
+      /* create option elements for the select element of available times 
+      in the reservation form: */
+      // ---------------------------------
       let min = parseInt(minReservationTime);
-      let max = parseInt(maxReservationTime);
+      let max = parseInt(maxReservationTime) + 1;
       const timeSelectEl = document.getElementById('time-selection-field');
       let timeOptions = [];
 
-      console.log('VIEW WINDOW SETTINGS', min, max);
+      console.log('MIN AND MAX: ', min, max);
 
-      for (let h = min+1; h <= max; h++) {
+      for (let h = min; h <= max; h++) {
           const optionEl = document.createElement("option");
           optionEl.classList.add('option');
 
@@ -100,8 +103,9 @@
           optionEl.textContent = timeOption;
           timeOptions.push(optionEl);
       }
-      
+
       timeSelectEl.append(...timeOptions);
+      // ---------------------------------
 
       if (urlSearchParams.get("time")) {
         const urlTime = urlSearchParams.get("time");

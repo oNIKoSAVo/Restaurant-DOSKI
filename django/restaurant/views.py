@@ -129,6 +129,9 @@ def captcha(request):
 
 
 def personal(request):
+    """
+    update user data
+    """
     if not request.user.is_authenticated:
         return redirect('/#signin')
 
@@ -136,7 +139,7 @@ def personal(request):
         data = json.loads(request.body)
         profile = Profile.objects.get(user=request.user)
         fio = data['fio']
-        phone = data['phone']
+        # phone = data.get('phone')
         birthday = data['birthday']
         email = data['email']
         password = data['password']
@@ -151,9 +154,9 @@ def personal(request):
             profile.last_name = last_name
             profile.first_name = first_name
 
-        if phone:
-            request.user.username = profile.phone = re.sub('\W+', '', phone)
-            request.user.save()
+        # if phone:
+        #     request.user.username = profile.phone = re.sub('\W+', '', phone)
+        #     request.user.save()
 
         if birthday:
             profile.birthday = birthday

@@ -844,9 +844,9 @@ $(function () {
           setErrorInput(secondNameInput);
         }
 
-        if (!!emailInput.value.trim() && !isEmail(emailInput.value.trim())) {
-          setErrorInput(emailInput);
-        }
+        // if (!!emailInput.value.trim() && !isEmail(emailInput.value.trim())) {
+        //   setErrorInput(emailInput);
+        // }
 
         if (
             !!phoneInput.value.trim() &&

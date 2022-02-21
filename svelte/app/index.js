@@ -863,7 +863,7 @@ $(function () {
 
       // Check if there are at least minPasswordLength latin or numeric simbols
       const passwordRE = new RegExp(`[0-9a-zA-Z]{${minPasswordLength},}`);
-      if (passwordRE.test(passwordValue)) {
+      if (!passwordRE.test(passwordValue)) {
           passwordErrors.push('password is too short');
       }
       
@@ -873,7 +873,7 @@ $(function () {
           passwordErrors.push('password has non latin simbols that isn\'t arabic figures');
       }
 
-      if (passwordErrors) {
+      if (!!passwordErrors.length) {
           openModal('#personal-update-errors');
           const modalEl = $('#personal-update-errors');
           let modalTextEl = modalEl.find('.modal-content');

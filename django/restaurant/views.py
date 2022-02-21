@@ -164,12 +164,14 @@ def personal(request):
         if email:
             profile.email = email
 
-        profile.save()
 
         if password:
             user = request.user
             user.set_password(password)
             user.save()
+            profile.is_changed_password = True
+
+        profile.save()
 
         return JsonResponse({"success": "Прошел"})
 

@@ -26,6 +26,7 @@ class Profile(models.Model):
     email = models.CharField(
         max_length=128, blank=True, null=True, default=None)
     registration_ip = models.GenericIPAddressField(default='192.168.0.1')
+    is_password_changed = models.BooleanField(default=False)
 
     def __str__(self):
         return "%s" % (self.user)

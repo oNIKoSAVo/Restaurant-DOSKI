@@ -1092,6 +1092,13 @@ p,
     padding: 25px 80px;
   }
 }
+#personal-update-errors {
+  .modal-content {
+    @media(max-width: 768px) {
+      padding: 25px 80px;
+    }
+  }
+}
 
 /* Mark input boxes that gets an error on validation: */
 input.invalid {

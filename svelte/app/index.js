@@ -799,9 +799,9 @@ $(function () {
       lastNameInput,
       firstNameInput,
       secondNameInput,
-      phoneInput,
       birthdayInput,
       emailInput,
+      passwordInput,
     ] = personalForm.querySelectorAll("input");
     // const startData = {fio: fioInput.value, phone: phoneInput.value}
     birthdayInput.onchange = (e) => {
@@ -821,57 +821,77 @@ $(function () {
         phoneInput: phoneInput.value,
         birthdayInput: birthdayInput.value,
         isEmail: isEmail(emailInput.value.trim()),
-        // passwordInput,
+        passwordInput,
       });
       console.log({ val: lastNameInput.value.trim() });
+
+      let thereIsInputErrors = false;
+
+      const lastNameValue = lastNameInput.value.trim();
+      const firstNameValue = firstNameInput.value.trim();
+      const secondNameValue = secondNameInput.value.trim();
+      const emailValue = emailInput.value.trim();
+      const birthdayValue = birthdayInput.value.trim();
+
+      if (!lastNameValue) {
+        setErrorInput(lastNameInput);
+        thereIsInputErrors = true;
+      }
+      if (!firstNameValue) {
+        setErrorInput(firstNameInput);
+        thereIsInputErrors = true;
+      }
+      if (!secondNameValue) {
+        setErrorInput(secondNameInput);
+        thereIsInputErrors = true;
+      }
+      if (!!emailValue && !isEmail(emailValue)) {
+        setErrorInput(emailInput);
+        thereIsInputErrors = true;
+      }
       if (
-        !lastNameInput.value.trim() ||
-        !firstNameInput.value.trim() ||
-        !secondNameInput.value.trim() ||
-        (!!emailInput.value.trim() && !isEmail(emailInput.value.trim())) ||
-        (!!phoneInput.value.trim() &&
-          !correctPhoneWithMask(phoneInput.value.trim())) ||
-        (!!birthdayInput.value.trim() &&
-          +birthdayInput.value.slice(0, 4) < 1920)
+          !!birthdayValue &&
+          +birthdayInput.value.slice(0, 4) < 1920
       ) {
-        if (!lastNameInput.value.trim()) {
-          setErrorInput(lastNameInput);
-        }
-        if (!firstNameInput.value.trim()) {
-          setErrorInput(firstNameInput);
-        }
-        if (!secondNameInput.value.trim()) {
-          setErrorInput(secondNameInput);
-        }
-
-        // if (!!emailInput.value.trim() && !isEmail(emailInput.value.trim())) {
-        //   setErrorInput(emailInput);
-        // }
-
-        if (
-            !!phoneInput.value.trim() &&
-            !correctPhoneWithMask(phoneInput.value.trim())
-        ) {
-          setErrorInput(phoneInput);
-        }
-        if (
-            !!birthdayInput.value.trim() &&
-            +birthdayInput.value.slice(0, 4) < 1920
-        ) {
-          setErrorInput(birthdayInput);
-        }
-        return
+        setErrorInput(birthdayInput);
+        thereIsInputErrors = true;
       }
 
+      const minPasswordLength = 6;
+      const passwordValue = passwordInput.value.trim();
+      let passwordErrors = [];
+
+      // Check if there are at least minPasswordLength latin or numeric simbols
+      const passwordRE = new RegExp(`[0-9a-zA-Z]{${minPasswordLength},}`);
+      if (passwordRE.test(passwordValue)) {
+          passwordErrors.push('password is too short');
+      }
+      
+      // Check if there are non latin simbols and special simbols: 
+      const passwordRE2 = new RegExp(`[^0-9a-zA-Z]`); 
+      if (passwordRE2.test(passwordValue)) {
+          passwordErrors.push('password has non latin simbols that isn\'t arabic figures');
+      }
+
+      if (passwordErrors) {
+          openModal('#personal-update-errors');
+          const modalEl = $('#personal-update-errors');
+          let modalTextEl = modalEl.find('.modal-content');
+          modalTextEl.text('Пароль должен быть не менее 6 символов длинной и состоять из латинских букв и цифр.');
+          return;
+      }
+
+      if (inputErrors) {
+        return;
+      }
 
       fetch("/personal", {
         method: "POST",
         body: JSON.stringify({
-          fio: `${lastNameInput.value.trim()} ${firstNameInput.value.trim()} ${secondNameInput.value.trim()}`,
-          phone: phoneInput.value.trim(),
-          email: emailInput.value.trim(),
-          birthday: birthdayInput.value.trim(),
-          password: "",
+          fio: `${lastNameValue} ${firstNameValue} ${secondNameValue}`,
+          email: emailValue,
+          birthday: birthdayValue,
+          password: passwordValue,
         }),
       }).then(() => (window.location.href = "/personal"));
       console.log("clicked");

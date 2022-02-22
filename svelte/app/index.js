@@ -818,7 +818,7 @@ $(function () {
         lastNameInput: lastNameInput.value,
         firstNameInput: firstNameInput.value,
         secondNameInput: secondNameInput.value,
-        phoneInput: phoneInput.value,
+        // phoneInput: phoneInput.value,
         birthdayInput: birthdayInput.value,
         isEmail: isEmail(emailInput.value.trim()),
         passwordInput,

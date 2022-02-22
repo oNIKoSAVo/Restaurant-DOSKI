@@ -612,7 +612,9 @@
       <select
               class="select"
               id="time-selection-field"
-              bind:value={time}
+              on:change={(e) => {
+                time = e.target.value;
+              }}
       >
           <option value='' class="option">
               Выберите время

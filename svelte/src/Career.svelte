@@ -92,6 +92,7 @@
     showModal = true;
   });
 
+  let isSelected = null;
 </script>
 
 <div
@@ -237,6 +238,7 @@
                     options={{ classList: `mb-3 w-100 ${datepickerError ? 'error-shadow' : ''}`, color: "#000" }}
                     theme={{ width: "300px" }}
                     unselectedText="Дата рождения"
+                    automaticHasChosenOnDefault="{false}"
             />
           </div>
           <!--          </div>-->

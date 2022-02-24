@@ -1,6 +1,6 @@
 {% extends 'base.py.html' %} {% block content %}
 <div class="main-slide">
-  <div class="container">
+  <div class="container d-flex flex-column flex-lg-row align-items-center justify-content-center justify-content-lg-between">
     <a class="left-link" href="{% url 'reservation' %}"
       ><img
         class="mr-2"
@@ -13,10 +13,9 @@
         src="/static/app/img/delivery.png"
         width="37"
       />Доставка</a
-    ><a href="#"
-      ><img class="mr-2" src="/static/app/img/scrolldown.png" width="37"
-    /></a>
+    >
   </div>
+  <a href="#"><img class="mr-2" src="/static/app/img/scrolldown.png" width="37"/></a>
 </div>
 <div id="topslider">
   <div class="container">

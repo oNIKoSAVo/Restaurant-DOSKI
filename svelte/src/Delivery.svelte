@@ -72,7 +72,7 @@
                       <div class="plus-btn">+</div>
                   </div>
               </div>
-              <div class="cart-item_price text-right">${cartItem.price}Р</div>
+              <div class="cart-item_price text-right">${cartItem.price * cartItem.quantity}Р</div>
           </div>`;
                 })
                 .join("");
@@ -96,9 +96,11 @@
                         ".cart-item > .cart-item_title"
                     ).textContent;
                     const cartQuantityEl = cartItem.querySelector(".item-quantity");
+                    const priceElInCart = cartItem.querySelector(".cart-item_price");
                     cart = cart.map((ci) => {
                         if (ci.name === cartName) {
                             ci.quantity += 1;
+                            priceElInCart.textContent = ci.quantity * ci.price;
                             const quantityEl = document
                                 .getElementById(ci.id)
                                 .querySelector(".item-quantity");
@@ -122,10 +124,13 @@
                         const cartName = cartItem.querySelector(
                             ".cart-item > .cart-item_title"
                         ).textContent;
+                        const priceElInCart = cartItem.querySelector(".cart-item_price");
                         const lastCart = [...cart];
+
                         cart = cart.map((ci) => {
                             if (ci.name === cartName && ci.quantity !== 0) {
                                 ci.quantity -= 1;
+                                priceElInCart.textContent = ci.quantity * ci.price;
                                 const quantityEl = document
                                     .getElementById(ci.id)
                                     .querySelector(".item-quantity");

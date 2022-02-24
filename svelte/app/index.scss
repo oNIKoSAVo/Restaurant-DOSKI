@@ -421,33 +421,39 @@ main {
     height: 100%;
 
     a {
-      position: absolute;
-      transform: translate(0%, -50%);
-      top: 50%;
+      // position: absolute;
+      // transform: translate(0%, -50%);
+      // top: 50%;
       font-weight: bold;
       font-size: 40px;
 
       text-decoration: none;
+      padding: 45px 80px 45px 80px;
+
+      @media(min-width: 768px) {
+        width: 400px;
+        padding: 45px 0px;
+      }
     }
   }
 
   .left-link {
-    left: 0;
     color: black;
-    background: url(/static/app/img/bron-back.png) no-repeat center center /
-      contain;
-    transform: translate(-50%, -50%);
-    padding: 45px 140px 45px 66px;
+    text-align: center;
+    background: url(/static/app/img/bron-back.png) no-repeat 30px center /
+      100%;
+    // left: 0;
+    // transform: translate(-50%, -50%);
   }
 
   .right-link {
-    background: url(/static/app/img/delivery-back.png) no-repeat center center /
-      contain;
     color: white;
-    right: 0;
-    padding: 45px 80px 45px 160px;
-    text-align: right;
-    transform: translate(-50%, -50%);
+    text-align: center;
+    background: url(/static/app/img/delivery-back.png) no-repeat -30px center /
+      100%;
+    // right: 0;
+    // transform: translate(-50%, -50%);
+    // text-align: right;
   }
 }
 
@@ -5762,19 +5768,19 @@ section.light {
   }
   .main-slide a.left-link {
     left: 35px;
-    transform: translate(0%, -50%);
-    padding: 45px 104px 45px 35px;
+    // transform: translate(0%, -50%);
+    // padding: 45px 104px 45px 35px;
     font-size: 35px;
     white-space: nowrap;
   }
   .main-slide a.right-link {
     color: white;
-    padding: 35px 50px 35px 108px;
+    // padding: 35px 50px 35px 108px;
     text-align: center;
-    transform: none;
+    // transform: none;
     font-size: 33px;
-    top: 15%;
-    left: -16%;
+    // top: 15%;
+    // left: -16%;
   }
   .navbar {
     padding: 23px 0;

@@ -442,6 +442,8 @@
   function appendSchemes(schemes) {
     // if (!document.getElementById("table")) return;
     document.getElementById("table").innerHTML = "";
+    tableEls = [];
+
     schemes.forEach((schema) => {
       let el = document.createElement("svg");
       fetch(schema.url)

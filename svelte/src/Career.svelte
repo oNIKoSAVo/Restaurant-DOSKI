@@ -20,9 +20,9 @@
   let about = "";
   let datepickerError = false
   let store;
-  $: console.log(showModalSuccess);
-  $: console.log(showFormModal);
-  $: console.log(showModal);
+  $: console.log('sho modal success: ', showModalSuccess);
+  $: console.log('show form modal: ', showFormModal);
+  $: console.log('show modal: ', showModal);
   let cities = []
   window.addEventListener('currentCityChange', e => {
     cities = window.cities
@@ -277,6 +277,9 @@
         role="dialog"
         on:click|stopPropagation={(e) => {
     if (e.target.classList.contains("modal-wrapper")) {
+      console.log('HELLLLLLLOOOOOOOOOO');
+      showModalSuccess = false;
+      showFormModal = true;
       showModal = false;
     }
   }}
@@ -288,7 +291,11 @@
               type="button"
               data-dismiss="modal"
               aria-label="Close"
-              on:click={() => (showModal = false)}
+              on:click={() => {
+                showFormModal = true;
+                showModalSuccess = false;
+                showModal = false;
+              }}
       >
         <span aria-hidden="true">&times;</span>
       </button>
@@ -302,7 +309,11 @@
         <a
                 class="submit close-modal"
                 href="#"
-                on:click={() => (showModal = false)}>Ок</a
+                on:click={() => {
+                  showFormModal = true;
+                  showModalSuccess = false;
+                  showModal = false;
+                }}>Ок</a
         >
       </div>
     </div>

@@ -53,6 +53,22 @@
   function validate() {
     console.log("I'm the validate() function");
   }
+
+  function clearJobmodalForm() {
+    const regForm = document.getElementById('regForm');
+    document.querySelector('#chooseDate span').textContent = "День рождения";
+    regForm.querySelector('textarea').value = "";
+
+    regForm.querySelectorAll('select').forEach((el, key) => {
+      el.value = "";
+    });
+
+    regForm.querySelectorAll('input').forEach((el, key) => {
+      el.value = "";
+    });
+  }
+
+
   async function handleSubmit(e) {
     e.preventDefault();
     if(!store.getState().hasChosen) {
@@ -78,6 +94,7 @@
       });
       console.log(response.status, response.status == "success");
       if (response.status == "success") {
+        clearJobmodalForm()
         showFormModal = false;
         showModalSuccess = true;
         showModal = true;
@@ -278,8 +295,8 @@
         on:click|stopPropagation={(e) => {
     if (e.target.classList.contains("modal-wrapper")) {
       console.log('HELLLLLLLOOOOOOOOOO');
-      showModalSuccess = false;
       showFormModal = true;
+      showModalSuccess = false;
       showModal = false;
     }
   }}

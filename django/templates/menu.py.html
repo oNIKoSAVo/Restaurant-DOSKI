@@ -3,22 +3,36 @@
 <div class="menu-section only-menu">
     <div class="inner-page container">
       <div class="row">
-        <div class="col-12">
-          <div class="button-dropdown tab-cont d-sm-none d-block">
-            <a class="dropdown-toggle" href="javascript:void(0)">Меню</a>
-            <ul class="dropdown-menu">
-              {% for category in categories %}
-                <li><a class="but" data-category href="#category_{{ category.id }}">{{ category.name }}</a></li>
-              {% endfor %}
-            </ul>
-          </div>
-          <div class="breadcrumbs">
-            <a href="/">Главная страница</a>/<a href="#">Меню</a>/<a href="#"
-              >{{Меню}}</a
-            >
-          </div>
-          <div class="d-flex title-row">
+        <div class="col-12 button-dropdown tab-cont d-sm-none d-block">
+          <a class="dropdown-toggle" href="javascript:void(0)">Меню</a>
+          <ul class="dropdown-menu">
+            {% for category in categories %}
+              <li><a class="but" data-category href="#category_{{ category.id }}">{{ category.name }}</a></li>
+            {% endfor %}
+          </ul>
+        </div>
+        <div class="col-12 breadcrumbs">
+          <a href="/">Главная страница</a>/<a href="#">Меню</a>/<a href="#"
+            >{{Меню}}</a
+          >
+        </div>
+        <div class="col-2 menu-navbar">
+          <div class="menu-navbar__inner">
             <div class="section-title pt-4 pt-sm-0">Меню</div>
+            <div class="d-none d-md-block">
+              <div class="tab-cont">
+                {% for category in categories %}
+                  <a class="but" data-category href="#category_{{ category.id }}">{{ category.name }}</a>
+                  <!-- <a class="but" href="#reserve">Салаты</a>
+                  <a class="but" href="#orders">Роллы</a>
+                  <a class="but" href="#edit">Пицца</a> -->
+                {% endfor %}
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-10 col-md-9 col-12">
+          <div class="d-flex title-row">
             <div>
               <a class="download mr-sm-3 mr-0 active" href="{% url 'preorder' %}"
                 >Калькулятор предзаказа</a
@@ -27,18 +41,7 @@
               /></a>
             </div>
           </div>
-        </div>
-        <div class="col-2 d-none d-md-block">
-          <div class="tab-cont">
-            {% for category in categories %}
-              <a class="but" data-category href="#category_{{ category.id }}">{{ category.name }}</a>
-              <!-- <a class="but" href="#reserve">Салаты</a>
-              <a class="but" href="#orders">Роллы</a>
-              <a class="but" href="#edit">Пицца</a> -->
-            {% endfor %}
-          </div>
-        </div>
-        <div class="col-lg-10 col-md-9 col-12">
+
           {% for category in categories %}
           <div class="tab-content row col-12" id="category_{{ category.id }}">
             <!--          <div class="subcategory-title col-12">{{ category.name }}</div>-->

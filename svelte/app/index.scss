@@ -4548,12 +4548,19 @@ a.success {
 
 .title-row {
   align-items: center;
-  justify-content: space-between;
+  justify-content: end;
   padding: 15px 0 25px 0;
 
   .section-title {
     padding: 5px 0 0 0;
   }
+}
+
+.menu-navbar__inner {
+  position: sticky;
+  top: 120px;
+  bottom: 100px;
+  padding: 15px 0 0 0;
 }
 
 .modal-description {

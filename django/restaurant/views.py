@@ -12,7 +12,7 @@ from datetime import timedelta
 import xlsxwriter
 from datetime import datetime
 from django.contrib.auth.models import User
-from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth import authenticate, login, logout, update_session_auth_hash
 from .lib.helpers import filter_categories
 
 from django.db.models import Q, Count
@@ -133,6 +133,7 @@ def personal(request):
     update user data
     """
     if not request.user.is_authenticated:
+        print('\n\nUser is not authenticated __\n\n')
         return redirect('/#signin')
 
     if request.method == "POST":
@@ -143,6 +144,8 @@ def personal(request):
         birthday = data['birthday']
         email = data['email']
         password = data['password']
+
+        print('\n\nUser is authenticated __\n\n')
 
         if fio:
             if len(fio.split(" ")) > 2:
@@ -169,6 +172,7 @@ def personal(request):
             user = request.user
             user.set_password(password)
             user.save()
+            update_session_auth_hash(request, user)
             profile.is_changed_password = True
 
         profile.save()

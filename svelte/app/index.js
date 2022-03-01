@@ -825,7 +825,7 @@ $(function () {
       });
       console.log({ val: lastNameInput.value.trim() });
 
-      let thereIsInputErrors = false;
+      let inputErrors = false;
 
       const lastNameValue = lastNameInput.value.trim();
       const firstNameValue = firstNameInput.value.trim();
@@ -835,26 +835,26 @@ $(function () {
 
       if (!lastNameValue) {
         setErrorInput(lastNameInput);
-        thereIsInputErrors = true;
+        inputErrors = true;
       }
       if (!firstNameValue) {
         setErrorInput(firstNameInput);
-        thereIsInputErrors = true;
+        inputErrors = true;
       }
       if (!secondNameValue) {
         setErrorInput(secondNameInput);
-        thereIsInputErrors = true;
+        inputErrors = true;
       }
       if (!!emailValue && !isEmail(emailValue)) {
         setErrorInput(emailInput);
-        thereIsInputErrors = true;
+        inputErrors = true;
       }
       if (
           !!birthdayValue &&
           +birthdayInput.value.slice(0, 4) < 1920
       ) {
         setErrorInput(birthdayInput);
-        thereIsInputErrors = true;
+        inputErrors = true;
       }
 
       const minPasswordLength = 6;

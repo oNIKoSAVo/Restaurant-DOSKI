@@ -289,6 +289,9 @@ class Setting(models.Model):
     allow_weekend_time_reservation_start = models.TimeField('Доступное время бронирования(птн-сб)', help_text="С",  blank=True, null=True)
     allow_weekend_time_reservation_end = models.TimeField('Доступное время бронирования(птн-сб)', help_text="ДО",  blank=True, null=True)
 
+    allow_time_delivery_start = models.TimeField('Доступное время доставки', help_text="С",  blank=True, null=True)
+    allow_time_delivery_end = models.TimeField('Доступное время доставки', help_text="ДО",  blank=True, null=True)
+
     class Meta:
         verbose_name = 'настройки'
         verbose_name_plural = 'настройки'

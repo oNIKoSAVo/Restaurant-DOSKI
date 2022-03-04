@@ -4,6 +4,8 @@
     // import $ from "jquery";
     import {sendTelegramMessage} from "./helpers/sendTelegramMessage";
     import {setErrorShadow} from "./helpers/setErrors";
+    import dayjs from "dayjs";
+    import isBetween from 'dayjs/plugin/isBetween'
 
     let cart = [];
     $: price = cart.reduce(
@@ -26,6 +28,36 @@
     window.renderCartItems = renderCartItems;
 
     // $: document.querySelector(".cart-summary").textContent = price;
+
+    window.addEventListener('managerSettingsGet', () => {
+        const allow_weekday_time_delivery = {
+            start: window.managerSettings['allow_time_delivery_start'],
+            end: window.managerSettings['allow_time_delivery_end']
+        }
+        
+        const allow_delivery_hour_start = parseInt(allow_weekday_time_delivery.start);
+        const allow_delivery_hour_end = parseInt(allow_weekday_time_delivery.end);
+
+        document.getElementById('delivery-time_from').textContent 
+            = allow_delivery_hour_start + '-00';
+        document.getElementById('delivery-time_to').textContent
+            = allow_delivery_hour_end + '-00';
+
+        const submitEl = document.querySelector('#cart .submit');
+        
+
+        let currentTimeInCity = dayjs();
+
+        let dayjs_hour_start = dayjs().hour(allow_delivery_hour_start);
+        let dayjs_hour_end = dayjs().hour(allow_delivery_hour_end)
+
+        if (!currentTimeInCity.isBetween(dayjs_hour_start, dayjs_hour_end)
+        ) {
+            submitEl.classList.add('disabled');
+        } else {
+            submitEl.classList.remove('disabled');
+        }
+    });
 
     function isDrink(gramsStr) {
         return gramsStr.slice(-2) !== 'гр';

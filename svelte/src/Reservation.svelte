@@ -44,7 +44,9 @@
     const {
       allow_period_reservation,
       allow_time_reservation_end,
-      allow_time_reservation_start
+      allow_time_reservation_start,
+      allow_weekend_time_reservation_start,
+      allow_weekend_time_reservation_end
     } = window.managerSettings
     console.log(allow_period_reservation, allow_time_reservation_end, allow_time_reservation_start)
 
@@ -86,25 +88,17 @@
       /* create option elements for the select element of available times 
       in the reservation form: */
       // ---------------------------------
-      let min = parseInt(minReservationTime);
-      let max = parseInt(maxReservationTime);
-      const timeSelectEl = document.getElementById('time-selection-field');
-      let timeOptions = [];
-
-      console.log('MIN AND MAX: ', min, max);
-
-      for (let h = min; h <= max; h++) {
-          const optionEl = document.createElement("option");
-          optionEl.classList.add('option');
-
-          let hours = (h).toString().padStart(2,0);
-          let timeOption = `${hours}:00`;
-          optionEl.setAttribute('value', timeOption);
-          optionEl.textContent = timeOption;
-          timeOptions.push(optionEl);
+      if (dayjs(selectedDate)
+        .isBetween(dayjs(selectedDate).day(0), dayjs(selectedDate).day(5))
+      ) {
+        console.log("DATE IS SELECTED");
+        setAvailableTimes(parseInt(allow_time_reservation_start), 
+                          parseInt(allow_time_reservation_end));
+      } else {
+        console.log("DATE IS SELECTED");
+        setAvailableTimes(parseInt(allow_weekend_time_reservation_start), 
+                          parseInt(allow_weekend_time_reservation_end));
       }
-
-      timeSelectEl.append(...timeOptions);
       // ---------------------------------
 
       if (urlSearchParams.get("time")) {
@@ -183,6 +177,61 @@
   const urlSearchParams = new URL(window.location.href).searchParams;
   restaraunt = +urlSearchParams.get("restaurant");
   let selectedDate;
+
+  function setAvailableTimes(minHour, maxHour) {
+    const timeSelectEl = document.getElementById('time-selection-field');
+    timeSelectEl.innerHTML = "";
+    let timeOptions = [];
+    const firstOptEl = document.createElement('option');
+    firstOptEl.textContent = "Выберите время";
+    timeOptions.push(firstOptEl);
+
+    console.log('MIN AND MAX: ', minHour, maxHour);
+
+    for (let h = minHour; h <= maxHour; h++) {
+      const optionEl = document.createElement("option");
+      optionEl.classList.add('option');
+
+      let hours = (h).toString().padStart(2,0);
+      let timeOption = `${hours}:00`;
+      optionEl.setAttribute('value', timeOption);
+      optionEl.textContent = timeOption;
+      timeOptions.push(optionEl);
+    }
+
+    timeSelectEl.append(...timeOptions);
+  }
+
+  $: if (typeof window.managerSettings == "undefined") {
+    console.log("UNDEFINED managerSettings");
+  } else if (dayjs(selectedDate)
+              .isBetween(dayjs(selectedDate).day(0).subtract(1, 'day'), dayjs(selectedDate).day(5))) {
+    console.log("CHANGED selectedDate 1");
+    console.log(selectedDate);
+
+    const {
+      allow_time_reservation_end,
+      allow_time_reservation_start,
+    } = window.managerSettings;
+
+    setAvailableTimes(parseInt(allow_time_reservation_start), 
+                      parseInt(allow_time_reservation_end));
+  } else if (dayjs(selectedDate)
+              .isBetween(dayjs(selectedDate).day(4), dayjs(selectedDate).day(6).add(1, 'day'))) {
+    console.log("CHANGED selectedDate 2");
+    console.log(selectedDate);
+
+    const {
+      allow_weekend_time_reservation_start,
+      allow_weekend_time_reservation_end
+    } = window.managerSettings;
+    
+    setAvailableTimes(parseInt(allow_weekend_time_reservation_start), 
+                      parseInt(allow_weekend_time_reservation_end));
+  } else {
+    console.log("UNDEFINED selectedDate");
+    console.log(selectedDate);
+  }
 
   // if (urlSearchParams.get("date")) {
   //   const [day, month, year] = urlSearchParams.get("date").split("-");

@@ -282,8 +282,15 @@ class Setting(models.Model):
     privacy_file = models.FileField('Согласие на обработку персональных данных', upload_to='images/', blank=True, null=True)
     main_banner = models.ImageField('Главный баннер на странице', upload_to='images/', blank=True, null=True)
     allow_period_reservation = models.IntegerField('Доступный период бронирования (+ дней)',  blank=True, null=True)
-    allow_time_reservation_start = models.TimeField('Доступное время бронирование', help_text="С",  blank=True, null=True)
-    allow_time_reservation_end = models.TimeField('Доступное время бронирование', help_text="ДО",  blank=True, null=True)
+
+    allow_time_reservation_start = models.TimeField('Доступное время бронирования(вск-чтв)', help_text="С",  blank=True, null=True)
+    allow_time_reservation_end = models.TimeField('Доступное время бронирования(вск-чтв)', help_text="ДО",  blank=True, null=True)
+
+    allow_weekend_time_reservation_start = models.TimeField('Доступное время бронирования(птн-сб)', help_text="С",  blank=True, null=True)
+    allow_weekend_time_reservation_end = models.TimeField('Доступное время бронирования(птн-сб)', help_text="ДО",  blank=True, null=True)
+
+    allow_time_delivery_start = models.TimeField('Доступное время доставки', help_text="С",  blank=True, null=True)
+    allow_time_delivery_end = models.TimeField('Доступное время доставки', help_text="ДО",  blank=True, null=True)
 
     class Meta:
         verbose_name = 'настройки'

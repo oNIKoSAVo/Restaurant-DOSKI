@@ -477,8 +477,10 @@ function nextPrev(n, shouldValidate = true) {
   // if you have reached the end of the form... :
   if (currentTab >= x.length) {
     //...the form gets submitted:
-    submitJobForm();
-    return false;
+    clearJobmodalForm(document.getElementById('jobmodal'));
+    currentTab = 0;
+    // submitJobForm();
+    // return false;
   }
   // Otherwise, display the correct tab:
   showTab(currentTab);
@@ -998,11 +1000,11 @@ $(function () {
     // if(jobFormLevel === 2) {
     //   console.log('test')
     // }
-    if (
-      e.target.textContent === "Отправить" ||
-      !regForm?.querySelector("#rules").checked
-    )
-      return;
+    // if (
+    //   e.target.textContent === "Отправить" ||
+    //   !regForm?.querySelector("#rules").checked
+    // )
+    //   return;
     nextPrev(1, false);
   });
   $("#prevBtn").on("click", function () {

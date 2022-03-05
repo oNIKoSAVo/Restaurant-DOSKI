@@ -475,9 +475,11 @@ function nextPrev(n, shouldValidate = true) {
   // Increase or decrease the current tab by 1:
   currentTab = currentTab + n;
   // if you have reached the end of the form... :
+  console.log(`current tab is ${currentTab} and (currentTab >= x.length):`)
+  console.log(currentTab >= x.length)
+
   if (currentTab >= x.length) {
     //...the form gets submitted:
-    clearJobmodalForm(document.getElementById('jobmodal'));
     currentTab = 0;
     // submitJobForm();
     // return false;

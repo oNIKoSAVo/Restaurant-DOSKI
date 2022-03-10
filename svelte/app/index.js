@@ -1247,16 +1247,24 @@ $(function () {
 
   $("#print-scheme-btn").on("click", (e) => {
     let printWin = window.open('', '', 'left=50,top=50,width=800,height=640,toolbar=0,scrollbars=1,status=0');
-    // $(this).attr('data-scheme-url')
-    // $("#print-scheme-btn")
-    let printHtml = $("#table.admin").html();
-    // console.log($("#table.admin"));
-    // console.log(printHtml);
+    const schemesTable = $("#table.admin").clone();
+    const prsvg = schemesTable.children('svg')[0];
+    console.log(schemesTable);
+    console.log({FROM_ANOTHER_WINDOW: prsvg});
+
+    prsvg.style.width = "100%";
+    prsvg.style.height = "100%";
+    prsvg.style.transformOrigin = "left top";
+    prsvg.style.transform = "scale(1.5, 1.5)";
+
+    schemesTable.html(prsvg.outerHTML);
+
+    let printHtml = schemesTable.html();
     printWin.document.write(printHtml);
+
     printWin.document.close();
     printWin.focus();
     printWin.print();
-    // printWin.close();
   });
 });
 //

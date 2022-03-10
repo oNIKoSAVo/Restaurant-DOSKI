@@ -137,6 +137,7 @@ function appendSchemesAdmin(schemes) {
   document.querySelector("#table.admin").innerHTML = "";
   schemes.forEach((schema) => {
     let el = document.createElement("svg");
+    console.log({SCHEMA_URL: schema.url});
     fetch(schema.url)
         .then((r) => r.text())
         .then((text) => {
@@ -1242,6 +1243,20 @@ $(function () {
       document.querySelector(".breadcrumbs a:last-child").textContent =
         category.textContent;
     };
+  });
+
+  $("#print-scheme-btn").on("click", (e) => {
+    let printWin = window.open('', '', 'left=50,top=50,width=800,height=640,toolbar=0,scrollbars=1,status=0');
+    // $(this).attr('data-scheme-url')
+    // $("#print-scheme-btn")
+    let printHtml = $("#table.admin").html();
+    // console.log($("#table.admin"));
+    // console.log(printHtml);
+    printWin.document.write(printHtml);
+    printWin.document.close();
+    printWin.focus();
+    printWin.print();
+    // printWin.close();
   });
 });
 //

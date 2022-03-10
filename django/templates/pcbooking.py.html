@@ -174,8 +174,13 @@
       </div>
       <div class="col-8">
         <div class="section-title" title="Бронирование">Бронирование</div>
-        <div style="color: white">
+        <div class="d-flex mb-3">
           {% display_svelte "ManagerCalendar.svelte" %}
+          <a 
+          class="submit ml-3 mt-0 d-flex align-items-center" 
+          id="print-scheme-btn"
+          data-scheme-url=""
+          >Распечатать</a>
         </div>
         {% if messages %}
         {% for message in messages %}

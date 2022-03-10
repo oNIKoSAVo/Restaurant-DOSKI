@@ -102,11 +102,15 @@
 
                 <div
                         class="col-4 col-md-4 col-lg-5 align-items-center
-                               justify-content-around px-0 d-lg-flex d-none"
+                               justify-content-start px-0 d-lg-flex d-none"
                 >
                     <!-- <a class="menu-item" href="{% url 'pclogin' %}">Главная</a>
                     <a class="menu-item" href="{% url 'pcdelivery' %}">Доставка</a>
                     <a class="menu-item" href="{% url 'pcbooking' %}">Бронирование</a> -->
+                    
+                    {% if not pcpanel_main_page %} 
+                        <a class="menu-item" href="/pcpanel">Назад</a> 
+                    {% endif %}
                 </div>
                 <div class="col-2 d-lg-none d-block navbar-toggler">
                     <img
@@ -148,31 +152,36 @@
                     <a class="menu-item" href="{% url 'contacts' %}">Контакты</a>
 
                     {% if user.is_authenticated %}
-                    <a class="login gradient1" href="/personal"
-                    ><img
+                    <a class="login gradient1" href="/personal">
+                        <img
                             class="mr-sm-2"
                             src="/static/app/img/login-icon.png"
                             width="19"
-                    /><span class="d-none d-sm-inline"> {% if user.profie.firstname %} {{ user.profie.firstname }} {% else %} кабинет {% endif %}</span>
-                        {% else %}
-                        <a class="login sign gradient1">
-                            <img
-                                class="mr-sm-2"
-                                src="/static/app/img/login-icon.png"
-                                width="19"
-                            />
-                            <span class="d-none d-sm-inline">Войти</span>
+                        />
+                        <span class="d-none d-sm-inline"> 
+                            {% if user.profie.firstname %} {{ user.profie.firstname }} 
+                            {% else %} кабинет 
                             {% endif %}
+                        </span>
+                    {% else %}
+                    <a class="login sign gradient1">
+                        <img
+                            class="mr-sm-2"
+                            src="/static/app/img/login-icon.png"
+                            width="19"
+                        />
+                        <span class="d-none d-sm-inline">Войти</span>
+                    {% endif %}
+                    </a>
 
-                        </a>
-                        <a class="phone gradient1" href="tel:+73832279050" id="phone_header">
-                            <img
-                                class="mr-sm-2"
-                                src="/static/app/img/phone.png"
-                                width="16"
-                            />
-                            <span class="d-none d-sm-inline" >227-90-50</span>
-                        </a>
+                    <a class="phone gradient1" href="tel:+73832279050" id="phone_header">
+                        <img
+                            class="mr-sm-2"
+                            src="/static/app/img/phone.png"
+                            width="16"
+                        />
+                        <span class="d-none d-sm-inline" >227-90-50</span>
+                    </a>
                 </div>
             </div>
         </div>

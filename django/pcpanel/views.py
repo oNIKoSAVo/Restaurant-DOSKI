@@ -41,7 +41,7 @@ class LoginView(OnlyStuffUserAccessMixin, View):
         count_new_orders = queryset_order.filter(
             status=OrderStatusType.WAIT).filter(created_at__lte=today_end, created_at__gte=today_start).count()
 
-        return render(request, 'pclogin.py.html', {'count_new_reservations': count_new_reservations, 'count_new_orders': count_new_orders})
+        return render(request, 'pclogin.py.html', {'count_new_reservations': count_new_reservations, 'count_new_orders': count_new_orders, 'pcpanel_main_page': True})
 
 
 class BookingView(OnlyStuffUserAccessMixin, View):

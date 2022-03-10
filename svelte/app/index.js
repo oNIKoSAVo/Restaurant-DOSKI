@@ -137,6 +137,7 @@ function appendSchemesAdmin(schemes) {
   document.querySelector("#table.admin").innerHTML = "";
   schemes.forEach((schema) => {
     let el = document.createElement("svg");
+    console.log({SCHEMA_URL: schema.url});
     fetch(schema.url)
         .then((r) => r.text())
         .then((text) => {
@@ -1242,6 +1243,28 @@ $(function () {
       document.querySelector(".breadcrumbs a:last-child").textContent =
         category.textContent;
     };
+  });
+
+  $("#print-scheme-btn").on("click", (e) => {
+    let printWin = window.open('', '', 'left=50,top=50,width=800,height=640,toolbar=0,scrollbars=1,status=0');
+    const schemesTable = $("#table.admin").clone();
+    const prsvg = schemesTable.children('svg')[0];
+    console.log(schemesTable);
+    console.log({FROM_ANOTHER_WINDOW: prsvg});
+
+    prsvg.style.width = "100%";
+    prsvg.style.height = "100%";
+    prsvg.style.transformOrigin = "left top";
+    prsvg.style.transform = "scale(1.5, 1.5)";
+
+    schemesTable.html(prsvg.outerHTML);
+
+    let printHtml = schemesTable.html();
+    printWin.document.write(printHtml);
+
+    printWin.document.close();
+    printWin.focus();
+    printWin.print();
   });
 });
 //

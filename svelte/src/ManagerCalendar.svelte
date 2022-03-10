@@ -29,4 +29,4 @@
     }
 </script>
 
-<CustomDatepicker bind:store bind:selected="{selectedDate}" automaticHasChosenOnDefault="{false}"/>
+<CustomDatepicker bind:store bind:selected="{selectedDate}" automaticHasChosenOnDefault="{true}"/>

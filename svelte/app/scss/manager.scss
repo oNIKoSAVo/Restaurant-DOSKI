@@ -5,10 +5,49 @@
   //letter-spacing: .5px;
   font-family: Muller, sans-serif;
 
+  a.submit, a.close-modal {
+    //styleName: текст для кнопок;
+    font-family: Muller;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 27px;
+    letter-spacing: 0em;
+    text-align: center;
+
+    margin: 0px;
+    padding: 20px 0;
+    min-width: 205px;
+  }
+
+  a.close-modal {
+    background: linear-gradient(180deg, #4A4A4A 0%, #1F1F1F 100%);
+    &:hover {
+      background: linear-gradient(0deg, #ffa82b 30%, #dd8028 100%);
+    }
+  }
+
   .pcdelivery-modal-item {
     margin-bottom: 16px;
-    font-size: 18px;
-    font-weight: 400;
+    // font-size: 18px;
+
+    strong {
+      font-family: Muller;
+      font-size: 16px;
+      font-style: normal;
+      font-weight: 700;
+      line-height: 24px;
+      letter-spacing: 0em;
+      text-align: left;
+    }
+    font-family: Muller;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400, Regular;
+    line-height: 24px;
+    letter-spacing: 0em;
+    text-align: left;
+
 
     .icon {
       width: 15px;
@@ -34,6 +73,17 @@
 
   .cart-sum .cart-summary_title, .cart-sum .cart-summary_amount {
     font-size: 35px;
+  }
+
+  .cart-price {
+    font-family: Bebas Neue;
+    font-size: 35px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 27px;
+    letter-spacing: 0em;
+    text-align: right;
+    color: rgba(213, 126, 41, 1);
   }
 
 }
@@ -79,6 +129,10 @@
       flex: 5;
     }
   }
+}
+
+#print-scheme-btn {
+  height: 55px;
 }
 
 .cabinet-booking {
@@ -142,8 +196,38 @@
     text-align: center;
 
     color: #000;
+  }
+  tbody td {
+    border-right: 1px solid rgba(0, 0, 0, 0.25);
+    &:last-child {
+      border-right: 0px solid rgba(0, 0, 0, 0.25);
+    }
+  }
+  
+  tbody tr {
+    border-top: 1px solid rgba(0, 0, 0, 0.25);
+    border-left: 1px solid rgba(0, 0, 0, 0.25);
+    border-right: 1px solid rgba(0, 0, 0, 0.25);
+    &:hover + tr {
+      border-top: 1px solid rgba(239, 127, 26, 1);
+    }
+    &:hover {
+      border: 1px solid rgba(239, 127, 26, 1);
+      box-shadow: 0px 0px 0px 1px rgba(239, 127, 26, 1), 
+                  1px -1px 0 1px rgba(239, 127, 26, 1);
+    }
+    &:last-child {
+      &:hover {
+        border-bottom: 1px solid rgba(239, 127, 26, 1);
+      }
+      border-bottom: 1px solid rgba(0, 0, 0, 0.25);
+    }
+  }
 
-    border: 1px solid rgba(0, 0, 0, 0.25);
+
+  tr.approved td {
+    color: rgba(134, 134, 134, 1);
+    font-weight: normal;
   }
 
   .headings-row {

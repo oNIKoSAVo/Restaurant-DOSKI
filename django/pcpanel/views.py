@@ -6,6 +6,7 @@ from django.urls import reverse
 from django.shortcuts import redirect, render
 from django.views import View
 from django.contrib.auth.mixins import AccessMixin
+from django.db.models import Q
 from restaurant.models import Order, Reservation, Restaraunt, ReservationStatusType, OrderStatusType
 
 # Create your views here.
@@ -40,7 +41,7 @@ class LoginView(OnlyStuffUserAccessMixin, View):
         count_new_orders = queryset_order.filter(
             status=OrderStatusType.WAIT).filter(created_at__lte=today_end, created_at__gte=today_start).count()
 
-        return render(request, 'pclogin.py.html', {'count_new_reservations': count_new_reservations, 'count_new_orders': count_new_orders})
+        return render(request, 'pclogin.py.html', {'count_new_reservations': count_new_reservations, 'count_new_orders': count_new_orders, 'pcpanel_main_page': True})
 
 
 class BookingView(OnlyStuffUserAccessMixin, View):
@@ -135,8 +136,38 @@ class DeliveryView(OnlyStuffUserAccessMixin, View):
             except Order.DoesNotExist:
                 return JsonResponse({'status': 'error', 'message': 'Order not found'}, status=404)
 
-        orders = queryset.filter(status=OrderStatusType.WAIT)
-        return render(request, 'pcdelivery.py.html', {'orders': orders, 'OrderStatusType': OrderStatusType})
+        orders = queryset.filter(Q(status=OrderStatusType.WAIT) | 
+                                 Q(status=OrderStatusType.APPROVED)).order_by('status')
+
+        dishes_of_all_orders = dict()
+
+        for order in orders:
+            dishes = {}
+
+            for menue in order.menues.all():
+                dish_name = menue.menue.dish
+                if dish_name in dishes.keys():
+                    dishes[dish_name]['sum_price'] += menue.menue.in_restaraunt.first().price
+                    dishes[dish_name]['count'] += 1
+                    # dishes[dish_name]['weight'] += int(menue.menue.weight)
+                else:
+                    dishes[dish_name] = {
+                        "order": order,
+                        "sum_price": menue.menue.in_restaraunt.first().price,
+                        "count": 1,
+                        "weight": menue.menue.weight,
+                        "image_url": menue.menue.image.url,
+                        "name": dish_name,
+                    }
+
+            dishes_of_all_orders[order.id] = dishes.values()
+
+        context = {
+            'orders': orders, 
+            'OrderStatusType': OrderStatusType,
+            'dishes_of_all_orders': dishes_of_all_orders
+        }
+        return render(request, 'pcdelivery.py.html', context)
 
     def post(self, request):
         id = request.POST.get('id')

@@ -1,488 +1,274 @@
 {% load django_svelte %}
 <!DOCTYPE html>
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://respublica.bar/" />
-  <meta
-    property="og:image"
-    content="https://www.respublica.bar/images/logo.png"
-  />
-  <meta property="og:image:width" content="900" />
-  <meta property="og:image:height" content="439" />
-  <meta property="og:site_name" content="Франшиза Бар Respublica" />
-  <meta
-    name="description"
-    content="Современный уютный бар с прибылью от 500 тыс рублей в месяц"
-  />
-  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-  <title>Бар DOSKI</title>
-  <link rel="icon" href="/static/favicon.png" />
-  <script src="https://www.google.com/recaptcha/api.js?render=6LfJ-XIdAAAAAPd5UqVVl6VYODp-Uysy7rMHO24j"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-  <link
-    href="https://cdn.jsdelivr.net/npm/suggestions-jquery@21.6.0/dist/css/suggestions.min.css"
-    rel="stylesheet"
-  />
-  <script src="https://cdn.jsdelivr.net/npm/suggestions-jquery@21.6.0/dist/js/jquery.suggestions.min.js"></script>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+    <meta property="og:type" content="website"/>
+    <meta property="og:url" content="https://respublica.bar/"/>
+    <meta
+        property="og:image"
+        content="https://www.respublica.bar/images/logo.png"
+    />
+    <meta property="og:image:width" content="900"/>
+    <meta property="og:image:height" content="439"/>
+    <meta property="og:site_name" content="Франшиза Бар Respublica"/>
+    <meta
+        name="description"
+        content="Современный уютный бар с прибылью от 500 тыс рублей в месяц"
+    />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
+    <title>Бар "Respublica"</title>
+    <link rel="icon" href="/static/favicon.png"/>
+    <script src="https://www.google.com/recaptcha/api.js?render=6Ldt-3IdAAAAANmg-3m44sDmGtdYTyC_ZNH-CbO8"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/suggestions-jquery@21.6.0/dist/css/suggestions.min.css" rel="stylesheet"/>
+    <script src="https://cdn.jsdelivr.net/npm/suggestions-jquery@21.6.0/dist/js/jquery.suggestions.min.js"></script>
 
-  <link href="/static/bundle.css" rel="stylesheet" />
+    <link href="/static/bundle.css" rel="stylesheet"/>
 </head>
+
 <body>
-  <script>
-    !(function (e, t, n, c, o, a, f) {
-      e.fbq ||
-        ((o = e.fbq =
-          function () {
-            o.callMethod
-              ? o.callMethod.apply(o, arguments)
-              : o.queue.push(arguments);
-          }),
-        e._fbq || (e._fbq = o),
-        (o.push = o),
-        (o.loaded = !0),
-        (o.version = "2.0"),
-        (o.queue = []),
-        ((a = t.createElement(n)).async = !0),
-        (a.src = "https://connect.facebook.net/en_US/fbevents.js"),
-        (f = t.getElementsByTagName(n)[0]).parentNode.insertBefore(a, f));
-    })(window, document, "script"),
-      fbq("init", "249879825918890"),
-      fbq("track", "PageView");
-  </script>
-
-  <noscript
+    <script>
+        window.user = {
+            name: '{% if request.user.profile.first_name %}{{request.user.profile.first_name}}{% endif %}',
+            phone: '{% if request.user.profile.phone %}{{request.user.profile.phone}}{% endif %}'
+        }
+    
+        !(function (e, t, n, c, o, a, f) {
+            e.fbq ||
+            ((o = e.fbq =
+                function () {
+                    o.callMethod
+                        ? o.callMethod.apply(o, arguments)
+                        : o.queue.push(arguments);
+                }),
+            e._fbq || (e._fbq = o),
+                (o.push = o),
+                (o.loaded = !0),
+                (o.version = "2.0"),
+                (o.queue = []),
+                ((a = t.createElement(n)).async = !0),
+                (a.src = "https://connect.facebook.net/en_US/fbevents.js"),
+                (f = t.getElementsByTagName(n)[0]).parentNode.insertBefore(a, f));
+        })(window, document, "script"),
+            fbq("init", "249879825918890"),
+            fbq("track", "PageView");
+    
+    </script>
+    <noscript>
+        <img
+            height="1"
+            width="1"
+            style="display: none"
+            src="https://www.facebook.com/tr?id=249879825918890&amp;ev=PageView&amp;noscript=1"
+        />
+    </noscript>
+    <script>
+        !(function (e, t, n, c, o, a, f) {
+            e.fbq ||
+            ((o = e.fbq =
+                function () {
+                    o.callMethod
+                        ? o.callMethod.apply(o, arguments)
+                        : o.queue.push(arguments);
+                }),
+            e._fbq || (e._fbq = o),
+                (o.push = o),
+                (o.loaded = !0),
+                (o.version = "2.0"),
+                (o.queue = []),
+                ((a = t.createElement(n)).async = !0),
+                (a.src = "https://connect.facebook.net/en_US/fbevents.js"),
+                (f = t.getElementsByTagName(n)[0]).parentNode.insertBefore(a, f));
+        })(window, document, "script"),
+            fbq("init", "249879825918890"),
+            fbq("track", "PageView");
+    </script>
+    <noscript
     ><img
-      height="1"
-      width="1"
-      style="display: none"
-      src="https://www.facebook.com/tr?id=249879825918890&amp;ev=PageView&amp;noscript=1"
-  /></noscript>
-  <script>
-    !(function (e, t, n, c, o, a, f) {
-      e.fbq ||
-        ((o = e.fbq =
-          function () {
-            o.callMethod
-              ? o.callMethod.apply(o, arguments)
-              : o.queue.push(arguments);
-          }),
-        e._fbq || (e._fbq = o),
-        (o.push = o),
-        (o.loaded = !0),
-        (o.version = "2.0"),
-        (o.queue = []),
-        ((a = t.createElement(n)).async = !0),
-        (a.src = "https://connect.facebook.net/en_US/fbevents.js"),
-        (f = t.getElementsByTagName(n)[0]).parentNode.insertBefore(a, f));
-    })(window, document, "script"),
-      fbq("init", "249879825918890"),
-      fbq("track", "PageView");
-  </script>
-  <noscript
-    ><img
-      height="1"
-      width="1"
-      style="display: none"
-      src="https://www.facebook.com/tr?id=249879825918890&amp;ev=PageView&amp;noscript=1"
-  /></noscript>
-  <header>
-    <div class="navbar topnav">
-      <div class="container d-flex align-items-center pl-0 pr-0 pt-2 pb-2">
-        <div class="col-md-1 col-2 d-lg-none d-block navbar-toggler">
-          <img
-            class="notactive mr-sm-2"
-            src="/static/app/img/menu.png"
-            height="33"
-          /><img
-            class="active mr-sm-2"
-            src="/static/app/img/close-menu.png"
-            height="33"
-          />
-        </div>
-        <div class="col-md-4 d-lg-none d-sm-block d-none">
-          <a class="phone gradient1" href="tel:88004440155"
-            ><img
-              class="mr-sm-2"
-              src="/static/app/img/phone.png"
-              width="16"
-            /><span class="d-none d-sm-inline">8 (800) 444-01-55</span></a
-          >
-        </div>
-        <div class="col-4 city_header_wrapper">
-          <select class="select mt-1 mb-0" name="city" id="city_header">
-            <option value="" class="option">Выбери город</option>
-          </select>
-        </div>
-        <div
-          class="
-            col-2
-            underlogo
-            d-sm-block
-            align-items-center
-            px-0
-            justify-content-center
-            col-sm-2
-            d-none
-          "
-        >
-          <a class="d-flex align-items-center" href="/"
-            ><img src="/static/app/img/mobile-logo.png" class="mobile-logo" alt="DOSKI" width="218"
-          /></a>
-        </div>
-        <div class="col-4 offset-2 offset-lg-0 d-sm-none d-block text-center">
-          <a href="/"
-            ><img src="/static/app/img/mobile-logo.png" alt="DOSKI" class="mobile-logo" height="34"
-          /></a>
-        </div>
-        <div class="col-4 d-sm-none d-block text-right">
+            height="1"
+            width="1"
+            style="display: none"
+            src="https://www.facebook.com/tr?id=249879825918890&amp;ev=PageView&amp;noscript=1"
+    /></noscript>
+    <header>
+        <div class="navbar box-shadow">
+            <div class="col-1 d-lg-block d-none position-absolute">
+                <select class="select mt-1 mb-0 d-none " name="city" id="city_header">
+                    <option value="" class="option">Выбери город</option>
+                </select>
+            </div>
+            <div class="container align-self-center d-flex justify-content-between">
 
-          <a href="#" id="mobile_header_phone"><img class="mr-sm-2" src="/static/app/img/phone.png" height="24"/></a>
-        </div>
+                <div
+                        class="col-4 col-md-4 col-lg-5 align-items-center
+                               justify-content-start px-0 d-lg-flex d-none"
+                >
+                    <!-- <a class="menu-item" href="{% url 'pclogin' %}">Главная</a>
+                    <a class="menu-item" href="{% url 'pcdelivery' %}">Доставка</a>
+                    <a class="menu-item" href="{% url 'pcbooking' %}">Бронирование</a> -->
+                    
+                    {% if not pcpanel_main_page %} 
+                        <a class="menu-item" href="/pcpanel">Назад</a> 
+                    {% endif %}
+                </div>
+                <div class="col-2 d-lg-none d-block navbar-toggler">
+                    <img
+                            class="notactive mr-sm-2"
+                            src="/static/app/img/menu.png"
+                            height="33"
+                    /><img
+                        class="active mr-sm-2"
+                        src="/static/app/img/close-menu.png"
+                        height="33"
+                />
+                </div>
+                <div
+                    class="col-2 underlogo d-lg-flex align-items-center px-0
+                    col-md-8 justify-content-center col-lg-2 d-none"
+                >
+                    <a class="d-flex align-items-center" href="#">
+                        <img src="/static/app/img/logo@2x.png" alt="RESPUBLICA" width="83"/>
+                    </a>
+                </div>
+                <div class="col-8 d-lg-none d-block text-center">
+                    <a href="{% url 'index' %}">
+                        <img
+                            src="/static/app/img/mobile-logo.png"
+                            alt="RESPUBLICA"
+                            height="21"
+                        />
+                    </a>
+                </div>
+                <div class="col-2 d-lg-none d-block">
+                    <a id="mobile_header_phone" class="phone" href="tel:+7(383)227-90-50">
+                        <img class="mr-sm-2" src="/static/app/img/phone.png" height="24"/>
+                    </a>
+                </div>
+                <div
+                    class="col-4 col-md-4 col-lg-5 d-none d-lg-flex
+                           align-items-center justify-content-around px-0"
+                >
+                    <a class="menu-item" href="{% url 'contacts' %}">Контакты</a>
 
-        <div
-          class="col-5 d-none d-sm-flex align-items-center justify-content-end"
-        >
-          <div class="addresses mr-2" id="addresses_header">
+                    {% if user.is_authenticated %}
+                    <a class="login gradient1" href="/personal">
+                        <img
+                            class="mr-sm-2"
+                            src="/static/app/img/login-icon.png"
+                            width="19"
+                        />
+                        <span class="d-none d-sm-inline"> 
+                            {% if user.profie.firstname %} {{ user.profie.firstname }} 
+                            {% else %} кабинет 
+                            {% endif %}
+                        </span>
+                    {% else %}
+                    <a class="login sign gradient1">
+                        <img
+                            class="mr-sm-2"
+                            src="/static/app/img/login-icon.png"
+                            width="19"
+                        />
+                        <span class="d-none d-sm-inline">Войти</span>
+                    {% endif %}
+                    </a>
 
-          </div>
-          <a
-            class="socials d-lg-block d-none"
-            id="inst"
-            href="https://instagram.com/bardoski74"
-            target="_blank"
-          >
-            <img src="/static/app/img/insta.png" height="21" /></a
-          ><a
-                id="vk"
-            class="socials d-lg-block vk d-none"
-            href="https://vk.com/bardoski74"
-            target="_blank"
-          >
-            <img src="/static/app/img/vk.png" height="21"
-          /></a>
+                    <a class="phone gradient1" href="tel:+73832279050" id="phone_header">
+                        <img
+                            class="mr-sm-2"
+                            src="/static/app/img/phone.png"
+                            width="16"
+                        />
+                        <span class="d-none d-sm-inline" >227-90-50</span>
+                    </a>
+                </div>
+            </div>
         </div>
-      </div>
+    </header>
+    {% block content %} {% endblock content %}
+
+    <section id="map">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-8 col-lg-6 col-12">
+                    <div class="row pb-sm-4">
+                        <div class="col-sm-6 col-12">
+                            <div class="section-title pt-0 text-sm-left text-center">
+                                Наши бары:
+                            </div>
+                            <ul class="bars text-sm-left text-center">
+                                <li>ул. Ленина 6</li>
+                                <li>ул. Дуси Ковальчук 179/2</li>
+                                <li>ул. Покрышкина 6</li>
+                                <li>ул. Бориса Богаткова 201/1</li>
+                            </ul>
+                            <div class="text-center text-sm-left">
+                                <a class="phone" href="tel:+7(383)227-90-50"
+                                >+7 (383) 227-90-50</a
+                                >
+                                <img src="/static/app/img/payment_systems.png"
+                                     alt="Платежные системы: Visa, MasterCard, МИР">
+                                <a href="#" class="mb-3 d-block" id="paymentRules">Оплата и возврат</a>
+                            </div>
+                        </div>
+                        <div class="col-sm-6" style="position: relative; z-index: 0">
+                            <a class="submit mb-4" href="#feedback" data-modal
+                            >Оставить отзыв<img
+                                    src="/static/app/img/feedback-icon.png"
+                                    width="24"/></a
+                            ><a class="mt-3 alternative" id="orderTaxi" href="#"
+                        >Вызвать такси<img
+                                src="/static/app/img/arrow-right.png"
+                                width="24"
+                        /></a>
+                            <div class="text-center mt-sm-4">
+                                <a id="yandex_eda_link" target="_blank"><img src="/static/app/img/yandex.png" height="36"/></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="map-canvas" class="col-sm-4 col-lg-6 px-0 pt-2 pt-sm-0 mx-2 mx-sm-0">
+                    <iframe
+                            src="https://www.google.com/maps/embed?pb=!1m16!1m12!1m3!1d18293.325820378202!2d82.9231845436431!3d55.031550407857374!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!2m1!1zcmVzcHVibGljYSDQsdCw0YA!5e0!3m2!1sru!2sru!4v1626850287804!5m2!1sru!2sru"
+                            style="border: 0"
+                            allowfullscreen=""
+                            loading="lazy"
+                    ></iframe>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div id="menu">
+        <div class="menu-container">
+            <ul>
+                <li><a class="menu-item" href="{% url 'menu' %}">Меню</a></li>
+                <li>
+                    <a class="menu-item" href="{% url 'reservation' %}">Бронирование</a>
+                </li>
+                <li>
+                    <a class="menu-item" href="{% url 'delivery' %}">Доставка</a>
+                </li>
+                <li><a class="menu-item" href="{% url 'events' %}">События</a></li>
+                <li><a class="menu-item" href="{% url 'career' %}">Карьера</a></li>
+                <li><a class="menu-item" href="{% url 'franchise' %}">Франчайзи</a></li>
+                <li><a class="menu-item" href="{% url 'contacts' %}">Контакты</a></li>
+                <li class="mt-4">
+                    <img class="mr-2 mb-2" src="/static/app/img/login-icon.png" width="19" />
+                    {% if user.is_authenticated %}
+                    <a href="/personal">Кабинет</a>
+                    {% else %}
+                    <a class="login sign">Войти</a>
+                    {% endif %}
+                </li>
+            </ul>
+        </div>
     </div>
-    <div class="navbar botnav">
-      <div class="container">
-        <div class="col-12 px-0 d-sm-flex d-none justify-content-between">
-          <a class="menu-item" href="/menu">Меню</a
-          >
-          <a class="menu-item" href="/reservation">Бронирование</a
-          ><a class="menu-item" href="/delivery">Доставка</a
-          ><a class="menu-item" href="/events">События</a
-          ><a class="menu-item" href="/career">Карьера</a
-          ><a class="menu-item" href="/contacts">Контакты</a><a class="menu-item" href="/franchise">Франчайзи</a>
-          {% if user.is_authenticated %}
-          <a class="login" href="/personal">
-            <img
-              class="mr-sm-2"
-              src="/static/app/img/login-icon.png"
-              width="16"
-            />
-            <span class="d-none d-sm-inline">Иванов И.К.</span>
-          </a>
+    
+    {% display_svelte "Sign.svelte" component_props %}
 
-          {% else %}
-          <a class="login gradient1" href="#signinup" data-modal
-            ><img
-              class="mr-sm-2"
-              src="/static/app/img/login-icon.png"
-              width="16"
-            />
-            <span class="d-none d-sm-inline">Войти</span></a
-          >
-          {% endif %}
-          <a class="phone gradient1" href="tel:88004440155" id="phone_header"
-            ><img
-              class="mr-sm-2"
-              src="/static/app/img/phone.png"
-              width="16"
-            /><span class="d-none d-sm-inline">8 (800) 444-01-55</span></a
-          >
-        </div>
-      </div>
-    </div>
-  </header>
-  <div class="backdrop-blur"></div>
-  {% block content %} {% endblock content %}
-
-<!--  <section id="map">-->
-<!--    <div id="map-canvas"></div>-->
-<!--    <div class="container-fluid">-->
-<!--      <div class="row">-->
-<!--        <div class="col-12 text-sm-left text-center">-->
-<!--          <div class="section-title pt-0" title="Наши бары:">Наши бары:</div>-->
-<!--        </div>-->
-<!--        <div class="col-sm-3 col-xl-2">-->
-<!--          <ul class="bars text-sm-left text-center">-->
-<!--            <li class="city-list">-->
-<!--              <div class="city-name">-->
-<!--                <img src="/static/app/img/point.png" height="20" />Омск-->
-<!--              </div>-->
-<!--              <div class="city-address">ул. Карла Либнехта, 11</div>-->
-<!--            </li>-->
-<!--            <li class="city-list">-->
-<!--              <div class="city-name">-->
-<!--                <img-->
-<!--                  src="/static/app/img/point.png"-->
-<!--                  height="20"-->
-<!--                />Cанкт-Петербург-->
-<!--              </div>-->
-<!--              <div class="city-address">ул. Звенигородская 1,к 2</div>-->
-<!--            </li>-->
-<!--            <li class="city-list">-->
-<!--              <div class="city-name">-->
-<!--                <img src="/static/app/img/point.png" height="20" />Челябинск-->
-<!--              </div>-->
-<!--              <div class="city-address">ул. Елькина 5</div>-->
-<!--            </li>-->
-<!--            <li class="city-list">-->
-<!--              <div class="city-name">-->
-<!--                <img src="/static/app/img/point.png" height="20" />Новосибирск-->
-<!--              </div>-->
-<!--              <div class="city-address">ул. Вокзальная магистраль,16</div>-->
-<!--              <div class="city-address">пр. Карла Маркса,37/2</div>-->
-<!--            </li>-->
-<!--          </ul>-->
-<!--        </div>-->
-<!--        <div class="col-sm-3 col-xl-2">-->
-<!--          <ul class="bars text-sm-left text-center">-->
-<!--            <li class="city-list">-->
-<!--              <div class="city-name">-->
-<!--                <img src="/static/app/img/point.png" height="20" />воронеж-->
-<!--              </div>-->
-<!--              <div class="city-address">ул. Плехановская, 9</div>-->
-<!--            </li>-->
-<!--            <li class="city-list">-->
-<!--              <div class="city-name">-->
-<!--                <img src="/static/app/img/point.png" height="20" />казань-->
-<!--              </div>-->
-<!--              <div class="city-address">ул. Пушкина 17</div>-->
-<!--            </li>-->
-<!--            <li class="city-list">-->
-<!--              <div class="city-name">-->
-<!--                <img src="/static/app/img/point.png" height="20" />кемерово-->
-<!--              </div>-->
-<!--              <div class="city-address">ул. Ноградская, 1</div>-->
-<!--            </li>-->
-<!--            <li class="city-list">-->
-<!--              <div class="city-name">-->
-<!--                <img src="/static/app/img/point.png" height="20" />новокузнецк-->
-<!--              </div>-->
-<!--              <div class="city-address">ул. Металлургов, 16</div>-->
-<!--            </li>-->
-<!--          </ul>-->
-<!--        </div>-->
-<!--        <div class="col-sm-4 col-xl-2" style="position: relative; z-index: 0">-->
-<!--          <a class="mb-3 alternative" id="orderTaxi" href="#">-->
-<!--            Заказать такси<img-->
-<!--              src="/static/app/img/arrow-right.png"-->
-<!--              width="24" /></a-->
-<!--          ><a class="submit mb-4" href="#feedback" data-modal>-->
-<!--            Оставить отзыв<img-->
-<!--              src="/static/app/img/feedback-icon.png"-->
-<!--              width="24"-->
-<!--          /></a>-->
-<!--          <div class="text-center mt-sm-2 mt-4">-->
-<!--            <a id="yandex_eda_link" target="_blank"><img src="/static/app/img/yandex.png" height="56"/></a>-->
-<!--          </div>-->
-<!--          <div class="text-center mt-2 pt-3">-->
-<!--            <a class="phone" id="phone_footer" href="tel:+7(383)227-90-50"-->
-<!--              >8 (800) 444-01-55</a-->
-<!--            >-->
-<!--          </div>-->
-<!--        </div>-->
-<!--      </div>-->
-<!--      &lt;!&ndash;      <div class="row mt-4">&ndash;&gt;-->
-<!--      &lt;!&ndash;        <div class="col-sm-7 col-xl-6 d-none d-sm-flex align-items-center">&ndash;&gt;-->
-<!--      &lt;!&ndash;          <img class="mr-4" src="/static/app/img/qr.png" height="159" />&ndash;&gt;-->
-<!--      &lt;!&ndash;          <div>&ndash;&gt;-->
-<!--      &lt;!&ndash;            <div class="app-text text-sm-left text-center pb-3 pb-sm-0">&ndash;&gt;-->
-<!--      &lt;!&ndash;              Скачай для удобства <br />мобильное приложение&ndash;&gt;-->
-<!--      &lt;!&ndash;            </div>&ndash;&gt;-->
-<!--      &lt;!&ndash;            <div class="mb-sm-0 mb-3 d-flex">&ndash;&gt;-->
-<!--      &lt;!&ndash;              <a class="alternative mr-3" href="#"&ndash;&gt;-->
-<!--      &lt;!&ndash;                >Скачать для<img src="/static/app/img/apple.png" width="16" /></a&ndash;&gt;-->
-<!--      &lt;!&ndash;              ><a class="alternative" href="#">&ndash;&gt;-->
-<!--      &lt;!&ndash;                Скачать для<img src="/static/app/img/android.png" width="16"&ndash;&gt;-->
-<!--      &lt;!&ndash;              /></a>&ndash;&gt;-->
-<!--      &lt;!&ndash;            </div>&ndash;&gt;-->
-<!--      &lt;!&ndash;          </div>&ndash;&gt;-->
-<!--      &lt;!&ndash;        </div>&ndash;&gt;-->
-<!--      &lt;!&ndash;      </div>&ndash;&gt;-->
-<!--    </div>-->
-<!--  </section>-->
-
-  <div id="menu">
-    <div class="menu-container">
-      <ul>
-        <li><a class="menu-item" href="{% url 'menu' %}">Меню</a></li>
-        <li>
-          <a class="menu-item" href="{% url 'reservation' %}">Бронирование</a>
-        </li>
-        <li>
-          <a class="menu-item" href="{% url 'delivery' %}">Доставка</a>
-        </li>
-        <li><a class="menu-item" href="{% url 'events' %}">События</a></li>
-        <li><a class="menu-item" href="{% url 'career' %}">Карьера</a></li>
-        <li><a class="menu-item" href="{% url 'franchise' %}">Франчайзи</a></li>
-        <li><a class="menu-item" href="{% url 'contacts' %}">Контакты</a></li>
-        <li class="mt-4">
-          <img class="mr-2 mb-2" src="/static/app/img/login-icon.png" width="19" />
-          {% if user.is_authenticated %}
-          <a href="/personal">Кабинет</a>
-          {% else %}
-          <a class="login sign">Войти</a>
-          {% endif %}
-        </li>
-      </ul>
-    </div>
-  </div>
-
-  {% display_svelte "Sign.svelte" component_props %}
-  <!-- <div
-    class="modal modal-wrapper fade"
-    id="signinup"
-    tabindex="-1"
-    role="dialog"
-  >
-    <div class="modal-dialog" style="max-width: 424px">
-      <div class="modal-content">
-        <button
-          class="close"
-          type="button"
-          data-dismiss="modal"
-          aria-label="Close"
-        >
-          <span aria-hidden="true">&times;</span>
-        </button>
-        <div class="modal-header mt-3 mt-sm-0">
-          <div class="modal-title">Личный кабинет</div>
-        </div>
-        <div class="pb-3">
-          <a
-            class="mt-0 mb-3 submit d-block text-center"
-            href="#login"
-            data-modal
-            >Войти</a
-          ><a
-            class="download active d-block text-center"
-            href="#register"
-            data-modal
-            >Зарегистрироваться</a
-          >
-        </div>
-      </div>
-    </div>
-  </div> -->
-  <!-- <div class="modal modal-wrapper fade" id="login" tabindex="-1" role="dialog">
-    <div class="modal-dialog" style="max-width: 492px">
-      <div class="modal-content">
-        <button
-          class="close"
-          type="button"
-          data-dismiss="modal"
-          aria-label="Close"
-        >
-          <span aria-hidden="true">&times;</span>
-        </button>
-        <div class="modal-header"><div class="modal-title">Вход</div></div>
-        <form action="">
-          <input class="login-input" name="login" placeholder="Логин" />
-          <input
-            class="password-input"
-            type="password"
-            name="password"
-            placeholder="Пароль"
-          />
-          <div class="text-center"><a class="submit" href="#">Войти</a></div>
-        </form>
-        <div class="modal-description text-center mt-4">
-          <a href="#forgot-password" data-modal>Забыли пароль?</a>
-        </div>
-      </div>
-    </div>
-  </div> -->
-  <!-- <div
-    class="modal-wrapper modal fade"
-    id="register"
-    tabindex="-1"
-    role="dialog"
-  >
-    <div class="modal-content" style="max-width: 492px">
-      <div class="modal-header">
-        <button
-          class="close"
-          type="button"
-          data-dismiss="modal"
-          aria-label="Close"
-        >
-          <span aria-hidden="true">&times;</span>
-        </button>
-        <div class="modal-title">Регистрация</div>
-      </div>
-      <div class="stages">
-        <form class="stage" action="">
-          <div class="modal-description">Введите Ваш номер телефона</div>
-          <input
-            class="phone-input"
-            type="tel"
-            name="phone"
-            placeholder="Ваш телефон"
-          />
-          <div class="text-center">
-            <a class="submit send-register" href="#">Получить код</a>
-          </div>
-        </form>
-        <form class="stage" action="">
-          <div class="modal-description">Введите код из СМС</div>
-          <div class="d-flex justify-content-between code-inputs">
-            <input
-              class="code-input"
-              type="number"
-              name="code1"
-              max="9"
-              min="0"
-              step="1"
-            />
-            <input
-              class="code-input"
-              type="number"
-              name="code2"
-              max="9"
-              min="0"
-              step="1"
-            />
-            <input
-              class="code-input"
-              type="number"
-              name="code3"
-              max="9"
-              min="0"
-              step="1"
-            />
-            <input
-              class="code-input"
-              type="number"
-              name="code4"
-              max="9"
-              min="0"
-              step="1"
-            />
-          </div>
-          <div class="text-center">
-            <a class="submit verify-registration" href="#"
-              >Зарегистрироваться</a
-            >
-          </div>
-        </form>
-      </div>
-    </div>
-  </div> -->
-  <div
+    <div
     class="modal-wrapper modal fade"
     id="paymentRulesModal"
     tabindex="-1"
@@ -682,119 +468,6 @@
   </div>
 
   {% display_svelte "Feedback.svelte" component_props %}
-  <!-- <div
-  class="modal-wrapper modal fade"
-  id="feedback"
-  tabindex="-1"
-  role="dialog"
->
-  <div class="modal-dialog" style="max-width: 659px">
-    <div class="modal-content">
-      <button
-        class="close"
-        type="button"
-        data-dismiss="modal"
-        aria-label="Close"
-      >
-        <span aria-hidden="true">&times;</span>
-      </button>
-      <div class="modal-header">
-        <div class="modal-title">Оставьте свой отзыв</div>
-        <div class="modal-title success">Ваш отзыв успешно отправлен</div>
-      </div>
-      <div class="modal-description black">
-        С нетерпением ждем ваших замечаний, пожеланий, предложений!
-      </div>
-      <form action="">
-        <input name="phone" placeholder="Ваше имя" />
-        <input
-          class="phone-input"
-          type="tel"
-          name="phone"
-          placeholder="Ваш телефон"
-        />
-        <textarea
-          name="comment"
-          placeholder="Напишите свой отзыв..."
-          rows="4"
-        ></textarea>
-        <div class="text-center" style="margin-top: 20px">
-          <a class="submit send-feedback" href="#">Отправить отзыв</a
-          ><a class="close-modal submit success" href="#">Ок</a>
-        </div>
-      </form>
-    </div>
-  </div>
-</div> -->
-  <div class="modal modal-wrapper fade" id="item" tabindex="-1" role="dialog">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <button
-          class="close"
-          type="button"
-          data-dismiss="modal"
-          aria-label="Close"
-        >
-          <span aria-hidden="true">&times;</span></button
-        ><img class="dish-img" src="/static/app/img/product1.jpg" />
-        <div class="item-content">
-        <div class="modal-header">
-          <div class="modal-title">Жареный картофель с грибами</div>
-        </div>
-        <div class="dish-description">
-          Картофель и грибы, обжаренные в специях. Подается со сметаной.
-        </div>
-        <div class="dish-details">
-          <div class="dish-details_sizes">100/15 гр /</div>
-          <div class="dish-details_price">168₽</div>
-        </div>
-          </div>
-      </div>
-    </div>
-  </div>
-  <div
-    class="modal modal-wrapper fade"
-    id="item-buy"
-    tabindex="-1"
-    role="dialog"
-  >
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <button
-          class="close"
-          type="button"
-          data-dismiss="modal"
-          aria-label="Close"
-        >
-          <span aria-hidden="true">&times;</span></button
-        ><img class="dish-img" src="/static/app/img/product1.jpg" />
-        <div class="item-content">
-          <div class="modal-header">
-            <div class="modal-title">Жареный картофель с грибами</div>
-          </div>
-          <div class="dish-description">
-            Картофель и грибы, обжаренные в специях. Подается со сметаной.
-          </div>
-          <div class="d-flex align-items-center">
-            <div class="calculations">
-              <div class="minus-btn">-</div>
-              <div class="item-quantity">0</div>
-              <div class="plus-btn">+</div>
-            </div>
-            <div class="dish-details">
-              <div class="dish-details_sizes">100/15 гр /</div>
-              <div class="dish-details_price">168₽</div>
-            </div>
-          </div>
-<!--          <div class="text-left mt-3">-->
-<!--            <a class="submit addcart" href="#advices" data-modal-->
-<!--              >Добавить в корзину</a-->
-<!--            >-->
-<!--          </div>-->
-        </div>
-      </div>
-    </div>
-  </div>
 
   <div
     class="modal modal-wrapper fade"
@@ -835,414 +508,106 @@
       </div>
     </div>
   </div>
-  <!-- <div
-  class="modal modal-wrapper fade"
-  id="reserved"
-  tabindex="-1"
-  role="dialog"
->
-  <div class="modal-dialog limited" style="max-width: 506px">
-    <div class="modal-content">
-      <button
-        class="close"
-        type="button"
-        data-dismiss="modal"
-        aria-label="Close"
-      >
-        <span aria-hidden="true">&times;</span>
-      </button>
-      <div class="modal-subtitle mt-1 mb-2">531216</div>
-      <div class="modal-header">
-        <div class="modal-title">
-          СФОТОГРАФИРУЙТЕ ИЛИ СОХРАНИТЕ НОМЕР БРОНИ
-        </div>
-      </div>
-      <div class="modal-description">для предъявления его в заведении</div>
-      <div class="text-center">
-        <a class="mt-0 mb-3 submit" href="#askpreorder" data-modal>ОК</a>
-      </div>
-    </div>
-  </div>
-</div> -->
-  <div class="modal-wrapper modal fade" id="cart" tabindex="-1" role="dialog">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <button
-          class="close"
-          type="button"
-          data-dismiss="modal"
-          aria-label="Close"
-        >
-          <span aria-hidden="true">&times;</span>
-        </button>
-        <div class="stages">
-          <div class="stage">
-            <div class="cart-top">
-              <div class="modal-header pt-1">
-                <div class="modal-title text-left">Корзина</div>
-              </div>
-              <div class="cart-full"><h1>Корзина пуста</h1></div>
-              <div class="cart-sum cart-item">
-                <div class="cart-summary_title">
-                  ИТОГО:
-                  <div class="cart-summary_amount text-right">0₽</div>
-                </div>
-              </div>
-            </div>
-            <div class="cart-bottom">
-              <div class="text-center text-sm-left">
-                <a class="submit checkout-btn" href="#">Оформить заказ</a>
-              </div>
-            </div>
-          </div>
-          <div class="stage cart-top">
-            <div class="modal-header pt-1">
-              <div class="modal-title text-center">Оформление заказа</div>
-            </div>
-            <form class="row" action="" id="checkoutform">
-              <div class="col-sm-12">
-                <input type="text" name="name" placeholder="Введите Ваше ФИО" />
-              </div>
-              <div class="col-sm-12">
-                <input type="text" name="addres" placeholder="Введите адрес" />
-              </div>
-              <div class="col-sm-12">
-                <input type="text" name="phone" placeholder="Номер телефона" />
-              </div>
-              <div class="col-sm-12">
-                <input
-                  type="text"
-                  name="comment"
-                  placeholder="Пожелания к заказу"
-                />
-              </div>
-              <div class="col-sm-12">
-                <select name="paymentType">
-                  <option value="">Способ оплаты</option>
-                  <option value="Банковская карта">Банковская карта</option>
-                  <option value="Наличные">Наличные</option>
-                  <option value="Онлайн оплата">Онлайн оплата</option>
-                </select>
-              </div>
-            </form>
-            <div class="text-center mb-3">
-              <a class="submit checkout-final-fake" href="#">Оформить заказ</a>
-              <a class="d-none checkout-final" href="#"></a>
-            </div>
-          </div>
-          <div class="stage cart-top">
-            <div class="modal-header pt-1">
-              <div class="modal-title text-center">
-                Спасибо! Ваш заказ принят
-              </div>
-            </div>
-            <div class="text-center">
-              <a class="submit close-modal" href="#">Ок</a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div
-          class="modal modal-wrapper fade"
-          id="table_not_chosen"
-          tabindex="-1"
-          role="dialog"
-  >
-    <div class="modal-dialog limited" style="max-width: 506px">
-      <div class="modal-content text-center">
-        <h1>Стол не выбран</h1>
-      </div>
-    </div>
-  </div>
-  <div
-    class="modal modal-wrapper fade"
-    id="askpreorder"
-    tabindex="-1"
-    role="dialog"
-  >
-    <div class="modal-dialog limited" style="max-width: 424px">
-      <div class="modal-content">
-        <button
-          class="close"
-          type="button"
-          data-dismiss="modal"
-          aria-label="Close"
-        >
-          <span aria-hidden="true">&times;</span>
-        </button>
-        <div class="modal-header mt-3">
-          <div class="modal-title">Хотите сделать предзаказ?</div>
-        </div>
-        <div class="pb-3 text-center">
-          <a class="mt-0 mb-3 mr-md-3 submit" href="/preorder">Да</a
-          ><a class="download active close-modal" href="#">Нет</a>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div
-    class="modal modal-wrapper fade"
-    id="peoplenumber"
-    tabindex="-1"
-    role="dialog"
-  >
-    <div class="modal-dialog limited" style="max-width: 424px">
-      <div class="modal-content">
-        <button
-          class="close"
-          type="button"
-          data-dismiss="modal"
-          aria-label="Close"
-        >
-          <span aria-hidden="true">&times;</span>
-        </button>
-        <div class="modal-header mt-3">
-          <div class="modal-title">Ожидаемое количество человек?</div>
-        </div>
-
-        <div class="input-group mb-3">
-          <input
-            type="text"
-            class="form-control"
-            placeholder="Введите количество человек"
-            aria-label="Username"
-          />
-        </div>
-        <div class="pb-3 text-center">
-          <a class="mt-0 mb-3 mr-3 submit" href="/preorder">Да</a>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div
-    class="modal-wrapper modal fade"
-    id="preorder"
-    tabindex="-1"
-    role="dialog"
-  >
-    <div class="modal-dialog cart-top">
-      <div class="modal-content" style="padding: 40px;">
-        <div class="modal-header pb-4 pt-0">
-          <div class="modal-title text-left">Содержание предзаказа</div>
-          <button
-            class="close"
-            type="button"
-            data-dismiss="modal"
-            aria-label="Close"
-          >
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="cart-full pb-sm-4 mb-sm-4"></div>
-        <div class="cart-sum d-flex justify-content-between align-items-center">
-          <div class="cart-summary_title">ИТОГО:</div>
-          <div class="cart-summary_amount text-right">0₽</div>
-        </div>
-
-        <div
-          class="
-            text-center
-            preorder-buttons
-            mb-4
-            mt-3
-            d-flex
-            justify-content-around
-            align-items-center
-          "
-        >
-          <a class="submit" href="#">Скачать</a
-          ><a class="alternative active" href="#">Распечатать</a
-          ><a class="alternative active" href="#">Поделиться</a>
-        </div>
-        <p class="mb-0 modal-description">
-          *Вы можете прийти в заведение с вашим предзаказом и оплатить его
-        </p>
-      </div>
-    </div>
-  </div>
-
-  <div
-    class="modal-wrapper modal fade"
-    id="advices"
-    tabindex="-1"
-    role="dialog"
-  >
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header pt-1">
-<!--          <div class="modal-title text-left mb-3">что берут с этим блюдом</div>-->
-          <button
-            class="close"
-            type="button"
-            data-dismiss="modal"
-            aria-label="Close"
-          >
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-<!--        <div class="recommendations row">-->
-<!--          <div class="dish-item col-sm-4 col-10">-->
-<!--            <img class="dish-img" src="/static/app/img/product1.jpg" />-->
-<!--            <div class="dish-title">Эби темпура</div>-->
-<!--            <div class="dish-description">-->
-<!--              хиты горячих закусок из нашего меню: сырные палочки, ржаные-->
-<!--              гренки, картофель фри, колбаски, рыбные палочки. подается с соусом-->
-<!--              тартар и кетчупом.-->
-<!--            </div>-->
-<!--            <div class="dish-details">-->
-<!--              <div class="dish-details_sizes">100/15 гр /</div>-->
-<!--              <div class="dish-details_price">168₽</div>-->
-<!--            </div>-->
-<!--            <div class="calculations">-->
-<!--              <div class="minus-btn">-</div>-->
-<!--              <div class="item-quantity">0</div>-->
-<!--              <div class="plus-btn">+</div>-->
-<!--            </div>-->
-<!--          </div>-->
-<!--          <div class="dish-item col-sm-4 col-10">-->
-<!--            <img class="dish-img" src="/static/app/img/product1.jpg" />-->
-<!--            <div class="dish-title">Эби темпура</div>-->
-<!--            <div class="dish-description">-->
-<!--              хиты горячих закусок из нашего меню: сырные палочки, ржаные-->
-<!--              гренки, картофель фри, колбаски, рыбные палочки. подается с соусом-->
-<!--              тартар и кетчупом.-->
-<!--            </div>-->
-<!--            <div class="dish-details">-->
-<!--              <div class="dish-details_sizes">100/15 гр /</div>-->
-<!--              <div class="dish-details_price">168₽</div>-->
-<!--            </div>-->
-<!--            <div class="calculations">-->
-<!--              <div class="minus-btn">-</div>-->
-<!--              <div class="item-quantity">0</div>-->
-<!--              <div class="plus-btn">+</div>-->
-<!--            </div>-->
-<!--          </div>-->
-<!--          <div class="dish-item col-sm-4 col-10">-->
-<!--            <img class="dish-img" src="/static/app/img/product1.jpg" />-->
-<!--            <div class="dish-title">Эби темпура</div>-->
-<!--            <div class="dish-description">-->
-<!--              хиты горячих закусок из нашего меню: сырные палочки, ржаные-->
-<!--              гренки, картофель фри, колбаски, рыбные палочки. подается с соусом-->
-<!--              тартар и кетчупом.-->
-<!--            </div>-->
-<!--            <div class="dish-details">-->
-<!--              <div class="dish-details_sizes">100/15 гр /</div>-->
-<!--              <div class="dish-details_price">168₽</div>-->
-<!--            </div>-->
-<!--            <div class="calculations">-->
-<!--              <div class="minus-btn">-</div>-->
-<!--              <div class="item-quantity">0</div>-->
-<!--              <div class="plus-btn">+</div>-->
-<!--            </div>-->
-<!--          </div>-->
-<!--        </div>-->
-        <div class="text-left" style="margin-top: 20px">
-          <a class="close-modal submit" href="#">Вернуться к предзаказу</a>
-        </div>
-      </div>
-    </div>
-  </div>
-  <script>
-    console.log({ address: document.querySelector("#dadata-address") });
+    
+    <script>console.log({
+        address: document.querySelector("#dadata-address")
+    })
     $("#dadata-address").suggestions({
-      token: "5870aa5579db3be0faff6aa85d1caf810be3baca",
-      type: "ADDRESS",
-      /* Вызывается, когда пользователь выбирает одну из подсказок */
-      onSelect: function (suggestion) {
-        console.log(suggestion);
-      },
-    });
-  </script>
-  <script src="/static/bundle.bundle.js"></script>
+        token: "5870aa5579db3be0faff6aa85d1caf810be3baca",
+        type: "ADDRESS",
+        /* Вызывается, когда пользователь выбирает одну из подсказок */
+        onSelect: function (suggestion) {
+            console.log(suggestion);
+        },
+    });</script>
+    <script src="/static/bundle.bundle.js"></script>
 </body>
 <div id="menu">
-  <div class="menu-container">
-    <img class="close" src="/static/app/img/close.png" width="26" />
-    <div class="phone d-block d-sm-none">
-      <a href="tel:88005558597">8 800 555 85 97</a
-      ><small> БЕСПЛАТНО ПО РОССИИ</small>
+    <div class="menu-container">
+        <img class="close" src="/static/app/img/close.png" width="26"/>
+        <div class="phone d-block d-sm-none">
+            <a href="tel:88005558597">8 800 555 85 97</a
+            ><small> БЕСПЛАТНО ПО РОССИИ</small>
+        </div>
+        <ul>
+            <li><a href="#aftermain">Преимущества</a></li>
+            <li><a href="#main-description">О компании</a></li>
+            <li><a href="#format">Индивидуальные решения</a></li>
+            <li><a href="#calculator">Финансовые показатели</a></li>
+            <li><a href="#calc">Калькулятор дохода</a></li>
+            <li><a href="#videos">Видео</a></li>
+            <li><a href="#faq">FAQ</a></li>
+            <li><a href="#contacts">Контакты</a></li>
+        </ul>
+        <button
+                class="d-block d-lg-none btn btn-color"
+                type="button"
+                data-title="Заполните форму"
+                data-subtitle="Специалист компании свяжется с Вами в течение 24 часов"
+        >
+            Заказать звонок
+        </button>
     </div>
-    <ul>
-      <li><a href="#aftermain">Преимущества</a></li>
-      <li><a href="#main-description">О компании</a></li>
-      <li><a href="#format">Индивидуальные решения</a></li>
-      <li><a href="#calculator">Финансовые показатели</a></li>
-      <li><a href="#calc">Калькулятор дохода</a></li>
-      <li><a href="#videos">Видео</a></li>
-      <li><a href="#faq">FAQ</a></li>
-      <li><a href="#contacts">Контакты</a></li>
-    </ul>
-    <button
-      class="d-block d-lg-none btn btn-color"
-      type="button"
-      data-title="Заполните форму"
-      data-subtitle="Специалист компании свяжется с Вами в течение 24 часов"
-    >
-      Заказать звонок
-    </button>
-  </div>
 </div>
 <div class="modal fade" id="static-modal" tabindex="-1" role="dialog">
-  <div class="modal-dialog form-wrapper">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button
-          class="close"
-          type="button"
-          data-dismiss="modal"
-          aria-label="Close"
-        >
-          <span aria-hidden="true">&times;</span>
-        </button>
-        <h4 class="modal-title">Оставить заявку</h4>
-      </div>
-      <form action="">
-        <div class="form-field">
-          <label>Ваше имя</label>
-          <div class="input-wrapper"><input required name="name" /></div>
+    <div class="modal-dialog form-wrapper">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button
+                        class="close"
+                        type="button"
+                        data-dismiss="modal"
+                        aria-label="Close"
+                >
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title">Оставить заявку</h4>
+            </div>
+            <form action="">
+                <div class="form-field">
+                    <label>Ваше имя</label>
+                    <div class="input-wrapper"><input required name="name"/></div>
+                </div>
+                <div class="form-field">
+                    <label>Ваша почта</label>
+                    <div class="input-wrapper"><input type="email" name="email"/></div>
+                </div>
+                <div class="form-field">
+                    <label>Ваш город</label>
+                    <div class="input-wrapper"><input required name="city"/></div>
+                </div>
+                <div class="form-field">
+                    <label>Ваш телефон</label>
+                    <div class="input-wrapper">
+                        <input type="hidden" name="subject" value="Заказать звонок"/>
+                        <input
+                                class="phone-input"
+                                required
+                                name="phone"
+                                placeholder="+7(___)-___-__-__"
+                        />
+                    </div>
+                </div>
+                <div class="form-field">
+                    <label>Ваша потребность</label>
+                    <div class="input-wrapper">
+                        <textarea name="description" cols="30" rows="10"> </textarea>
+                    </div>
+                </div>
+                <p>
+                    <img
+                            src="/static/app/img/locker.png"
+                            style="float: left; margin: 20px 25px 20px 0"
+                    />Политика безопасности персональных данных:Вся полученная информация
+                    используется исключительно в целях коммуникации с использованием
+                    заполнившими форму обратной связи. Компания ООО «СТМ-Косметика»
+                    обязуется не разглашать полученную информацию третьим лицам и
+                    сторонним организациям.
+                </p>
+                <div class="text-center" style="margin-top: 20px">
+                    <input class="btn" type="submit" value="Отправить"/>
+                </div>
+            </form>
         </div>
-        <div class="form-field">
-          <label>Ваша почта</label>
-          <div class="input-wrapper"><input type="email" name="email" /></div>
-        </div>
-        <div class="form-field">
-          <label>Ваш город</label>
-          <div class="input-wrapper"><input required name="city" /></div>
-        </div>
-        <div class="form-field">
-          <label>Ваш телефон</label>
-          <div class="input-wrapper">
-            <input type="hidden" name="subject" value="Заказать звонок" />
-            <input
-              class="phone-input"
-              required
-              name="phone"
-              placeholder="+7(___)-___-__-__"
-            />
-          </div>
-        </div>
-        <div class="form-field">
-          <label>Ваша потребность</label>
-          <div class="input-wrapper">
-            <textarea name="description" cols="30" rows="10"> </textarea>
-          </div>
-        </div>
-        <p>
-          <img
-            src="/static/app/img/locker.png"
-            style="float: left; margin: 20px 25px 20px 0"
-          />Политика безопасности персональных данных:Вся полученная информация
-          используется исключительно в целях коммуникации с использованием
-          заполнившими форму обратной связи. Компания ООО «СТМ-Косметика»
-          обязуется не разглашать полученную информацию третьим лицам и
-          сторонним организациям.
-        </p>
-        <div class="text-center" style="margin-top: 20px">
-          <input class="btn" type="submit" value="Отправить" />
-        </div>
-      </form>
     </div>
-  </div>
 </div>

@@ -178,6 +178,59 @@
         </div>
     </header>
     {% block content %} {% endblock content %}
+
+    <section id="map">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-8 col-lg-6 col-12">
+                    <div class="row pb-sm-4">
+                        <div class="col-sm-6 col-12">
+                            <div class="section-title pt-0 text-sm-left text-center">
+                                Наши бары:
+                            </div>
+                            <ul class="bars text-sm-left text-center">
+                                <li>ул. Ленина 6</li>
+                                <li>ул. Дуси Ковальчук 179/2</li>
+                                <li>ул. Покрышкина 6</li>
+                                <li>ул. Бориса Богаткова 201/1</li>
+                            </ul>
+                            <div class="text-center text-sm-left">
+                                <a class="phone" href="tel:+7(383)227-90-50"
+                                >+7 (383) 227-90-50</a
+                                >
+                                <img src="/static/app/img/payment_systems.png"
+                                     alt="Платежные системы: Visa, MasterCard, МИР">
+                                <a href="#" class="mb-3 d-block" id="paymentRules">Оплата и возврат</a>
+                            </div>
+                        </div>
+                        <div class="col-sm-6" style="position: relative; z-index: 0">
+                            <a class="submit mb-4" href="#feedback" data-modal
+                            >Оставить отзыв<img
+                                    src="/static/app/img/feedback-icon.png"
+                                    width="24"/></a
+                            ><a class="mt-3 alternative" id="orderTaxi" href="#"
+                        >Вызвать такси<img
+                                src="/static/app/img/arrow-right.png"
+                                width="24"
+                        /></a>
+                            <div class="text-center mt-sm-4">
+                                <a id="yandex_eda_link" target="_blank"><img src="/static/app/img/yandex.png" height="36"/></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="map-canvas" class="col-sm-4 col-lg-6 px-0 pt-2 pt-sm-0 mx-2 mx-sm-0">
+                    <iframe
+                            src="https://www.google.com/maps/embed?pb=!1m16!1m12!1m3!1d18293.325820378202!2d82.9231845436431!3d55.031550407857374!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!2m1!1zcmVzcHVibGljYSDQsdCw0YA!5e0!3m2!1sru!2sru!4v1626850287804!5m2!1sru!2sru"
+                            style="border: 0"
+                            allowfullscreen=""
+                            loading="lazy"
+                    ></iframe>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <div id="menu">
         <div class="menu-container">
             <ul>

@@ -139,7 +139,35 @@ class DeliveryView(OnlyStuffUserAccessMixin, View):
         orders = queryset.filter(Q(status=OrderStatusType.WAIT) | 
                                  Q(status=OrderStatusType.APPROVED)).order_by('status')
 
-        return render(request, 'pcdelivery.py.html', {'orders': orders, 'OrderStatusType': OrderStatusType})
+        dishes_of_all_orders = dict()
+
+        for order in orders:
+            dishes = {}
+
+            for menue in order.menues.all():
+                dish_name = menue.menue.dish
+                if dish_name in dishes.keys():
+                    dishes[dish_name]['sum_price'] += menue.menue.in_restaraunt.first().price
+                    dishes[dish_name]['count'] += 1
+                    # dishes[dish_name]['weight'] += int(menue.menue.weight)
+                else:
+                    dishes[dish_name] = {
+                        "order": order,
+                        "sum_price": menue.menue.in_restaraunt.first().price,
+                        "count": 1,
+                        "weight": menue.menue.weight,
+                        "image_url": menue.menue.image.url,
+                        "name": dish_name,
+                    }
+
+            dishes_of_all_orders[order.id] = dishes.values()
+
+        context = {
+            'orders': orders, 
+            'OrderStatusType': OrderStatusType,
+            'dishes_of_all_orders': dishes_of_all_orders
+        }
+        return render(request, 'pcdelivery.py.html', context)
 
     def post(self, request):
         id = request.POST.get('id')

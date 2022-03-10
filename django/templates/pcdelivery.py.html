@@ -1,4 +1,4 @@
-{% extends 'base.py.html' %} {% load django_svelte %}
+{% extends 'base.py.html' %} {% load django_svelte %} {% load special_tags %}
 {% block content %}
 {% for order in orders %}
 <div
@@ -27,7 +27,7 @@
             <div class="pcdelivery-modal-item"><strong>Адрес доставки:</strong> <span>{{ order.address }}</span></div>
             <div class="pcdelivery-modal-item"><strong>Оплата:</strong> {{ order.get_payment_display }}</div>
             <div class="pcdelivery-modal-item mb-0">
-                {% for menue_in_order in order.menues.all %}
+                <!-- {% for menue_in_order in order.menues.all %}
                     <div class="cart-item">
                         <div class="d-flex align-items-center">
                             <div class="cart-item_imgwrapper">
@@ -36,6 +36,21 @@
                             <div class="cart-item_title">{{ menue_in_order.menue.dish }}</div>
                         </div>
                         <div class="cart-item_price text-right">{{ menue_in_order.menue.in_restaraunt.first.price }}₽</div>
+                    </div>
+                {% endfor %} -->
+
+                {% for dish in dishes_of_all_orders|get_item:order.id %}
+                    <div class="cart-item">
+                        <div class="d-flex align-items-center">
+                            <div class="cart-item_imgwrapper">
+                                <img class="cart-item_img" src="{{ dish.image_url }}"/>
+                            </div>
+                            <div class="cart-item_title">
+                                {{ dish.name }}
+                                {{ dish.count }} x {{ dish.weight }}
+                            </div>
+                        </div>
+                        <div class="cart-item_price text-right">{{ dish.sum_price }}₽</div>
                     </div>
                 {% endfor %}
                 <!-- <div class="cart-item">
@@ -53,7 +68,7 @@
                     <div class="cart-price text-right">{{ order.price }}₽</div>
                 </div>
             <div class="pcdelivery-modal-item"><strong>Комментарий:</strong> {{ order.comment }}</div>
-            <div class="d-flex justify-content-between align-items-center mb-4">
+            <div class="d-flex justify-content-between align-items-center mb-4 mt-2">
 
                 <form action="/pcpanel/delivery" method="POST">
                     <input type="hidden" name="id" value="{{ order.id }}">
@@ -83,27 +98,31 @@
                     {% endfor %}
                 {% endif %}
                 <table class="orders-table">
-                    <tr>
-                        <th>Номер заказа</th>
-                        <th>Дата заказа</th>
-                        <th>Телефон заказчика</th>
-                        <th>Сумма заказа</th>
-                    </tr>
-                    {% for order in orders %}
-                        <tr 
-                        {% if order.status == OrderStatusType.APPROVED %} 
-                        class="approved" 
-                        {% else %} 
-                        class="wait"
-                        data-modal="#delivery_order_modal_{{ order.id }}"
-                        {% endif %}
-                        >
-                            <td>№{{order.id}}</td>
-                            <td>{{order.created_at}}</td>
-                            <td>{{order.user}}</td>
-                            <td>{{order.price}}.-</td>
+                    <thead>
+                        <tr>
+                            <th>Номер заказа</th>
+                            <th>Дата заказа</th>
+                            <th>Телефон заказчика</th>
+                            <th>Сумма заказа</th>
                         </tr>
-                    {% endfor %}
+                    </thead>
+                    <tbody>
+                        {% for order in orders %}
+                            <tr 
+                            {% if order.status == OrderStatusType.APPROVED %} 
+                            class="approved" 
+                            {% else %} 
+                            class="wait"
+                            data-modal="#delivery_order_modal_{{ order.id }}"
+                            {% endif %}
+                            >
+                                <td>№{{order.id}}</td>
+                                <td>{{order.created_at}}</td>
+                                <td>{{order.user}}</td>
+                                <td>{{order.price}}.-</td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
                     <!--
                     <tr data-modal="#delivery_order_modal">
                         <td>№23498</td>

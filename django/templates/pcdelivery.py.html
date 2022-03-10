@@ -90,7 +90,14 @@
                         <th>Сумма заказа</th>
                     </tr>
                     {% for order in orders %}
-                        <tr data-modal="#delivery_order_modal_{{ order.id }}">
+                        <tr 
+                        {% if order.status == OrderStatusType.APPROVED %} 
+                        class="approved" 
+                        {% else %} 
+                        class="wait"
+                        data-modal="#delivery_order_modal_{{ order.id }}"
+                        {% endif %}
+                        >
                             <td>№{{order.id}}</td>
                             <td>{{order.created_at}}</td>
                             <td>{{order.user}}</td>

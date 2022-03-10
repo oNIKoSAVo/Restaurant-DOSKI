@@ -6,6 +6,7 @@ from django.urls import reverse
 from django.shortcuts import redirect, render
 from django.views import View
 from django.contrib.auth.mixins import AccessMixin
+from django.db.models import Q
 from restaurant.models import Order, Reservation, Restaraunt, ReservationStatusType, OrderStatusType
 
 # Create your views here.
@@ -135,7 +136,9 @@ class DeliveryView(OnlyStuffUserAccessMixin, View):
             except Order.DoesNotExist:
                 return JsonResponse({'status': 'error', 'message': 'Order not found'}, status=404)
 
-        orders = queryset.filter(status=OrderStatusType.WAIT)
+        orders = queryset.filter(Q(status=OrderStatusType.WAIT) | 
+                                 Q(status=OrderStatusType.APPROVED)).order_by('status')
+
         return render(request, 'pcdelivery.py.html', {'orders': orders, 'OrderStatusType': OrderStatusType})
 
     def post(self, request):

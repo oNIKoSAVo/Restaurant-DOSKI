@@ -1195,17 +1195,18 @@ $(function () {
   $(".modal-wrapper").on("click", function (e) {
     e.stopPropagation();
     $("#video iframe").attr("src", "");
-    if ($(event.target).hasClass("modal-wrapper")) {
+    const targ = $(e.target);
+    if (targ.hasClass("modal-wrapper")) {
       $(".modal-wrapper").fadeOut(400);
       $("html,body").removeClass("locked");
       $("body").css("overflow", "auto");
       $("html").scrollTop(saveTop);
-      if (feedbackStatus == FEEDBACK_STATUSES.sent) {
+      if (targ.attr('id') === "feedback" && feedbackStatus === FEEDBACK_STATUSES.sent) {
         $(
           "#feedback .modal-title,#feedback a,#feedback input,#feedback textarea,#feedback .modal-description"
         ).show();
         $("#feedback .success").hide();
-        feedbackStatus == FEEDBACK_STATUSES.send;        
+        feedbackStatus = FEEDBACK_STATUSES.send;        
       }
     }
 
@@ -1233,12 +1234,12 @@ $(function () {
     $("body").css("overflow", "auto");
     $("html").scrollTop(saveTop);
 
-    if (feedbackStatus == FEEDBACK_STATUSES.sent) {
+    if (feedbackStatus === FEEDBACK_STATUSES.sent) {
       $(
         "#feedback .modal-title,#feedback a,#feedback input,#feedback textarea,#feedback .modal-description"
       ).show();
       $("#feedback .success").hide();
-      feedbackStatus == FEEDBACK_STATUSES.send;
+      feedbackStatus = FEEDBACK_STATUSES.send;
     }
   });
   // $("#menu ul a").click(function(e){

@@ -174,13 +174,13 @@
                     {% endif %}
                     </a>
 
-                    <a class="phone gradient1" href="tel:+73832279050" id="phone_header">
+                    <a class="phone gradient1" href="#exitaccount" data-modal id="phone_header">
                         <img
                             class="mr-sm-2"
-                            src="/static/app/img/phone.png"
+                            src="/static/app/img/door_1.svg"
                             width="16"
                         />
-                        <span class="d-none d-sm-inline" >227-90-50</span>
+                        <span class="d-none d-sm-inline" >выйти</span>
                     </a>
                 </div>
             </div>
@@ -504,6 +504,35 @@
           <a class="mt-0 mb-3 submit select-table close-modal" href="#"
             >Выбрать стол</a
           >
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div
+    class="modal modal-wrapper fade"
+    id="exitaccount"
+    tabindex="-1"
+    role="dialog"
+  >
+    <div class="modal-dialog">
+      <div class="modal-content cart-top">
+        <button
+          class="close"
+          type="button"
+          data-dismiss="modal"
+          aria-label="Close"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <div class="modal-header mt-3">
+          <div class="modal-title">Вы точно хотите выйти из аккаунта?</div>
+          <div class="modal-title success mb-4">Вы успешно вышли</div>
+        </div>
+        <div class="pb-3 text-center">
+          <a class="mt-0 mb-3 submit exit-account" href="#">Ок</a
+          ><a class="download alternative close-modal" href="#">Отмена</a
+        ><a class="mt-0 mb-3 submit success close-modal" href="#">ОК</a>
         </div>
       </div>
     </div>

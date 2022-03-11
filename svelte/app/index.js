@@ -1254,8 +1254,8 @@ $(function () {
 
     prsvg.style.width = "100%";
     prsvg.style.height = "100%";
-    prsvg.style.transformOrigin = "left top";
-    prsvg.style.transform = "scale(1.5, 1.5)";
+    // prsvg.style.transformOrigin = "left top";
+    // prsvg.style.transform = "scale(1.5, 1.5)";
 
     schemesTable.html(prsvg.outerHTML);
 

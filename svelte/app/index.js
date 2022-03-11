@@ -1206,7 +1206,7 @@ $(function () {
           "#feedback .modal-title,#feedback a,#feedback input,#feedback textarea,#feedback .modal-description"
         ).show();
         $("#feedback .success").hide();
-        feedbackStatus = FEEDBACK_STATUSES.send;        
+        feedbackStatus = FEEDBACK_STATUSES.send;
       }
     }
 

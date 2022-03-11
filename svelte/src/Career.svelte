@@ -113,11 +113,11 @@
 </script>
 
 <div
-        class="modal-wrapper modal fade {showModal &&
+  class="modal-wrapper modal {showModal &&
   showFormModal &&
   !showModalSuccess
     ? 'show'
-    : ''}"
+    : 'fade'}"
         id="jobmodal"
         tabindex="-1"
         role="dialog"
@@ -135,7 +135,7 @@
               type="button"
               data-dismiss="modal"
               aria-label="Close"
-              on:click={() => (showModal = showFormModal = false)}
+              on:click={() => (showModal = false)}
       >
         <span aria-hidden="true">&times;</span>
       </button>
@@ -285,11 +285,11 @@
 </div>
 
 <div
-        class="modal modal-wrapper fade {showModal &&
+  class="modal modal-wrapper {showModal &&
   showModalSuccess &&
   !showFormModal
     ? 'show'
-    : ''}"
+    : 'fade'}"
         tabindex="-1"
         role="dialog"
         on:click|stopPropagation={(e) => {

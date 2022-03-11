@@ -2747,6 +2747,24 @@ textarea {
   color: #000000;
 }
 
+#career-video {
+  video {
+    height: 80vh;
+  }
+  .text-over-video {
+    position: absolute;
+    color: #ddcbcb;
+    top: 50%;
+    font-size: 31px;
+    line-height: 31px;
+    text-align: center;
+    width: 100%;
+  }
+  .modal-content {
+    padding: 5px;
+  }
+}
+
 .order-history {
   border: 1px solid rgba(229, 228, 228, 1);
   border-radius: 8px;

@@ -1177,6 +1177,9 @@ $(function () {
     console.log("clicked");
     e.preventDefault();
     openModal($(this).attr("href") || $(this).attr("data-modal"));
+    if ($(this).attr('href') === '#career-video') {
+      document.querySelector('#career-video video').play()
+    }
   });
   $("#get-policy").on("click", function () {
     openModal(
@@ -1207,6 +1210,9 @@ $(function () {
         ).show();
         $("#feedback .success").hide();
         feedbackStatus = FEEDBACK_STATUSES.send;
+      }
+      if (targ.attr('id') === 'career-video') {
+        document.querySelector('#career-video video').pause()
       }
     }
 
@@ -1240,6 +1246,9 @@ $(function () {
       ).show();
       $("#feedback .success").hide();
       feedbackStatus = FEEDBACK_STATUSES.send;
+    }
+    if ($(e.target).closest('#career-video').length === 1) {
+      document.querySelector('#career-video video').pause()
     }
   });
   // $("#menu ul a").click(function(e){

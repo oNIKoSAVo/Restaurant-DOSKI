@@ -535,7 +535,13 @@ def career(request):
             return JsonResponse({"status": "success"})
         else:
             return JsonResponse({"status": "error"})
-    return render(request, 'career.py.html', {'data': sys._getframe(0).f_code.co_name})
+
+    settings = Setting.objects.first()
+    context = {
+        'data': sys._getframe(0).f_code.co_name, 
+        'settings': settings
+    }
+    return render(request, 'career.py.html', context)
 
 
 def franchise(request):

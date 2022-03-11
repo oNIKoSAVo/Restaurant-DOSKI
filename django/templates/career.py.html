@@ -1,4 +1,4 @@
-{% extends 'base.py.html' %} {% load django_svelte %}
+{% extends 'base.py.html' %} {% load django_svelte %} {% load restaurant_filters %}
 {% block content %}
 <div id="job">
     <div class="swiper-wrap">
@@ -47,7 +47,8 @@
                 <div class="col-sm-7 text-right" style="position: relative">
                   <img class="man" data-depth="0.1" src="/static/app/img/cook.png" /><a
                     class="clickme"
-                    href="#"
+                    href="#career-video"
+                    data-modal
                     ><img src="/static/app/img/clickme-without-text.png"
                   /></a>
                 </div>
@@ -67,4 +68,35 @@
     </div>
   </div>
     {% display_svelte "Career.svelte" %}
+
+<div
+  class="modal modal-wrapper fade"
+  id="career-video"
+  tabindex="-1"
+  role="dialog"
+>
+  <div class="modal-dialog">
+    <div class="modal-content cart-top bg-transparent">
+      <button
+        class="close"
+        type="button"
+        data-dismiss="modal"
+        aria-label="Close"
+      >
+        <span aria-hidden="true">&times;</span>
+      </button>
+      <video controls>
+        {% if settings.career_video %}
+        <source src="{{ settings.career_video.url }}" 
+        type="video/{{ settings.career_video|get_extension}}">
+        {% endif %}
+
+        Your browser does not support the video tag.
+      </video>
+    </div>
+    {% if not settings.career_video %}
+    <div class="text-over-video">Ошибка загрузки видео</div>
+    {% endif %}
+  </div>
+</div>
 {% endblock content %}

@@ -3,6 +3,7 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.db.models import Q, Count
 from functools import reduce
+from django.core.validators import FileExtensionValidator
 
 from restaurant.lib.sms import Sms
 
@@ -281,13 +282,24 @@ class Setting(models.Model):
     oferta_file = models.FileField('Оферта', upload_to='images/', blank=True, null=True)
     privacy_file = models.FileField('Согласие на обработку персональных данных', upload_to='images/', blank=True, null=True)
     main_banner = models.ImageField('Главный баннер на странице', upload_to='images/', blank=True, null=True)
+    career_video = models.FileField('Видео на странице карьеры',
+                                    upload_to='videos/', 
+                                    validators=[
+                                        FileExtensionValidator(
+                                            allowed_extensions=['mp3', 'mp4', 'avi', 'ogg', 'webm']
+                                        )
+                                    ],
+                                    blank=True, 
+                                    null=True)
     allow_period_reservation = models.IntegerField('Доступный период бронирования (+ дней)',  blank=True, null=True)
 
+    # RESERVATION FIELDS:
     allow_time_reservation_start = models.TimeField('Доступное время бронирования(вск-чтв)', help_text="С",  blank=True, null=True)
     allow_time_reservation_end = models.TimeField('Доступное время бронирования(вск-чтв)', help_text="ДО",  blank=True, null=True)
 
     allow_weekend_time_reservation_start = models.TimeField('Доступное время бронирования(птн-сб)', help_text="С",  blank=True, null=True)
     allow_weekend_time_reservation_end = models.TimeField('Доступное время бронирования(птн-сб)', help_text="ДО",  blank=True, null=True)
+    # ____________________
 
     allow_time_delivery_start = models.TimeField('Доступное время доставки', help_text="С",  blank=True, null=True)
     allow_time_delivery_end = models.TimeField('Доступное время доставки', help_text="ДО",  blank=True, null=True)

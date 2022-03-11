@@ -84,6 +84,11 @@ const yandexEdaLink = document.getElementById("yandex_eda_link");
 console.log({ phoneHeaderLink, mobileHeaderPhoneLink });
 let isCityInitialization = true;
 
+const FEEDBACK_STATUSES = {
+  send: 0,
+  sent: 1,
+}
+let feedbackStatus = FEEDBACK_STATUSES.send;
 
 async function getManagerSettings(){
   const response = await fetch('/manager_settings')
@@ -1032,10 +1037,13 @@ $(function () {
     // Отправка отзыва
 
     // Успешный исход
+    $('#feedback input').each((i, el)=>{el.value=""});
+    $('#feedback textarea').each((i, el)=>{el.value=""});
     $(
       "#feedback .modal-title,#feedback a,#feedback input,#feedback textarea,#feedback .modal-description"
     ).hide();
     $("#feedback .success").show();
+    feedbackStatus = FEEDBACK_STATUSES.sent;
   });
   $(".only-menu .dish-item").on("click", function () {
     openModal("#item");
@@ -1192,7 +1200,15 @@ $(function () {
       $("html,body").removeClass("locked");
       $("body").css("overflow", "auto");
       $("html").scrollTop(saveTop);
+      if (feedbackStatus == FEEDBACK_STATUSES.sent) {
+        $(
+          "#feedback .modal-title,#feedback a,#feedback input,#feedback textarea,#feedback .modal-description"
+        ).show();
+        $("#feedback .success").hide();
+        feedbackStatus == FEEDBACK_STATUSES.send;        
+      }
     }
+
   });
 
   $("#paymentRules").on("click", function (e) {
@@ -1216,6 +1232,14 @@ $(function () {
     $("html,body").removeClass("locked");
     $("body").css("overflow", "auto");
     $("html").scrollTop(saveTop);
+
+    if (feedbackStatus == FEEDBACK_STATUSES.sent) {
+      $(
+        "#feedback .modal-title,#feedback a,#feedback input,#feedback textarea,#feedback .modal-description"
+      ).show();
+      $("#feedback .success").hide();
+      feedbackStatus == FEEDBACK_STATUSES.send;
+    }
   });
   // $("#menu ul a").click(function(e){
 

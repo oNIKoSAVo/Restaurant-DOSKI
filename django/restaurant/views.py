@@ -183,12 +183,22 @@ def personal(request):
     reservations = user.reservations.all()
     results = []
     for order in user.orders.all():
+        menue = order.menues\
+            .values('menue__dish', 'menue__image', 'menue_id', 'menue__in_restaraunt__price')\
+            .annotate(total=Count('id'))\
+            .prefetch_related(
+                Prefetch('menue__in_restaraunt', 
+                    queryset=MenueInRestaraunt
+                        .objects.filter(restaraunt=order.restaraunt)
+                )
+            )\
+            .annotate(total_price=F('total') * F('menue__in_restaraunt__price'))
+
         results.append({
             "order": order,
-            "menue": order.menues
-            .values('menue__dish', 'menue__image', 'menue_id')
-            .annotate(total=Count('id')).annotate(total_price=Sum('menue__price'))
+            "menue": menue
         })
+        
     return render(request, 'personal.py.html', {'reservations': reservations, 'results': results})
 
 

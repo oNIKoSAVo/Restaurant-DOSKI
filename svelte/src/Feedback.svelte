@@ -1,9 +1,12 @@
 <script>
   import { feedbackRequest } from "./api";
+  import {correctPhoneWithMask} from "./helpers/correctPhoneWithMask";
+  import {captchaProtect} from "./helpers/grecaptcha";
 
   let name = "";
   let phone = "";
   let description = "";
+  let errors = {}
 
   function validate() {
     console.log("I'm the validate() function");
@@ -11,8 +14,23 @@
 
   async function handleSubmit(e) {
     e.preventDefault();
-    const response = await feedbackRequest({ name, phone, description });
-    console.log(response);
+    console.log(correctPhoneWithMask(phone))
+    console.log('ERRORS HANDLING TESST')
+    if(!correctPhoneWithMask(phone) || !description) {
+      console.log('ERRORS HANDLING TESST2')
+      errors.phone = !correctPhoneWithMask(phone)
+      errors.description = !description
+      setTimeout(() => {
+        errors = {}
+      }, 3000)
+      return
+    }
+    captchaProtect(async () => {
+      const response = await feedbackRequest({ name, phone, description });
+      document.querySelector('.send-feedback').click()
+      console.log(response);
+      description = name = phone = ''
+    })
   }
 </script>
 
@@ -37,20 +55,26 @@
       <form action="" on:submit={handleSubmit} preventDefault={validate}>
         <input name="name" placeholder="Ваше имя" bind:value={name} />
         <input
-          class="phone-input"
+          class="phone-input {errors.phone && 'error-shadow'}"
           type="tel"
           name="phone"
           placeholder="Ваш телефон"
           on:change={(e) => phone = e.target.value }
+          value={phone}
         />
         <textarea
+          class="{errors.description && 'error-shadow'}"
           name="description"
           placeholder="Напишите свой отзыв..."
           rows="4"
           bind:value={description}
         />
         <div class="text-center" style="margin-top: 20px">
-          <a href="#" class="submit send-feedback" on:click={handleSubmit}>Отправить отзыв</a>
+          <a href="#" class="d-none send-feedback"></a>
+          <a href="#" class="submit" on:click={handleSubmit}
+            >Отправить отзыв</a
+          >
+          <!-- <a href="#" class="submit send-feedback" on:click={handleSubmit}>Отправить отзыв</a> -->
         </div>
       </form>
     </div>

@@ -15,7 +15,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout, update_session_auth_hash
 from .lib.helpers import filter_categories
 
-from django.db.models import Q, Count
+from django.db.models import Q, Count, Prefetch
 from django.http import HttpResponse, HttpResponseNotFound
 from django.http.response import JsonResponse
 from restaurant.models import Feedback, Franchising, Promotion, Reservation, Restaraunt, Сareer, Menue, Category, Event, \

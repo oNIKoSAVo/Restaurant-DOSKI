@@ -591,10 +591,12 @@ def create_order(request):
     phone = data["phone"]
     comment = data["comment"]
     payment_type = data["paymentType"]
+    print('TEST CREATE ORDER: \n', data)
 
     cleanphone = re.sub('\W+', '', phone)
     profile = Profile.objects.filter(phone=cleanphone)
     if (not profile.exists()):
+        print('CREATING PROFILE')
         password = ''.join(
             random.choice('1234567890') for _ in range(4))
         user = User.objects.create_user(username=cleanphone, password=password)
@@ -614,6 +616,8 @@ def create_order(request):
             Sms().send(cleanphone, password)
         except Exception as ex:
             print(ex)
+        
+        print('PROFILE CREATED')
     else:
         user = profile.first().user
 
@@ -623,6 +627,7 @@ def create_order(request):
     total_price = 0
     city = City.objects.get(pk=request.session.get('city', 1))
     restaraunt = Restaraunt.objects.filter(city=city).first()
+    print('SESSION CITY', city, restaraunt)
 
     for m in menue:
         menue_id = m["id"]
@@ -646,9 +651,16 @@ def create_order(request):
     for m in menues:
         MenuInOrder.objects.create(menue=m, order=order)
 
-    payment = Payment().create_payment(order=order, receipt=receipt)  # payment_url
+    # move this consts into settings
+    PAYMENT_KEY = "Nzk1MjkwNTY3MDY6ZDVkOThiYzI0YWZjMmM1OTNkOGEzMjMzOGJhZmI3ZmY="
+    PAYMENT_TERMINAL_ID = "9a73af7faff347bf8844c66d8333ae84"
+    
+    payment = Payment().create_payment(order=order, 
+                                       receipt=receipt, 
+                                       key=PAYMENT_KEY, 
+                                       terminal=PAYMENT_TERMINAL_ID)  # payment_url
     # payment = Payment().create_terminal(order=order) # link
-    print(payment)
+    print('PAYMENT: ', payment)
     if ("payment_url" in payment):
         return JsonResponse({"payment_url": payment["payment_url"]})
     else:

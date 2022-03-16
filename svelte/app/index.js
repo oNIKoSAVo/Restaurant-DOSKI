@@ -1279,26 +1279,55 @@ $(function () {
     };
   });
 
-  $("#print-scheme-btn").on("click", (e) => {
+  $("#print-scheme-btn").on("click", handleClickPrintBtn);
+    
+  function handleClickPrintBtn(e) {
+    console.log('Clicked')
     let printWin = window.open('', '', 'left=50,top=50,width=800,height=640,toolbar=0,scrollbars=1,status=0');
     const schemesTable = $("#table.admin").clone();
     const prsvg = schemesTable.children('svg')[0];
-    console.log(schemesTable);
-    console.log({FROM_ANOTHER_WINDOW: prsvg});
-
+    
     prsvg.style.width = "100%";
     prsvg.style.height = "100%";
-    // prsvg.style.transformOrigin = "left top";
-    // prsvg.style.transform = "scale(1.5, 1.5)";
+    prsvg.style.transformOrigin = "left top";
+    prsvg.style.transform = "scale(1.5, 1.5)";
 
     schemesTable.html(prsvg.outerHTML);
 
+    let $reservations_info_els = [];
+    
+    let $reservations_table = $('<table>')
+      .css('page-break-before', 'always')
+      .css('width', '100%');
+        
+    $('#new-reservations .cabinet-order').each((ind, el) => {
+      let tr = $('<tr>');
+      let td1 = $('<td>');
+      let td2 = $('<td>').css('text-align', 'center');
+      
+      let r_table = el.querySelector('.r-table-js').textContent;
+      let r_time = el.querySelector('.r-time-js').textContent;
+      let r_name = el.querySelector('.r-name-js').textContent;
+      let r_phone = el.querySelector('.r-phone-js').textContent;
+      
+      td1.html(ind+1);
+      td2.html(`Столик №${r_table} Время: ${r_time} ` + 
+                `${r_name} ${r_phone}`);
+
+      tr.append([td1, td2]);
+      console.log({TABLE_ROW: tr});
+      $reservations_info_els.push(tr);
+    });
+    $reservations_table.append($reservations_info_els);
+
+    schemesTable.append($reservations_table);
     let printHtml = schemesTable.html();
+    
     printWin.document.write(printHtml);
 
     printWin.document.close();
     printWin.focus();
     printWin.print();
-  });
+  };
 });
 //

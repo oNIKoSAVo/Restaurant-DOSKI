@@ -142,18 +142,18 @@
 <div class="inner-bg cabinet-booking">
   <div class="container-fluid inner-page">
     <div class="row">
-      <div class="col-md-2 col-sm-12">
+      <div class="col-md-2 col-sm-12" id="new-reservations">
         <h4 class="section-title small">Новые бронирования</h4>
 
 
         <form>
           <select name="filter_restaraunt" onchange="submitForm(this)">
           <option value="" class="option">Выбери ресторан</option>
-            {% for  filter in filter_restaraunt %}
-              <option value="{{filter.id}}" class="option" {% if filter.id|stringformat:"s"  == request.GET.filter_restaraunt %} selected {% endif %} >{{filter}}</option>
-            {% endfor %}
-        </select>
-      </form>
+          {% for  filter in filter_restaraunt %}
+            <option value="{{filter.id}}" class="option" {% if filter.id|stringformat:"s"  == request.GET.filter_restaraunt %} selected {% endif %} >{{filter}}</option>
+          {% endfor %}
+          </select>
+        </form>
 
 
 
@@ -161,12 +161,12 @@
           <div class="cabinet-order" data-modal="#reservation_manager_modal_{{ reservation.id }}">
             <div class="cabinet-order_num">№{{reservation.id}}</div>
             <div class="cabinet-order_info">
-              {{reservation.phone}} <br />
-              стол №{{reservation.table}} <br />
-              {{reservation.persons}} гостей <br />
-              {{reservation.name}} <br />
+              <span class="r-phone-js">{{reservation.phone}}</span><br />
+              стол №<span class="r-table-js">{{reservation.table}}</span> <br />
+              <span class="r-persons-js">{{reservation.persons}}</span> гостей <br />
+              <span class="r-name-js">{{reservation.name}}</span> <br />
               Дата {{ reservation.start|date:'d.m.y' }}<br />
-              Время брони {{ reservation.start|date:'H:i' }} <br/>
+              Время брони <span class="r-time-js">{{ reservation.start|date:'H:i' }}</span> <br/>
               {{reservation.restaraunt.address}}
             </div>
           </div>

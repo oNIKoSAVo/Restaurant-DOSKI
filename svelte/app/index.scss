@@ -812,6 +812,10 @@ a.download {
   font-size: 17px;
   line-height: 27px;
 
+  #sign-target & {
+    max-width: 100%;  
+  }
+
   color: white;
   border: none;
   text-decoration: none;

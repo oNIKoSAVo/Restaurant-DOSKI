@@ -1,11 +1,13 @@
 <script>
     import {cloneDeep, isEqual} from "lodash-es";
     import {correctPhoneWithMask} from "./helpers/correctPhoneWithMask";
-    // import $ from "jquery";
+    import jquery from "jquery";
     import {sendTelegramMessage} from "./helpers/sendTelegramMessage";
     import {setErrorShadow} from "./helpers/setErrors";
     import dayjs from "dayjs";
     import isBetween from 'dayjs/plugin/isBetween'
+
+    dayjs.extend(isBetween)
 
     let cart = [];
     $: price = cart.reduce(
@@ -28,6 +30,29 @@
     window.renderCartItems = renderCartItems;
 
     // $: document.querySelector(".cart-summary").textContent = price;
+
+    function switchStage(modalSelectorStr, stage) {
+        [...document.querySelectorAll(`${modalSelectorStr} .stage`)].map((s, i) => {
+            if (i === stage-1) {
+                s.style = "display: block;";
+            } else {
+                s.style = "display: none;";
+            }
+            return s;
+        });
+    }
+
+    function openModal(id) {
+        jquery(".modal").removeClass("show").hide();
+        // saveTop = jquery("html").scrollTop();
+        // jquery(".modal-title").text(title);
+        // jquery(".modal-subtitle").text(subtitle);
+        jquery("html,body").addClass("locked");
+        jquery("body").css("overflow", "hidden");
+        // jquery("body").css("top", -saveTop);
+        document.querySelector(id).style.display = "";
+        jquery(id).addClass("show").show();
+    }
 
     window.addEventListener('managerSettingsGet', () => {
         const allow_weekday_time_delivery = {
@@ -78,14 +103,15 @@
         //   ).innerHTML = `<h1>Пусто</h1>`;
         //   return;
         // }
-        [...document.querySelectorAll("#cart .stage")].map((s, i) => {
-            if (i === 0) {
-                s.style = "display: block;";
-            } else {
-                s.style = "display: none;";
-            }
-            return s;
-        });
+        // [...document.querySelectorAll("#cart .stage")].map((s, i) => {
+        //     if (i === 0) {
+        //         s.style = "display: block;";
+        //     } else {
+        //         s.style = "display: none;";
+        //     }
+        //     return s;
+        // });
+        switchStage("#cart", 1);
 
         let cartHtml;
         console.log(cart.length > 0);
@@ -349,6 +375,15 @@
                     );
                     document.querySelector('.checkout-final').click()
                     window.location.href = result.payment_url;
+                } else if (result.status_code == 401) {
+                    console.log('Mb need to close modal');
+                    console.log(result.message);
+                    // const orderFinalEl = document.getElementById("order-final-modal")
+
+                    openModal("#order-final-modal", 1);
+                    switchStage("#cart", 1);
+                } else {
+                    console.log(result);
                 }
             });
         //modal btns

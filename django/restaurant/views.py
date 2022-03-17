@@ -19,7 +19,7 @@ from django.db.models import Q, Count, Prefetch
 from django.http import HttpResponse, HttpResponseNotFound
 from django.http.response import JsonResponse
 from restaurant.models import Feedback, Franchising, Promotion, Reservation, Restaraunt, Сareer, Menue, Category, Event, \
-    MenuInOrder, Order, Profile, City, PreOrder, MenuInPreOrder, MenueInRestaraunt, ReservationStatusType, Setting
+    MenuInOrder, Order, Profile, City, PreOrder, MenuInPreOrder, MenueInRestaraunt, ReservationStatusType, Setting, PaymentTypes
 from django.shortcuts import get_object_or_404, render, redirect
 from django.views.decorators.http import require_http_methods
 
@@ -655,6 +655,9 @@ def create_order(request):
     PAYMENT_KEY = "Nzk1MjkwNTY3MDY6ZDVkOThiYzI0YWZjMmM1OTNkOGEzMjMzOGJhZmI3ZmY="
     PAYMENT_TERMINAL_ID = "9a73af7faff347bf8844c66d8333ae84"
     
+    if not (payment_type == PaymentTypes.ONLINE):
+        return JsonResponse({"status_code": 401, "message": "Created a new order"})
+        
     payment = Payment().create_payment(order=order, 
                                        receipt=receipt, 
                                        key=PAYMENT_KEY, 

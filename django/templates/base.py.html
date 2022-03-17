@@ -1097,7 +1097,7 @@
                             <a class="d-none checkout-final" href="#"></a>
                         </div>
                     </div>
-                    <div class="stage">
+                    <!-- <div class="stage">
                         <div class="modal-header pt-1">
                             <div class="modal-title text-center">
                                 Спасибо! Ваш заказ принят
@@ -1106,37 +1106,65 @@
                         <div class="text-center">
                             <a class="submit close-modal" href="#">Ок</a>
                         </div>
-                    </div>
+                    </div> -->
                 </div>
             </div>
         </div>
     </div>
-    <div
-            class="modal modal-wrapper fade"
-            id="askpreorder"
-            tabindex="-1"
-            role="dialog"
-    >
-        <div class="modal-dialog limited" style="max-width: 424px">
-            <div class="modal-content">
-                <button
-                        class="close"
-                        type="button"
-                        data-dismiss="modal"
-                        aria-label="Close"
-                >
-                    <span aria-hidden="true">&times;</span>
-                </button>
-                <div class="modal-header mt-3">
-                    <div class="modal-title">Хотите сделать предзаказ?</div>
-                </div>
-                <div class="pb-3 text-center">
-                    <a class="mt-0 mb-3 mr-md-3 submit" href="/preorder">Да</a
-                    ><a class="download active" href="{% url 'index' %}">Нет</a>
-                </div>
+<div
+        class="modal modal-wrapper fade"
+        id="askpreorder"
+        tabindex="-1"
+        role="dialog"
+>
+    <div class="modal-dialog limited" style="max-width: 424px">
+        <div class="modal-content">
+            <button
+                    class="close"
+                    type="button"
+                    data-dismiss="modal"
+                    aria-label="Close"
+            >
+                <span aria-hidden="true">&times;</span>
+            </button>
+            <div class="modal-header mt-3">
+                <div class="modal-title">Хотите сделать предзаказ?</div>
+            </div>
+            <div class="pb-3 text-center">
+                <a class="mt-0 mb-3 mr-md-3 submit" href="/preorder">Да</a
+                ><a class="download active" href="{% url 'index' %}">Нет</a>
             </div>
         </div>
     </div>
+</div>
+<div
+    class="modal modal-wrapper fade"
+    id="order-final-modal"
+    tabindex="-1"
+    role="dialog"
+>
+    <div class="modal-dialog limited" style="max-width: 424px">
+        <div class="modal-content">
+            <button
+                class="close"
+                type="button"
+                data-dismiss="modal"
+                aria-label="Close"
+            >
+                <span aria-hidden="true">&times;</span>
+            </button>
+            <div class="modal-header pt-1">
+                <div class="modal-title text-center">
+                    Спасибо! Ваш заказ принят
+                </div>
+            </div>
+            <div class="text-center">
+                <a class="submit close-modal" href="#">Ок</a>
+            </div>
+        </div>
+    </div>
+</div>
+
 <div
         class="modal modal-wrapper fade"
         id="table_not_chosen"

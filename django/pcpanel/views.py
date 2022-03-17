@@ -137,7 +137,8 @@ class DeliveryView(OnlyStuffUserAccessMixin, View):
                 return JsonResponse({'status': 'error', 'message': 'Order not found'}, status=404)
 
         orders = queryset.filter(Q(status=OrderStatusType.WAIT) | 
-                                 Q(status=OrderStatusType.APPROVED)).order_by('status')
+                                 Q(status=OrderStatusType.APPROVED)) \
+                         .order_by('status', '-created_at')
 
         dishes_of_all_orders = dict()
 

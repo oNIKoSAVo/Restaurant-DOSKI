@@ -2681,6 +2681,19 @@ textarea {
 //   max-width: 240px;
 // }
 
+#reserve-form button#chooseDate {
+  width: 100%;
+  border: 1px solid #e8e8e8;
+  box-sizing: border-box;
+  height: auto;
+  border-radius: 10px;
+  background: white;
+  padding: 16px;
+  font-size: 16px;
+  margin-bottom: 12px;
+  font-family: "Muller";
+}
+
 .reserve-data {
   width: 100%;
   font-family: Muller;

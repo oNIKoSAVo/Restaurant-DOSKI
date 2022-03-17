@@ -692,7 +692,7 @@
         placeholder="Ваше имя"
         value={name}
         on:input={(e) => {
-          if (isAlpha(e.target.value, "ru-RU") || e.target.value === "") {
+          if (isAlphaRuEn(e.target.value) || e.target.value === "") {
             name = e.target.value;
           } else {
             e.target.value = name;

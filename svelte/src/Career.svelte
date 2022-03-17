@@ -3,8 +3,10 @@
   import { careerRequest } from "./api";
   import CustomDatepicker from "./CustomDatepicker.svelte";
   import isAlpha from "validator/es/lib/isAlpha";
+  import isAlphaRuEn from "./helpers/isAlphaRuEn";
   import dayjs from "dayjs";
   import {captchaProtect} from "./helpers/grecaptcha";
+
   let showModal = false;
   let showFormModal = true;
   let showModalSuccess = false;
@@ -160,7 +162,7 @@
                     class="first_name"
                     on:input={(e) => {
                 if (
-                  isAlpha(e.target.value, "ru-RU", { ignore: "s" }) ||
+                  isAlphaRuEn(e.target.value) ||
                   e.target.value === ""
                 ) {
                   first_name = e.target.value;
@@ -177,7 +179,7 @@
                     class="last_name"
                     on:input={(e) => {
                 if (
-                  isAlpha(e.target.value, "ru-RU", { ignore: "s" }) ||
+                  isAlphaRuEn(e.target.value) ||
                   e.target.value === ""
                 ) {
                   last_name = e.target.value;
@@ -194,7 +196,7 @@
                     class="middle_name"
                     on:input={(e) => {
                 if (
-                  isAlpha(e.target.value, "ru-RU", { ignore: "s" }) ||
+                  isAlphaRuEn(e.target.value) ||
                   e.target.value === ""
                 ) {
                   middle_name = e.target.value;

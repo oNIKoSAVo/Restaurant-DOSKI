@@ -22,7 +22,7 @@ from restaurant.models import Feedback, Franchising, Promotion, Reservation, Res
     MenuInOrder, Order, Profile, City, PreOrder, MenuInPreOrder, MenueInRestaraunt, ReservationStatusType, Setting, PaymentTypes
 from django.shortcuts import get_object_or_404, render, redirect
 from django.views.decorators.http import require_http_methods
-
+from django.core.exceptions import ObjectDoesNotExist
 
 def index(request):
     setting = Setting.objects.all().last()
@@ -43,10 +43,26 @@ def set_city_id(request):
 @require_http_methods(["POST"])
 def signup(request):
     phone = request.POST.get('phone')
-    cleanphone = re.sub('\W+', '', phone)
-    user = User.objects.filter(username=cleanphone)
-    if (user.exists()):
-        return JsonResponse({"error": "Такой номер уже зарегестрирован"})
+    cleanphone = re.sub('\W+', '', phone)    
+
+    try:
+        user = User.objects.get(username=cleanphone)
+        user_exists = True
+    except ObjectDoesNotExist:
+        user_exists = False
+
+    if user_exists:
+        if user.profile.is_deleted:
+            resp = {
+                "error": "Пользователь с таким номером был удалён.",
+                "error_code": 1
+            }
+            return JsonResponse()
+        resp = {
+                "error": "Такой номер уже зарегестрирован",
+                "error_code": 2
+            }
+        return JsonResponse(resp)
     else:
         password = ''.join(
             random.choice('1234567890') for _ in range(4))
@@ -70,6 +86,10 @@ def signin(request):
 
     cleanphone = re.sub('\W+', '', phone)
     user = authenticate(request, username=cleanphone, password=password)
+    
+    if user.profile.is_deleted:
+        return JsonResponse({"error": "Пользователь с таким телефоном был удалён.", 
+                            "error_code": 1})
     if user is not None:
         login(request, user)
         return JsonResponse({"success": "Прошел"})
@@ -87,11 +107,15 @@ def exit(request):
 def deactivate(request):
     if request.user.is_authenticated:
         user = request.user
-        if not request.user.is_stuff:
-            password = ''.join(
-                random.choice('1234567890') for _ in range(4))
-            user.set_password(password)
-            user.save()
+        if not request.user.is_staff:
+            # password = ''.join(
+            #     random.choice('1234567890') for _ in range(4))
+            # user.set_password(password)
+            # user.save()
+            profile = user.profile 
+            profile.is_deleted = True
+            profile.save()
+
         logout(request)
     
     return redirect('/')
@@ -106,6 +130,11 @@ def recovery(request):
 
     try:
         user = User.objects.get(username=cleanphone)
+
+        if user.profile.is_deleted:
+            return JsonResponse({"error": "Пользователь с таким телефоном был удалён.", 
+                                "error_code": 1})
+                                
         user.set_password(password)
         user.save()
 

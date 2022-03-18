@@ -13,7 +13,8 @@ class PaymentTypes(models.IntegerChoices):
     CASH = 2, 'Наличными'
 
 class Profile(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name="profile")
+    is_deleted = models.BooleanField(blank=True, default=False)
     first_name = models.CharField(
         max_length=128, blank=True, null=True, default=None)
     second_name = models.CharField(

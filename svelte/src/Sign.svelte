@@ -8,6 +8,7 @@
   let phone = "",
           password = "", recoverPhone = '';
   let isRegisteredNumber = false
+  let isDeletedAccount = false
   let code = ["", "", "", ""];
 
   let ui = {
@@ -22,7 +23,8 @@
     recoveryPhoneError: false,
     signInPhoneError: false,
     signInPasswordError: false,
-    signInError: false
+    signInError: false,
+    userDeletedError: false
   }
 
   function validate() {
@@ -67,8 +69,13 @@
       if (signInResponse.success) {
         window.location.href = "/personal";
       } else {
-        errors.signInError = true
-        setTimeout(() => {errors.signInError = false}, 3000)
+        if (signInResponse.error_code == 1) {
+          errors.userDeletedError = true;
+          setTimeout(() => {errors.userDeletedError = false}, 3000)
+        } else {
+          errors.signInError = true
+          setTimeout(() => {errors.signInError = false}, 3000)
+        }
       }
     })
 
@@ -130,7 +137,11 @@ console.log({recoverPhone})
         // code = response.password.split("");
         document.querySelector('.send-register').click()
       } else {
-        isRegisteredNumber = true
+        if (response.error_code == 1) {
+          isDeletedAccount = true;
+        } else {
+          isRegisteredNumber = true;
+        }
       }
     })
 
@@ -242,7 +253,8 @@ console.log({recoverPhone})
             ui.showSignUpModal = true;
             hideModals();
             showModal("register");
-                          isRegisteredNumber = false
+            isRegisteredNumber = false
+            isDeletedAccount = false
           }}>Зарегистрироваться</a
         >
       </div>
@@ -275,6 +287,9 @@ console.log({recoverPhone})
       <form on:submit={handleSignInSubmit} preventDefault={validate}>
         {#if errors.signInError}
           <h3 class="text-center" style="color: red;">Неверные данные</h3>
+        {/if}
+        {#if errors.userDeletedError}
+          <h3 class="text-center" style="color: red;">Пользователь с таким телефоном был удалён</h3>
         {/if}
         <input
           class="login-input {errors.signInPhoneError && 'error-shadow'}"
@@ -399,6 +414,10 @@ console.log({recoverPhone})
             >
           </div>
         </form>
+      {:else if (isDeletedAccount)}
+        <div class="text-center">
+          <h3>Аккаунт с таким номером был удалён.</h3>
+        </div>
       {:else}
         <div class="text-center">
           <h3>Этот номер зарегистрирован!</h3>

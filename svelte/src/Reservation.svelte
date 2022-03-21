@@ -508,52 +508,54 @@
                         ".select-table.close-modal"
                 );
 
+                paths.forEach((path) => {
+                  path.style.fill = "#308410";
+                  
+                  path.addEventListener("click", function (e) {
+                    e.stopPropagation();
+                    if (path.classList.contains('reserved')) return
+                    openModal("#table-modal");
+                    const peopleQuantity 
+                      = slicePeopleForTable(this.nextElementSibling.id);
+                    
+                    document
+                      .getElementById("table-modal-people-quantity")
+                      .textContent = peopleQuantity;
 
-                paths.forEach((path) =>
-                        path.addEventListener("click", function (e) {
-                          e.stopPropagation();
-                          if (path.classList.contains('reserved')) return
-                          openModal("#table-modal");
-                          const peopleQuantity = slicePeopleForTable(
-                                  this.nextElementSibling.id
-                          );
-                          document.getElementById(
-                                  "table-modal-people-quantity"
-                          ).textContent = peopleQuantity;
-                          const currentRestaurant = restaraunts.find(
-                                  (r) => r.id === restaraunt
-                          );
-                          const currentTable = currentRestaurant?.tables.find(
-                                  (t) => t.table === +path.id
-                          );
-                            persons = peopleQuantity
-                          document
-                                  .getElementById("table-modal")
-                                  .querySelector(".modal-description").textContent =
-                                  currentTable?.description ||
-                                  `Столик с видом на город для компании до ${peopleQuantity} человек`;
-                          document
-                                  .getElementById("table-modal")
-                                  .querySelector("img.modal-table").src =
-                                  currentTable?.photo || "/static/app/img/table.jpg";
-                          document.getElementById("table-modal-number").textContent =
-                                  this.id;
-                          chooseTableBtn.onclick = () => {
-                            paths.forEach((p) => {
-                              if (!p.classList.contains('reserved')) p.style.fill = "green"
-                            });
+                    const currentRestaurant = restaraunts.find(
+                            (r) => r.id === restaraunt
+                    );
+                    const currentTable = currentRestaurant?.tables.find(
+                            (t) => t.table === +path.id
+                    );
+                      persons = peopleQuantity
+                    document
+                            .getElementById("table-modal")
+                            .querySelector(".modal-description").textContent =
+                            currentTable?.description ||
+                            `Столик с видом на город для компании до ${peopleQuantity} человек`;
+                    document
+                            .getElementById("table-modal")
+                            .querySelector("img.modal-table").src =
+                            currentTable?.photo || "/static/app/img/table.jpg";
+                    document.getElementById("table-modal-number").textContent =
+                            this.id;
+                    chooseTableBtn.onclick = () => {
+                      paths.forEach((p) => {
+                        if (!p.classList.contains('reserved')) p.style.fill = "green"
+                      });
 
-                            console.log({
-                              sliced: slicePeopleForTable(this.nextElementSibling.id),
-                            });
+                      console.log({
+                        sliced: slicePeopleForTable(this.nextElementSibling.id),
+                      });
 
-                            table = this.id;
-                            this.style.fill = "#7f7f7f";
-                            chooseTableBtn.onclick = null;
-                          };
-                          console.log({el: this});
-                        })
-                );
+                      table = this.id;
+                      this.style.fill = "#7f7f7f";
+                      chooseTableBtn.onclick = null;
+                    };
+                    console.log({el: this});
+                  });
+                });
               })
               .then(() => {
                 if (time && store.getState().selected) showTableStatus(tableEls)

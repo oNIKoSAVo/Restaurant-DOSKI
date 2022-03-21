@@ -106,19 +106,15 @@ def exit(request):
 @require_http_methods(["POST"])
 def deactivate(request):
     if request.user.is_authenticated:
-        user = request.user
-        if not request.user.is_staff:
-            # password = ''.join(
-            #     random.choice('1234567890') for _ in range(4))
-            # user.set_password(password)
-            # user.save()
-            profile = user.profile 
+        profile = request.user.profile
+
+        if profile:
             profile.is_deleted = True
             profile.save()
 
         logout(request)
-    
-    return redirect('/')
+
+    return JsonResponse({"success": "Прошел"})
 
 @require_http_methods(["POST"])
 def recovery(request):

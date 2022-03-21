@@ -1085,6 +1085,7 @@ $(function () {
         // Успешный исход
         $("#deleteaccount .modal-title,#deleteaccount a").hide();
         $("#deleteaccount .success").show();
+        window.location.href = '/';
       });
   });
 

@@ -715,6 +715,7 @@ def restaraunts(request):
                 "name": restaraunt.city.name,
                 "phone": restaraunt.city.phone,
                 "instagram": restaraunt.city.instagram,
+                "city_timezone": str(restaraunt.city.city_timezone),
                 "vk": restaraunt.city.vk,
             },
             "schemes": [{
@@ -744,6 +745,7 @@ def restaraunts(request):
                     "name": restaraunt.city.name,
                     "phone": restaraunt.city.phone,
                     "instagram": restaraunt.city.instagram,
+                    "city_timezone": str(restaraunt.city.city_timezone),
                     "vk": restaraunt.city.vk,
                 },
                 "schemes": [{
@@ -773,6 +775,7 @@ def restaraunts(request):
                     "name": restaraunt.city.name,
                     "phone": restaraunt.city.phone,
                     "instagram": restaraunt.city.instagram,
+                    "city_timezone": str(restaraunt.city.city_timezone),
                     "vk": restaraunt.city.vk,
                 },
                 "schemes": [{

@@ -333,6 +333,7 @@ fetch("/restaraunts", { method: "GET" })
           instagram: r.city.instagram,
           vk: r.city.vk,
           phone: r.city.phone,
+          city_timezone: r.city.city_timezone,
           addresses: window.restaraunts.filter(
             (rest) => rest.city.name === r.city.name
           ),

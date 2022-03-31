@@ -6,8 +6,39 @@
     import {setErrorShadow} from "./helpers/setErrors";
     import dayjs from "dayjs";
     import isBetween from 'dayjs/plugin/isBetween'
+    import utc from 'dayjs/plugin/utc';
+    import timezone from 'dayjs/plugin/timezone';
+
 
     dayjs.extend(isBetween)
+    dayjs.extend(utc)
+    dayjs.extend(timezone)
+
+    let currentCityChanged = false;
+    let managerSettingsGetted = false;
+
+    $: if (currentCityChanged && managerSettingsGetted) {
+        console.log('disabling btn');
+        const allow_weekday_time_delivery = {
+            start: window.managerSettings['allow_time_delivery_start'],
+            end: window.managerSettings['allow_time_delivery_end']
+        }
+        
+        const allow_delivery_hour_start = parseInt(allow_weekday_time_delivery.start);
+        const allow_delivery_hour_end = parseInt(allow_weekday_time_delivery.end);
+
+        document.getElementById('delivery-time_from').textContent 
+            = allow_delivery_hour_start + '-00';
+        document.getElementById('delivery-time_to').textContent
+            = allow_delivery_hour_end + '-00';
+
+        const submitEl = document.querySelector('#cart .submit');
+
+        
+        disable_btn_ontime(submitEl, 
+                           allow_delivery_hour_start, 
+                           allow_delivery_hour_end);
+    }
 
     let cart = [];
     $: price = cart.reduce(
@@ -53,35 +84,31 @@
         document.querySelector(id).style.display = "";
         jquery(id).addClass("show").show();
     }
+    
+    function disable_btn_ontime(btn, time_start, time_end) {
+        console.log(window.currentCity.city_timezone);
+        let currentTimeInCity = dayjs().tz(window.currentCity.city_timezone);
+        let dayjs_hour_start = dayjs().hour(time_start).minute(0).second(0);
+        let dayjs_hour_end = dayjs().hour(time_end).minute(0).second(0);
+        console.log({dayjs_hour_start, dayjs_hour_end, currentTimeInCity});
+        if (!currentTimeInCity.isBetween(dayjs_hour_start, dayjs_hour_end, 'day') 
+        ) {
+            console.log('add disabled')
+            btn.classList.add('disabled');
+        } else {
+            console.log('remove disabled')
+            btn.classList.remove('disabled');
+        }
+    }
+
+    window.addEventListener('currentCityChange', ()=>{
+        currentCityChanged = true;
+        console.log('currentCityChange');
+    });
 
     window.addEventListener('managerSettingsGet', () => {
-        const allow_weekday_time_delivery = {
-            start: window.managerSettings['allow_time_delivery_start'],
-            end: window.managerSettings['allow_time_delivery_end']
-        }
-        
-        const allow_delivery_hour_start = parseInt(allow_weekday_time_delivery.start);
-        const allow_delivery_hour_end = parseInt(allow_weekday_time_delivery.end);
-
-        document.getElementById('delivery-time_from').textContent 
-            = allow_delivery_hour_start + '-00';
-        document.getElementById('delivery-time_to').textContent
-            = allow_delivery_hour_end + '-00';
-
-        const submitEl = document.querySelector('#cart .submit');
-        
-
-        let currentTimeInCity = dayjs();
-
-        let dayjs_hour_start = dayjs().hour(allow_delivery_hour_start);
-        let dayjs_hour_end = dayjs().hour(allow_delivery_hour_end)
-
-        if (!currentTimeInCity.isBetween(dayjs_hour_start, dayjs_hour_end)
-        ) {
-            submitEl.classList.add('disabled');
-        } else {
-            submitEl.classList.remove('disabled');
-        }
+        managerSettingsGetted = true;
+        console.log('managerSettingsGEt');
     });
 
     function isDrink(gramsStr) {

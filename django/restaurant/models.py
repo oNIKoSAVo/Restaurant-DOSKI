@@ -4,8 +4,9 @@ from django.contrib.auth.models import User
 from django.db.models import Q, Count
 from functools import reduce
 from django.core.validators import FileExtensionValidator
-
+from timezone_field import TimeZoneField
 from restaurant.lib.sms import Sms
+
 
 class PaymentTypes(models.IntegerChoices):
     ONLINE = 0, 'Онлайн оплата'
@@ -46,6 +47,7 @@ class City(models.Model):
     vk = models.CharField('Ссылка на ВК', max_length=128, blank=True, null=True)
     groups = models.ForeignKey(Group, on_delete=models.CASCADE, blank=True, null=True)
 #     restaraunts = models.ManyToManyField('self', blank=True, related_name='Restaraunt', )
+    city_timezone = TimeZoneField(verbose_name="Временная зона", choices_display="WITH_GMT_OFFSET", null=True, blank=True)
 
     def __str__(self):
        return self.name

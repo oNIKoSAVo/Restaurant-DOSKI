@@ -13,6 +13,9 @@ dadata = "*"
 python-dotenv = "*"
 xlsxwriter = "*"
 gunicorn = "*"
+pytz = "*"
+django-timezone-field = "*"
+tzdata = "*"
 
 [dev-packages]
 

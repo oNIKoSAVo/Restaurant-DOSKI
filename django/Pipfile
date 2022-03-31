@@ -16,6 +16,7 @@ gunicorn = "*"
 pytz = "*"
 django-timezone-field = "*"
 tzdata = "*"
+django-imagekit = "*"
 
 [dev-packages]
 

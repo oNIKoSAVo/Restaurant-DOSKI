@@ -4,8 +4,10 @@ from django.contrib.auth.models import User
 from django.db.models import Q, Count
 from functools import reduce
 from django.core.validators import FileExtensionValidator
-from timezone_field import TimeZoneField
 from restaurant.lib.sms import Sms
+from timezone_field import TimeZoneField
+from imagekit.models import ProcessedImageField
+from imagekit.processors import ResizeToFit
 
 
 class PaymentTypes(models.IntegerChoices):
@@ -123,7 +125,15 @@ class Menue(models.Model):
     category = models.ForeignKey(Category, verbose_name='Категория', related_name='menues', on_delete=models.DO_NOTHING)
     description = models.TextField('Описание', max_length=600, blank=False, null=False, default="")
     weight = models.CharField('Вес', max_length=128, blank=False, null=False, default="")
-    image = models.ImageField('Изображение', upload_to='images/', blank=True, null=True, default="images/product.jpg")
+    # image = models.ImageField('Изображение', upload_to='images/', blank=True, null=True, default="images/product.jpg")
+    image = ProcessedImageField(verbose_name="Изображение",
+                                upload_to='images/',
+                                processors=[ResizeToFit(400, 300)],
+                                format='JPEG',
+                                options={'quality': 90},
+                                blank=True,
+                                null=True)
+                                
     ident = models.IntegerField('Ident RKeeper',  blank=True, null=True)
     is_drink = models.BooleanField('Это напиток?',  blank=True, null=True)
 

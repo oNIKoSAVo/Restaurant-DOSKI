@@ -283,6 +283,7 @@ class Setting(models.Model):
     oferta_file = models.FileField('Оферта', upload_to='images/', blank=True, null=True)
     privacy_file = models.FileField('Согласие на обработку персональных данных', upload_to='images/', blank=True, null=True)
     main_banner = models.ImageField('Главный баннер на странице', upload_to='images/', blank=True, null=True)
+    main_banner_mobile = models.ImageField('Баннер на главной странице в мобильной версии', upload_to='images/', blank=True, null=True)
     career_video = models.FileField('Видео на странице карьеры',
                                     upload_to='videos/', 
                                     validators=[

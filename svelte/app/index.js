@@ -709,6 +709,32 @@ $(function () {
   //     // You have access to the datepicker instance for convenience.
   //   },
   // });
+  function switchMainBanner(slideSelector) {
+    if (window.matchMedia('(min-width: 768px)').matches) {
+      let mainBannerImg = window.managerSettings.main_banner;
+      if (mainBannerImg) {
+        slideSelector
+        .css('background-image', 'url(/media/' + mainBannerImg + ')');
+      }
+    } else {
+      let mainBannerImg = window.managerSettings.main_banner_mobile;
+      if (mainBannerImg) {
+        slideSelector
+        .css('background-image', 'url(/media/' + mainBannerImg + ')');
+      }
+    }
+  }
+
+  $(window).on('managerSettingsGet', () => {
+    const slideSelector = $("#main-page");
+    if (slideSelector) {
+      switchMainBanner(slideSelector);
+      $(window).on('resize', () => {
+        switchMainBanner(slideSelector);
+      });
+    }
+  });
+
   $("input[type='number']").on("keydown", function () {
     // Save old value.
     if (

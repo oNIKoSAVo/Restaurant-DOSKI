@@ -419,7 +419,11 @@ main {
   overflow: hidden;
   height: 65vh;
   min-height: 800px;
-  background: url(/static/app/img/main.jpg) no-repeat center center / cover;
+  background-image: url(/static/app/img/main.jpg);
+  background-position-x: center;
+  background-position-y: center;
+  background-size: cover;
+  background-repeat: no-repeat;
 
   .container {
     position: relative;

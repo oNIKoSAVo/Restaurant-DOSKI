@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'imagekit',
+    'ckeditor',
     'django_svelte',
     'pcpanel',
     'restaurant',
@@ -80,6 +81,27 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'restaurant.wsgi.application'
 
+# Ckeditor
+# https://pypi.org/project/django-ckeditor/#optional-customizing-ckeditor-editor
+
+CKEDITOR_CONFIGS = {
+    'default': {
+        'enterMode': 2,
+        'toolbar': 'Custom',
+        'toolbar_Custom': [ 
+            {'name': 'document', 'items': ['Preview', 'Templates'] },
+            {'name': 'clipboard', 'items': ['Undo', 'Redo'] },
+            {'name': 'editing', 'items': ['Replace', '-', 'SelectAll'] },          
+            {'name': 'basicstyles', 'items': ['Bold', 'Italic', 'Underline', 'Strike', 'Subscript', 'Superscript', '-', 'RemoveFormat'] },
+            {'name': 'paragraph', 'items': ['NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', '-', 'Blockquote', 'CreateDiv', '-', 'JustifyBlock', '-', 'BidiLtr', 'BidiRtl', 'Heading']},
+            {'name': 'links', 'items': ['Link', 'Unlink', 'Anchor']},
+            {'name': 'styles', 'items': ['Styles', 'Format', 'Font', 'FontSize']},
+            {'name': 'colors', 'items': ['TextColor', 'BGColor']},
+            {'name': 'tools', 'items': ['ShowBlocks']},
+            {'name': 'about', 'items': ['About']},
+        ],
+    },
+}
 
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
@@ -143,6 +165,7 @@ USE_TZ = True
 STATIC_URL = '/static/'
 if os.getenv("ENV") == "production":
     STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+    CKEDITOR_BASEPATH = "/static/ckeditor/ckeditor/"
 else:
     STATICFILES_DIRS = [
         BASE_DIR.parent / "svelte" / "public" / "build",

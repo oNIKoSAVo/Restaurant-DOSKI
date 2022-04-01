@@ -8,6 +8,7 @@ from restaurant.lib.sms import Sms
 from timezone_field import TimeZoneField
 from imagekit.models import ProcessedImageField
 from imagekit.processors import ResizeToFit
+from ckeditor.fields import RichTextField
 
 
 class PaymentTypes(models.IntegerChoices):
@@ -305,6 +306,8 @@ class Setting(models.Model):
                                     ],
                                     blank=True, 
                                     null=True)
+
+    payment_and_return = RichTextField('Оплата и возврат', max_length=5000, null=True, blank=True)
     allow_period_reservation = models.IntegerField('Доступный период бронирования (+ дней)',  blank=True, null=True)
 
     # RESERVATION FIELDS:

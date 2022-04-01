@@ -727,6 +727,9 @@ $(function () {
   }
 
   $(window).on('managerSettingsGet', () => {
+    let paymentRulesContent = window.managerSettings.payment_and_return;
+    console.log({paymentRulesContent});
+    $("#paymentRulesModal").find('.modal-description').html(paymentRulesContent);
     const slideSelector = $("#main-page");
     if (slideSelector) {
       switchMainBanner(slideSelector);

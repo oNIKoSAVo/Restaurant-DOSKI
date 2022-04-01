@@ -17,6 +17,7 @@ pytz = "*"
 django-timezone-field = "*"
 tzdata = "*"
 django-imagekit = "*"
+django-ckeditor = "*"
 
 [dev-packages]
 

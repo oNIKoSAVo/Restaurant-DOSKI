@@ -7,8 +7,11 @@ from django.shortcuts import redirect, render
 from django.views import View
 from django.contrib.auth.mixins import AccessMixin
 from django.db.models import Q
-from restaurant.models import Order, Reservation, Restaraunt, ReservationStatusType, OrderStatusType
-
+from restaurant.models import Order, Reservation,\
+     Restaraunt, ReservationStatusType, OrderStatusType
+import re
+from restaurant.lib.sms import Sms
+from restaurant.models import ReservationStatusType
 # Create your views here.
 
 
@@ -112,7 +115,12 @@ class BookingView(OnlyStuffUserAccessMixin, View):
                 del params['date']
                 del params['time']
 
-            count = Reservation.objects.filter(pk=id).update(**params)
+            reservation_qs = Reservation.objects.filter(pk=id)
+            if params['status'] == str(ReservationStatusType.REJECT):
+                cleanphone = re.sub('\W+', '', reservation_qs.first().phone)
+                Sms().send(cleanphone, "Ваша бронь была удалена менеджером")
+
+            count = reservation_qs.update(**params)
             if(count > 0):
                 messages.success(request, 'Бронирование изменено.')
         return redirect(request.META.get('HTTP_REFERER'))

@@ -936,6 +936,7 @@ $(function () {
   }
 
   $(".checkout-btn").on("click", function (e) {
+    if ($(this).hasClass('disabled')) return;
     const cartSummaryEl = document.querySelector(".cart-summary");
     console.log({ cartSummaryEl });
 

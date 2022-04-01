@@ -1213,7 +1213,7 @@ a.submit.disabled {
   background: linear-gradient(180deg, #545554 0%, #343532 100%);
   box-shadow: 0px 3px 0px #5f5f3f6e, inset 0px -1px 0px rgba(255, 255, 255, 0.16),
     inset 0px 1px 0px rgba(255, 255, 255, 0.1);
-    
+  cursor: default;
   &:hover {
     background: linear-gradient(180deg, #868682 50%, #5c5c5b 100%);
   }

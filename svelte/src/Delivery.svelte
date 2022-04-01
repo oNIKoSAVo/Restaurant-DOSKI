@@ -88,11 +88,10 @@
     function disable_btn_ontime(btn, time_start, time_end) {
         console.log(window.currentCity.city_timezone);
         let currentTimeInCity = dayjs().tz(window.currentCity.city_timezone);
-        let dayjs_hour_start = dayjs().hour(time_start).minute(0).second(0);
-        let dayjs_hour_end = dayjs().hour(time_end).minute(0).second(0);
-        console.log({dayjs_hour_start, dayjs_hour_end, currentTimeInCity});
-        if (!currentTimeInCity.isBetween(dayjs_hour_start, dayjs_hour_end, 'day') 
-        ) {
+        console.log({ctc: currentTimeInCity.hour(), start: time_start, end: time_end});
+        let current_hour = currentTimeInCity.hour();
+        
+        if (!(current_hour >= time_start && current_hour <= time_end)) {
             console.log('add disabled')
             btn.classList.add('disabled');
         } else {

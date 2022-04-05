@@ -145,8 +145,17 @@ class DeliveryView(OnlyStuffUserAccessMixin, View):
                 return JsonResponse({'status': 'error', 'message': 'Order not found'}, status=404)
 
         orders = queryset.filter(Q(status=OrderStatusType.WAIT) | 
-                                 Q(status=OrderStatusType.APPROVED)) \
-                         .order_by('status', '-created_at')
+                                 Q(status=OrderStatusType.APPROVED))
+
+        if(request.GET.get('filter_date')):
+            today_start = datetime.strptime(
+                request.GET.get('filter_date'), '%d-%m-%Y').replace(hour=0, minute=0, second=0)
+            today_end = datetime.strptime(
+                request.GET.get('filter_date'), '%d-%m-%Y').replace(hour=23, minute=59, second=59)
+            orders = orders.filter(
+                created_at__lte=today_end, created_at__gte=today_start)
+
+        orders.order_by('status', '-created_at')
 
         dishes_of_all_orders = dict()
 

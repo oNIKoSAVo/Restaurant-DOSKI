@@ -27,17 +27,18 @@
         const allow_delivery_hour_start = parseInt(allow_weekday_time_delivery.start);
         const allow_delivery_hour_end = parseInt(allow_weekday_time_delivery.end);
 
-        document.getElementById('delivery-time_from').textContent 
-            = allow_delivery_hour_start + '-00';
-        document.getElementById('delivery-time_to').textContent
-            = allow_delivery_hour_end + '-00';
-
-        const submitEl = document.querySelector('#cart .submit');
-
-        
-        disable_btn_ontime(submitEl, 
-                           allow_delivery_hour_start, 
-                           allow_delivery_hour_end);
+        const delivery_timef_el = document.getElementById('delivery-time_from');
+        const delivery_timet_el = document.getElementById('delivery-time_to');
+        if (delivery_timef_el && delivery_timet_el) {
+            delivery_timef_el.textContent = allow_delivery_hour_start + '-00';
+            delivery_timet_el.textContent = allow_delivery_hour_end + '-00';
+    
+            const submitEl = document.querySelector('#cart .submit');
+            
+            disable_btn_ontime(submitEl, 
+                               allow_delivery_hour_start, 
+                               allow_delivery_hour_end);
+        }
     }
 
     let cart = [];
@@ -91,7 +92,7 @@
         console.log({ctc: currentTimeInCity.hour(), start: time_start, end: time_end});
         let current_hour = currentTimeInCity.hour();
         
-        if (!(current_hour >= time_start && current_hour <= time_end)) {
+        if (!(current_hour >= time_start && current_hour < time_end)) {
             console.log('add disabled')
             btn.classList.add('disabled');
         } else {

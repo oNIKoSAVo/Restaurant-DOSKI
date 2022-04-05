@@ -108,109 +108,107 @@
         style="display: none"
         src="https://www.facebook.com/tr?id=249879825918890&amp;ev=PageView&amp;noscript=1"
 /></noscript>
-<header>
-    <div class="navbar box-shadow">
-            <div class="col-1 d-lg-block d-none position-absolute">
-                <select class="select mt-1 mb-0 d-none " name="city" id="city_header">
-                    <option value="" class="option">Выбери город</option>
-                </select>
-            </div>
-            <div class="container align-self-center d-flex justify-content-between">
 
-                <div
-                        class="
-            col-4 col-md-4 col-lg-5
-            align-items-center
-            justify-content-around
-            px-0
-            d-lg-flex d-none
-          "
+<header class="navbar box-shadow">
+    <div class="col-1 d-lg-block d-none position-absolute">
+        <select class="select mt-1 mb-0 d-none " name="city" id="city_header">
+            <option value="" class="option">Выбери город</option>
+        </select>
+    </div>
+    <div class="container align-self-center d-flex justify-content-between">
+
+        <div
+                class="
+    col-4 col-md-4 col-lg-5
+    align-items-center
+    justify-content-around
+    px-0
+    d-lg-flex d-none
+    "
+        >
+            <a class="menu-item" href="{% url 'menu' %}">Меню</a
+            ><a class="menu-item" href="{% url 'delivery' %}">Доставка</a
+        ><a class="menu-item" href="{% url 'reservation' %}">Бронирование</a
+        ><a class="menu-item" href="{% url 'events' %}">События</a
+        ><a class="menu-item" href="{% url 'career' %}">Карьера</a>
+        </div>
+        <div class="col-2 d-lg-none d-block navbar-toggler">
+            <img
+                    class="notactive mr-sm-2"
+                    src="/static/app/img/menu.png"
+                    height="33"
+            /><img
+                class="active mr-sm-2"
+                src="/static/app/img/close-menu.png"
+                height="33"
+        />
+        </div>
+        <div
+                class="
+    col-2
+    underlogo
+    d-lg-flex
+    align-items-center
+    px-0
+    col-md-8
+    justify-content-center
+    col-lg-2
+    d-none
+    "
+        >
+            <a class="d-flex align-items-center" href="{% url 'index' %}"
+            ><img src="/static/app/img/logo@2x.png" alt="RESPUBLICA" width="83"
+            /></a>
+        </div>
+        <div class="col-8 d-lg-none d-block text-center">
+            <a href="{% url 'index' %}"
+            ><img
+                    src="/static/app/img/mobile-logo.png"
+                    alt="RESPUBLICA"
+                    height="21"
+            /></a>
+        </div>
+        <div class="col-2 d-lg-none d-block">
+            <a id="mobile_header_phone" class="phone" href="tel:+7(383)227-90-50"
+            >
+                <img class="mr-sm-2" src="/static/app/img/phone.png" height="24"/></a>
+        </div>
+        <div
+                class="
+    col-4 col-md-4 col-lg-5
+    d-none d-lg-flex
+    align-items-center
+    justify-content-around
+    px-0
+    "
+        >
+            <a class="menu-item" href="{% url 'franchise' %}">Франчайзи</a
+            ><a class="menu-item" href="{% url 'contacts' %}">Контакты</a>
+
+            {% if user.is_authenticated %}
+            <a class="login gradient1" href="/personal"
+            ><img
+                    class="mr-sm-2"
+                    src="/static/app/img/login-icon.png"
+                    width="19"
+            /><span class="d-none d-sm-inline"> {% if user.profie.firstname %} {{ user.profie.firstname }} {% else %} кабинет {% endif %}</span>
+                {% else %}
+                <a class="login sign gradient1"
+                ><img
+                        class="mr-sm-2"
+                        src="/static/app/img/login-icon.png"
+                        width="19"
+                /><span class="d-none d-sm-inline">Войти</span>
+                    {% endif %}
+
+                </a><a class="phone gradient1" href="tel:+73832279050" id="phone_header"
+                ><img
+                        class="mr-sm-2"
+                        src="/static/app/img/phone.png"
+                        width="16"
+                /><span class="d-none d-sm-inline" >227-90-50</span></a
                 >
-                    <a class="menu-item" href="{% url 'menu' %}">Меню</a
-                    ><a class="menu-item" href="{% url 'delivery' %}">Доставка</a
-                ><a class="menu-item" href="{% url 'reservation' %}">Бронирование</a
-                ><a class="menu-item" href="{% url 'events' %}">События</a
-                ><a class="menu-item" href="{% url 'career' %}">Карьера</a>
-                </div>
-                <div class="col-2 d-lg-none d-block navbar-toggler">
-                    <img
-                            class="notactive mr-sm-2"
-                            src="/static/app/img/menu.png"
-                            height="33"
-                    /><img
-                        class="active mr-sm-2"
-                        src="/static/app/img/close-menu.png"
-                        height="33"
-                />
-                </div>
-                <div
-                        class="
-            col-2
-            underlogo
-            d-lg-flex
-            align-items-center
-            px-0
-            col-md-8
-            justify-content-center
-            col-lg-2
-            d-none
-          "
-                >
-                    <a class="d-flex align-items-center" href="{% url 'index' %}"
-                    ><img src="/static/app/img/logo@2x.png" alt="RESPUBLICA" width="83"
-                    /></a>
-                </div>
-                <div class="col-8 d-lg-none d-block text-center">
-                    <a href="{% url 'index' %}"
-                    ><img
-                            src="/static/app/img/mobile-logo.png"
-                            alt="RESPUBLICA"
-                            height="21"
-                    /></a>
-                </div>
-                <div class="col-2 d-lg-none d-block">
-                    <a id="mobile_header_phone" class="phone" href="tel:+7(383)227-90-50"
-                    >
-                        <img class="mr-sm-2" src="/static/app/img/phone.png" height="24"/></a>
-                </div>
-                <div
-                        class="
-            col-4 col-md-4 col-lg-5
-            d-none d-lg-flex
-            align-items-center
-            justify-content-around
-            px-0
-          "
-                >
-                    <a class="menu-item" href="{% url 'franchise' %}">Франчайзи</a
-                    ><a class="menu-item" href="{% url 'contacts' %}">Контакты</a>
-
-                    {% if user.is_authenticated %}
-                    <a class="login gradient1" href="/personal"
-                    ><img
-                            class="mr-sm-2"
-                            src="/static/app/img/login-icon.png"
-                            width="19"
-                    /><span class="d-none d-sm-inline"> {% if user.profie.firstname %} {{ user.profie.firstname }} {% else %} кабинет {% endif %}</span>
-                        {% else %}
-                        <a class="login sign gradient1"
-                        ><img
-                                class="mr-sm-2"
-                                src="/static/app/img/login-icon.png"
-                                width="19"
-                        /><span class="d-none d-sm-inline">Войти</span>
-                            {% endif %}
-
-                        </a><a class="phone gradient1" href="tel:+73832279050" id="phone_header"
-                        ><img
-                                class="mr-sm-2"
-                                src="/static/app/img/phone.png"
-                                width="16"
-                        /><span class="d-none d-sm-inline" >227-90-50</span></a
-                        >
-                </div>
-            </div>
-
+        </div>
     </div>
 </header>
 

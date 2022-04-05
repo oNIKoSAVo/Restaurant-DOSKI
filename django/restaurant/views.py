@@ -57,7 +57,7 @@ def signup(request):
                 "error": "Пользователь с таким номером был удалён.",
                 "error_code": 1
             }
-            return JsonResponse()
+            return JsonResponse(resp)
         resp = {
                 "error": "Такой номер уже зарегестрирован",
                 "error_code": 2

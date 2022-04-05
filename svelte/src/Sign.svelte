@@ -137,9 +137,12 @@ console.log({recoverPhone})
         // code = response.password.split("");
         document.querySelector('.send-register').click()
       } else {
+        console.log({deletedAcc: "Maybe acc is deleted"})
         if (response.error_code == 1) {
+          console.log({deletedAcc: "Account is deleted"})
           isDeletedAccount = true;
         } else {
+          console.log({deletedAcc: "Account is registered"})
           isRegisteredNumber = true;
         }
       }
@@ -397,7 +400,7 @@ console.log({recoverPhone})
       <div class="modal-title">Регистрация</div>
     </div>
     <div class="stages">
-      {#if !isRegisteredNumber}
+      {#if (!isRegisteredNumber && !isDeletedAccount)}
         <form class="stage" action="">
           <div class="modal-description">Введите Ваш номер телефона</div>
           <input

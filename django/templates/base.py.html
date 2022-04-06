@@ -1076,7 +1076,7 @@
                                 <input name="name" placeholder="Введите Ваше ФИО"/>
                             </div>
                             <div class="col-sm-12">
-                                <input name="addres" id="dadata-address" placeholder="Введите адрес"/>
+                                <input class="suggested-address" name="addres" id="dadata-address" placeholder="Введите адрес"/>
                             </div>
                             <div class="col-sm-12">
                                 <input name="phone" placeholder="Номер телефона"/>
@@ -1486,17 +1486,64 @@
             </div>
         </div>
     </div>
-    <script>console.log({
-        address: document.querySelector("#dadata-address")
-    })
-    $("#dadata-address").suggestions({
-        token: "5870aa5579db3be0faff6aa85d1caf810be3baca",
-        type: "ADDRESS",
-        /* Вызывается, когда пользователь выбирает одну из подсказок */
-        onSelect: function (suggestion) {
-            console.log(suggestion);
-        },
-    });</script>
+    
+   
+    <div class="modal-wrapper modal fade" id="checkAddress" tabindex="-1" role="dialog">
+        <div class="modal-dialog" style="max-width: 659px">
+            <div class="modal-content">
+                <button
+                    class="close"
+                    type="button"
+                    data-dismiss="modal"
+                    aria-label="Close"
+                >
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <div class="modal-header">
+                    <div class="modal-title">
+                        Введите ваш адрес чтобы узнать, сможем ли мы привезти ваш заказ
+                    </div>
+                </div>
+                <form action="" class="mt-4">
+                    <div class="col-sm-12">
+                        <input 
+                        name="addres"
+                        class="suggested-address" 
+                        id="dadata-address2"
+                        placeholder="Введите адрес"
+                        />
+                        <!-- <input class="suggested-address" name="addres" id="dadata-address" placeholder="Введите адрес"/> -->
+                    </div>
+                    <div class="text-center">
+                        <a href="#" class="d-none send-feedback"></a>
+                        <a href="#" class="submit">Проверить адрес</a>
+                        <!-- <a href="#" class="submit send-feedback" on:click={handleSubmit}>Отправить отзыв</a> -->
+                    </div>
+                </form>
+                <div class="modal-description black text-center mt-3 d-none">
+                    К сожалению ваш адрес находится вне радиуса нашей доставки, но возможно мы все же сможем привезти ваш заказ.<br>
+                    <b>Свяжитесь с нами по телефону: 227-90-50</b>
+                </div>
+            </div>
+        </div>
+    </div>
+
+ 
+    
+    
+    <script>
+        console.log({
+            address: document.querySelector("#dadata-address")
+        });
+        $(".suggested-address").suggestions({
+            token: "5870aa5579db3be0faff6aa85d1caf810be3baca",
+            type: "ADDRESS",
+            /* Вызывается, когда пользователь выбирает одну из подсказок */
+            onSelect: function (suggestion) {
+                console.log({suggestion});
+            },
+        });
+    </script>
     <script src="/static/bundle.bundle.js"></script>
 </body>
 <div id="menu">
@@ -1588,4 +1635,3 @@
         </div>
     </div>
 </div>
-

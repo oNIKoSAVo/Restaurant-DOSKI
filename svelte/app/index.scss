@@ -1588,6 +1588,14 @@ a.alternative {
   width: 100%;
 }
 
+#checkAdress {
+  .modal-title {
+    @media (max-width: 768px){
+      font-size: 30px;
+    }
+  }
+}
+
 #steps {
   position: relative;
   padding-bottom: 45px;

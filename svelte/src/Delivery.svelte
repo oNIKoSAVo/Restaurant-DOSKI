@@ -300,6 +300,10 @@
     }
 
     document.addEventListener("DOMContentLoaded", () => {
+        if (!localStorage.getItem("currentAddress")) {
+            openModal("#checkAddress");
+        }
+
         const [downloadBtn, printBtn, shareBtn] = [...document.querySelector('.preorder-buttons').children]
         downloadBtn.addEventListener('click', () => {
             if (cart.length === 0 || isEqual(cart, lastCartSent)) {

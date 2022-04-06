@@ -13,7 +13,7 @@ import "./plugin/grt-youtube-popup";
 // import datepicker from "js-datepicker";
 import "regenerator-runtime/runtime.js";
 
-import { Loader } from "google-maps";
+import { Loader, LoaderOptions } from "google-maps";
 import { correctPhoneWithMask } from "../src/helpers/correctPhoneWithMask";
 import { sendTelegramMessage } from "../src/helpers/sendTelegramMessage";
 import { captchaProtect } from "../src/helpers/grecaptcha";
@@ -23,7 +23,7 @@ import isEmail from "validator/es/lib/isEmail";
 import {request} from "../src/api";
 
 const options = {
-  /* todo */
+  libraries: ['geometry', 'places']
 };
 
 const loader = new Loader("AIzaSyCMyW6HJLx8TXMlSemVjqMQkhb7-Bz8tGI", options);
@@ -573,6 +573,7 @@ async function initMap(lat = 54.964361, lng = 82.93014) {
       document.getElementById("map-canvas"),
       mapOptions
   );
+  window.map = map;
   var content =
       '<div id="iw-container">' +
       '<div class="iw-title">ооо «СТМ-КОСМЕТИКА»</div>' +
@@ -1312,6 +1313,67 @@ $(function () {
   });
 
   $("#print-scheme-btn").on("click", handleClickPrintBtn);
+
+  function computeDistances(userCoords) {
+    if (!userCoords) return;
+
+    let distances = [];
+
+    window.currentCity.addresses.forEach((value, index) => {
+      if (!value.coordinates) return;
+      console.log({coords: value.coordinates.split(',')});
+
+      let restCoords = new google.maps.LatLng(...(value.coordinates.split(',')));
+      
+      console.log({restCoords});
+
+      if (restCoords) {
+        let distance 
+          = google.maps
+          .geometry.spherical
+          .computeDistanceBetween(restCoords, userCoords);
+        
+        console.log(distance)
+        distances.push({restaraunt: value, distance});
+      }
+    });
+
+    console.log({distances})
+  }
+
+  async function computeDistance() {
+    console.log("computing distance...");
+    const addrInputVal = $('#dadata-address2').val();
+
+    console.log({addrInputVal});
+    if (!addrInputVal) return;
+
+    let request = {
+      query: addrInputVal,
+      fields: ['name', 'geometry'],
+    };
+    let userCoords = null;
+
+    console.log({map: window.map});
+
+    let service = new google.maps.places.PlacesService(window.map);
+    service.findPlaceFromQuery(request, function(results, status) {
+      if (status === google.maps.places.PlacesServiceStatus.OK) {
+        userCoords = results[0].geometry.location;
+        console.log({results});
+        console.log({userCoords});
+        computeDistances(userCoords)
+      }
+    });
+
+    // console.log({userCoords});
+    
+  }
+
+  $("#checkAddress .submit").on('click', (e) => {
+    computeDistance();
+    // restaraunts
+  });
     
   function handleClickPrintBtn(e) {
     console.log('Clicked')

@@ -300,8 +300,12 @@
     }
 
     document.addEventListener("DOMContentLoaded", () => {
-        if (!localStorage.getItem("currentAddress")) {
+        let currAddr = localStorage.getItem("currentAddress");
+        if (!currAddr) {
             openModal("#checkAddress");
+            jquery("#too-far-delivery-msg").addClass('d-none');
+        } else {
+            jquery('.suggested-address').each((i, el)=> jquery(el).val(currAddr));
         }
 
         const [downloadBtn, printBtn, shareBtn] = [...document.querySelector('.preorder-buttons').children]

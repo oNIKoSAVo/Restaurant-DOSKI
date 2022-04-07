@@ -324,12 +324,29 @@ def delivery(request):
     categories = categories.annotate(menue_count=Count(
         'menues__id')).filter(menue_count__gt=0)
 
-    city = City.objects.get(pk=request.session.get('city', 1))
-    restaraunt = Restaraunt.objects.filter(city=city).first()
+    session_rest = request.session.get('restaraunt', 1)
+
+    if session_rest:
+        restaraunt = Restaraunt.objects.get(pk=request.session.get('restaraunt', 1))
+    else:
+        city = City.objects.get(pk=request.session.get('city', 1))
+        restaraunt = Restaraunt.objects.filter(city=city).first()
+
     for category in categories:
         setattr(category, 'menues_in_rastaraunt',
                 MenueInRestaraunt.objects.filter(menue__category=category, restaraunt=restaraunt))
     return render(request, 'delivery.py.html', {'categories': filter_categories(categories, restaraunt)})
+
+
+def set_restaraunt_id(request):
+    restaraunt_id = request.POST.get('id') if request.POST else request.GET.get('id')
+    back_to = request.META.get('HTTP_REFERER') if request.META.get(
+        'HTTP_REFERER') else "/"
+    try:
+        request.session['restaraunt'] = Restaraunt.objects.get(pk=restaraunt_id).id
+    except Restaraunt.DoesNotExist:
+        pass
+    return redirect(back_to)
 
 
 def reservation(request):

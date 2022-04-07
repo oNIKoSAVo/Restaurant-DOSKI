@@ -1339,6 +1339,7 @@ $(function () {
     });
 
     console.log({distances})
+    return distances;
   }
 
   async function computeDistance() {
@@ -1362,7 +1363,27 @@ $(function () {
         userCoords = results[0].geometry.location;
         console.log({results});
         console.log({userCoords});
-        computeDistances(userCoords)
+        let distances = computeDistances(userCoords);
+        let nearestRest = {restaraunt: null, distance: Infinity};
+        distances.forEach((val)=>{
+          if (val.distance < nearestRest.distance) {
+            nearestRest = val;
+          }
+        });
+
+        console.log({nearestRest});
+        console.log($("#too-far-delivery-msg"));
+        if (nearestRest.distance > 8000) {
+          console.log('remove d-none');
+          $("#too-far-delivery-msg").removeClass('d-none');
+        } else {
+          console.log('add d-none');
+          $("#too-far-delivery-msg").addClass('d-none');
+          $("#checkAddress button.close").trigger('click');
+          localStorage.setItem("currentAddress", addrInputVal);
+          localStorage.setItem("currentRestaraunt", nearestRest.restaraunt);
+          window.location.href = `/set_restaraunt_id?id=${nearestRest.restaraunt.id}`;
+        }
       }
     });
 

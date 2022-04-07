@@ -301,11 +301,14 @@
 
     document.addEventListener("DOMContentLoaded", () => {
         let currAddr = localStorage.getItem("currentAddress");
-        if (!currAddr) {
-            openModal("#checkAddress");
-            jquery("#too-far-delivery-msg").addClass('d-none');
-        } else {
-            jquery('.suggested-address').each((i, el)=> jquery(el).val(currAddr));
+        const deliverySection =  document.getElementById('delivery-section');
+        if (deliverySection) {
+            if (!currAddr) {
+                openModal("#checkAddress");
+                jquery("#too-far-delivery-msg").addClass('d-none');
+            } else {
+                jquery('.suggested-address').each((i, el)=> jquery(el).val(currAddr));
+            }
         }
 
         const [downloadBtn, printBtn, shareBtn] = [...document.querySelector('.preorder-buttons').children]

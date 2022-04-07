@@ -18,11 +18,14 @@ from .lib.helpers import filter_categories
 from django.db.models import Q, Count, Prefetch
 from django.http import HttpResponse, HttpResponseNotFound
 from django.http.response import JsonResponse
-from restaurant.models import Feedback, Franchising, Promotion, Reservation, Restaraunt, Сareer, Menue, Category, Event, \
+from restaurant.models import Feedback, Franchising, Promotion, Reservation, Restaraunt, Career, Menue, Category, Event, \
     MenuInOrder, Order, Profile, City, PreOrder, MenuInPreOrder, MenueInRestaraunt, ReservationStatusType, Setting, PaymentTypes
 from django.shortcuts import get_object_or_404, render, redirect
 from django.views.decorators.http import require_http_methods
 from django.core.exceptions import ObjectDoesNotExist
+from django.core.mail import send_mail
+from django.conf import settings as django_settings
+
 
 def index(request):
     setting = Setting.objects.all().last()
@@ -555,9 +558,24 @@ def download_preorder(request):
 
 def feedback(request):
     if request.method == "POST":
-        feedback = Feedback.objects.create(name=request.POST.get(
-            'name'), phone=request.POST.get('phone'), description=request.POST.get('description'))
+        name = request.POST.get('name')
+        phone = request.POST.get('phone')
+        description = request.POST.get('description')
+        feedback = Feedback.objects.create(name=name, phone=phone, description=description)
+
         if (feedback):
+            settings = Setting.objects.first()
+            # f'phone: {phone}\nname: {name}'
+            email_body = f"Имя: {name}\n" \
+                         f"Телефон: {phone}\n" \
+                         f"Описание: {description}"
+
+            send_mail(
+                'respublica:Отзыв', 
+                email_body,
+                django_settings.EMAIL_HOST_USER, 
+                [settings.career_email])
+
             return JsonResponse({"status": "success"})
         else:
             return JsonResponse({"status": "error"})
@@ -571,19 +589,47 @@ def events(request):
 def career(request):
     if request.method == "POST":
         b_day = datetime.strptime(request.POST.get('b_day'), '%d/%m/%Y')
-        career = Сareer.objects.create(
-            first_name=request.POST.get('first_name'),
-            middle_name=request.POST.get('middle_name'),
-            last_name=request.POST.get('last_name'),
-            phone=request.POST.get('phone'),
-            position=request.POST.get('position'),
-            city=request.POST.get('city'),
-            bar=request.POST.get('bar'),
+        first_name = request.POST.get('first_name'),
+        middle_name = request.POST.get('middle_name'),
+        last_name = request.POST.get('last_name'),
+        phone = request.POST.get('phone'),
+        position = request.POST.get('position'),
+        city = request.POST.get('city'),
+        bar = request.POST.get('bar'),
+        citizenship = request.POST.get('citizenship'),
+        about = request.POST.get('about'),
+
+        career = Career.objects.create(
+            first_name=first_name,
+            middle_name=middle_name,
+            last_name=last_name,
+            phone=phone,
+            position=position,
+            city=city,
+            bar=bar,
             b_day=b_day,
-            citizenship=request.POST.get('citizenship'),
-            about=request.POST.get('about'),
+            citizenship=citizenship,
+            about=about,
         )
+
         if (career):
+            settings = Setting.objects.first()
+            # f'phone: {phone}\nname: {name}'
+            email_body = f"Имя: {first_name} {middle_name} {last_name}\n" \
+                         f"Телефон: {phone}\n" \
+                         f"Позиция: {position}\n" \
+                         f"Город: {city}\n" \
+                         f"Бар: {bar}\n" \
+                         f"Дата рождения: {b_day}\n" \
+                         f"Гражданство: {citizenship}\n" \
+                         f"Обо мне: {about}\n --- \nbay bay!"
+
+            send_mail(
+                'respublica:Заявка на карьеру', 
+                email_body,
+                django_settings.EMAIL_HOST_USER, 
+                [settings.career_email])
+
             return JsonResponse({"status": "success"})
         else:
             return JsonResponse({"status": "error"})
@@ -598,9 +644,19 @@ def career(request):
 
 def franchise(request):
     if request.method == "POST":
-        franchise = Franchising.objects.create(name=request.POST.get(
-            'name'), phone=request.POST.get('phone'))
+        phone = request.POST.get('phone')
+        name = request.POST.get('name')
+        franchise = Franchising.objects.create(name=name, phone=phone)
+
         if (franchise):
+            settings = Setting.objects.first()
+
+            send_mail(
+                'respublica:Заявка на франшизу', 
+                f'Телефон: {phone}\nИмя: {name}',
+                django_settings.EMAIL_HOST_USER, 
+                [settings.franchising_email])
+
             return JsonResponse({"status": "success"})
         else:
             return JsonResponse({"status": "error"})

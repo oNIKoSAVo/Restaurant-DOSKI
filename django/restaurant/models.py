@@ -209,7 +209,7 @@ class Franchising(models.Model):
         verbose_name = 'франшиза'
         verbose_name_plural = 'Франшиза'
 
-class Сareer(models.Model):
+class Career(models.Model):
     first_name = models.CharField('Имя', max_length=128, blank=False, null=False)
     middle_name = models.CharField('Отчество', max_length=128, blank=False, null=False)
     last_name = models.CharField('Фамилия', max_length=128, blank=False, null=False)
@@ -320,6 +320,10 @@ class Setting(models.Model):
 
     allow_time_delivery_start = models.TimeField('Доступное время доставки', help_text="С",  blank=True, null=True)
     allow_time_delivery_end = models.TimeField('Доступное время доставки', help_text="ДО",  blank=True, null=True)
+
+    franchising_email = models.EmailField('почта для заявок на франшизу', null=True, blank=True)
+    career_email = models.EmailField('почта для отправки анкет по карьере', null=True, blank=True)
+    feedback_email = models.EmailField('почта для отправки отзывов', null=True, blank=True)
 
     class Meta:
         verbose_name = 'настройки'

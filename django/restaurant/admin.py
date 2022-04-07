@@ -4,7 +4,7 @@ from django.contrib import admin
 from django.conf.urls import url
 from django.http import HttpResponseRedirect
 from django.core.management import call_command
-from .models import Category, Feedback, Franchising, MenuInOrder, Menue, MenueInRestaraunt, Order, PhotoTable, Profile, Promotion, Reservation, Restaraunt, Setting, Сareer, RestarauntSchema, Event, City, MenuInPreOrder, PreOrder
+from .models import Category, Feedback, Franchising, MenuInOrder, Menue, MenueInRestaraunt, Order, PhotoTable, Profile, Promotion, Reservation, Restaraunt, Setting, Career, RestarauntSchema, Event, City, MenuInPreOrder, PreOrder
 
 admin.site.site_header = 'Respublica administrator'
 
@@ -76,7 +76,7 @@ class PreOrderAdmin(admin.ModelAdmin):
 class ReservationAdmin(admin.ModelAdmin):
     list_display = ['id', 'restaraunt', 'persons', 'table', 'start', 'end', 'name', 'phone']
 
-class СareerAdmin(admin.ModelAdmin):
+class CareerAdmin(admin.ModelAdmin):
     list_display = ['first_name', 'middle_name', 'last_name', 'position']
 
 class FeedbackAdmin(admin.ModelAdmin):
@@ -104,7 +104,7 @@ admin.site.register(Category)
 
 admin.site.register(Feedback, FeedbackAdmin)
 admin.site.register(Franchising, FranchisingAdmin)
-admin.site.register(Сareer, СareerAdmin)
+admin.site.register(Career, CareerAdmin)
 admin.site.register(Reservation, ReservationAdmin)
 
 admin.site.register(Event, EventAdmin)

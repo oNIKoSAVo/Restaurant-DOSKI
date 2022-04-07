@@ -158,6 +158,19 @@ USE_L10N = True
 
 USE_TZ = True
 
+# Email
+EMAIL_HOST = 'smtp.yandex.ru'
+
+EMAIL_PORT = 465
+
+EMAIL_HOST_USER = "info@zarki-sad.ru"
+
+EMAIL_HOST_PASSWORD = "q1233216"
+
+EMAIL_USE_TLS = False
+
+EMAIL_USE_SSL = True
+
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.2/howto/static-files/

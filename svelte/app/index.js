@@ -21,6 +21,8 @@ import { phoneToNumbers } from "../src/helpers/phoneToNumbers";
 import { setErrorInput } from "../src/helpers/setErrors";
 import isEmail from "validator/es/lib/isEmail";
 import {request} from "../src/api";
+import printJS from 'print-js';
+
 
 const options = {
   libraries: ['geometry', 'places']
@@ -122,13 +124,15 @@ async function showTableStatus(restaurantMaps) {
   restaurantMaps.forEach(map => [...map.querySelectorAll('path')].filter((path) => {
     if (!isNaN(path.id)) return path;
   }).forEach(path => {
-    path.style.fill = 'green'
-    path.classList.remove('reserved')
+    path.setAttribute('fill', 'green');
+    // path.style.fill = 'green';
+    path.classList.remove('reserved');
   }))
   if (tableIdsString) {
     restaurantMaps.forEach(map => {
       map.querySelectorAll(tableIdsString).forEach(path => {
-        path.style.fill = 'red'
+        path.setAttribute('fill', 'red')
+        // path.style.fill = 'red';
         path.classList.add('reserved')
       })
     })
@@ -140,7 +144,13 @@ function appendSchemesAdmin(schemes) {
   // return
   // if (!document.getElementById("table")) return;
   const restaurantMaps = []
-  document.querySelector("#table.admin").innerHTML = "";
+  const tableAdmin = document.querySelector("#table.admin");
+  tableAdmin.innerHTML = "";
+
+  let schemesContainer = document.createElement('div');
+  schemesContainer.classList.add('schemes-container');
+  tableAdmin.append(schemesContainer);
+
   schemes.forEach((schema) => {
     let el = document.createElement("svg");
     console.log({SCHEMA_URL: schema.url});
@@ -154,11 +164,43 @@ function appendSchemesAdmin(schemes) {
         })
         .then(() => showTableStatus(restaurantMaps))
         .then(() => {
-          document.querySelector("#table.admin").append(...restaurantMaps);
+          schemesContainer.append(...restaurantMaps);
         })
         .catch(console.error.bind(console));
   });
 
+  // Adding elements for printing
+  let reservationsInfoEls = [];
+  
+  let reservationsTable = document.createElement('table');
+  reservationsTable.style.pageBreakBefore = 'always';
+  reservationsTable.style.width = '100%';  
+  reservationsTable.classList.add('element-for-print');
+
+  $('#new-reservations .cabinet-order').each((ind, el) => {
+    let tr = document.createElement('tr');
+    let td1 = document.createElement('td');
+    let td2 = document.createElement('td');
+    td1.style.width = '3%';
+    
+    let r_table = el.querySelector('.r-table-js').textContent;
+    let r_time = el.querySelector('.r-time-js').textContent;
+    let r_name = el.querySelector('.r-name-js').textContent;
+    let r_phone = el.querySelector('.r-phone-js').textContent;
+    
+    td1.innerHTML = ind+1;
+    td2.innerHTML = `Столик №${r_table} Время: ${r_time} ` + 
+                    `${r_name} ${r_phone}`;
+
+    tr.append(td1, td2);
+    console.log({TABLE_ROW: tr});
+    console.log({td1, td2});
+    console.log({ind, r_table, r_time, r_name, r_phone});
+    reservationsInfoEls.push(tr);
+  });
+  reservationsTable.append(...reservationsInfoEls);
+
+  tableAdmin.append(reservationsTable);
 }
 
 async function initCity() {
@@ -1400,52 +1442,64 @@ $(function () {
   });
     
   function handleClickPrintBtn(e) {
-    console.log('Clicked')
-    let printWin = window.open('', '', 'left=50,top=50,width=800,height=640,toolbar=0,scrollbars=1,status=0');
-    const schemesTable = $("#table.admin").clone();
-    const prsvg = schemesTable.children('svg')[0];
-    
-    prsvg.style.width = "100%";
-    prsvg.style.height = "100%";
-    prsvg.style.transformOrigin = "left top";
-    prsvg.style.transform = "scale(1.5, 1.5)";
+    console.log('Clicked');
+    if (!$('#table .schemes-container')?.html()) return;
 
-    schemesTable.html(prsvg.outerHTML);
-
-    let $reservations_info_els = [];
-    
-    let $reservations_table = $('<table>')
-      .css('page-break-before', 'always')
-      .css('width', '100%');
-        
-    $('#new-reservations .cabinet-order').each((ind, el) => {
-      let tr = $('<tr>');
-      let td1 = $('<td>');
-      let td2 = $('<td>').css('text-align', 'center');
-      
-      let r_table = el.querySelector('.r-table-js').textContent;
-      let r_time = el.querySelector('.r-time-js').textContent;
-      let r_name = el.querySelector('.r-name-js').textContent;
-      let r_phone = el.querySelector('.r-phone-js').textContent;
-      
-      td1.html(ind+1);
-      td2.html(`Столик №${r_table} Время: ${r_time} ` + 
-                `${r_name} ${r_phone}`);
-
-      tr.append([td1, td2]);
-      console.log({TABLE_ROW: tr});
-      $reservations_info_els.push(tr);
+    printJS({
+      printable: 'table',
+      type: 'html',
+      style: `.element-for-print { visibility: visible; }
+      table { page-break-before: always; width: 100%; }
+      td:nth-child(2) {text-align: center;}
+      `,
+      maxWidth: 500,
     });
-    $reservations_table.append($reservations_info_els);
 
-    schemesTable.append($reservations_table);
-    let printHtml = schemesTable.html();
+    // let printWin = window.open('', '', 'left=50,top=50,width=800,height=640,toolbar=0,scrollbars=1,status=0');
+    // const schemesTable = $("#table.admin").clone();
+    // const prsvg = schemesTable.children('svg')[0];
     
-    printWin.document.write(printHtml);
+    // prsvg.style.width = "100%";
+    // prsvg.style.height = "100%";
+    // prsvg.style.transformOrigin = "left top";
+    // prsvg.style.transform = "scale(1.5, 1.5)";
 
-    printWin.document.close();
-    printWin.focus();
-    printWin.print();
+    // schemesTable.html(prsvg.outerHTML);
+
+    // let $reservations_info_els = [];
+    
+    // let $reservations_table = $('<table>')
+    //   .css('page-break-before', 'always')
+    //   .css('width', '100%');
+        
+    // $('#new-reservations .cabinet-order').each((ind, el) => {
+    //   let tr = $('<tr>');
+    //   let td1 = $('<td>');
+    //   let td2 = $('<td>').css('text-align', 'center');
+      
+    //   let r_table = el.querySelector('.r-table-js').textContent;
+    //   let r_time = el.querySelector('.r-time-js').textContent;
+    //   let r_name = el.querySelector('.r-name-js').textContent;
+    //   let r_phone = el.querySelector('.r-phone-js').textContent;
+      
+    //   td1.html(ind+1);
+    //   td2.html(`Столик №${r_table} Время: ${r_time} ` + 
+    //             `${r_name} ${r_phone}`);
+
+    //   tr.append([td1, td2]);
+    //   console.log({TABLE_ROW: tr});
+    //   $reservations_info_els.push(tr);
+    // });
+    // $reservations_table.append($reservations_info_els);
+
+    // schemesTable.append($reservations_table);
+    // let printHtml = schemesTable.html();
+    
+    // printWin.document.write(printHtml);
+
+    // printWin.document.close();
+    // printWin.focus();
+    // printWin.print();
   };
 });
 //

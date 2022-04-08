@@ -56,11 +56,20 @@ def signup(request):
 
     if user_exists:
         if user.profile.is_deleted:
-            resp = {
-                "error": "Пользователь с таким номером был удалён.",
-                "error_code": 1
-            }
-            return JsonResponse(resp)
+            password = ''.join(
+                random.choice('1234567890') for _ in range(4))
+
+            user.set_password(password)
+            user.save()
+
+            prof = user.profile
+            prof.is_deleted = False
+            prof.save()
+
+            Sms().send(cleanphone, password)
+
+            return JsonResponse({"success": "Аккаунт успешно восстановлен"})
+
         resp = {
                 "error": "Такой номер уже зарегестрирован",
                 "error_code": 2
@@ -167,7 +176,11 @@ def personal(request):
     if request.method == "POST":
         data = json.loads(request.body)
         profile = Profile.objects.get(user=request.user)
-        fio = data['fio']
+        fio = {
+            'first_name': data.get('first_name'),
+            'last_name': data.get('last_name'),
+            'second_name': data.get('second_name')
+        }
         # phone = data.get('phone')
         birthday = data['birthday']
         email = data['email']
@@ -176,14 +189,12 @@ def personal(request):
         print('\n\nUser is authenticated __\n\n')
 
         if fio:
-            if len(fio.split(" ")) > 2:
-                last_name, first_name, second_name = fio.split(" ")
-                profile.second_name = second_name
-            else:
-                last_name, first_name = fio.split(" ")
-
-            profile.last_name = last_name
-            profile.first_name = first_name
+            if type(fio['last_name']) == str:
+                profile.last_name = fio['last_name']
+            if type(fio['first_name']) == str:
+                profile.first_name = fio['first_name']
+            if type(fio['second_name']) == str:
+                profile.second_name = fio['second_name']
 
         # if phone:
         #     request.user.username = profile.phone = re.sub('\W+', '', phone)

@@ -400,7 +400,7 @@ console.log({recoverPhone})
       <div class="modal-title">Регистрация</div>
     </div>
     <div class="stages">
-      {#if (!isRegisteredNumber && !isDeletedAccount)}
+      {#if (!isRegisteredNumber)}
         <form class="stage" action="">
           <div class="modal-description">Введите Ваш номер телефона</div>
           <input
@@ -417,10 +417,6 @@ console.log({recoverPhone})
             >
           </div>
         </form>
-      {:else if (isDeletedAccount)}
-        <div class="text-center">
-          <h3>Аккаунт с таким номером был удалён.</h3>
-        </div>
       {:else}
         <div class="text-center">
           <h3>Этот номер зарегистрирован!</h3>

@@ -805,23 +805,23 @@ $(function () {
     if ($(this).next().hasClass("code-input") && $(this).val() !== "")
       $(this).next().trigger("focus");
   });
-  $(".verify-registration").on("click", function () {
-    const code =
-      $("#register input[name='code1']").val().toString() +
-      $("#register input[name='code2']").val().toString() +
-      $("#register input[name='code3']").val().toString() +
-      $("#register input[name='code4']").val().toString();
-    console.log(code);
-    // Проверка кода для регистрации и вход по сессии
-  });
-  $(".reset-password").on("click", function () {
-    const code =
-      $("#forgot-password input[name='code1']").val().toString() +
-      $("#forgot-password input[name='code2']").val().toString() +
-      $("#forgot-password input[name='code3']").val().toString() +
-      $("#forgot-password input[name='code4']").val().toString();
-    console.log(code);
-  });
+  // $(".verify-registration").on("click", function () {
+  //   const code =
+  //     $("#register input[name='code1']").val().toString() +
+  //     $("#register input[name='code2']").val().toString() +
+  //     $("#register input[name='code3']").val().toString() +
+  //     $("#register input[name='code4']").val().toString();
+  //   console.log(code);
+  //   // Проверка кода для регистрации и вход по сессии
+  // });
+  // $(".reset-password").on("click", function () {
+  //   const code =
+  //     $("#forgot-password input[name='code1']").val().toString() +
+  //     $("#forgot-password input[name='code2']").val().toString() +
+  //     $("#forgot-password input[name='code3']").val().toString() +
+  //     $("#forgot-password input[name='code4']").val().toString();
+  //   console.log(code);
+  // });
 
   function setErrorShadow(el) {
     el.classList.add("error-shadow");
@@ -918,18 +918,18 @@ $(function () {
       const emailValue = emailInput.value.trim();
       const birthdayValue = birthdayInput.value.trim();
 
-      if (!lastNameValue) {
-        setErrorInput(lastNameInput);
-        inputErrors = true;
-      }
+      // if (!lastNameValue) {
+      //   setErrorInput(lastNameInput);
+      //   inputErrors = true;
+      // }
       if (!firstNameValue) {
         setErrorInput(firstNameInput);
         inputErrors = true;
       }
-      if (!secondNameValue) {
-        setErrorInput(secondNameInput);
-        inputErrors = true;
-      }
+      // if (!secondNameValue) {
+      //   setErrorInput(secondNameInput);
+      //   inputErrors = true;
+      // }
       if (!!emailValue && !isEmail(emailValue)) {
         setErrorInput(emailInput);
         inputErrors = true;
@@ -973,7 +973,9 @@ $(function () {
       fetch("/personal", {
         method: "POST",
         body: JSON.stringify({
-          fio: `${lastNameValue} ${firstNameValue} ${secondNameValue}`,
+          last_name: lastNameValue,
+          first_name: firstNameValue,
+          second_name: secondNameValue,
           email: emailValue,
           birthday: birthdayValue,
           password: passwordValue,

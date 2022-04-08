@@ -31,6 +31,7 @@ const loader = new Loader("AIzaSyCMyW6HJLx8TXMlSemVjqMQkhb7-Bz8tGI", options);
 SwiperCore.use([Navigation, Pagination]);
 
 async function getCity(lat, lng) {
+  console.info('getCity()');
   let cityStr = "";
   await loader.load();
   let latlng = new google.maps.LatLng(lat, lng);
@@ -554,6 +555,7 @@ const swiper = new Swiper(".swiper-container", {
 
 async function initMap(lat = 54.964361, lng = 82.93014) {
   await loader.load();
+  console.info("initMap()");
   var center = new google.maps.LatLng(lat, lng);
 
   if (detectmob()) {
@@ -1343,6 +1345,7 @@ $(function () {
   }
 
   async function computeDistance() {
+    await loader.load();
     console.log("computing distance...");
     const addrInputVal = $('#dadata-address2').val();
 

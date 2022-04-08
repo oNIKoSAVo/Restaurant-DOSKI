@@ -321,9 +321,18 @@ class Setting(models.Model):
     allow_time_delivery_start = models.TimeField('Доступное время доставки', help_text="С",  blank=True, null=True)
     allow_time_delivery_end = models.TimeField('Доступное время доставки', help_text="ДО",  blank=True, null=True)
 
-    franchising_email = models.EmailField('почта для заявок на франшизу', null=True, blank=True)
-    career_email = models.EmailField('почта для отправки анкет по карьере', null=True, blank=True)
-    feedback_email = models.EmailField('почта для отправки отзывов', null=True, blank=True)
+    franchising_email = models.CharField('почта для заявок на франшизу', 
+                                         max_length=255,
+                                         null=True, 
+                                         blank=True)
+    career_email = models.CharField('почта для отправки анкет по карьере', 
+                                    max_length=255,
+                                    null=True, 
+                                    blank=True)
+    feedback_email = models.CharField('почта для отправки отзывов', 
+                                      max_length=255,
+                                      null=True, 
+                                      blank=True)
 
     class Meta:
         verbose_name = 'настройки'

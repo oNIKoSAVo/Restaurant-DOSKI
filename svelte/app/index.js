@@ -1429,6 +1429,7 @@ $(function () {
           $("#checkAddress button.close").trigger('click');
           localStorage.setItem("currentAddress", addrInputVal);
           localStorage.setItem("currentRestaraunt", nearestRest.restaraunt);
+          localStorage.setItem("DontOpenComputeDistance", true);
           window.location.href = `/set_restaraunt_id?id=${nearestRest.restaraunt.id}`;
         }
       }

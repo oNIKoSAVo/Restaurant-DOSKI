@@ -303,11 +303,16 @@
         let currAddr = localStorage.getItem("currentAddress");
         const deliverySection =  document.getElementById('delivery-section');
         if (deliverySection) {
-            if (!currAddr) {
+            if (!localStorage.getItem("DontOpenComputeDistance")) {
                 openModal("#checkAddress");
                 jquery("#too-far-delivery-msg").addClass('d-none');
             } else {
+                localStorage.removeItem("DontOpenComputeDistance");
+            }
+
+            if (currAddr) {
                 jquery('.suggested-address').each((i, el)=> jquery(el).val(currAddr));
+                //
             }
         }
 

@@ -639,7 +639,7 @@ def career(request):
                 'respublica:Заявка на карьеру', 
                 email_body,
                 django_settings.EMAIL_HOST_USER, 
-                [settings.career_email])
+                [settings.feedback_email])
 
             return JsonResponse({"status": "success"})
         else:

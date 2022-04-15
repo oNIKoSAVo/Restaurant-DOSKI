@@ -25,6 +25,7 @@ from django.views.decorators.http import require_http_methods
 from django.core.exceptions import ObjectDoesNotExist
 from django.core.mail import send_mail
 from django.conf import settings as django_settings
+from restaurant.management.commands.import_menue import RKEEPER_CATEGORY
 
 
 def index(request):
@@ -243,6 +244,7 @@ def personal(request):
 
 def menu(request):
     categories = Category.get_without(categories_skip=[
+        RKEEPER_CATEGORY,
         "Сигареты/Кальяны",
         "Сигареты",
         "Богаткова",
@@ -289,6 +291,7 @@ def menu(request):
 
 def delivery(request):
     categories = Category.get_without(categories_skip=[
+        RKEEPER_CATEGORY,
         "Сигареты/Кальяны",
         "Сигареты",
         "Богаткова",
@@ -500,6 +503,7 @@ def preorder(request):
         return JsonResponse({"status": "success", "id": preorder.id})
 
     categories = Category.get_without(categories_skip=[
+        RKEEPER_CATEGORY,
         "Сигареты/Кальяны",
         "Сигареты",
         "Богаткова",

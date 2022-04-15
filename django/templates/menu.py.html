@@ -48,7 +48,11 @@
             {% for menue_in_restaraunt in category.menues_in_rastaraunt %}
             <div class="col-lg-4 col-sm-6">
               <div class="dish-item" id="{{ menue_in_restaraunt.menue.id }}">
-                <img class="dish-img" src="{{ menue_in_restaraunt.menue.image.url }}"/>
+                <img class="dish-img" 
+                {% if menue_in_restaraunt.menue.image %}
+                src="{{ menue_in_restaraunt.menue.image.url }}" 
+                {% endif %}
+                />
                 <div class="dish-title">{{ menue_in_restaraunt.menue.dish }}</div>
                 <div class="dish-description">{{ menue_in_restaraunt.menue.description }}</div>
                 <div class="dish-details">

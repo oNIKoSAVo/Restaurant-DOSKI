@@ -84,7 +84,7 @@
             <label for="pcbooking_phone">Номер телефона</label>
           </div>
           <div class="input-wrapper">
-            <input type="text" id="pcbooking_phone" name="phone"  value="{{reservation.phone}}"/>
+            <input type="text" class="pcbooking_phone" name="phone"  value="{{reservation.phone}}"/>
           </div>
         </div>
         <div class="pcbooking-modal-form__el">
@@ -92,7 +92,7 @@
             <label for="pcbooking_table">Номер стола</label>
           </div>
           <div class="input-wrapper">
-            <input type="text" id="pcbooking_table" name="table" value="{{reservation.table}}" />
+            <input type="text" class="pcbooking_table" name="table" value="{{reservation.table}}" />
           </div>
         </div>
         <div class="pcbooking-modal-form__el">
@@ -100,7 +100,7 @@
             <label for="pcbooking_guests">Количество гостей</label>
           </div>
           <div class="input-wrapper">
-            <input type="text" id="pcbooking_guests" name="persons" value="{{reservation.persons}}" />
+            <input type="text" class="pcbooking_guests" name="persons" value="{{reservation.persons}}" />
           </div>
         </div>
         <div class="pcbooking-modal-form__el">
@@ -108,7 +108,7 @@
             <label for="pcbooking_fio">ФИО</label>
           </div>
           <div class="input-wrapper">
-            <input type="text" id="pcbooking_fio" name="name" value="{{reservation.name}}" />
+            <input type="text" class="pcbooking_fio" name="name" value="{{reservation.name}}" />
           </div>
         </div>
         <div class="pcbooking-modal-form__el">
@@ -116,7 +116,7 @@
             <label for="pcbooking_date">Дата</label>
           </div>
           <div class="input-wrapper">
-            <input type="text" id="pcbooking_date" name="date"  value="{{ reservation.start|date:'d/m/Y' }}"/>
+            <input type="text" class="pcbooking_date" name="date"  value="{{ reservation.start|date:'d/m/Y' }}"/>
           </div>
         </div>
         <div class="pcbooking-modal-form__el">
@@ -134,6 +134,118 @@
         </div>
 
       </form>
+    </div>
+  </div>
+</div>
+{% endfor %}
+<div
+  class="modal-wrapper modal fade reservation_edit_modal"
+  id="reservation_create_modal"
+  tabindex="-1"
+  role="dialog"
+>
+  <div class="modal-dialog" style="max-width: 600px">
+    <div class="modal-content cart-top">
+      <div class="modal-header">
+        <button
+          class="close"
+          type="button"
+          data-dismiss="modal"
+          aria-label="Close"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <div class="modal-title mb-2">Бронирование</div>
+      </div>
+      <form action="" method="POST">
+        <input type="hidden" class="pcbooking_restaraunt" name="restaraunt" value="">
+        <div class="pcbooking-modal-form__el">
+          <div class="label-wrapper">
+            <label for="pcbooking_phone">Номер телефона</label>
+          </div>
+          <div class="input-wrapper">
+            <input type="text" class="pcbooking_phone" name="phone"  value="">
+          </div>
+        </div>
+        <div class="pcbooking-modal-form__el">
+          <div class="label-wrapper">
+            <label for="pcbooking_table">Номер стола</label>
+          </div>
+          <div class="input-wrapper">
+            <input type="text" class="pcbooking_table" name="table" value="">
+          </div>
+        </div>
+        <div class="pcbooking-modal-form__el">
+          <div class="label-wrapper">
+            <label for="pcbooking_guests">Количество гостей</label>
+          </div>
+          <div class="input-wrapper">
+            <input type="text" class="pcbooking_guests" name="persons" value="">
+          </div>
+        </div>
+        <div class="pcbooking-modal-form__el">
+          <div class="label-wrapper">
+            <label for="pcbooking_fio">ФИО</label>
+          </div>
+          <div class="input-wrapper">
+            <input type="text" class="pcbooking_fio" name="name" value="">
+          </div>
+        </div>
+        <div class="pcbooking-modal-form__el">
+          <div class="label-wrapper">
+            <label for="pcbooking_date">Дата</label>
+          </div>
+          <div class="input-wrapper">
+            <input type="text" class="pcbooking_date" 
+              name="date"  value="" placeholder="DD/MM/YYYY">
+          </div>
+        </div>
+        <div class="pcbooking-modal-form__el">
+          <div class="label-wrapper">
+            <label for="pcbooking_time">Время брони</label>
+          </div>
+          <div class="input-wrapper">
+            <input type="text" class="pcbooking_time" name="time" value="" placeholder="HH:mm">
+          </div>
+        </div>
+
+        <div class="d-flex justify-content-between align-items-center mb-4 mt-2">
+          <a href="#" onclick="submitForm(this.parentNode); return false;" class="submit">Сохранить</a>
+          <a href="#" class="download active close-modal">Отменить</a>
+        </div>
+
+      </form>
+    </div>
+  </div>
+</div>
+
+{% for reservation in reservations_processed %}
+<div
+  class="modal-wrapper modal fade reservation_manager_modal"
+  id="reservation_manager_modal_{{ reservation.id }}"
+  tabindex="-1"
+  role="dialog"
+>
+  <div class="modal-dialog" style="max-width: 400px">
+    <div class="modal-content cart-top">
+      <div class="modal-header">
+        <button
+          class="close"
+          type="button"
+          data-dismiss="modal"
+          aria-label="Close"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <div class="modal-title mb-2">№{{ reservation.id }}</div>
+      </div>
+      <p>{{ reservation.phone }}</p>
+      <p>стол №{{ reservation.table }}</p>
+      <p>Количество гостей: {{ reservation.persons }}</p>
+      <p>{{ reservation.name }}</p>
+      <p>Дата {{ reservation.start|date:'d.m.y' }}</p>
+      <p>Время брони {{ reservation.start|date:'H:i' }}</p>
+      <p>Пожелания к брони:<br> {{ reservation.description }}</p>
     </div>
   </div>
 </div>
@@ -203,19 +315,19 @@
           </div>
         </div>
       </div>
-      <div class="col-md-2 col-sm-12">
+      <div class="col-md-2 col-sm-12" id="done-reservations">
         <h4 class="section-title small">Обработанные бронирования</h4>
 
         {% for reservation in reservations_processed %}
           <div class="cabinet-order" data-modal="#reservation_manager_modal_{{ reservation.id }}">
             <div class="cabinet-order_num">№{{reservation.id}}</div>
             <div class="cabinet-order_info">
-              {{reservation.phone}} <br />
-              стол №{{reservation.table}} <br />
-              {{reservation.persons}} гостей <br />
-              {{reservation.name}} <br />
+              <span class="r-phone-js">{{reservation.phone}}</span><br />
+              стол №<span class="r-table-js">{{reservation.table}}</span> <br />
+              <span class="r-persons-js">{{reservation.persons}}</span> гостей <br />
+              <span class="r-name-js">{{reservation.name}}</span> <br />
               Дата {{ reservation.start|date:'d.m.y' }}<br />
-              Время брони {{ reservation.start|date:'H:i' }} <br/>
+              Время брони <span class="r-time-js">{{ reservation.start|date:'H:i' }}</span> <br/>
               {{reservation.restaraunt.address}}
             </div>
           </div>

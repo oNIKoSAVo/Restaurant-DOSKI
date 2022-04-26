@@ -8,8 +8,10 @@ from django.views import View
 from django.contrib.auth.mixins import AccessMixin
 from django.db.models import Q
 from restaurant.models import Order, Reservation,\
-     Restaraunt, ReservationStatusType, OrderStatusType
-import re
+     Restaraunt, ReservationStatusType, OrderStatusType, Profile
+
+from django.contrib.auth.models import User
+import re, random
 from restaurant.lib.sms import Sms
 from restaurant.models import ReservationStatusType
 # Create your views here.
@@ -125,6 +127,48 @@ class BookingView(OnlyStuffUserAccessMixin, View):
             count = reservation_qs.update(**params)
             if(count > 0):
                 messages.success(request, 'Бронирование изменено.')
+        else:
+            date = request.POST.get('date')
+            time_start = request.POST.get('time')
+            num_persons = request.POST.get('persons')
+            table_id = request.POST.get('table')
+            restaraunt_id = request.POST.get('restaraunt')
+            restaraunt = Restaraunt.objects.get(pk=restaraunt_id)
+            userphone = request.POST.get('phone')
+            reservation_name = request.POST.get('name')
+
+            date_start = datetime.strptime(f'{date} {time_start}', '%d/%m/%Y %H:%M')
+
+            cleanphone = re.sub('\W+', '', request.POST.get('phone'))
+            profile = Profile.objects.filter(phone=cleanphone)
+            reservation_name = request.POST.get('name')
+
+            if (not profile.exists()):
+                password = ''.join(
+                    random.choice('1234567890') for _ in range(4))
+                user = User.objects.create_user(
+                    username=cleanphone, password=password)
+                profile = Profile.objects.create(
+                    user=user, first_name=reservation_name, phone=cleanphone)
+
+                Sms().send(cleanphone, password)
+            else:
+                user = profile.first().user
+
+
+            Reservation.objects.create(
+                user=user,
+                restaraunt=restaraunt,
+                start=date_start,
+                end=date_start, # hack
+                persons=num_persons,
+                table=table_id,
+                name=reservation_name,
+                phone=userphone,
+                description=request.POST.get('description', ''),
+                status=ReservationStatusType.APPROVED
+            )
+
         return redirect(request.META.get('HTTP_REFERER'))
 
 

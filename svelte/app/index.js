@@ -120,6 +120,18 @@ async function showTableStatus(restaurantMaps) {
   })).tables
   const tableIdsString = tableNums.map(num => `path[id='${num}']`).join(',')
 
+  const handleOnClickTable = (e) => {
+    const reserveTableModal = document.getElementById('reservation_create_modal');
+    reserveTableModal.querySelectorAll('input').forEach((el) => {
+        el.value = '';
+    })
+    reserveTableModal.querySelector('.pcbooking_table').value = e.target.id;
+    reserveTableModal.querySelector('.pcbooking_restaraunt').value = filterRestaurant;
+
+    openModal(`#reservation_create_modal`);
+  }
+
+
   console.log({tableIdsString})
   restaurantMaps.forEach(map => [...map.querySelectorAll('path')].filter((path) => {
     if (!isNaN(path.id)) return path;
@@ -127,10 +139,24 @@ async function showTableStatus(restaurantMaps) {
     path.setAttribute('fill', 'green');
     // path.style.fill = 'green';
     path.classList.remove('reserved');
+    path.addEventListener('click', handleOnClickTable)
   }))
   if (tableIdsString) {
     restaurantMaps.forEach(map => {
       map.querySelectorAll(tableIdsString).forEach(path => {
+        path.addEventListener('click', (e)=>{
+          e.preventDefault();
+          console.log({reservation_id});
+          let selector = '.reservation_edit_modal ' +
+            `.pcbooking_table[value="${e.target.id}"]`;
+          const reservation_id = document
+            .querySelector(selector)
+            .closest('form').querySelector('input[name="id"]').value;
+
+          console.log({reservation_id});
+
+          openModal(`#reservation_manager_modal_${reservation_id}`);
+        });
         path.setAttribute('fill', 'red')
         // path.style.fill = 'red';
         path.classList.add('reserved')
@@ -177,7 +203,7 @@ function appendSchemesAdmin(schemes) {
   reservationsTable.style.width = '100%';  
   reservationsTable.classList.add('element-for-print');
 
-  $('#new-reservations .cabinet-order').each((ind, el) => {
+  $('#done-reservations .cabinet-order').each((ind, el) => {
     let tr = document.createElement('tr');
     let td1 = document.createElement('td');
     let td2 = document.createElement('td');

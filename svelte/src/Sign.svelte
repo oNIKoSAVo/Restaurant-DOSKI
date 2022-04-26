@@ -67,6 +67,9 @@
     captchaProtect(async () => {
       const signInResponse = await signIn({phone, password});
       if (signInResponse.success) {
+        if (signInResponse.is_staff){
+          window.location.href = "/pcpanel";
+        }
         window.location.href = "/personal";
       } else {
         if (signInResponse.error_code == 1) {
@@ -117,8 +120,11 @@ console.log({recoverPhone})
     if (password.length !== 4) return
     const response = await request('POST', '/signin', {phone: recoverPhone, password})
     if (response.success) {
-      ui.showRecoveryModal = false
-      location.href = '/personal'
+      ui.showRecoveryModal = false;
+      if (response.is_staff) {
+        window.location.href = '/pcpanel';
+      }
+      window.location.href = '/personal';
     } else {
       errors.recoveryCodeError = true
       setTimeout(() => {
@@ -186,6 +192,13 @@ console.log({recoverPhone})
             },
             document
     );
+
+    if (window.location.hash == '#login') {
+      document.querySelector("html").classList.add("locked");
+      document.querySelector("body").classList.add("locked");
+      const toLoginBtn = document.querySelector('#signinup a.submit');
+      toLoginBtn.dispatchEvent(new Event('click'));
+    }
 
     // document.querySelector('#signinup').addEventListener("hidden.bs.modal", () => {
     //   alert("AA")

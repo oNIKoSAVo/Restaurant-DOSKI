@@ -105,6 +105,10 @@ def signin(request):
                             "error_code": 1})
     if user is not None:
         login(request, user)
+
+        if user.is_staff:
+            return JsonResponse({"success": "Прошел", 'is_staff': True})
+        
         return JsonResponse({"success": "Прошел"})
     else:
         return JsonResponse({"error": "НЕПРЕЛ"})

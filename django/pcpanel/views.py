@@ -25,6 +25,8 @@ class OnlyStuffUserAccessMixin(AccessMixin):
 
 
 class LoginView(OnlyStuffUserAccessMixin, View):
+    login_url = '/#login'
+    redirect_field_name = ''
 
     def get(self, request):
         today_start = datetime.now().replace(hour=0, minute=0, second=0)

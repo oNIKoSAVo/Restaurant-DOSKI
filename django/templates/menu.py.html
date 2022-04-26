@@ -46,6 +46,7 @@
           <div class="tab-content row col-12" id="category_{{ category.id }}">
             <!--          <div class="subcategory-title col-12">{{ category.name }}</div>-->
             {% for menue_in_restaraunt in category.menues_in_rastaraunt %}
+            {% if menue_in_restaraunt.menue.is_active %}
             <div class="col-lg-4 col-sm-6">
               <div class="dish-item" id="{{ menue_in_restaraunt.menue.id }}">
                 <img class="dish-img" 
@@ -61,6 +62,7 @@
                 </div>
               </div>
             </div>
+            {% endif %}
             {% endfor %}
           </div>
           {% endfor %}

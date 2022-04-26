@@ -137,6 +137,7 @@ class Menue(models.Model):
                                 
     ident = models.IntegerField('Ident RKeeper',  blank=True, null=True)
     is_drink = models.BooleanField('Это напиток?',  blank=True, null=True)
+    is_active = models.BooleanField('Активен?',  blank=True, null=False, default=True)
 
     def __str__(self):
         return self.category.name + " | " + self.dish

@@ -16,7 +16,7 @@ class MenueInRestarauntInLine(admin.TabularInline):
 class MenueAdmin(admin.ModelAdmin):
     change_list_template = "admin/change_list_object_tools_with_addition_buttons.html"
     
-    list_display = ['id', 'image_preview', 'dish', 'category']
+    list_display = ['id', 'image_preview', 'dish', 'category', 'is_active']
     list_filter = ['category',]
     inlines = [MenueInRestarauntInLine]
 

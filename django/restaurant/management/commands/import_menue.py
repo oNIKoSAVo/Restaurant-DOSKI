@@ -88,6 +88,7 @@ class Command(BaseCommand):
 
         # self.stdout.write("Категории: %s" % self.style.NOTICE(categories))
 
+        Menue.objects.update(is_active=False)
 
         n = 0
         for item in root.iter('TRK7MenuItem'):
@@ -128,7 +129,16 @@ class Command(BaseCommand):
                     menue = Menue.objects.get(ident=item.get('Ident'))
                 except Menue.DoesNotExist:
                     menue = Menue.objects.create(
-                                dish=name, category_id=rkeeper_category.id, ident=item.get('Ident'), weight=weight, is_drink=is_drink)
+                                dish=name, category_id=rkeeper_category.id, ident=item.get('Ident'), weight=weight, is_drink=is_drink, is_active=True)
+                
+                menue.dish = name
+                menue.weight=weight
+                menue.is_drink=is_drink
+                menue.is_active=True
+                menue.save()
+
+                print('load menue...')
+
                 try:
                     restaraunt = Restaraunt.objects.get(ident=property.get('Ident'))
                     menue_in_restaraunt = MenueInRestaraunt.objects.filter(restaraunt=restaraunt, menue=menue)
@@ -142,10 +152,11 @@ class Command(BaseCommand):
                             start_time=start_time, 
                             end_time=end_time
                         )
-                        menue.dish = name
-                        menue.weight=weight
-                        menue.is_drink=is_drink
-                        menue.save()
+                        # menue.dish = name
+                        # menue.weight=weight
+                        # menue.is_drink=is_drink
+                        # menue.is_active=True
+                        # menue.save()
                     else:
                         print("?")
                         MenueInRestaraunt.objects.create(

@@ -348,13 +348,17 @@
       }
 
       if (!document.getElementById("rules").checked) {
-        setErrorShadowTimed(document.querySelector(".rules"));
+        setErrorShadowTimed(document.getElementById("rules"));
       }
-      if (hasUnderscores(time) || !time) {
-        setErrorShadowTimed(document.querySelector("input.datepicker"));
-      }
+      // if (hasUnderscores(time) || !time) {
+      //   setErrorShadowTimed(document.querySelector("input.datepicker"));
+      // }
+
       if (!restaraunt) {
         setErrorShadowTimed(document.querySelector("select[name=restaurant]"));
+      }
+      if (!Boolean(time)) {
+        setErrorShadowTimed(document.querySelector("#time-selection-field"));
       }
       // if (!persons) {
       //   setErrorShadowTimed(document.querySelector("input[name=persons]"));

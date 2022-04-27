@@ -282,7 +282,8 @@ def menu(request):
     ])
 
     categories = categories.annotate(menue_count=Count(
-        'menues__id')).filter(menue_count__gt=0)  # .filter(menues__in_restaraunt__menue__category__in=categories)
+        'menues__id')).filter(menue_count__gt=0).order_by('name')
+        # .filter(menues__in_restaraunt__menue__category__in=categories)
 
     city = City.objects.get(pk=request.session.get('city', 1))
     restaraunt = Restaraunt.objects.filter(city=city).first()
@@ -351,8 +352,8 @@ def delivery(request):
         "Доставка"
     ])
 
-    categories = categories.annotate(menue_count=Count(
-        'menues__id')).filter(menue_count__gt=0)
+    categories = categories.annotate(menue_count=Count('menues__id')) \
+        .filter(menue_count__gt=0).order_by('name')
 
     session_rest = request.session.get('restaraunt', 1)
 
@@ -582,7 +583,7 @@ def preorder(request):
     ])
 
     categories = categories.annotate(menue_count=Count(
-        'menues__id')).filter(menue_count__gt=0)
+        'menues__id')).filter(menue_count__gt=0).order_by('name')
     city = City.objects.get(pk=request.session.get('city', 1))
     restaraunt = Restaraunt.objects.filter(city=city).first()
     # for category in categories:

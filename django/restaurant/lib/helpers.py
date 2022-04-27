@@ -8,7 +8,9 @@ def has_category_dishes(category):
 def filter_categories(categories, restaurant):
     for category in categories:
         setattr(category, 'menues_in_rastaraunt',
-                MenueInRestaraunt.objects.filter(menue__category=category, restaraunt=restaurant))
+                MenueInRestaraunt.objects \
+                    .filter(menue__category=category, restaraunt=restaurant) \
+                    .order_by('menue__dish'))
         print('category', category.__dict__)
         filtered_dishes = []
         for dish in category.menues_in_rastaraunt:

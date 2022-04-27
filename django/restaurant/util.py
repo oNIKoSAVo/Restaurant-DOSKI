@@ -41,3 +41,23 @@ def generate_pdf(preorder):
     print('\n'+'-'*40 +'\n', 'TYPE OF RESULT: ', type(result), '\n'+'-'*40, sep="")
 
     return result
+
+
+def notification(chat_id, message):
+    from django.conf import settings as django_settings
+    import requests
+    
+    
+    request_url = f'https://api.telegram.org/bot{django_settings.TELEGRAM_API_KEY}/sendMessage?chat_id={chat_id}&text={message}'
+    result = requests.get(request_url)
+    return result
+
+
+def telegram_updates():
+    from django.conf import settings as django_settings
+    import requests
+    
+    
+    request_url = f'https://api.telegram.org/bot{django_settings.TELEGRAM_API_KEY}/getUpdates?offset=-1&timeout=0&limit=100'
+    result = requests.get(request_url).json()
+    return result

@@ -190,3 +190,8 @@ MEDIA_URL = '/media/'
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# Telegram bot api settings:
+# https://core.telegram.org/bots/api
+
+TELEGRAM_API_KEY = '2064596905:AAHnSrythz4Iu3zTFSqYQmW0p6PSW9rZZ0Y'

@@ -43,6 +43,20 @@ class Profile(models.Model):
         # app_label = 'auth'
         # db_table = 'restaurant_profile'
 
+
+class TelegramUser(models.Model):
+    username = models.CharField(max_length=256, blank=True, null=True, default=None)
+    chat_id = models.CharField(max_length=256, blank=True, null=True)
+    user = models.ForeignKey(User, blank=True, null=True, on_delete=models.SET_NULL)
+
+    def __str__(self) -> str:
+        return self.username
+
+    class Meta:
+        verbose_name = 'Пользователь телеграмма'
+        verbose_name_plural = 'Пользователи телеграмма'
+
+
 class City(models.Model):
     name = models.CharField('Название города', max_length=128, blank=True, null=True)
     phone = models.CharField('Номер телефона', max_length=20, blank=True, null=True)
@@ -74,6 +88,7 @@ class Restaraunt(models.Model):
     city = models.ForeignKey(City, verbose_name='город', related_name='restaraunts', on_delete=models.DO_NOTHING, blank=True, null=True)
     yandex_eda = models.CharField('Ссылка на яндекс еду', max_length=128, blank=True, null=True)
     menue_file = models.FileField('PDF Меню', upload_to='images/', blank=True, null=True)
+    group = models.ForeignKey(Group, on_delete=models.CASCADE, blank=True, null=True)
 
     def __str__(self):
         return self.address + " " + self.phone

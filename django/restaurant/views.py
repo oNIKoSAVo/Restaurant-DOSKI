@@ -11,15 +11,19 @@ from datetime import datetime
 from datetime import timedelta
 import xlsxwriter
 from datetime import datetime
-from django.contrib.auth.models import User
+from django.contrib.auth.models import User, Group
 from django.contrib.auth import authenticate, login, logout, update_session_auth_hash
 from .lib.helpers import filter_categories
 
 from django.db.models import Q, Count, Prefetch
 from django.http import HttpResponse, HttpResponseNotFound
 from django.http.response import JsonResponse
-from restaurant.models import Feedback, Franchising, Promotion, Reservation, Restaraunt, Career, Menue, Category, Event, \
-    MenuInOrder, Order, Profile, City, PreOrder, MenuInPreOrder, MenueInRestaraunt, ReservationStatusType, Setting, PaymentTypes
+from restaurant.models import (Feedback, Franchising, Promotion, 
+                               Reservation, Restaraunt, Career, Menue, 
+                               Category, Event, MenuInOrder, Order, 
+                               Profile, City, PreOrder, MenuInPreOrder, 
+                               MenueInRestaraunt, ReservationStatusType, 
+                               Setting, PaymentTypes, TelegramUser)
 from django.shortcuts import get_object_or_404, render, redirect
 from django.views.decorators.http import require_http_methods
 from django.core.exceptions import ObjectDoesNotExist
@@ -27,7 +31,9 @@ from django.core.mail import send_mail
 from django.conf import settings as django_settings
 from restaurant.management.commands.import_menue import RKEEPER_CATEGORY
 from restaurant.util import (generate_response_preorder_pdf, 
-                             generate_pdf)
+                             generate_pdf,
+                             notification,
+                             telegram_updates,)
 
 from django.core.files.base import ContentFile, File
 
@@ -411,34 +417,66 @@ def reservation(request):
 
             cleanphone = re.sub('\W+', '', request.POST.get('phone'))
             profile = Profile.objects.filter(phone=cleanphone)
+            reservation_name = request.POST.get('name')
             if (not profile.exists()):
                 password = ''.join(
                     random.choice('1234567890') for _ in range(4))
                 user = User.objects.create_user(
                     username=cleanphone, password=password)
                 profile = Profile.objects.create(
-                    user=user, first_name=request.POST.get('name'), phone=cleanphone)
+                    user=user, first_name=reservation_name, phone=cleanphone)
 
                 Sms().send(cleanphone, password)
             else:
-                user = profile.first().user
+                profile = profile.first()
+                user = profile.user
+
+
+            num_persons = request.POST.get('persons')
+            table_id = request.POST.get('table')
+            userphone = request.POST.get('phone')
+            restaraunt = Restaraunt.objects.get(pk=request.POST.get('restaraunt'))
 
             reservation = Reservation.objects.create(
                 user=user,
-                restaraunt=Restaraunt.objects.get(
-                    pk=request.POST.get('restaraunt')),
+                restaraunt=restaraunt,
                 start=date_start,
                 end=date_start,  # hack
-                persons=request.POST.get('persons'),
-                table=request.POST.get('table'),
-                name=request.POST.get('name'),
-                phone=request.POST.get('phone'),
+                persons=num_persons,
+                table=table_id,
+                name=reservation_name,
+                phone=userphone,
                 description=request.POST.get('description')
             )
 
             if (reservation):
                 request.session['reservation'] = reservation.id
                 request.session['restaraunt'] = request.POST.get('restaraunt')
+
+                updates = telegram_updates()
+
+                if updates:
+                    updates_list = updates['result']
+                    if len(updates_list):
+                        chat = updates_list[0]['message']['chat']
+                        print(chat)
+                        teleuser = TelegramUser.objects.filter(username=chat['username']).first()
+                        if teleuser:
+                            teleuser.chat_id = chat['id']
+                            teleuser.save()
+
+                msg = \
+                    f'{reservation_name} забронировал(а) стол {table_id} ' \
+                    f'в {date_start} на {num_persons} человек(а). ' \
+                    f'Номер: {userphone}. Ресторан на улице {restaraunt.address}'
+
+                gr = Group.objects.get(name='бронирование')
+                teleusers = TelegramUser.objects.filter(user__groups=gr) \
+                    .filter(user__groups=restaraunt.group)
+                
+                for teleuser in teleusers:
+                    notification(teleuser.chat_id, message=msg)
+                
                 return JsonResponse({"status": "success", "id": reservation.id})
             else:
                 return JsonResponse({"status": "error"})
@@ -756,7 +794,8 @@ def create_order(request):
         
         print('PROFILE CREATED')
     else:
-        user = profile.first().user
+        profile = profile.first()
+        user = profile.user
 
     menues = []
     receipt = []
@@ -784,6 +823,30 @@ def create_order(request):
             menues.append(menue_item)
     order = Order.objects.create(user=user, restaraunt_id=restaraunt.id, price=total_price,
                                  payment=payment_type, comment=comment, address=address)
+
+    updates = telegram_updates()
+
+    if updates:
+        updates_list = updates['result']
+        if len(updates_list):
+            chat = updates_list[0]['message']['chat']
+            print(chat)
+            teleuser = TelegramUser.objects.filter(username=chat['username']).first()
+            if teleuser:
+                teleuser.chat_id = chat['id']
+                teleuser.save()
+
+    msg = \
+        f'{profile.first_name} сделал заказ по адресу {order.address} ' \
+        f'в {order.created_at} на сумму {order.price} р. ' \
+        f'Номер: {profile.phone}. Ресторан на улице {restaraunt.address}'
+
+    gr = Group.objects.get(name='доставка')
+    teleusers = TelegramUser.objects.filter(user__groups=gr) \
+        .filter(user__groups=restaraunt.group)
+
+    for teleuser in teleusers:
+        notification(teleuser.chat_id, message=msg)
 
     for m in menues:
         MenuInOrder.objects.create(menue=m, order=order)

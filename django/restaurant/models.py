@@ -275,6 +275,7 @@ class PreOrder(models.Model):
     reservation = models.ForeignKey(Reservation, verbose_name='Резерв', related_name='reservation', on_delete=models.CASCADE,  blank=True, null=True)
     price = models.FloatField('Сумма предзаказа', blank=False, null=False, default=0)
     comment = models.TextField('Комментарий к предзаказу', max_length=128, blank=True, null=True)
+    filepdf = models.FileField('Файл предзаказа', upload_to='preorders/', blank=True, null=True)
     created_at = models.DateTimeField('Время создания', auto_now_add=True)
     updated_at = models.DateTimeField('Время изменения', auto_now=True)
 

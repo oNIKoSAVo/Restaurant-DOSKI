@@ -26,7 +26,10 @@ from django.core.exceptions import ObjectDoesNotExist
 from django.core.mail import send_mail
 from django.conf import settings as django_settings
 from restaurant.management.commands.import_menue import RKEEPER_CATEGORY
+from restaurant.util import (generate_response_preorder_pdf, 
+                             generate_pdf)
 
+from django.core.files.base import ContentFile, File
 
 def index(request):
     setting = Setting.objects.all().last()
@@ -504,7 +507,16 @@ def preorder(request):
         for m in menues:
             MenuInPreOrder.objects.create(menue=m, preorder=preorder)
 
-        return JsonResponse({"status": "success", "id": preorder.id})
+        pdfbytes = generate_pdf(preorder)
+
+        import os, io
+        with io.BytesIO() as fi:
+            fi.write(pdfbytes)
+            print('-'*30+'\n', f'{preorder.id}.pdf\n', '-'*30, sep='')
+            preorder.filepdf = File(fi, name=f'{preorder.id}.pdf')
+            preorder.save()
+
+        return JsonResponse({"status": "success", "id": preorder.id, "filepdf": preorder.filepdf.url})
 
     categories = Category.get_without(categories_skip=[
         RKEEPER_CATEGORY,
@@ -551,28 +563,36 @@ def download_preorder(request):
     id = request.GET.get('id')
     try:
         preorder = PreOrder.objects.get(pk=id)
-        response = HttpResponse(content_type='application/vnd.ms-excel')
-        response['Content-Disposition'] = 'attachment; filename="preorder.xlsx"'
-
-        workbook = xlsxwriter.Workbook(response, {'in_memory': True})
-        worksheet = workbook.add_worksheet()
-        row = 0
-        col = 0
-        # worksheet.write(row, col, "Предзаказ")
-        for menuinpreorder in preorder.menues.all():
-            menue_in_restaraunt = MenueInRestaraunt.objects.filter(menue=menuinpreorder.menue,
-                                                                   restaraunt=menuinpreorder.preorder.restaraunt).first()
-            worksheet.write(row, col, menuinpreorder.menue.dish)
-            worksheet.write(row, (col + 1), menue_in_restaraunt.price)
-            row += 1
-
-        worksheet.write(row, col, "Сумма предзаказа")
-        worksheet.write(row, (col + 1), preorder.price)
-
-        workbook.close()
-        return response
+        return generate_response_preorder_pdf(preorder=preorder)
     except PreOrder.DoesNotExist:
         return HttpResponseNotFound('Page not found')
+
+# def download_preorder(request):
+#     id = request.GET.get('id')
+#     try:
+#         preorder = PreOrder.objects.get(pk=id)
+#         response = HttpResponse(content_type='application/vnd.ms-excel')
+#         response['Content-Disposition'] = 'attachment; filename="preorder.xlsx"'
+
+#         workbook = xlsxwriter.Workbook(response, {'in_memory': True})
+#         worksheet = workbook.add_worksheet()
+#         row = 0
+#         col = 0
+#         # worksheet.write(row, col, "Предзаказ")
+#         for menuinpreorder in preorder.menues.all():
+#             menue_in_restaraunt = MenueInRestaraunt.objects.filter(menue=menuinpreorder.menue,
+#                                                                    restaraunt=menuinpreorder.preorder.restaraunt).first()
+#             worksheet.write(row, col, menuinpreorder.menue.dish)
+#             worksheet.write(row, (col + 1), menue_in_restaraunt.price)
+#             row += 1
+
+#         worksheet.write(row, col, "Сумма предзаказа")
+#         worksheet.write(row, (col + 1), preorder.price)
+
+#         workbook.close()
+#         return response
+#     except PreOrder.DoesNotExist:
+#         return HttpResponseNotFound('Page not found')
 
 
 def feedback(request):

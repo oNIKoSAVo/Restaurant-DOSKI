@@ -283,6 +283,7 @@
         );
     let lastCartSent = cloneDeep(cart)
     let lastPreorderDownloadHref = ``
+    let lastPreorderHref = ``
 
     async function downloadPreorder() {
         const preorderResponse = await fetch('/preorder', {
@@ -296,7 +297,28 @@
         const preorderResponseJson = await preorderResponse.json()
         // const downloadResponse = await fetch(`/download_preorder?id=${preorderResponseJson.id}`)
         lastPreorderDownloadHref = `/download_preorder?id=${preorderResponseJson.id}`
-        window.location.href = lastPreorderDownloadHref
+        lastPreorderHref = preorderResponseJson.filepdf;
+        console.log({lastPreorderHref});
+        console.log({preorderResponseJson});
+        // window.location.href = lastPreorderDownloadHref
+        return lastPreorderDownloadHref;
+    }
+
+    async function printPreorder() {
+        fetch(lastPreorderDownloadHref).then((response)=>{
+            response.blob().then(function(blob) {
+                var reader = new FileReader();
+                reader.onload = function () {
+                    //Remove the data:application/pdf;base64,
+                    printJS({
+                        printable: reader.result.substring(28),
+                        type: 'pdf',
+                        base64: true
+                    });
+                };
+                reader.readAsDataURL(blob);
+            })
+        });
     }
 
     document.addEventListener("DOMContentLoaded", () => {
@@ -323,8 +345,53 @@
                 return
             }
             lastCartSent = cloneDeep(cart)
-            downloadPreorder()
+            downloadPreorder().then((preorderHref)=>{                
+                window.location.href = preorderHref;
+            })
         })
+
+        printBtn.addEventListener('click', () => {
+            console.log('print preorder...')
+            if (cart.length === 0 || isEqual(cart, lastCartSent)) {                
+                printPreorder()
+                return
+            }
+            lastCartSent = cloneDeep(cart)
+            downloadPreorder().then((preorderHref)=>{                
+                printPreorder()
+            })
+        })
+
+        document.getElementById('open-share-modal').addEventListener("click", (e)=>{
+            if (cart.length === 0 || isEqual(cart, lastCartSent)) {                
+                setShareLinks()
+                return
+            }
+            lastCartSent = cloneDeep(cart)
+            downloadPreorder().then((preorderHref)=>{                
+                setShareLinks()
+            })
+        });
+
+        function setShareLinks() {
+            openModal("#share-modal");
+            // let preorderFileLink = encodeURIComponent('https://beta.respublica.bar/');
+            let preorderFileLink = document.location.host + lastPreorderHref;
+            console.log({preorderFileLink: encodeURIComponent('https://beta.respublica.bar/')});
+            console.log({lastPreorderHref});
+            const shareModalEl = document.getElementById('share-modal');
+            const shareWhatsapp = shareModalEl.querySelector('.share-whatsapp a')
+            console.log({shareWhatsapp});
+            shareWhatsapp.setAttribute('href', `whatsapp://send?text=${preorderFileLink}`);
+            const shareViber = shareModalEl.querySelector('.share-viber a')
+            shareViber.setAttribute('href', `viber://forward?text=${preorderFileLink}`);
+            const shareTelegram = shareModalEl.querySelector('.share-telegram a')
+            shareTelegram.setAttribute('href', `https://t.me/share/url?url=${preorderFileLink}&text=seehowicool`);
+            const shareEmail = shareModalEl.querySelector('.share-email a')
+            let emailSubject = 'my preorder';
+            shareEmail.setAttribute('href', `mailto:?subject=${emailSubject}&amp;body=${preorderFileLink}`);
+        }
+
         document
             .querySelector(".checkout-final-fake")
             .addEventListener("click", async (e) => {

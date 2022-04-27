@@ -1251,23 +1251,56 @@
                 </div>
 
                 <div
-                        class="
-            text-center
-            preorder-buttons
-            mb-4
-            mt-3
-            d-flex
-            justify-content-around
-            align-items-center
-          "
+                    class="
+                        text-center
+                        preorder-buttons
+                        mb-4 mt-3 d-flex
+                        justify-content-around
+                        align-items-center"
                 >
-                    <a class="submit" href="#">Скачать</a
-                    ><a class="download active" href="#">Распечатать</a
-                ><a class="download active" href="#">Поделиться</a>
+                    <a class="submit" href="#">Скачать</a>
+                    <a class="download active" href="#">Распечатать</a>
+                    <a class="download active" id="open-share-modal">Поделиться</a>
+                    <!-- <a class="alternative active" id="open-share-modal">Поделиться</a> -->
                 </div>
                 <p class="mb-0 modal-description">
                     *Вы можете прийти в заведение с вашим предзаказом и оплатить его
                 </p>
+            </div>
+        </div>
+    </div>
+    <div class="modal-wrapper modal fade" id="share-modal" tabindex="-1" role="dialog">
+        <div class="modal-dialog" style="max-width: 659px;">
+            <div class="modal-content cart-top">
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button> 
+                <div class="modal-header">
+                    <div class="modal-title">Поделится</div> 
+                    <div class="modal-title success" style="display: none;">
+                        Ваш отзыв успешно отправлен
+                    </div>
+                </div>        
+                <div class="modal-description black text-left share-whatsapp share-link">
+                    <a target="_blank" rel="nofollow noopener">
+                        <img src="/static/app/img/whatsapp.ico" alt="[x]"> whatsapp
+                    </a>
+                </div>
+                <div class="modal-description black text-left share-viber share-link" target="_blank" rel="nofollow noopener">
+                    <a>                    
+                        <img src="/static/app/img/viber_tile_logo_icon.ico" alt="[x]"> viber
+                    </a>
+                </div>
+                <div class="modal-description black text-left share-telegram share-link" target="_blank" rel="nofollow noopener">
+                    <a>
+                        <img src="/static/app/img/telegram_icon.ico" alt="[x]"> telegram
+                    </a>
+                </div>
+                <div class="modal-description black text-left share-email share-link" target="_blank" rel="nofollow noopener">
+                    <a>
+                        <img src="/static/app/img/mail.ico" alt="[x]"> email
+                    </a>
+                </div>
             </div>
         </div>
     </div>

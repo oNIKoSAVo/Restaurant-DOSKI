@@ -72,8 +72,10 @@
         } else {
           // if date in url params is incorrect
           store.getState().hasChosen = false
-          store.getState().selected = new Date()
-          selectedDate = null
+          // store.getState().selected = new Date()
+          // selectedDate = null
+          store.getState().selected = dayjs().add(1, 'day').toDate()
+          selectedDate = dayjs().add(1, 'day').toDate();
           const emptyModalEl = document.getElementById('empty-modal')
           emptyModalEl.querySelector('.modal-title').textContent = urlDate.isBefore(dayjs().subtract(1, 'day')) ? 'Бронирование на прошедшее время' : 'Бронирование на слишком дальний период'
           openModal('#empty-modal')
@@ -176,7 +178,7 @@
 
   const urlSearchParams = new URL(window.location.href).searchParams;
   restaraunt = +urlSearchParams.get("restaurant");
-  let selectedDate;
+  let selectedDate = dayjs().add(1, 'day').toDate();
 
   function setAvailableTimes(minHour, maxHour) {
     const timeSelectEl = document.getElementById('time-selection-field');
@@ -636,7 +638,7 @@
     <div class="col-5">
       <CustomDatepicker
         bind:store
-        start="{dayjs()}"
+        start="{dayjs().add(1, 'day')}"
         end="{dayjs().add(reservationPeriodDays, 'day')}"
         bind:selected="{selectedDate}"
       />

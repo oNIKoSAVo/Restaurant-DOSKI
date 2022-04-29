@@ -279,6 +279,7 @@ class Event(models.Model):
 class Promotion(models.Model):
     name = models.CharField('Название', max_length=128, blank=True, null=True)
     description = models.TextField('Описание', max_length=128, blank=True, null=True)
+    priority = models.IntegerField('Приоритет', blank=True, null=False, default=0)
     image = models.ImageField('Изображение', upload_to='images/', blank=True, null=True)
 
     class Meta:
@@ -337,6 +338,8 @@ class Setting(models.Model):
 
     allow_time_delivery_start = models.TimeField('Доступное время доставки', help_text="С",  blank=True, null=True)
     allow_time_delivery_end = models.TimeField('Доступное время доставки', help_text="ДО",  blank=True, null=True)
+
+    main_topslider_title = models.CharField('Заголовок на главной в секции новости и акции', max_length=100, null=True, blank=True)
 
     franchising_email = models.CharField('почта для заявок на франшизу', 
                                          max_length=255,

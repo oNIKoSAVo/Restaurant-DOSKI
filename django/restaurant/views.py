@@ -39,7 +39,11 @@ from django.core.files.base import ContentFile, File
 
 def index(request):
     setting = Setting.objects.all().last()
-    return render(request, 'index.py.html', {'promotions': Promotion.objects.all(), 'main_banner': setting.main_banner})
+    ctx = {
+        'promotions': Promotion.objects.order_by('-priority'), 
+        'main_banner': setting.main_banner
+    }
+    return render(request, 'index.py.html', ctx)
 
 
 def set_city_id(request):
@@ -661,7 +665,15 @@ def feedback(request):
 
 
 def events(request):
-    return render(request, 'events.py.html', {'events': Event.objects.all()})
+    city_id = request.session.get('city')
+    city = City.objects.filter(id=city_id).first()
+
+    if city:
+        events = Event.objects.filter(city=city, date__gt=datetime.now())
+    else: 
+        events = Event.objects.filter(date__gt=datetime.now())
+
+    return render(request, 'events.py.html', {'events': events})
 
 
 def career(request):

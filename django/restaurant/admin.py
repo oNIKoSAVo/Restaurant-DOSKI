@@ -91,7 +91,7 @@ class EventAdmin(admin.ModelAdmin):
     list_display = ['name', 'restaraunt', 'date', 'city']
 
 class PromotionAdmin(admin.ModelAdmin):
-    list_display = ['image_preview', 'name', 'description']
+    list_display = ['image_preview', 'name', 'description', 'priority']
 
     def image_preview(self, obj):
         return mark_safe("<img src='/media/{}'  width='100' />".format(obj.image))

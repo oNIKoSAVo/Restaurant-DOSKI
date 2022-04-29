@@ -808,6 +808,14 @@ $(function () {
         switchMainBanner(slideSelector);
       });
     }
+    if (window.managerSettings.main_topslider_title) {
+      const topsliderEl = document.querySelector('#topslider .section-title')
+      if (topsliderEl) {
+        topsliderEl.title 
+            = topsliderEl.textContent 
+            = window.managerSettings.main_topslider_title;
+      }
+    }
   });
 
   $("input[type='number']").on("keydown", function () {

@@ -1019,6 +1019,23 @@ $(function () {
     });
   }
 
+  $('.password-wrapper .password-eye').on('click', (e) => {
+    e.preventDefault()
+    const passEl = $(e.target).closest('.password-wrapper').find('.password')
+    console.log($(e.target))
+    console.log({passEl})
+
+    if (passEl.attr('type') == 'password') {
+      passEl.attr('type', 'text');
+      $(e.target).removeClass('not-crossed')
+      $(e.target).addClass('crossed')
+    } else {
+      passEl.attr('type', 'password');
+      $(e.target).addClass('not-crossed')
+      $(e.target).removeClass('crossed')
+    }
+  });
+
   $(".checkout-btn").on("click", function (e) {
     if ($(this).hasClass('disabled')) return;
     const cartSummaryEl = document.querySelector(".cart-summary");

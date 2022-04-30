@@ -1921,6 +1921,22 @@ input[type="number"] {
   -moz-appearance: textfield; /* Firefox */
 }
 
+.password-wrapper {
+  .password-eye {
+    position: absolute;
+    top: 18px;
+    right: 31px;
+    &.crossed {
+      background: url(/static/app/img/crossed_eye.svg) 0 0 no-repeat;
+    }
+    &.not-crossed {
+      background: url(/static/app/img/eye.svg) 0 0 no-repeat;
+    }
+    height: 20px;
+    width: 20px;
+  }
+}
+
 .code-inputs {
   margin: 0 auto;
   max-width: 305px;

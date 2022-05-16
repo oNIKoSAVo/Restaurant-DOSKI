@@ -475,12 +475,13 @@ def reservation(request):
                     f'в {date_start} на {num_persons} человек(а). ' \
                     f'Номер: {userphone}. Ресторан на улице {restaraunt.address}'
 
-                gr = Group.objects.get(name='бронирование')
-                teleusers = TelegramUser.objects.filter(user__groups=gr) \
-                    .filter(user__groups=restaraunt.group)
-                
-                for teleuser in teleusers:
-                    notification(teleuser.chat_id, message=msg)
+                gr = Group.objects.filter(name='бронирование').first()
+                if gr:
+                    teleusers = TelegramUser.objects.filter(user__groups=gr) \
+                        .filter(user__groups=restaraunt.group)
+                    
+                    for teleuser in teleusers:
+                        notification(teleuser.chat_id, message=msg)
                 
                 return JsonResponse({"status": "success", "id": reservation.id})
             else:
@@ -854,12 +855,13 @@ def create_order(request):
         f'в {order.created_at} на сумму {order.price} р. ' \
         f'Номер: {profile.phone}. Ресторан на улице {restaraunt.address}'
 
-    gr = Group.objects.get(name='доставка')
-    teleusers = TelegramUser.objects.filter(user__groups=gr) \
-        .filter(user__groups=restaraunt.group)
+    gr = Group.objects.filter(name='доставка').first()
+    if gr:
+        teleusers = TelegramUser.objects.filter(user__groups=gr) \
+            .filter(user__groups=restaraunt.group)
 
-    for teleuser in teleusers:
-        notification(teleuser.chat_id, message=msg)
+        for teleuser in teleusers:
+            notification(teleuser.chat_id, message=msg)
 
     for m in menues:
         MenuInOrder.objects.create(menue=m, order=order)

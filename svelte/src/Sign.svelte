@@ -382,7 +382,9 @@ console.log({recoverPhone})
             <CodeInput bind:value="{code[3]}"/>
           </div>
           <div class="text-center">
-            <a class="submit reset-password" on:click={handleSubmitRecover} href="#">Зарегистрироваться</a>
+            <a class="submit reset-password" on:click={handleSubmitRecover} href="#">
+              Войти
+            </a>
           </div>
         </form>
       </div>

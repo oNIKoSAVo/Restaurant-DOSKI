@@ -260,10 +260,18 @@
 
         <form>
           <select name="filter_restaraunt" onchange="submitForm(this)">
-          <option value="" class="option">Выбери ресторан</option>
-          {% for  filter in filter_restaraunt %}
-            <option value="{{filter.id}}" class="option" {% if filter.id|stringformat:"s"  == request.GET.filter_restaraunt %} selected {% endif %} >{{filter}}</option>
-          {% endfor %}
+            <option value="" class="option">Выбери ресторан</option>
+            {% for filter in filter_restaraunt %}
+              <option 
+              value="{{filter.id}}" 
+              class="option" 
+              {% if request.GET.filter_restaraunt %}
+                {% if filter.id|stringformat:"s"  == request.GET.filter_restaraunt %} 
+                  selected 
+                {% endif %} 
+              {% endif %} 
+              >{{filter}}</option>
+            {% endfor %}
           </select>
         </form>
 

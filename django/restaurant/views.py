@@ -403,8 +403,13 @@ def reservation(request):
         if request.POST.get('type') == "check":
             today_start = date_start.replace(hour=0, minute=0, second=0)
             today_end = date_start.replace(hour=23, minute=59, second=59)
+
             reservations = Reservation.objects.filter(
-                restaraunt=request.POST.get('restaraunt'), start__lte=today_end, start__gte=today_start).filter(Q(status=ReservationStatusType.APPROVED) | Q(status=ReservationStatusType.WAIT))
+                restaraunt=request.POST.get('restaraunt'), 
+                start__lte=today_end, start__gte=today_start
+            )\
+                .filter(Q(status=ReservationStatusType.APPROVED) | Q(status=ReservationStatusType.WAIT))
+
             return JsonResponse({"tables": [reserv.table for reserv in reservations]})
         else:
             setting = Setting.objects.all().last()

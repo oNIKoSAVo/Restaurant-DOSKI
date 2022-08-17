@@ -72,7 +72,7 @@ class BookingView(OnlyStuffUserAccessMixin, View):
             reservarions = Reservation.objects.filter(
                 restaraunt__group__in=request.user.groups.all())
             filter_restaraunt = Restaraunt.objects.filter(
-                city__groups__in=request.user.groups.all())
+                group__in=request.user.groups.all())
             reservations_processed = Reservation.objects.filter(
                 status=ReservationStatusType.APPROVED).filter(
                 restaraunt__group__in=request.user.groups.all())
@@ -90,6 +90,11 @@ class BookingView(OnlyStuffUserAccessMixin, View):
                 restaraunt__id=request.GET.get('filter_restaraunt'))
             reservations_processed = reservations_processed.filter(
                 restaraunt__id=request.GET.get('filter_restaraunt'))
+        else:
+            if(filter_restaraunt.count() == 1):
+                simb = '?' if len(request.GET) < 1 else '&'
+                redirect_path = request.get_full_path() + f'{simb}filter_restaraunt={filter_restaraunt.first().id}'
+                return redirect(redirect_path)
 
         if(request.GET.get('filter_date')):
             today_start = datetime.strptime(

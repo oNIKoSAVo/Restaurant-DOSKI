@@ -32,21 +32,25 @@ class LoginView(OnlyStuffUserAccessMixin, View):
 
     def get(self, request):
         today_start = datetime.now().replace(hour=0, minute=0, second=0)
-        today_end = datetime.now().replace(hour=23, minute=59, second=59)
 
         if(request.user.is_superuser):
             queryset_reservations = Reservation.objects.filter()
             queryset_order = Order.objects.filter()
         else:
             queryset_reservations = Reservation.objects.filter(
-                restaraunt__city__groups__in=request.user.groups.all())
+                restaraunt__group__in=request.user.groups.all())
             queryset_order = Order.objects.filter(
-                restaraunt__city__groups__in=request.user.groups.all())
+                restaraunt__group__in=request.user.groups.all())
 
         count_new_reservations = queryset_reservations.filter(
-            status=ReservationStatusType.WAIT).filter(start__lte=today_end, start__gte=today_start).count()
-        count_new_orders = queryset_order.filter(
-            status=OrderStatusType.WAIT).filter(created_at__lte=today_end, created_at__gte=today_start).count()
+            status=ReservationStatusType.WAIT)\
+            .filter(start__gte=today_start)\
+            .count()
+
+        count_new_orders = queryset_order\
+            .filter(status=OrderStatusType.WAIT)\
+            .filter(created_at__gte=today_start)\
+            .count()
 
         return render(request, 'pclogin.py.html', {'count_new_reservations': count_new_reservations, 'count_new_orders': count_new_orders, 'pcpanel_main_page': True})
 
@@ -66,12 +70,12 @@ class BookingView(OnlyStuffUserAccessMixin, View):
                 status=ReservationStatusType.APPROVED)
         else:
             reservarions = Reservation.objects.filter(
-                restaraunt__city__groups__in=request.user.groups.all())
+                restaraunt__group__in=request.user.groups.all())
             filter_restaraunt = Restaraunt.objects.filter(
                 city__groups__in=request.user.groups.all())
             reservations_processed = Reservation.objects.filter(
                 status=ReservationStatusType.APPROVED).filter(
-                restaraunt__city__groups__in=request.user.groups.all())
+                restaraunt__group__in=request.user.groups.all())
 
         reservarions = reservarions.filter(status=ReservationStatusType.WAIT)
         if(request.GET.get('id')):
@@ -181,7 +185,7 @@ class DeliveryView(OnlyStuffUserAccessMixin, View):
             queryset = Order.objects.all()
         else:
             queryset = Order.objects.filter(
-                restaraunt__city__groups__in=request.user.groups.all())
+                restaraunt__group__in=request.user.groups.all())
 
         if(request.GET.get('id')):
             try:

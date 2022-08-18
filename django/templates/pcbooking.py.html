@@ -1,5 +1,5 @@
 {% extends 'admin.py.html' %} {% load django_svelte %} {% block content %}
-{% for reservation in reservations %}
+{% for reservation in new_reservations %}
 <div
   class="modal-wrapper modal fade reservation_manager_modal"
   id="reservation_manager_modal_{{ reservation.id }}"
@@ -57,7 +57,7 @@
 </div>
 {% endfor %}
 
-{% for reservation in reservations %}
+{% for reservation in new_reservations %}
 <div
   class="modal-wrapper modal fade reservation_edit_modal"
   id="reservation_edit_modal_{{ reservation.id }}"
@@ -277,7 +277,7 @@
 
 
 
-        {% for reservation in reservations %}
+        {% for reservation in new_reservations %}
           <div class="cabinet-order" data-modal="#reservation_manager_modal_{{ reservation.id }}">
             <div class="cabinet-order_num">№{{reservation.id}}</div>
             <div class="cabinet-order_info">

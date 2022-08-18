@@ -64,12 +64,12 @@ class BookingView(OnlyStuffUserAccessMixin, View):
         today_end = datetime.now().replace(hour=23, minute=59, second=59)
 
         if request.user.is_superuser:
-            reservarions = Reservation.objects.all()
+            reservations = Reservation.objects.all()
             filter_restaraunt = Restaraunt.objects.all()
             reservations_processed = Reservation.objects.filter(
                 status=ReservationStatusType.APPROVED)
         else:
-            reservarions = Reservation.objects.filter(
+            reservations = Reservation.objects.filter(
                 restaraunt__group__in=request.user.groups.all())
             filter_restaraunt = Restaraunt.objects.filter(
                 group__in=request.user.groups.all())
@@ -77,16 +77,16 @@ class BookingView(OnlyStuffUserAccessMixin, View):
                 status=ReservationStatusType.APPROVED).filter(
                 restaraunt__group__in=request.user.groups.all())
 
-        reservarions = reservarions.filter(status=ReservationStatusType.WAIT)
+        reservations = reservations.filter(status=ReservationStatusType.WAIT)
         if(request.GET.get('id')):
             try:
-                response = reservarions.get(pk=request.GET.get('id'))
+                response = reservations.get(pk=request.GET.get('id'))
                 return JsonResponse(model_to_dict(response), safe=False)
             except Reservation.DoesNotExist:
                 return JsonResponse({'status': 'error', 'message': 'Reservation not found'}, status=404)
 
         if(request.GET.get('filter_restaraunt')):
-            reservarions = reservarions.filter(
+            reservations = reservations.filter(
                 restaraunt__id=request.GET.get('filter_restaraunt'))
             reservations_processed = reservations_processed.filter(
                 restaraunt__id=request.GET.get('filter_restaraunt'))
@@ -104,11 +104,13 @@ class BookingView(OnlyStuffUserAccessMixin, View):
 
         reservations_processed = reservations_processed.filter(
             start__lte=today_end, start__gte=today_start)
-        reservations = reservarions.filter(
-            start__lte=today_end, start__gte=today_start)
+        
+        new_reservations = reservations.filter(start__gte=today_start)
+        todays_reservations = new_reservations.filter(start__lte=today_end)
 
         return render(request, 'pcbooking.py.html',  {
-            'reservations': reservations,
+            'reservations': todays_reservations,
+            'new_reservations': new_reservations,
             'reservations_processed': reservations_processed,
             'ReservationStatusType': ReservationStatusType,
             'filter_restaraunt': filter_restaraunt

@@ -131,7 +131,9 @@ class BookingView(OnlyStuffUserAccessMixin, View):
                 del params['time']
 
             reservation_qs = Reservation.objects.filter(pk=id)
-            if params['status'] == str(ReservationStatusType.REJECT):
+            new_status = params.get('status')
+            
+            if (type(new_status) in (int, str)) and new_status == str(ReservationStatusType.REJECT):
                 cleanphone = re.sub('\W+', '', reservation_qs.first().phone)
                 Sms().send(cleanphone, "Ваша бронь была удалена менеджером")
 

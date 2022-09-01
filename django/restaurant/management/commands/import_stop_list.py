@@ -32,12 +32,12 @@ class Command(BaseCommand):
             response = session.post(xml_interface, data=request_data, verify=False)
             root = ET.fromstring(response.content.decode('utf8'))
             for rest in root.iter('DishRest'):
-                    try:
-                        menue = Menue.objects.get(ident=rest.get('id'))
-                        menue_in_restaraunt = MenueInRestaraunt.objects.get(menue=menue)
-                        menue_in_restaraunt.stop_list = False
-                        if(rest.get('prohibited') is not None):
-                            menue_in_restaraunt.stop_list = True
-                        menue_in_restaraunt.save()
-                    except (Menue.DoesNotExist, MenueInRestaraunt.DoesNotExist):
-                        print(rest.get('id'), "Not exists in Menue")
+                try:
+                    menue = Menue.objects.get(ident=rest.get('id'))
+                    menue_in_restaraunt = MenueInRestaraunt.objects.get(menue=menue)
+                    menue_in_restaraunt.stop_list = False
+                    if(rest.get('prohibited') is not None):
+                        menue_in_restaraunt.stop_list = True
+                    menue_in_restaraunt.save()
+                except (Menue.DoesNotExist, MenueInRestaraunt.DoesNotExist):
+                    print(rest.get('id'), "Not exists in Menue")

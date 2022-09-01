@@ -9,6 +9,7 @@ from timezone_field import TimeZoneField
 from imagekit.models import ProcessedImageField
 from imagekit.processors import ResizeToFit
 from ckeditor.fields import RichTextField
+from django.conf import settings as django_settings
 
 
 class PaymentTypes(models.IntegerChoices):
@@ -89,6 +90,16 @@ class Restaraunt(models.Model):
     yandex_eda = models.CharField('Ссылка на яндекс еду', max_length=128, blank=True, null=True)
     menue_file = models.FileField('PDF Меню', upload_to='images/', blank=True, null=True)
     group = models.ForeignKey(Group, on_delete=models.CASCADE, blank=True, null=True)
+    payment_terminal_id = models.CharField(
+        verbose_name='ИД терминала для оплаты', 
+        max_length=255, blank=False, null=False, 
+        default=django_settings.PAYMENT_TERMINAL_ID
+    )
+    payment_key = models.CharField(
+        verbose_name='Ключ терминала для оплаты', 
+        max_length=255, blank=False, null=False, 
+        default=django_settings.PAYMENT_KEY
+    )
 
     def __str__(self):
         return self.address + " " + self.phone

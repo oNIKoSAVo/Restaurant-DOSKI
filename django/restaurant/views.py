@@ -870,18 +870,18 @@ def create_order(request):
 
     for m in menues:
         MenuInOrder.objects.create(menue=m, order=order)
-
-    # move this consts into settings
-    PAYMENT_KEY = "Nzk1MjkwNTY3MDY6ZDVkOThiYzI0YWZjMmM1OTNkOGEzMjMzOGJhZmI3ZmY="
-    PAYMENT_TERMINAL_ID = "9a73af7faff347bf8844c66d8333ae84"
     
     if not (payment_type == PaymentTypes.ONLINE):
         return JsonResponse({"status_code": 401, "message": "Created a new order"})
         
-    payment = Payment().create_payment(order=order, 
-                                       receipt=receipt, 
-                                       key=PAYMENT_KEY, 
-                                       terminal=PAYMENT_TERMINAL_ID)  # payment_url
+    payment = Payment().create_payment(
+        order=order, 
+        receipt=receipt, 
+        key=restaraunt.payment_key, 
+        terminal=restaraunt.payment_terminal_id
+    )
+    
+    # payment_url
     # payment = Payment().create_terminal(order=order) # link
     print('PAYMENT: ', payment)
     if ("payment_url" in payment):

@@ -195,3 +195,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # https://core.telegram.org/bots/api
 
 TELEGRAM_API_KEY = '2064596905:AAHnSrythz4Iu3zTFSqYQmW0p6PSW9rZZ0Y'
+
+# Payment:
+PAYMENT_KEY = "Nzk1MjkwNTY3MDY6ZDVkOThiYzI0YWZjMmM1OTNkOGEzMjMzOGJhZmI3ZmY="
+PAYMENT_TERMINAL_ID = "9a73af7faff347bf8844c66d8333ae84"

@@ -123,6 +123,7 @@ async function showTableStatus(restaurantMaps) {
   const handleOnClickTable = (e) => {
     const reserveTableModal = document.getElementById('reservation_create_modal');
     reserveTableModal.querySelectorAll('input').forEach((el) => {
+        if (el.name == 'date') return;
         el.value = '';
     })
     reserveTableModal.querySelector('.pcbooking_table').value = e.target.id;
@@ -146,12 +147,16 @@ async function showTableStatus(restaurantMaps) {
       map.querySelectorAll(tableIdsString).forEach(path => {
         path.addEventListener('click', (e)=>{
           e.preventDefault();
-          console.log({reservation_id});
-          let selector = '.reservation_edit_modal ' +
-            `.pcbooking_table[value="${e.target.id}"]`;
-          const reservation_id = document
-            .querySelector(selector)
-            .closest('form').querySelector('input[name="id"]').value;
+          console.log({path, tgid: e.target.id});
+          // let selector = '.reservation_edit_modal ' +
+          //   `.pcbooking_table[value="${e.target.id}"]`;
+          let selector2 = `.reservation_manager_modal[data-table-id="${e.target.id}"]`;
+          console.log({selector2})
+
+          // const reservated_item = document.querySelector(selector)
+          const reservated_item = document.querySelector(selector2)
+          // const reservation_id = reservated_item.closest('form').querySelector('input[name="id"]').value;
+          const reservation_id = reservated_item.getAttribute('data-reservation-id');
 
           console.log({reservation_id});
 

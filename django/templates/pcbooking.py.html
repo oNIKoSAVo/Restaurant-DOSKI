@@ -3,6 +3,8 @@
 <div
   class="modal-wrapper modal fade reservation_manager_modal"
   id="reservation_manager_modal_{{ reservation.id }}"
+  data-reservation-id="{{ reservation.id }}"
+  data-table-id="{{ reservation.table }}"
   tabindex="-1"
   role="dialog"
 >
@@ -197,7 +199,7 @@
           </div>
           <div class="input-wrapper">
             <input type="text" class="pcbooking_date" 
-              name="date"  value="" placeholder="DD/MM/YYYY">
+              name="date"  value="{{selected_date}}" placeholder="DD/MM/YYYY">
           </div>
         </div>
         <div class="pcbooking-modal-form__el">
@@ -205,7 +207,13 @@
             <label for="pcbooking_time">Время брони</label>
           </div>
           <div class="input-wrapper">
-            <input type="text" class="pcbooking_time" name="time" value="" placeholder="HH:mm">
+            <!-- <input type="text" class="pcbooking_time" name="time" value="" placeholder="HH:mm"> -->
+            <select type="text" class="pcbooking_time" name="time" placeholder="HH:mm">
+              <option value="" selected>Выберите время</option>
+              {% for opt in time_options %}
+                <option value="{{opt}}">{{ opt }}</option>
+              {% endfor %}
+            </select>
           </div>
         </div>
 
@@ -223,6 +231,8 @@
 <div
   class="modal-wrapper modal fade reservation_manager_modal"
   id="reservation_manager_modal_{{ reservation.id }}"
+  data-reservation-id="{{ reservation.id }}"
+  data-table-id="{{ reservation.table }}"
   tabindex="-1"
   role="dialog"
 >
@@ -246,6 +256,16 @@
       <p>Дата {{ reservation.start|date:'d.m.y' }}</p>
       <p>Время брони {{ reservation.start|date:'H:i' }}</p>
       <p>Пожелания к брони:<br> {{ reservation.description }}</p>
+      <div class="
+        d-flex justify-content-between flex-column
+        align-items-center mb-4 mt-2"
+      >
+        <form action="/pcpanel/booking" method="POST" class="w-100">
+          <input type="hidden" name="id" value="{{ reservation.id }}">
+          <input type="hidden" name="status" value="0">
+          <a href="#" onclick="submitForm(this); return false;" class="download active mt-2 w-100 text-center close-modal" style="right: 0;">Отменить</a>
+        </form>
+      </div>
     </div>
   </div>
 </div>

@@ -95,12 +95,14 @@ class BookingView(OnlyStuffUserAccessMixin, View):
                 simb = '?' if len(request.GET) < 1 else '&'
                 redirect_path = request.get_full_path() + f'{simb}filter_restaraunt={filter_restaraunt.first().id}'
                 return redirect(redirect_path)
-
+        selected_date = ''
         if(request.GET.get('filter_date')):
             today_start = datetime.strptime(
                 request.GET.get('filter_date'), '%d-%m-%Y').replace(hour=0, minute=0, second=0)
             today_end = datetime.strptime(
                 request.GET.get('filter_date'), '%d-%m-%Y').replace(hour=23, minute=59, second=59)
+            
+            selected_date = request.GET.get('filter_date').replace('-', '/')
 
         reservations_processed = reservations_processed.filter(
             start__lte=today_end, start__gte=today_start)
@@ -108,12 +110,19 @@ class BookingView(OnlyStuffUserAccessMixin, View):
         new_reservations = reservations.filter(start__gte=today_start)
         todays_reservations = new_reservations.filter(start__lte=today_end)
 
+        time_options = []
+
+        for h in range(24):
+            time_options.append(str(h).rjust(2, '0') + ':00')
+
         return render(request, 'pcbooking.py.html',  {
             'reservations': todays_reservations,
             'new_reservations': new_reservations,
             'reservations_processed': reservations_processed,
             'ReservationStatusType': ReservationStatusType,
-            'filter_restaraunt': filter_restaraunt
+            'filter_restaraunt': filter_restaraunt,
+            'selected_date': selected_date,
+            'time_options': time_options,
         })
 
     def post(self, request):

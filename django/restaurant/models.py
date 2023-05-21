@@ -256,6 +256,7 @@ class ReservationStatusType(models.IntegerChoices):
     WAIT = 0, 'В ожидании'
     APPROVED = 1, 'Подтверждена'
     REJECT = 2, 'Отклонена'
+    CLOSED = 3, 'Закрыта'
 
 class Reservation(models.Model):
     user = models.ForeignKey(User, related_name='reservations',

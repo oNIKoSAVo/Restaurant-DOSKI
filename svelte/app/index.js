@@ -1444,55 +1444,63 @@ $(function () {
     return distances;
   }
 
+  async function geocodeAddress(address) {
+    const apiUrl = `https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(address)}`;
+  
+    try {
+      const response = await fetch(apiUrl);
+      const data = await response.json();
+  
+      if (data.length > 0) {
+        const { lat, lon } = data[0];
+        return { lat: parseFloat(lat), lon: parseFloat(lon) };
+      } else {
+        throw new Error('No results found for the address.');
+      }
+    } catch (error) {
+      console.error('Error geocoding address:', error);
+      throw error;
+    }
+  }
+
   async function computeDistance() {
     await loader.load();
     console.log("computing distance...");
     const addrInputVal = $('#dadata-address2').val();
-
+  
     console.log({addrInputVal});
     if (!addrInputVal) return;
-
-    let request = {
-      query: addrInputVal,
-      fields: ['name', 'geometry'],
-    };
-    let userCoords = null;
-
-    console.log({map: window.map});
-
-    let service = new google.maps.places.PlacesService(window.map);
-    service.findPlaceFromQuery(request, function(results, status) {
-      if (status === google.maps.places.PlacesServiceStatus.OK) {
-        userCoords = results[0].geometry.location;
-        console.log({results});
-        console.log({userCoords});
-        let distances = computeDistances(userCoords);
-        let nearestRest = {restaraunt: null, distance: Infinity};
-        distances.forEach((val)=>{
-          if (val.distance < nearestRest.distance) {
-            nearestRest = val;
-          }
-        });
-
-        console.log({nearestRest});
-        console.log($("#too-far-delivery-msg"));
-        if (nearestRest.distance > 8000) {
-          console.log('remove d-none');
-          $("#too-far-delivery-msg").removeClass('d-none');
-        } else {
-          console.log('add d-none');
-          $("#too-far-delivery-msg").addClass('d-none');
-          $("#checkAddress button.close").trigger('click');
-          localStorage.setItem("currentAddress", addrInputVal);
-          localStorage.setItem("currentRestaraunt", nearestRest.restaraunt);
-          localStorage.setItem("DontOpenComputeDistance", true);
-          window.location.href = `/set_restaraunt_id?id=${nearestRest.restaraunt.id}`;
+  
+    try {
+      const userCoords = await geocodeAddress(addrInputVal);
+      console.log({ userCoords });
+  
+      let distances = 8000;
+      let nearestRest = { restaraunt: null, distance: Infinity };
+      distances.forEach((val) => {
+        if (val.distance < nearestRest.distance) {
+          nearestRest = val;
         }
+      });
+  
+      console.log({ nearestRest });
+      console.log($("#too-far-delivery-msg"));
+      if (nearestRest.distance > 8000) {
+        console.log('remove d-none');
+        $("#too-far-delivery-msg").removeClass('d-none');
+      } else {
+        console.log('add d-none');
+        $("#too-far-delivery-msg").addClass('d-none');
+        $("#checkAddress button.close").trigger('click');
+        localStorage.setItem("currentAddress", addrInputVal);
+        localStorage.setItem("currentRestaraunt", nearestRest.restaraunt);
+        localStorage.setItem("DontOpenComputeDistance", true);
+        window.location.href = `/set_restaraunt_id?id=${nearestRest.restaraunt.id}`;
       }
-    });
-
-    // console.log({userCoords});
-    
+    } catch (error) {
+      console.error('Error computing distance:', error);
+      // Обработка ошибки геокодирования
+    }
   }
 
   $("#checkAddress .submit").on('click', (e) => {

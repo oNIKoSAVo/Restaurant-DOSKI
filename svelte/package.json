@@ -62,7 +62,7 @@
   "dependencies": {
     "bootstrap": "^4.4.1",
     "cross-env": "^7.0.2",
-    "dayjs": "^1.10.7",
+    "dayjs": "^1.11.7",
     "google-maps": "^4.3.3",
     "html-webpack-externals-plugin": "^3.8.0",
     "inputmask": "^5.0.5",
@@ -79,7 +79,7 @@
     "qs": "^6.10.1",
     "selectise": "^1.1.0",
     "sirv-cli": "^1.0.0",
-    "svelte-calendar": "^3.1.4",
+    "svelte-calendar": "^3.1.6",
     "swiper": "^6.7.5",
     "validator": "^13.6.0"
   }

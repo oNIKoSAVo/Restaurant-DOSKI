@@ -447,7 +447,22 @@ main {
   }
 
   .left-link {
+    color: rgb(255, 255, 255);
+ 
+    text-align: center;
+    background: url(/static/app/img/vinos-bron-back.png) no-repeat 30px center /
+      100%;
+    // left: 0;
+    // transform: translate(-50%, -50%);
+  }
+
+  .left-link:hover {
+    font-weight: bolder;
+  }
+
+  .center-link {
     color: black;
+    cursor:pointer;
     text-align: center;
     background: url(/static/app/img/bron-back.png) no-repeat 30px center /
       100%;
@@ -457,6 +472,7 @@ main {
 
   .right-link {
     color: white;
+    cursor:pointer;
     text-align: center;
     background: url(/static/app/img/delivery-back.png) no-repeat -30px center /
       100%;
@@ -5881,6 +5897,13 @@ section.light {
     }
   }
   .main-slide a.left-link {
+    left: 35px;
+    // transform: translate(0%, -50%);
+    // padding: 45px 104px 45px 35px;
+    font-size: 35px;
+    white-space: nowrap;
+  }
+  .main-slide a.center-link {
     left: 35px;
     // transform: translate(0%, -50%);
     // padding: 45px 104px 45px 35px;

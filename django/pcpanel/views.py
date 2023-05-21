@@ -146,6 +146,9 @@ class BookingView(OnlyStuffUserAccessMixin, View):
                 cleanphone = re.sub('\W+', '', reservation_qs.first().phone)
                 Sms().send(cleanphone, "Ваша бронь была удалена менеджером")
 
+            if (type(new_status) in (int, str)) and new_status == str(ReservationStatusType.CLOSED): 
+                messages.success(request, 'Бронировань закрыта.')
+
             count = reservation_qs.update(**params)
             if(count > 0):
                 messages.success(request, 'Бронирование изменено.')

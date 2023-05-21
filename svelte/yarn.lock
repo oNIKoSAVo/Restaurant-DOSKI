@@ -3434,10 +3434,10 @@ date-fns@^2.16.1:
   resolved "https://registry.yarnpkg.com/date-fns/-/date-fns-2.24.0.tgz#7d86dc0d93c87b76b63d213b4413337cfd1c105d"
   integrity sha512-6ujwvwgPID6zbI0o7UbURi2vlLDR9uP26+tW6Lg+Ji3w7dd0i3DOcjcClLjLPranT60SSEFBwdSyYwn/ZkPIuw==
 
-dayjs@^1.10.6, dayjs@^1.10.7:
-  version "1.10.7"
-  resolved "https://registry.yarnpkg.com/dayjs/-/dayjs-1.10.7.tgz#2cf5f91add28116748440866a0a1d26f3a6ce468"
-  integrity sha512-P6twpd70BcPK34K26uJ1KT3wlhpuOAPoMwJzpsIWUxHZ7wpmbdZL/hQqBDfz7hGurYSa5PhzdhDHtt319hL3ig==
+dayjs@^1.10.6, dayjs@^1.11.7:
+  version "1.11.7"
+  resolved "https://registry.yarnpkg.com/dayjs/-/dayjs-1.11.7.tgz#4b296922642f70999544d1144a2c25730fce63e2"
+  integrity sha512-+Yw9U6YO5TQohxLcIkrXBeY73WP3ejHWVvx8XCk3gxvQDCTEmS48ZrSZCKciI7Bhl/uCMyxYtE9UqRILmFphkQ==
 
 debug@2.6.9, debug@^2.2.0, debug@^2.3.3, debug@^2.6.8, debug@^2.6.9:
   version "2.6.9"
@@ -9648,10 +9648,10 @@ supports-color@^8.1.0:
   dependencies:
     has-flag "^4.0.0"
 
-svelte-calendar@^3.1.4:
-  version "3.1.4"
-  resolved "https://registry.yarnpkg.com/svelte-calendar/-/svelte-calendar-3.1.4.tgz#c88b36c2af7f741b87ba18e01d6aaa9988625c58"
-  integrity sha512-ZP0Ryw7BQ54PsQElNmpQr3kjR8cLztmUNl7qwL1es0izPJpMPBoGbBCiPDD8VRS7G3RHq+wjvOUqKECGw9bR8w==
+svelte-calendar@^3.1.6:
+  version "3.1.6"
+  resolved "https://registry.yarnpkg.com/svelte-calendar/-/svelte-calendar-3.1.6.tgz#bdbf949f19eae199d04860da7857abb5000e8444"
+  integrity sha512-jOHiPlxBAa1LGVFQZoczdAGnCSI2RKcuQQHj32TjLbXO/P2Povx4JphPEcP7XjKj/s/jimBC6xQyFhyjD0vxbg==
   dependencies:
     dayjs "^1.10.6"
     just-throttle "^2.3.1"

@@ -1,13 +1,21 @@
 {% extends 'base.py.html' %} {% block content %}
 <div class="main-slide" id="main-page">
   <div class="container d-flex flex-column flex-lg-row align-items-center justify-content-center justify-content-lg-between">
-    <a class="left-link" href="{% url 'reservation' %}"
+    <a class="left-link" href="{% url 'preorder' %}"
       ><img
         class="mr-2"
-        src="/static/app/img/calendar.png"
+        src="/static/app/img/take-away-food.png"
         width="37"
-      />Бронирование</a
-    ><a class="right-link" href="{% url 'delivery' %}"
+      />На вынос</a
+    >
+    <a class="center-link" href="{% url 'reservation' %}"
+    ><img
+      class="mr-2"
+      src="/static/app/img/calendar.png"
+      width="37"
+    />Бронирование</a
+  >
+    <a class="right-link" href="{% url 'delivery' %}"
       ><img
         class="mr-2"
         src="/static/app/img/delivery.png"

@@ -1,19 +1,27 @@
 {% extends 'admin.py.html' %} {% load django_svelte %}
 {% block content %}
 <div class="main-slide cabinet">
-    <div class="container d-flex align-items-center h-100">
+    <div class="container-fluid d-flex align-items-center h-100">
 
       <div class="main-links">
         <div class="left-link"
           >
-          <a  title="Бронирование" href="{% url 'pcbooking' %}">Бронирование</a>
+          <a  class="order"  title="На вынос" href="{% url 'pcbooking' %}">На вынос</a>
+            <span class="order-quantity" title="{{ count_new_reservations }}">
+              {{ count_new_reservations }}</span>
+
+            <font class="order-desc">Новых заявок</font>
+        </div>
+        <div class="center-link"
+          >
+          <a  class="order" title="Бронирование" href="{% url 'pcbooking' %}">Бронирование</a>
             <span class="order-quantity" title="{{ count_new_reservations }}">
               {{ count_new_reservations }}</span>
 
             <font class="order-desc">Новых заявок</font>
         </div>
           <div class="right-link">
-            <a   title="Доставки" href="{% url 'pcdelivery' %}">Доставки</a>
+            <a   class="order" title="Доставки" href="{% url 'pcdelivery' %}">Доставки</a>
             <span class="order-quantity" title="{{ count_new_orders }}">
               {{ count_new_orders }}</span>
                 <font class="order-desc">Новых заявок</font>

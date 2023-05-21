@@ -265,6 +265,11 @@
           <input type="hidden" name="status" value="0">
           <a href="#" onclick="submitForm(this); return false;" class="download active mt-2 w-100 text-center close-modal" style="right: 0;">Отменить</a>
         </form>
+        <form action="/pcpanel/booking" method="POST" class="w-100">
+          <input type="hidden" name="id" value="{{ reservation.id }}">
+          <input type="hidden" name="status" value="3" />
+          <a href="#" onclick="submitForm(this); return false;" class="submit w-100 text-center" style="right: 0;">Закрыть бронь</a>
+        </form>
       </div>
     </div>
   </div>

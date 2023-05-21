@@ -312,7 +312,7 @@
     align-items: center;
     background: url(/static/app/img/pclogin.jpg) no-repeat center center / cover;
 
-    .right-link, .left-link {
+    .right-link, .left-link, .center-link {
       text-align: center;
       transform: none;
       //padding: 0;
@@ -320,9 +320,14 @@
       width: 500px;
       left: 0;
     }
-    .left-link a{
+    .center-link a{
       color: #000;
     }
+
+    .order {
+      margin: 45px 0 0;
+    }
+
     .order-quantity {
       display: flex;
       flex-direction: column;

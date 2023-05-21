@@ -377,7 +377,7 @@
             openModal("#share-modal");
             // let preorderFileLink = encodeURIComponent('https://beta.respublica.bar/');
             let preorderFileLink = document.location.host + lastPreorderHref;
-            console.log({preorderFileLink: encodeURIComponent('https://beta.respublica.bar/')});
+            console.log({preorderFileLink: encodeURIComponent('https://http://127.0.0.1:8008//')});
             console.log({lastPreorderHref});
             const shareModalEl = document.getElementById('share-modal');
             const shareWhatsapp = shareModalEl.querySelector('.share-whatsapp a')

@@ -66,6 +66,16 @@ class OrderAdmin(admin.ModelAdmin):
     list_filter =['restaraunt', 'price',  'created_at',]
     inlines = [MenuInOrderInLine]
 
+    def get_queryset(self, request):
+        qs = super().get_queryset(request)
+        
+        # Проверка, является ли пользователь администратором
+        if request.user.is_superuser:
+            return qs  # Если пользователь является администратором, отображаем все рестораны
+        
+        # Фильтрация резерваций только для ресторанов, связанных с группой ресторана и группами пользователя
+        return qs.filter(restaraunt__group__in=request.user.groups.all())
+
 
 class MenuInPreOrderInLine(admin.TabularInline):
     model = MenuInPreOrder
@@ -77,9 +87,29 @@ class PreOrderAdmin(admin.ModelAdmin):
     list_filter =['restaraunt', 'price',  'created_at',]
     inlines = [MenuInPreOrderInLine]
 
+    def get_queryset(self, request):
+        qs = super().get_queryset(request)
+        
+        # Проверка, является ли пользователь администратором
+        if request.user.is_superuser:
+            return qs  # Если пользователь является администратором, отображаем все рестораны
+        
+        # Фильтрация резерваций только для ресторанов, связанных с группой ресторана и группами пользователя
+        return qs.filter(restaraunt__group__in=request.user.groups.all())
+
 
 class ReservationAdmin(admin.ModelAdmin):
     list_display = ['id', 'restaraunt', 'persons', 'table', 'start', 'end', 'name', 'phone']
+
+    def get_queryset(self, request):
+        qs = super().get_queryset(request)
+        
+        # Проверка, является ли пользователь администратором
+        if request.user.is_superuser:
+            return qs  # Если пользователь является администратором, отображаем все рестораны
+        
+        # Фильтрация резерваций только для ресторанов, связанных с группой ресторана и группами пользователя
+        return qs.filter(restaraunt__group__in=request.user.groups.all())
 
 class CareerAdmin(admin.ModelAdmin):
     list_display = ['first_name', 'middle_name', 'last_name', 'position']

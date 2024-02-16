@@ -22,6 +22,7 @@ import { setErrorInput } from "../src/helpers/setErrors";
 import isEmail from "validator/es/lib/isEmail";
 import {request} from "../src/api";
 import printJS from 'print-js';
+const geolib = require('geolib');
 
 
 const options = {
@@ -1416,37 +1417,53 @@ $(function () {
 
   $("#print-scheme-btn").on("click", handleClickPrintBtn);
 
-  function computeDistances(userCoords) {
-    if (!userCoords) return;
+  // function computeDistances(userCoords) {
+  //   if (!userCoords) return;
 
-    let distances = [];
+  //   let distances = [];
 
-    window.currentCity.addresses.forEach((value, index) => {
-      if (!value.coordinates) return;
-      console.log({coords: value.coordinates.split(',')});
+  //   window.currentCity.addresses.forEach((value, index) => {
+  //     if (!value.coordinates) return;
+  //     console.log({coords: value.coordinates.split(',')});
 
-      let restCoords = new google.maps.LatLng(...(value.coordinates.split(',')));
+  //     let restCoords = new google.maps.LatLng(...(value.coordinates.split(',')));
       
-      console.log({restCoords});
+  //     console.log({restCoords});
 
-      if (restCoords) {
-        let distance 
-          = google.maps
-          .geometry.spherical
-          .computeDistanceBetween(restCoords, userCoords);
+  //     if (restCoords) {
+  //       let distance 
+  //         = google.maps
+  //         .geometry.spherical
+  //         .computeDistanceBetween(restCoords, userCoords);
         
-        console.log(distance)
-        distances.push({restaraunt: value, distance});
-      }
-    });
+  //       console.log(distance)
+  //       distances.push({restaraunt: value, distance});
+  //     }
+  //   });
 
-    console.log({distances})
-    return distances;
+  //   console.log({distances})
+  //   return distances;
+  // }
+
+  function calculateDistance(xy1, xy2) {
+    console.log("N1 " + xy1)
+    console.log("N " + xy2)
+    
+    // Используем теорему Пифагора для вычисления расстояния
+    // const distance = Math.sqrt(dx * dx + dy * dy);
+    const distance = geolib.getDistance(
+      { latitude: xy1[0], longitude: xy1[1] },
+      { latitude: xy2.lat, longitude: xy2.lon }
+    );
+  
+    return distance;
   }
 
   async function geocodeAddress(address) {
+    console.log(window.currentCity.addresses[0])
     const apiUrl = `https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(address)}`;
-  
+    
+    // console.log(distance)
     try {
       const response = await fetch(apiUrl);
       const data = await response.json();
@@ -1475,17 +1492,19 @@ $(function () {
       const userCoords = await geocodeAddress(addrInputVal);
       console.log({ userCoords });
   
-      let distances = 8000;
+      let distance = calculateDistance(window.currentCity.addresses[0].coordinates, userCoords);
+      console.log("Дистанция "+distance)
       let nearestRest = { restaraunt: null, distance: Infinity };
-      distances.forEach((val) => {
-        if (val.distance < nearestRest.distance) {
-          nearestRest = val;
-        }
-      });
+      // distances.forEach((val) => {
+      //   if (val.distance < nearestRest.distance) {
+      //     nearestRest = val;
+      //   }
+      // });
+      nearestRest.distance = distance
   
       console.log({ nearestRest });
       console.log($("#too-far-delivery-msg"));
-      if (nearestRest.distance > 8000) {
+      if (nearestRest.distance > 9000000) {
         console.log('remove d-none');
         $("#too-far-delivery-msg").removeClass('d-none');
       } else {
